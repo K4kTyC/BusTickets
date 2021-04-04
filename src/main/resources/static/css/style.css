@@ -45,9 +45,8 @@ p{
     height: 300px;
     width: 600px;
     margin: 0 auto;
-
     display: flex;
-    align-items: flex-start;
+    ustify-content: center;
 
 }
 
@@ -60,6 +59,7 @@ p{
 
 .form_title{
     padding-bottom: 10px;
+
 }
 .form_input{
     font-size: 16px;
@@ -78,8 +78,6 @@ p{
     align-items: center;
     min-height: 20px;
     cursor: pointer;
-
-
 }
 
          /*===HEADER===*/
@@ -92,9 +90,6 @@ p{
     top: 0;
     left: 0;
     z-index: 1000;
-    
-    
-
 }
 
 .header__inner{
@@ -103,7 +98,6 @@ p{
     /*=== border-bottom: 1px solid #ffffff;    Линия под хедром===*/
     padding: 35px 0; 
     align-items: center;
-    
 }
 
 /*===NAVIGATION===*/
@@ -112,7 +106,6 @@ p{
     font-weight: 700;
     text-transform: uppercase;
     ; 
-    
 }
 
 .nav__link{
@@ -193,12 +186,22 @@ p{
     border-radius: 10px;
 }
 .contact{
-
     background-color: #01566f;
-
 }
 
 .tx{
     color: wheat;
     text-align: center;
 }
+
+/*=== Тестовый стиль
+
+.datepicker {
+ width: 110px;
+    margin: 0 10px 10px 10px;
+
+}
+
+.datepicker > span:hover{
+    cursor: pointer;
+}===*/
