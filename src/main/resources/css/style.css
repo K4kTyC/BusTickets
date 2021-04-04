@@ -1,0 +1,177 @@
+
+html,body{
+
+    margin: 0;
+    font-family: 'Cardo', serif;
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    color: #ff0000;
+    background-color: #fff
+    }
+*,
+*:before,
+*:after{
+    box-sizing: border-box;
+}
+h1, h2, h3, h4, h5, h6{
+    margin: 0; 
+}
+p{
+    margin: 0 0 10px;
+}
+
+
+/*===Container===*/
+
+.container { 
+    width: 100%;
+    max-width: 1170px;
+    margin: 0 auto;
+    
+}
+
+.form_block{
+    margin: 0 0 30px 0;
+
+}
+
+.form_item{
+    margin: 0 0 10px 0;
+}
+.form_label{
+    display: block;
+}
+
+.form_title{
+    padding-bottom: 10px;
+}
+
+
+
+/*===HEADER===*/
+
+
+
+.header{
+    width: 100%;
+    height: 100px;
+    padding: 35px 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    
+    
+
+}
+
+.header__inner{
+    display: flex;
+    justify-content: space-between;
+    /*=== border-bottom: 1px solid #ffffff;    Линия под хедром===*/
+    padding: 35px 0; 
+    align-items: center;
+    
+}
+
+/*===NAVIGATION===*/
+.nav{
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    ; 
+    
+}
+
+.nav__link{
+    margin-left: 50px;
+    color: #fff;
+    text-decoration: none;
+    opacity: 0.75;
+    transition: opacity .1s linear;
+}
+
+.nav__link:hover{
+    opacity: 1;    
+    
+}
+.nav__link:first-child{
+    margin-left: 0;
+}
+
+
+/*===news===*/
+
+.news{
+    display: flex;
+    height: 920px;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 100px;    
+    background: #01566f 
+        /*== url("../img/intro.jpg")  , фоновая картинка ===*/
+        no-repeat center / cover; 
+        ;
+}
+.container{
+    text-align: center;
+    
+}
+
+.news__innerr{
+    widows: 100%;
+
+
+}
+
+.news__title {
+
+    font-family: 'Open Sans', sans-serif;
+    font-size: 24px;
+    color: #ffffff;    
+    text-transform: uppercase;
+    line-height: 1.1;
+    text-align: left;
+    margin: 0 0 30px;
+    
+    
+    
+}
+.news__subtitle{
+    color: #FFFFFF;    
+    font-size: 22px;
+    line-height: 1.5;
+    font-weight: 400;
+    margin-bottom: 60px;
+    
+    
+}
+.news_block{
+    display: flex;
+    margin: 10px auto;
+    word-wrap: break-word;
+    
+    
+    
+    
+}
+.news_inner_cont_1 {
+    margin-left: 100px;    
+    width:300px;
+    margin: 0 auto;
+    background-color:  white;
+    box-shadow: 0 1px 5px #ccc;
+    border-radius: 10px;
+}
+.contact{
+
+    background-color: #01566f;
+
+}
+
+.tx{
+    color: wheat;
+    text-align: center;
+}
