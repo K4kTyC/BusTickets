@@ -32,7 +32,15 @@ p{
     
 }
 
+          /*=== Убираем обводку на ipnut ===*/
+.form * {
+    outline: none;
+}
 
+          /*=== Свечение ===*/
+.form_input:focus{
+    box-shadow: 0 0 15px silver;
+}
 .form_conteinerblock{
     height: 300px;
     width: 600px;
@@ -41,7 +49,6 @@ p{
     display: flex;
     align-items: flex-start;
 
-}
 }
 
 .form_item{
@@ -54,16 +61,28 @@ p{
 .form_title{
     padding-bottom: 10px;
 }
-
-.btmsubmit{
-    background-color: slategrey;
+.form_input{
+    font-size: 16px;
+    padding: 5px;
+    transition: all 0.5s ease 0s;
 }
 
+.form_button{
+    font-size: 16px;
+    transition: all 0.5s ease 0s;
+    background-color: green;
+    padding: 5px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 20px;
+    cursor: pointer;
 
 
-/*===HEADER===*/
+}
 
-
+         /*===HEADER===*/
 
 .header{
     width: 100%;
@@ -132,9 +151,6 @@ p{
 }
 
 .news__innerr{
-    widows: 100%;
-
-
 }
 
 .news__title {
