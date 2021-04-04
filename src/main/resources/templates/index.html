@@ -5,7 +5,7 @@
                <link rel="preconnect" href="https://fonts.gstatic.com">
             <link href="https://fonts.googleapis.com/css2?family=Cardo:ital@1&family=Open+Sans:ital@0;1&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
        
-        <link rel="stylesheet" href= "../css/style.css">
+        <link rel="stylesheet" href= "../static/css/style.css">
        <title>
            Автобусное расписание
        </title>       
@@ -16,7 +16,7 @@
                      <div class="container">
                           <div class="header__inner">
                                <div class="header__logo">
-                                 <img src="../Img/logo1.png" alt="">
+                                 <img src="../static/Img/logo1.png" alt="">
                      </div>
                                     <div class="nav">
                                            <a href="#" class="nav__link">Главная</a>
@@ -29,30 +29,46 @@
                          </div>
                      </div>
              </header>
-        <div class="wrapper">
-                   <div class="news">
-                      <div class="container">
+
+       <div class="news">
+             <div class="container">
                              <div class="form">
-                                      <div class="form_block">
-                                              <form action="# class="">
+
+                                             <!-- <form action="# class="">-->
+
+                                          <div class="form_conteiner">
                                                    <h1 class="form_title" >Отправка</h1>
-                                                   <div class="form_item">
-                                                       <label for="formfrom" class="form_label">откуда</label>
-                                                       <input id="formfrom" type="text" class="form_input">
 
-                                                   </div>
-                                                   <div class="form_item">
-                                                       <label for="fortarger" class="form_label">Куда</label>
-                                                       <input id="fortarger" type="text" class="form_input">
+                                                      <div class="form_conteinerblock">
 
-                                                   </div>
-                                                           <div class="form_item">
-                                                               <label for="formdata" class="form_label">Дата</label>
-                                                               <input id="formdata" type="text" class="form_input">
+                                                           <!-- Формы заполнения "Откуда"  -->
+                                                          <div class="form_item">
+                                                               <input id="formfrom" type="text" class="form_input" placeholder="Откуда">
+                                                          </div>
 
+                                                          <!-- Формы заполнения "Куда" -->
+                                                          <div class="form_item">
+                                                               <input id="fortarger" type="text" class="form_input" placeholder="Куда">
+
+                                                          </div>
+                                                          <!-- Формы заполнения "Куда" -->
+
+                                                          <!-- Формы заполнения "Дата отправления" -->
+                                                            <div class="form_item">
+                                                                <input id="formdata" type="text" class="form_input"placeholder="Дата отправления">
+
+                                                            </div>
+                                                          <!-- Формы заполнения "Дата отправления" -->
+
+                                                          <!-- Кнопка отправки данных -->
+                                                           <div class="form_item ">
+                                                               <input type="submit" value="Найти билеты" class="btmsubmit">
                                                            </div>
+
+                                                      </div>
+                                          </div>
                                               </form>
-                                      </div>
+
 
                    
                              </div>
@@ -66,10 +82,9 @@
                                                   <div class="news_inner_cont_1">Блок  </div>
                                               </div>
                                </div>
-                      </div>
-                 <div class="Maps">
-
-              </div>
+             </div>
+                                    <div class="Maps">
+                                    </div>
         </div>
        </div>
        <div class="contact ">
