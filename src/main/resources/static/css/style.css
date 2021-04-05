@@ -100,6 +100,20 @@ p{
     align-items: center;
 }
 
+.header__login {
+    color: White;
+    display: flex;
+    flex-direction: column;
+
+}
+.login{
+    padding: 10px 0 15px 0;
+}
+
+.loginbutton{
+
+}
+
 /*===NAVIGATION===*/
 .nav{
     font-size: 13px;
@@ -193,6 +207,17 @@ p{
     color: wheat;
     text-align: center;
 }
+
+.input_datesubmit{
+    width: 200px;
+    height: 32.5px;
+    display: flex;
+    flex-direction: row;
+
+}
+
+
+
 
 /*=== Тестовый стиль
 

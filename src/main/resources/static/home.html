@@ -17,14 +17,19 @@
                      <div class="container">
                           <div class="header__inner">
                                <div class="header__logo">
-                                 <img src="Img/logo1.png" alt="">
-                     </div>
+                                     <img src="Img/logo1.png" alt="">
+                               </div>
                                     <div class="nav">
                                            <a href="#" class="nav__link">Главная</a>
                                            <a href="#" class="nav__link">Расписание</a>
                                            <a href="#" class="nav__link">Купить билет</a>
                                            <a href="#" class="nav__link">Контакты</a>
                                     </div>
+
+                                      <div class="header__login">
+                                          <button class="loginbutton"    onclick=" window.location.href ='https://ya.ru/'; " > Личный кабинет </button>
+                                          <div class="login">+346 999 99 99</div>
+                                      </div>
 
 
                          </div>
@@ -55,10 +60,16 @@
                                                           <!-- Формы заполнения "Куда" -->
 
                                                           <!-- Формы заполнения "Дата отправления" -->
-                                                           <div class="form_item"><input id="formdata" type="text" class="form_input"placeholder="Дата отправления"></div>
+                                                          <div class="input_datesubmit">
 
+                                                          <input type="date" id="start" name="trip-start"
+                                                                 value="2021-04-05"
+                                                                 min="2021-01-01" max="2021-12-31">
+                                                          </div>
 
-                                                          <!--  Ввод даты с кландаря
+                                                          <!--<div class="form_item"><input id="formdata" type="text" class="form_input"placeholder="Дата отправления"></div>-->
+
+                                                          <!-- Ввод даты с кландаря
 
                                                           <div id="datepicker" class="form_input data" data-data-formate="yyyy-mm-dd" >
                                                                 <input type="text" name="">
@@ -67,12 +78,16 @@
                                                             </div> -->
 
 
+
+
                                                           <!-- Формы заполнения "Дата отправления" -->
 
-                                                          <!-- Кнопка отправки данных -->
+                                                          <!-- Кнопка отправки данных-->
+
                                                            <div class="form_item ">
                                                                 <button type="submit" class="form_button">Найти билеты</button>
                                                            </div>
+
 
                                                       </div>
                                           </div>
@@ -100,6 +115,7 @@
            <div class="contact_block tx"> 1</div>
            <div class="contact_block tx"> 2</div>
            <div class="contact_block tx"> 3</div>
+
 
        </div>
 
