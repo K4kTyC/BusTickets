@@ -38,7 +38,7 @@ public class UserService implements UserDetailsService {
 
         return new org.springframework.security.core.userdetails.User(
                 user.getUsername(), user.getPassword(),
-                Collections.singletonList(new SimpleGrantedAuthority(user.getRole().getValue().name())));
+                Collections.singletonList(new SimpleGrantedAuthority(user.getRole().getValue())));
     }
 
     public Optional<User> findByUsername(String username) {
