@@ -3,10 +3,7 @@ package com.k4ktyc.bustickets.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
@@ -19,6 +16,10 @@ public class User {
     private String username;
 
     private String password;
+
+    @ManyToOne
+    @JoinColumn(name = "role_id", nullable = false, updatable = false)
+    private Role role;
 
     public User() {}
 
