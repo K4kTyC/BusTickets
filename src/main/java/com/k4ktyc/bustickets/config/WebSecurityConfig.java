@@ -34,7 +34,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/register", "/api/register").anonymous()
                     .anyRequest().authenticated()
                     .and()
-                .formLogin();
+                .formLogin()
+                    .and()
+                .csrf().disable();
     }
 
     @Bean

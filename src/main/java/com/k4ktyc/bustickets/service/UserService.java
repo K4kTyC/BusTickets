@@ -17,6 +17,7 @@ import java.util.Optional;
 @Service
 public class UserService implements UserDetailsService {
 
+    private RoleService roleService;
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
 
@@ -28,6 +29,11 @@ public class UserService implements UserDetailsService {
     @Autowired
     public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
+    }
+
+    @Autowired
+    public void setRoleService(RoleService roleService) {
+        this.roleService = roleService;
     }
 
 
@@ -47,6 +53,7 @@ public class UserService implements UserDetailsService {
 
     public boolean registerUser(UserDto userDto) {
         User user = new User(userDto);
+        user.setRole(roleService.findByValue("ROLE_USER").get());
         if (isUserExists(user)) {
             return false;
         }

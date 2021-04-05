@@ -12,7 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/register")
+@RequestMapping("/api/register")
 public class RegistrationController {
 
     private final UserService userService;

@@ -18,4 +18,10 @@ public class Role {
 
     @OneToMany(mappedBy = "role")
     private List<User> users;
+
+    public Role() {}
+
+    public Role(String value) {
+        this.value = value;
+    }
 }
