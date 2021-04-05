@@ -1,7 +1,7 @@
 package com.k4ktyc.bustickets.model;
 
 public enum RoleType {
-    ADMIN,
-    EMPLOYEE,
-    USER
+    ROLE_ADMIN,
+    ROLE_EMPLOYEE,
+    ROLE_USER
 }
