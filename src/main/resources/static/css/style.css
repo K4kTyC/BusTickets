@@ -1,5 +1,5 @@
 
-html,body{
+html, body {
 
     margin: 0;
     font-family: 'Cardo', serif;
@@ -9,16 +9,19 @@ html,body{
     -webkit-font-smoothing: antialiased;
     color: #ff0000;
     background-color: #fff
-    }
+}
+
 *,
 *:before,
-*:after{
+*:after {
     box-sizing: border-box;
 }
-h1, h2, h3, h4, h5, h6{
-    margin: 0; 
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
 }
-p{
+
+p {
     margin: 0 0 10px;
 }
 
@@ -29,61 +32,13 @@ p{
     width: 100%;
     max-width: 1170px;
     margin: 0 auto;
-    
-}
-
-/*=== Убираем обводку на ipnut ===*/
-.form * {
-    outline: none;
-}
-
-/*=== Свечение ===*/
-.form_input:focus{
-    box-shadow: 0 0 15px silver;
-}
-.form_conteinerblock{
-    height: 300px;
-    width: 600px;
-    margin: 0 auto;
-    display: flex;
-    ustify-content: center;
 
 }
 
-.form_item{
-    margin: 0 0 10px 0;
-}
-.form_label{
-    display: block;
-}
 
-.form_title{
-    padding-bottom: 10px;
-    color: #cccccc;
+/*===HEADER===*/
 
-}
-.form_input{
-    font-size: 16px;
-    padding: 5px;
-    transition: all 0.5s ease 0s;
-}
-
-.form_button{
-    font-size: 16px;
-    transition: all 0.5s ease 0s;
-    background-color: green;
-    padding: 5px;
-    width: 150px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 20px;
-    cursor: pointer;
-}
-
-         /*===HEADER===*/
-
-.header{
+.header {
     width: 100%;
     height: 100px;
     padding: 35px 0;
@@ -93,11 +48,11 @@ p{
     z-index: 1000;
 }
 
-.header__inner{
+.header__inner {
     display: flex;
     justify-content: space-between;
     /*=== border-bottom: 1px solid #ffffff;    Линия под хедром===*/
-    padding: 35px 0; 
+    padding: 35px 0;
     align-items: center;
 }
 
@@ -107,23 +62,19 @@ p{
     flex-direction: column;
 
 }
-.login{
+
+.login {
     padding: 10px 0 15px 0;
 }
 
-.loginbutton{
-
-}
-
 /*===NAVIGATION===*/
-.nav{
+.nav {
     font-size: 13px;
     font-weight: 700;
     text-transform: uppercase;
-    ; 
 }
 
-.nav__link{
+.nav__link {
     margin-left: 50px;
     color: #fff;
     text-decoration: none;
@@ -131,36 +82,91 @@ p{
     transition: opacity .1s linear;
 }
 
-.nav__link:hover{
-    opacity: 1;    
-    
+.nav__link:hover {
+    opacity: 1;
+
 }
-.nav__link:first-child{
+
+.nav__link:first-child {
     margin-left: 0;
 }
 
 
-/*===news===*/
+                                        /*=== Container (бывш- news) ===*/
 
-.news{
+.container {
     display: flex;
     height: 920px;
     flex-direction: column;
     justify-content: center;
-    padding-top: 100px;    
-    background: #01566f 
-        /*== url("../img/intro.jpg")  , фоновая картинка ===*/
-        no-repeat center / cover; 
-        ;
+    padding-top: 100px;
+    background: #01566f /*== url("../img/intro.jpg")  , фоновая картинка ===*/ no-repeat center / cover;;
+}
+
+/*=== Блок формы ввода данных===*/
+.container__select-route_form {
+
+    margin: 30px 0 300px 0;
+    display: flex;
+    justify-content: center;
+
+}
+
+/*=== Формы заполнения  ===*/
+.container__select-route_item {
+    height: 50px;
+    width: 270px;
+    margin: 0 10px 0 0;
+    padding: 0 10px 0 0;
+    font-size: 16px;
+    transition: all 0.5s ease 0s;
+    outline: none;
+}
+
+/*=== Свечение блоков "input" ===*/
+.container__select-route_item:focus {
+    box-shadow: 0 0 15px silver;
+}
+
+/*=== Calendar ===*/
+.container__select-route_calendar {
+    width: 290px;
+    height: 32.5px;
+    display: flex;
+    flex-direction: row;
+}
+
+/*=== button-search ===*/
+.container__select-route_button-search {
+    padding: 10px ;
+    margin: 0 10px 0 10px;
+    font-size: 16px;
+    transition: all 0.5s ease 0s;
+    background-color: yellow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.form_label {
+    display: block;
 }
 
 
-/*== Класс к блоку "New" ===*/
-.new__container{
+.container__select-route_title {
+    padding-bottom: 10px;
+    color: #cccccc;
+
+}
+
+                                        /*== News ===*/
+.container__select-route_block {
     text-align: center;
 }
 
-.news__innerr{
+.news__innerr {
 
 }
 
@@ -168,69 +174,47 @@ p{
 
     font-family: 'Open Sans', sans-serif;
     font-size: 24px;
-    color: #ffffff;    
+    color: #ffffff;
     text-transform: uppercase;
     line-height: 1.1;
     text-align: left;
     margin: 0 0 30px;
-    
-    
-    
+
+
 }
-.news__subtitle{
-    color: #FFFFFF;    
+
+.news__subtitle {
+    color: #FFFFFF;
     font-size: 22px;
     line-height: 1.5;
     font-weight: 400;
     margin-bottom: 60px;
-    
-    
+
+
 }
-.news_block{
+
+.news_block {
     display: flex;
     margin: 10px auto;
     word-wrap: break-word;
-    
-    
-    
-    
+
+
 }
+
 .news_inner_cont_1 {
-    margin-left: 100px;    
-    width:300px;
+    margin-left: 100px;
+    width: 300px;
     margin: 0 auto;
-    background-color:  white;
+    background-color: white;
     box-shadow: 0 1px 5px #ccc;
     border-radius: 10px;
 }
-.contact{
+
+.contact {
     background-color: #01566f;
 }
 
-.tx{
+.tx {
     color: wheat;
     text-align: center;
 }
-
-.input_datesubmit{
-    width: 200px;
-    height: 32.5px;
-    display: flex;
-    flex-direction: row;
-
-}
-
-
-
-
-/*=== Тестовый стиль
-
-.datepicker {
- width: 110px;
-    margin: 0 10px 10px 10px;
-
-}
-
-.datepicker > span:hover{
-    cursor: pointer;
-}===*/

@@ -19,6 +19,7 @@
             <div class="header__logo">
                 <img src="Img/logo1.png" alt="">
             </div>
+            <!-- Изменить фоновый цвет блока на Белый, Цвет текста - синий. -->
 
             <div class="nav">
                 <a href="#" class="nav__link">Главная</a>
@@ -28,7 +29,7 @@
             </div>
 
             <div class="header__login">
-                <button class="loginbutton" onclick=" window.location.href ='https://ya.ru/'; "> Личный кабинет</button>
+                <button class="loginbutton" onclick=" window.location.href =''; "> Личный кабинет</button>
                 <div class="login">+346 999 99 99</div>
             </div>
 
@@ -38,61 +39,38 @@
     </div>
 </header>
 
-<div class="">
-    <div class="news__container">
-        <div class="news__form">
+<div class="container">
 
-            <div class="form_conteiner">
-                <h1 class="form_title">Выбрать маршрут</h1>
+    <div class="container__select-route">
 
-                <div class="form_conteinerblock">
+        <div class="container__select-route_block">
+            <h1 class="container__select-route_title">Выбрать маршрут</h1>
 
-                    <!-- Формы заполнения "Откуда"  -->
-                    <div class="form_item">
-                        <input id="formfrom" type="text" class="form_input" placeholder="Откуда">
-                    </div>
+            <div class="container__select-route_form">
 
-                    <!-- Формы заполнения "Куда" -->
-                    <div class="form_item">
-                        <input id="fortarger" type="text" class="form_input" placeholder="Куда">
+                <!-- Формы заполнения "Откуда"  -->
+                <input class="container__select-route_item" id="route-from" type="text" placeholder="Откуда">
 
-                    </div>
-                    <!-- Формы заполнения "Куда" -->
+                <!-- Формы заполнения "Куда" -->
+                <input class="container__select-route_item" id="route-to" type="text" placeholder="Куда">
 
-                    <!-- Формы заполнения "Дата отправления" -->
-                    <div class="input_datesubmit">
+                <!-- Формы заполнения "Дата отправления" -->
+                <input class="container__select-route_item" type="date" id="route-date" name="trip-start"
+                           value="2021-04-05"
+                           min="2021-01-01" max="2021-12-31">
 
-                        <input type="date" id="start" name="trip-start"
-                               value="2021-04-05"
-                               min="2021-01-01" max="2021-12-31">
-                    </div>
+                <!-- Кнопка отправки данных-->
+                <button class="container__select-route_button-search" type="submit" id="route-submit">Найти</button>
 
-                    <!--<div class="form_item"><input id="formdata" type="text" class="form_input"placeholder="Дата отправления"></div>-->
-
-                    <!-- Ввод даты с кландаря
-
-                    <div id="datepicker" class="form_input data" data-data-formate="yyyy-mm-dd" >
-                          <input type="text" name="">
-                          <span class="form_input addon"> <i class="dataform">  </i></span>
-                          <script src="js/Datasubmit.js"></script>
-                      </div> -->
-
-
-                    <!-- Формы заполнения "Дата отправления" -->
-
-                    <!-- Кнопка отправки данных-->
-
-                    <div class="form_item ">
-                        <button type="submit" class="form_button">Найти билеты</button>
-                    </div>
-
-
-                </div>
             </div>
-            </form>
-
-
         </div>
+        </form>
+
+        <!--/div-->
+
+        <!-- Вынести за блок "Container__routes" -->
+
+        <!-- News -->
         <div class="news__inner">
             <h1 class="news__title"> Новости и обновления</h1>
 
