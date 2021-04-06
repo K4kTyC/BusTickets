@@ -23,21 +23,21 @@ p{
 }
 
 
-/*===Container===*/
+/*=== Header ===*/
 
-.container { 
+.header__container {
     width: 100%;
     max-width: 1170px;
     margin: 0 auto;
     
 }
 
-          /*=== Убираем обводку на ipnut ===*/
+/*=== Убираем обводку на ipnut ===*/
 .form * {
     outline: none;
 }
 
-          /*=== Свечение ===*/
+/*=== Свечение ===*/
 .form_input:focus{
     box-shadow: 0 0 15px silver;
 }
@@ -59,6 +59,7 @@ p{
 
 .form_title{
     padding-bottom: 10px;
+    color: #cccccc;
 
 }
 .form_input{
@@ -152,12 +153,15 @@ p{
         no-repeat center / cover; 
         ;
 }
-.container{
+
+
+/*== Класс к блоку "New" ===*/
+.new__container{
     text-align: center;
-    
 }
 
 .news__innerr{
+
 }
 
 .news__title {

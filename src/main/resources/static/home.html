@@ -1,123 +1,119 @@
 <!doctype html>
 <html lang="ru">
-    <head>
-       <meta charset="utf-8">
+<head>
+    <meta charset="utf-8">
 
 
-        <link rel="stylesheet" href= "css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 
 
-        <title>
-           Автобусное расписание
-       </title>       
-    </head>
-    
-    <body>
-       <header class="header">
-                     <div class="container">
-                          <div class="header__inner">
-                               <div class="header__logo">
-                                     <img src="Img/logo1.png" alt="">
-                               </div>
-                                    <div class="nav">
-                                           <a href="#" class="nav__link">Главная</a>
-                                           <a href="#" class="nav__link">Расписание</a>
-                                           <a href="#" class="nav__link">Купить билет</a>
-                                           <a href="#" class="nav__link">Контакты</a>
-                                    </div>
+    <title>
+        Автобусное расписание
+    </title>
+</head>
 
-                                      <div class="header__login">
-                                          <button class="loginbutton"    onclick=" window.location.href ='https://ya.ru/'; " > Личный кабинет </button>
-                                          <div class="login">+346 999 99 99</div>
-                                      </div>
+<body>
+<header class="header">
+    <div class="header__container">
+        <div class="header__inner">
+            <div class="header__logo">
+                <img src="Img/logo1.png" alt="">
+            </div>
 
+            <div class="nav">
+                <a href="#" class="nav__link">Главная</a>
+                <a href="#" class="nav__link">Расписание</a>
+                <a href="#" class="nav__link">Купить билет</a>
+                <a href="#" class="nav__link">Контакты</a>
+            </div>
 
-                         </div>
-                     </div>
-             </header>
-
-       <div class="news">
-             <div class="container">
-                             <div class="form">
-
-                                             <!-- <form action="# class="">-->
-
-                                          <div class="form_conteiner">
-                                                   <h1 class="form_title" >Отправка</h1>
-
-                                                      <div class="form_conteinerblock">
-
-                                                           <!-- Формы заполнения "Откуда"  -->
-                                                          <div class="form_item">
-                                                               <input id="formfrom" type="text" class="form_input" placeholder="Откуда">
-                                                          </div>
-
-                                                          <!-- Формы заполнения "Куда" -->
-                                                          <div class="form_item">
-                                                               <input id="fortarger" type="text" class="form_input" placeholder="Куда">
-
-                                                          </div>
-                                                          <!-- Формы заполнения "Куда" -->
-
-                                                          <!-- Формы заполнения "Дата отправления" -->
-                                                          <div class="input_datesubmit">
-
-                                                          <input type="date" id="start" name="trip-start"
-                                                                 value="2021-04-05"
-                                                                 min="2021-01-01" max="2021-12-31">
-                                                          </div>
-
-                                                          <!--<div class="form_item"><input id="formdata" type="text" class="form_input"placeholder="Дата отправления"></div>-->
-
-                                                          <!-- Ввод даты с кландаря
-
-                                                          <div id="datepicker" class="form_input data" data-data-formate="yyyy-mm-dd" >
-                                                                <input type="text" name="">
-                                                                <span class="form_input addon"> <i class="dataform">  </i></span>
-                                                                <script src="js/Datasubmit.js"></script>
-                                                            </div> -->
+            <div class="header__login">
+                <button class="loginbutton" onclick=" window.location.href ='https://ya.ru/'; "> Личный кабинет</button>
+                <div class="login">+346 999 99 99</div>
+            </div>
 
 
-
-
-                                                          <!-- Формы заполнения "Дата отправления" -->
-
-                                                          <!-- Кнопка отправки данных-->
-
-                                                           <div class="form_item ">
-                                                                <button type="submit" class="form_button">Найти билеты</button>
-                                                           </div>
-
-
-                                                      </div>
-                                          </div>
-                                              </form>
-
-
-                   
-                             </div>
-                                    <div class="news__inner">
-                                         <h1 class="news__title">
-                                      Новости и обновления
-                                        </h1>
-                                              <div class="news_block">
-                                                  <div class="news_inner_cont_1">Блок  </div>
-                                                  <div class="news_inner_cont_1">Блок </div>
-                                                  <div class="news_inner_cont_1">Блок  </div>
-                                              </div>
-                               </div>
-             </div>
-                                    <div class="Maps">
-                                    </div>
         </div>
-       </div>
-       <div class="contact ">
-           <div class="contact_block tx"> 1</div>
-           <div class="contact_block tx"> 2</div>
-           <div class="contact_block tx"> 3</div>
+
+    </div>
+</header>
+
+<div class="">
+    <div class="news__container">
+        <div class="news__form">
+
+            <div class="form_conteiner">
+                <h1 class="form_title">Выбрать маршрут</h1>
+
+                <div class="form_conteinerblock">
+
+                    <!-- Формы заполнения "Откуда"  -->
+                    <div class="form_item">
+                        <input id="formfrom" type="text" class="form_input" placeholder="Откуда">
+                    </div>
+
+                    <!-- Формы заполнения "Куда" -->
+                    <div class="form_item">
+                        <input id="fortarger" type="text" class="form_input" placeholder="Куда">
+
+                    </div>
+                    <!-- Формы заполнения "Куда" -->
+
+                    <!-- Формы заполнения "Дата отправления" -->
+                    <div class="input_datesubmit">
+
+                        <input type="date" id="start" name="trip-start"
+                               value="2021-04-05"
+                               min="2021-01-01" max="2021-12-31">
+                    </div>
+
+                    <!--<div class="form_item"><input id="formdata" type="text" class="form_input"placeholder="Дата отправления"></div>-->
+
+                    <!-- Ввод даты с кландаря
+
+                    <div id="datepicker" class="form_input data" data-data-formate="yyyy-mm-dd" >
+                          <input type="text" name="">
+                          <span class="form_input addon"> <i class="dataform">  </i></span>
+                          <script src="js/Datasubmit.js"></script>
+                      </div> -->
 
 
-       </div>
+                    <!-- Формы заполнения "Дата отправления" -->
 
-    </body>
-   </html>
+                    <!-- Кнопка отправки данных-->
+
+                    <div class="form_item ">
+                        <button type="submit" class="form_button">Найти билеты</button>
+                    </div>
+
+
+                </div>
+            </div>
+            </form>
+
+
+        </div>
+        <div class="news__inner">
+            <h1 class="news__title"> Новости и обновления</h1>
+
+            <div class="news_block">
+                <div class="news_inner_cont_1">Блок</div>
+                <div class="news_inner_cont_1">Блок</div>
+                <div class="news_inner_cont_1">Блок</div>
+            </div>
+        </div>
+    </div>
+    <div class="Maps">
+    </div>
+</div>
+</div>
+<div class="contact ">
+    <div class="contact_block tx"> 1</div>
+    <div class="contact_block tx"> 2</div>
+    <div class="contact_block tx"> 3</div>
+
+
+</div>
+
+</body>
+</html>
