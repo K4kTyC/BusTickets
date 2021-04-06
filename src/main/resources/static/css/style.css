@@ -40,26 +40,21 @@ p {
 
 .header {
     width: 100%;
-    height: 100px;
-    padding: 35px 0;
-    position: absolute;
     top: 0;
     left: 0;
     z-index: 1000;
+    position: fixed;
+    background-color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+
 }
 
-.header__inner {
-    display: flex;
-    justify-content: space-between;
-    /*=== border-bottom: 1px solid #ffffff;    Линия под хедром===*/
-    padding: 35px 0;
-    align-items: center;
-}
 
 .header__login {
-    color: White;
-    display: flex;
-    flex-direction: column;
+    color: #01566f;
+    font-weight: bold;
+    padding: 10px 10px 0 0;
 
 }
 
@@ -68,29 +63,41 @@ p {
 }
 
 /*===NAVIGATION===*/
-.nav {
+.header__nav {
     font-size: 13px;
     font-weight: 700;
     text-transform: uppercase;
-}
-
-.nav__link {
-    margin-left: 50px;
-    color: #fff;
     text-decoration: none;
-    opacity: 0.75;
-    transition: opacity .1s linear;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
 }
 
-.nav__link:hover {
+.header__nav li {
+
+}
+
+.header__nav a {
+    text-decoration: none;
+    color: #01566f;
+    text-align: center;
+
+}
+
+.header__nav a:hover {
+    color: rgba(1,107,133,0.44);
+}
+
+/*===.nav__link:hover {
     opacity: 1;
 
 }
 
 .nav__link:first-child {
     margin-left: 0;
-}
-
+}  ===/
 
                                         /*=== Container (бывш- news) ===*/
 
@@ -117,10 +124,11 @@ p {
     height: 50px;
     width: 270px;
     margin: 0 10px 0 0;
-    padding: 0 10px 0 0;
+    padding: 0 10px 0 10px;
     font-size: 16px;
     transition: all 0.5s ease 0s;
     outline: none;
+
 }
 
 /*=== Свечение блоков "input" ===*/
