@@ -1,98 +1,96 @@
 <!doctype html>
 <html lang="ru">
-    <head>
-       <meta charset="utf-8">
-               <link rel="preconnect" href="https://fonts.gstatic.com">
-            <link href="https://fonts.googleapis.com/css2?family=Cardo:ital@1&family=Open+Sans:ital@0;1&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
-       
-        <link rel="stylesheet" href= "css/style.css">
-       <title>
-           Автобусное расписание
-       </title>       
-    </head>
-    
-    <body>
-       <header class="header">
-                     <div class="container">
-                          <div class="header__inner">
-                               <div class="header__logo">
-                                 <img src="Img/logo1.png" alt="">
-                     </div>
-                                    <div class="nav">
-                                           <a href="#" class="nav__link">Главная</a>
-                                           <a href="#" class="nav__link">Расписание</a>
-                                           <a href="#" class="nav__link">Купить билет</a>
-                                           <a href="#" class="nav__link">Контакты</a>
-                                    </div>
+<head>
+    <meta charset="utf-8">
 
 
-                         </div>
-                     </div>
-             </header>
-
-       <div class="news">
-             <div class="container">
-                             <div class="form">
-
-                                             <!-- <form action="# class="">-->
-
-                                          <div class="form_conteiner">
-                                                   <h1 class="form_title" >Отправка</h1>
-
-                                                      <div class="form_conteinerblock">
-
-                                                           <!-- Формы заполнения "Откуда"  -->
-                                                          <div class="form_item">
-                                                               <input id="formfrom" type="text" class="form_input" placeholder="Откуда">
-                                                          </div>
-
-                                                          <!-- Формы заполнения "Куда" -->
-                                                          <div class="form_item">
-                                                               <input id="fortarger" type="text" class="form_input" placeholder="Куда">
-
-                                                          </div>
-                                                          <!-- Формы заполнения "Куда" -->
-
-                                                          <!-- Формы заполнения "Дата отправления" -->
-                                                            <div class="form_item">
-                                                                <input id="formdata" type="text" class="form_input"placeholder="Дата отправления">
-
-                                                            </div>
-                                                          <!-- Формы заполнения "Дата отправления" -->
-
-                                                          <!-- Кнопка отправки данных -->
-                                                           <div class="form_item ">
-                                                                <button type="submit" class="form_button">Найти билеты</button>
-                                                           </div>
-
-                                                      </div>
-                                          </div>
-                                              </form>
+    <link rel="stylesheet" href="css/style.css">
 
 
-                   
-                             </div>
-                                    <div class="news__inner">
-                                         <h1 class="news__title">
-                                      Новости и обновления
-                                        </h1>
-                                              <div class="news_block">
-                                                  <div class="news_inner_cont_1">Блок  </div>
-                                                  <div class="news_inner_cont_1">Блок </div>
-                                                  <div class="news_inner_cont_1">Блок  </div>
-                                              </div>
-                               </div>
-             </div>
-                                    <div class="Maps">
-                                    </div>
+    <title>
+        Автобусное расписание
+    </title>
+</head>
+
+<body>
+<header class="header">
+    <div class="header__container">
+
+            <div class="header__logo">
+                <img src="Img/logo1.png" alt="">
+            </div>
+            <!-- Изменить фоновый цвет блока на Белый, Цвет текста - синий. -->
+
+            <ul class="header__nav">
+                <li><a href="#">Главная</a></li>
+                <li><a href="#">Расписание</a></li>
+                <li><a href="#">Купить билет</a></li>
+                <li><a href="#">Контакты</a></li>
+            </ul>
+
+            <div class="header__login">
+                <button onclick=" window.location.href =''; "> Личный кабинет</button>
+                <div class="login">Login</div>
+            </div>
+
+
+
+
+    </div>
+</header>
+
+<div class="container">
+
+    <div class="container__select-route">
+
+        <div class="container__select-route_block">
+            <h1 class="container__select-route_title">Выбрать маршрут</h1>
+
+            <form class="container__select-route_form">
+
+                <!-- Формы заполнения "Откуда"  -->
+                <input class="container__select-route_item" id="route-from" type="text" placeholder="Откуда">
+
+                <!-- Формы заполнения "Куда" -->
+                <input class="container__select-route_item" id="route-to" type="text" placeholder="Куда">
+
+                <!-- Формы заполнения "Дата отправления" -->
+                <input class="container__select-route_item" type="date" id="route-date" name="trip-start"
+                           value="2021-04-05"
+                           min="2021-01-01" max="2021-12-31">
+
+                <!-- Кнопка отправки данных-->
+                <button class="container__select-route_button-search" type="submit" id="route-submit">Найти</button>
+
+            </form>
         </div>
-       </div>
-       <div class="contact ">
-           <div class="contact_block tx"> 1</div>
-           <div class="contact_block tx"> 2</div>
-           <div class="contact_block tx"> 3</div>
 
-       </div>
+      <!--/div-->
 
-    </body>
-   </html>
+        <!-- Вынести за блок "Container__routes" -->
+
+        <!-- News -->
+        <div class="news__inner">
+            <h1 class="news__title"> Новости и обновления</h1>
+
+            <div class="news_block">
+                <div class="news_inner_cont_1">Блок</div>
+                <div class="news_inner_cont_1">Блок</div>
+                <div class="news_inner_cont_1">Блок</div>
+            </div>
+        </div>
+    </div>
+    <div class="Maps">
+    </div>
+</div>
+</div>
+<div class="contact ">
+    <div class="contact_block tx"> 1</div>
+    <div class="contact_block tx"> 2</div>
+    <div class="contact_block tx"> 3</div>
+
+
+</div>
+
+</body>
+</html>
