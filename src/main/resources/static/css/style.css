@@ -78,20 +78,25 @@ p {
 
 /*===NAVIGATION===*/
 .header__nav {
-    float: left;
     font-size: 13px;
     font-weight: 700;
     text-transform: uppercase;
     text-decoration: none;
     list-style: none;
-    display: flex;
+    /*===display: flex;===*/
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+}
+
+.header__nav_buyticket {
 
 
 }
 
+.header__nav_lk {
+    float: right;
+}
 .header__nav li {
     display: inline-block;
 }
@@ -124,20 +129,20 @@ p {
     flex-direction: column;
     justify-content: center;
     padding-top: 100px;
-    background: #44883c /*== url("../img/intro.jpg")  , фоновая картинка ===*/ no-repeat center / cover;;
+    background: #292f34 /*== url("../img/intro.jpg")  , фоновая картинка ===*/ no-repeat center / cover;;
 }
 
 /*=== Блок формы ввода данных===*/
 .container__select-route_form {
 
-    margin: 30px 0 300px 0;
+    margin: 30px 0 50px 0;
     display: flex;
     justify-content: center;
 
 }
 
 /*=== Формы заполнения  ===*/
-.container__select-route_item {
+.container__select-route_item:{
     height: 50px;
     width: 270px;
     margin: 0 10px 0 0;
@@ -145,6 +150,7 @@ p {
     font-size: 16px;
     transition: all 0.5s ease 0s;
     outline: none;
+    color: #d1d2d3;
 
 }
 
@@ -180,12 +186,13 @@ p {
 }
 
 .container__select-route {
-    background-color: #d1d2d3 ;
+    background-color: #484e52 ;
+    padding: 150px 0
 }
 
 .container__select-route_title {
     padding-bottom: 10px;
-    color: #01566f;
+    color: #d1d2d3 ;
 
 }
 
