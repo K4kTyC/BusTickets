@@ -15,26 +15,21 @@
 <body>
 <header class="header">
     <div class="header__container">
+        <!--<div class="header__logo">
+             <img src="Img/logo2.png" alt="">
+        </div>-->
+        <!-- Изменить фоновый цвет блока на Белый, Цвет текста - синий. -->
 
-            <div class="header__logo">
-                <img src="Img/logo1.png" alt="">
-            </div>
-            <!-- Изменить фоновый цвет блока на Белый, Цвет текста - синий. -->
+                                        <!-- "купить билет переместить к лого, "ЛК" в правый край блока-->
+        <ul class="header__nav">
+            <li><img src="Img/logo2.png" alt=""></li>
+            <li class="header__nav_buyticket"><a href="#">Купить билет</a></li>
+            <li class="header__nav_lk"><a href="#">Личный кабинет </a></li>
+        </ul>
 
-            <ul class="header__nav">
-                <li><a href="#">Главная</a></li>
-                <li><a href="#">Расписание</a></li>
-                <li><a href="#">Купить билет</a></li>
-                <li><a href="#">Контакты</a></li>
-            </ul>
-
-            <div class="header__login">
-                <button onclick=" window.location.href =''; "> Личный кабинет</button>
-                <div class="login">Login</div>
-            </div>
-
-
-
+        <!--div class="header__login">
+            <div class="login">Login</div>
+        </div>-->
 
     </div>
 </header>
@@ -56,8 +51,8 @@
 
                 <!-- Формы заполнения "Дата отправления" -->
                 <input class="container__select-route_item" type="date" id="route-date" name="trip-start"
-                           value="2021-04-05"
-                           min="2021-01-01" max="2021-12-31">
+                       value="2021-04-05"
+                       min="2021-01-01" max="2021-12-31">
 
                 <!-- Кнопка отправки данных-->
                 <button class="container__select-route_button-search" type="submit" id="route-submit">Найти</button>
@@ -65,19 +60,15 @@
             </form>
         </div>
 
-      <!--/div-->
+<!-- News  Сверху отступ "УЗАНТЬ РАЗМЕР КАК У КОНТЕЙНЕРА" -->
+     </div>
+    <div class="news__inner">
+        <h1 class="news__title"> Новости и обновления</h1>
 
-        <!-- Вынести за блок "Container__routes" -->
-
-        <!-- News -->
-        <div class="news__inner">
-            <h1 class="news__title"> Новости и обновления</h1>
-
-            <div class="news_block">
-                <div class="news_inner_cont_1">Блок</div>
-                <div class="news_inner_cont_1">Блок</div>
-                <div class="news_inner_cont_1">Блок</div>
-            </div>
+        <div class="news_block">
+            <div class="news_inner_cont_1">Блок</div>
+            <div class="news_inner_cont_1">Блок</div>
+            <div class="news_inner_cont_1">Блок</div>
         </div>
     </div>
     <div class="Maps">
