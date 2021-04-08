@@ -2,9 +2,6 @@
 html, body {
 
     margin: 0;
-    font-family: 'Cardo', serif;
-    font-family: 'Open Sans', sans-serif;
-    font-family: 'Raleway', sans-serif;
     font-size: 14px;
     -webkit-font-smoothing: antialiased;
     color: #ff0000;
@@ -45,21 +42,17 @@ p {
     left: 0;
     z-index: 1000;
     position: fixed;
-    background-color: #FFFFFF;
-    /*===display: flex;
-    justify-content:space-between; ===*/
-
+    background-color: #292f34;
     display: table-cell;
     vertical-align: middle;
-
+    border-bottom-style: solid;
+    border-bottom-color: #44883c;
 }
 
 .header__logo {
-    width: 70px;
-    height: 50px;
-    padding: 15px;
     float: left;
-    margin: 0 30px 0 10px;
+    margin: 10px 0 10px 0 ;
+
 }
 
 .header__login {
@@ -79,8 +72,6 @@ p {
 /*===NAVIGATION===*/
 .header__nav {
     float: right;
-    font-size: 13px;
-    font-weight: 700;
     text-transform: uppercase;
     text-decoration: none;
     list-style: none;
@@ -88,6 +79,7 @@ p {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    font-family: 'Nunito', sans-serif;
 
 }
 
@@ -105,13 +97,16 @@ p {
 
 .header__nav a {
     text-decoration: none;
-    color: #01566f;
+    color: #d1d2d3;
     text-align: center;
+    font-size: 20px;
 
 }
 
 .header__nav a:hover {
-    color: rgba(1,107,133,0.44);
+    color: #44883c;
+    transition: 0.7s ;
+
 }
 
 /*===.nav__link:hover {
