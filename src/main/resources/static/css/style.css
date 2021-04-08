@@ -78,6 +78,7 @@ p {
 
 /*===NAVIGATION===*/
 .header__nav {
+    float: right;
     font-size: 13px;
     font-weight: 700;
     text-transform: uppercase;
@@ -87,6 +88,7 @@ p {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+
 }
 
 .header__nav_buyticket {
@@ -142,7 +144,7 @@ p {
 }
 
 /*=== Формы заполнения  ===*/
-.container__select-route_item:{
+.container__select-route_item{
     height: 50px;
     width: 270px;
     margin: 0 10px 0 0;
@@ -154,9 +156,16 @@ p {
 
 }
 
+input{
+    border:2px solid #44883c;
+}
+
+::placeholder {
+    color: #d1d2d3;
+}
 /*=== Свечение блоков "input" ===*/
 .container__select-route_item:focus {
-    box-shadow: 0 0 15px silver;
+    box-shadow: 0 0 15px #44883c;
 }
 
 /*=== Calendar ===*/

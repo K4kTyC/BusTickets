@@ -20,16 +20,12 @@
         </div>-->
         <!-- Изменить фоновый цвет блока на Белый, Цвет текста - синий. -->
 
-                                        <!-- "купить билет переместить к лого, "ЛК" в правый край блока-->
-        <a class="header__" img src="Img/logo2.png" alt=""></a>
+        <!-- "купить билет переместить к лого, "ЛК" в правый край блока-->
+        <a class="header__logo"><img src="Img/logo2.png" alt=""></a>
         <ul class="header__nav">
             <li><a href="#">Купить билет</a></li>
             <li><a href="#">Личный кабинет </a></li>
         </ul>
-
-        <!--div class="header__login">
-            <div class="login">Login</div>
-        </div>-->
 
     </div>
 </header>
@@ -50,9 +46,9 @@
                 <input class="container__select-route_item" id="route-to" type="text" placeholder="Куда">
 
                 <!-- Формы заполнения "Дата отправления" -->
-                <input class="container__select-route_item" type="date" id="route-date" name="trip-start"
-                       value="2021-04-05"
-                       min="2021-01-01" max="2021-12-31">
+                <input class="container__select-route_item" type="date" id="route-date" name="route-to"
+                       value="--/--/----"
+                >
 
                 <!-- Кнопка отправки данных-->
                 <button class="container__select-route_button-search" type="submit" id="route-submit">Найти</button>
@@ -60,8 +56,8 @@
             </form>
         </div>
 
-<!-- News  Сверху отступ "УЗАНТЬ РАЗМЕР КАК У КОНТЕЙНЕРА" -->
-     </div>
+        <!-- News  Сверху отступ "УЗАНТЬ РАЗМЕР КАК У КОНТЕЙНЕРА" -->
+    </div>
     <div class="news__inner">
         <h1 class="news__title"> Новости и обновления</h1>
 
