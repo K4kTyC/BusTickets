@@ -154,18 +154,25 @@ p {
     outline: none;
     color: #d1d2d3;
 
+
 }
 
 input{
-    border:2px solid #44883c;
+    border: 2px solid #54595d;
+    background-color: #292f34;
+    border-radius: 5px;
 }
 
 ::placeholder {
     color: #d1d2d3;
+
 }
 /*=== Свечение блоков "input" ===*/
-.container__select-route_item:focus {
+.container__select-route_item:hover {
     box-shadow: 0 0 15px #44883c;
+    border: 2px solid #44883c;
+    background-color: #292f34;
+    border-radius: 5px;
 }
 
 /*=== Calendar ===*/
