@@ -3,64 +3,53 @@
 <head>
     <meta charset="utf-8">
 
-    <link rel="preconnect" href="https/fonts.gstatic.com">
-    <link href="https/fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 
-
     <title>
-        Автобусное расписание
+        Bus Ticket - покупка билетов на рейсовые автобусы
     </title>
 </head>
 
 <body>
+
+<!-- все пункты должны быть с правой стороны, лк правее всех, если не хочешь, сейчас это не делай, я навигацию потом сам сделаю -->
 <header class="header">
     <div class="header__container">
-        <!--<div class="header__logo">
-             <img src="Img/logo2.png" alt="">
-        </div>-->
-        <!-- Изменить фоновый цвет блока на Белый, Цвет текста - синий. -->
-
         <!-- Перенести размеры в стили-->
-        <a class="header__logo"><img src="Img/logoNew.png" alt="" height="60px"></a>
+        <a class="header__logo" href="home.html"><img src="Img/logoNew.png" alt="На главную" height="48"></a>
         <ul class="header__nav">
             <li><a href="#">Купить билет</a></li>
-            <li><a href="#">Личный кабинет </a></li>
+            <li><a href="#">Новости</a></li>
+            <li><a href="#">О нас</a></li>
+            <li><a href="#">Личный кабинет</a></li>
         </ul>
-
     </div>
 </header>
 
 <div class="container">
 
     <div class="container__select-route">
+        <p class="container__select-route_title">Выбрать маршрут</p>
 
-        <div class="container__select-route_block">
-            <h1 class="container__select-route_title">Выбрать маршрут</h1>
+        <form class="container__select-route_form">
+            <!-- Формы заполнения "Откуда"  -->
+            <input class="container__select-route_item" id="route-from" type="text" placeholder="Откуда">
 
-            <form class="container__select-route_form">
+            <!-- Формы заполнения "Куда" -->
+            <input class="container__select-route_item" id="route-to" type="text" placeholder="Куда">
 
-                <!-- Формы заполнения "Откуда"  -->
-                <input class="container__select-route_item" id="route-from" type="text" placeholder="Откуда">
+            <!-- Формы заполнения "Дата отправления" -->
+            <input class="container__select-route_item" type="date" id="route-date" name="route-to">
 
-                <!-- Формы заполнения "Куда" -->
-                <input class="container__select-route_item" id="route-to" type="text" placeholder="Куда">
-
-                <!-- Формы заполнения "Дата отправления" -->
-                <input class="container__select-route_item" type="date" id="route-date" name="route-to"
-                       value="--/--/----"
-                >
-
-                <!-- Кнопка отправки данных-->
-                <button class="container__select-route_button-search" type="submit" id="route-submit">Найти</button>
-
-            </form>
-        </div>
-
-        <!-- News  Сверху отступ "УЗАНТЬ РАЗМЕР КАК У КОНТЕЙНЕРА" -->
+            <!-- Кнопка отправки данных-->
+            <button class="container__select-route_button-submit" type="submit" id="route-submit">Найти</button>
+        </form>
     </div>
-    <div class="news__inner">
-        <h1 class="news__title"> Новости и обновления</h1>
+
+    <div class="container__news">
+        <h1 class="container__news_title"> Новости и обновления</h1>
 
         <div class="news_block">
             <div class="news_inner_cont_1">Блок</div>
@@ -68,16 +57,13 @@
             <div class="news_inner_cont_1">Блок</div>
         </div>
     </div>
-    <div class="Maps">
-    </div>
 </div>
-</div>
+
+<!-- Типа футер -->
 <div class="contact ">
     <div class="contact_block tx"> 1</div>
     <div class="contact_block tx"> 2</div>
     <div class="contact_block tx"> 3</div>
-
-
 </div>
 
 </body>
