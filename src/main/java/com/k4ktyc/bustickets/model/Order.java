@@ -23,6 +23,10 @@ public class Order {
     @JoinColumn(name = "user_id", nullable = false, updatable = false)
     private User user;
 
+    @ManyToMany
+    @JoinTable(name = "order_passenger",
+            joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "passenger_id"))
     private List<Passenger> passengers;
 
     private LocalDateTime dateTimeOrderCreated;
