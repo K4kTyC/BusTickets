@@ -5,7 +5,6 @@ html, body {
     font-size: 14px;
     font-family: 'Nunito', sans-serif;
     -webkit-font-smoothing: antialiased;
-    color: #ff0000;
     background-color: #fff
 
 }
@@ -33,9 +32,7 @@ p {
 
 .header__container {
     width: 100%;
-
     margin: 0 auto;
-
 }
 
 
@@ -51,7 +48,6 @@ p {
     position: fixed;
     display: table-cell;
     vertical-align: middle;
-
     border-bottom: solid 4px transparent;
     background-image: linear-gradient(#292f34, #292f34),
     linear-gradient(to right, #006838, #4caa13);
@@ -72,12 +68,6 @@ p {
     display: flex;
     flex-direction: row;
     margin: 10px;
-}
-
-/*  Не используется */
-.login {
-    padding: 15px 0 15px 0;
-    margin: 0 5px;
 }
 
 /*===NAVIGATION===*/
@@ -119,23 +109,14 @@ p {
     transition: 0.4s;
 }
 
-/*===.nav__link:hover {
-    opacity: 1;
-
-}
-
-.nav__link:first-child {
-    margin-left: 0;
-}  ===/
-
-                                        /*=== Container (бывш- news) ===*/
+                                        /*=== Container ===*/
 
 .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
 
-    background: #212529; /*== url("../img/intro.jpg")  , фоновая картинка  no-repeat center / cover;===*/
+    background: #212529;
 }
 
 .container__select-route {
@@ -215,21 +196,23 @@ p {
     background: linear-gradient(to right, #006838, #378e30);
 }
 
-.form_label {
-    display: block;
-}
+                                        /*=== Container ===*/
 
-.container__news {
+.news {
     background-color: #292f34 ;
+
     margin: 100px 0 100px 0;
     padding: 150px 50px 150px 50px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.container__news_title {
+.news__tittle {
 
     font-size: 24px;
-    color: #ffffff;
+    color: #d1d2d3;
     text-transform: uppercase;
     line-height: 1.1;
     text-align: center;
@@ -238,17 +221,7 @@ p {
 
 }
 
-.news__subtitle {
-    color: #FFFFFF;
-    font-size: 22px;
-    line-height: 1.5;
-    font-weight: 400;
-    margin-bottom: 60px;
-
-
-}
-
-.news_block {
+.news_inner-container {
     display: flex;
     margin: 10px auto;
     word-wrap: break-word;
@@ -256,19 +229,20 @@ p {
 
 }
 
-.news_inner_cont_1 {
+
+.news_inner-container_1 {
     width: 300px;
-    margin: 0 auto;
+    margin: 0 40px 0 40px;
     background-color: white;
     box-shadow: 0 1px 5px #ccc;
     border-radius: 10px;
 }
+                                        /*=== Footer ===*/
 
-.contact {
-    background-color: #01566f;
+.footer {
+    background-color: #44883c;
 }
 
-.tx {
-    color: wheat;
-    text-align: center;
+.footer_block_1 {
+
 }
