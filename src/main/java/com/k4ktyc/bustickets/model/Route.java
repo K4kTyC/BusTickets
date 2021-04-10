@@ -7,17 +7,16 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "tracks")
+@Table(name = "routes")
 @Getter @Setter
-public class Track {
+public class Route {
 
     @Id @GeneratedValue
     private long id;
 
-    private Integer number;
-
-    private String trackClass;
-
-    @OneToMany(mappedBy = "track")
+    @OneToMany(mappedBy = "route")
     private List<Station> stations;
+
+    @OneToMany(mappedBy = "route")
+    private List<Trip> trips;
 }

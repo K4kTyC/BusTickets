@@ -7,20 +7,24 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "stations")
+@Table(name = "trips")
 @Getter @Setter
-public class Station {
+public class Trip {
 
     @Id @GeneratedValue
     private long id;
 
-    private String name;
-
-    private LocalDateTime datetimeFrom;
-
-    private LocalDateTime datetimeTo;
+    @OneToOne
+    @JoinColumn(name = "bus_id", nullable = false, updatable = false)
+    private Bus bus;
 
     @ManyToOne
     @JoinColumn(name = "route_id", nullable = false, updatable = false)
     private Route route;
+
+    private LocalDateTime datetimeTripStart;
+
+    private LocalDateTime datetimeTripFinish;
+
+    private int price;
 }
