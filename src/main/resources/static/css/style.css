@@ -161,33 +161,33 @@ p {
 /*=== Формы заполнения  ===*/
 .container__select-route_item{
     height: 50px;
-    width: 270px;
+    width: 300px;
     margin: 0 10px 0 0;
     padding: 0 10px 0 10px;
     font-size: 18px;
     transition: all 0.4s ease 0s;
     outline: none;
     color: #d1d2d3;
-    border-radius: 5px;
-    border: 2px solid #54595d;
+    border: 0;
+    border-bottom: 4px solid #54595d;
     background-color: #212529;
 }
 
 /*=== Обводка блоков "input" ===*/
 /* https://theadhocracy.co.uk/wrote/gradient-borders-with-rounded-corners-on-input-fields */
 .container__select-route_item:hover {
-    border: double 2px transparent;
-    border-radius: 5px;
+    border: 0;
+    border-bottom: double 4px transparent;
     background-image: linear-gradient(#212529, #212529),
     linear-gradient(to right, #006838, #378e30);
     background-origin: border-box;
     background-clip: padding-box, border-box;
-    box-shadow: 0 0 5px #44883c;
+    box-shadow: 0 0 5px 2px #44883c;
 }
 
 .container__select-route_item:focus {
-    border: double 2px transparent;
-    border-radius: 5px;
+    border: 0;
+    border-bottom: double 4px transparent;
     background-image: linear-gradient(#212529, #212529),
     linear-gradient(to right, #006838, #378e30);
     background-origin: border-box;
@@ -196,13 +196,12 @@ p {
 
 /*=== button-submit ===*/
 .container__select-route_button-submit {
-    padding: 0 20px;
+    padding: 0 50px;
     margin: 0 10px 0 10px;
     font-size: 16px;
     transition: all 0.4s ease 0s;
     background-color: #484e52;
     border-style: hidden;
-    border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -212,7 +211,7 @@ p {
 }
 
 .container__select-route_button-submit:hover {
-    box-shadow: 0 0 5px #44883c;
+    box-shadow: 0 0 5px 2px #44883c;
     background: linear-gradient(to right, #006838, #378e30);
 }
 
