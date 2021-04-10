@@ -121,14 +121,25 @@ p {
 }
 
 .container__select-route {
-    background: linear-gradient(rgba(41, 47, 52, .98), rgba(41, 47, 52, .98)), url("../Img/mainBG2.jpg") no-repeat center;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(rgba(41, 47, 52, .9), rgba(41, 47, 52, .9)), url("../Img/mainBG2.jpg") no-repeat center;
     background-size: 100%;
     text-align: center;
     padding: 500px 0 100px 0;
 }
 
+.container__select-route-block {
+    background: #292f34;
+    width: 1250px;
+    height: 250px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .7);
+    padding: 50px 0;
+}
+
 .container__select-route_title {
-    padding-bottom: 25px;
+    font-family: 'Roboto', sans-serif;
+    padding-bottom: 50px;
     color: #d1d2d3 ;
     font-size: 24px;
 }
@@ -142,6 +153,7 @@ p {
 
 /*=== Формы заполнения  ===*/
 .container__select-route_item{
+    font-family: 'Nunito', sans-serif;
     height: 50px;
     width: 300px;
     margin: 0 10px 0 0;
@@ -176,8 +188,9 @@ p {
     background-clip: padding-box, border-box;
 }
 
-/*=== button-submit ===*/
 .container__select-route_button-submit {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
     padding: 0 50px;
     margin: 0 10px 0 10px;
     font-size: 16px;
@@ -197,42 +210,37 @@ p {
     background: linear-gradient(to right, #006838, #378e30);
 }
 
-                                        /*=== Container ===*/
 
 .news {
     background: url("../Img/gradient.png");
     background-size: auto 100%;
-    padding: 150px 50px 150px 50px;
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+
 }
 
 .news__tittle {
-
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
     font-size: 24px;
     color: #d1d2d3;
-    text-transform: uppercase;
     text-align: center;
-    margin: 0 0 60px;
-
+    margin: 60px 0;
 
 }
 
 .news_inner-container {
     display: flex;
-    margin: 10px auto;
-    word-wrap: break-word;
-
+    justify-content: space-around;
 
 }
 
-
 .news_inner-container_1 {
-    width: 300px;
-    margin: 0 40px;
-    padding: 100px 250px;
+    width: 400px;
+    margin: 0 0 300px 0;
+    padding: 100px 0;
+    font-size: 20px;
     color: #d1d2d3;
     background-color: #212529;
     box-shadow: 0 0 10px rgba(0, 0, 0, .5);
@@ -246,7 +254,10 @@ p {
                                         /*=== Footer ===*/
 
 .footer {
-    background-color: #44883c;
+    background: linear-gradient(to right, #006838, #3b8210);
+    color: #d1d2d3;
+    font-size: 24px;
+    font-weight: bold;
 }
 
 .footer_block_1 {
@@ -263,7 +274,6 @@ p {
     left: 0;
     opacity: 1;
     visibility: hidden;
-
 
 }
 

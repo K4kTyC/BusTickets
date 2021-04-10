@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;800&family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 
     <title>
@@ -33,22 +33,24 @@
 
     <div class="container__select-route">
 
-        <p class="container__select-route_title">Выбрать маршрут</p>
+        <div class="container__select-route-block">
+            <p class="container__select-route_title">Поиск маршрута</p>
 
-        <form class="container__select-route_form">
+            <form class="container__select-route_form">
 
-            <!-- Формы заполнения "Откуда"  -->
-            <input class="container__select-route_item" id="route-from" type="text" placeholder="Откуда">
+                <!-- Формы заполнения "Откуда"  -->
+                <input class="container__select-route_item" id="route-from" type="text" placeholder="Откуда">
 
-            <!-- Формы заполнения "Куда" -->
-            <input class="container__select-route_item" id="route-to" type="text" placeholder="Куда">
+                <!-- Формы заполнения "Куда" -->
+                <input class="container__select-route_item" id="route-to" type="text" placeholder="Куда">
 
-            <!-- Формы заполнения "Дата отправления" -->
-            <input class="container__select-route_item" type="date" id="route-date" name="route-to">
+                <!-- Формы заполнения "Дата отправления" -->
+                <input class="container__select-route_item" type="date" id="route-date" name="route-to">
 
-            <!-- Кнопка отправки данных-->
-            <button class="container__select-route_button-submit" type="submit" id="route-submit">Найти</button>
-        </form>
+                <!-- Кнопка отправки данных-->
+                <button class="container__select-route_button-submit" type="submit" id="route-submit">Найти</button>
+            </form>
+        </div>
 
     </div>
 
@@ -74,10 +76,10 @@
 </footer>
 
 <div id="popup" class="popup">
-    <a href="##" class="popup__area"></a>
+    <a href="#" class="popup__area"></a>
     <div class="popup__body">
         <div class="popup__content">
-            <a href="##" class="popup__close">X</a>
+            <a href="#" class="popup__close">X</a>
             <div class="popup__content-title">Форма авторизации</div>
             <div class="popup__content-text">
                 <div class="footer_block_1">Для современного мира повышение уровня гражданского сознания прекрасно
