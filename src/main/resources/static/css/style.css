@@ -120,10 +120,10 @@ p {
 }
 
 .container__select-route {
-    background-color: #292f34 ;
-    margin: 200px 0 0 0;
-    padding: 150px 50px 150px 50px;
+    background: linear-gradient(rgba(41, 47, 52, .98), rgba(41, 47, 52, .98)), url("../Img/mainBG2.jpg") no-repeat center;
+    background-size: 100%;
     text-align: center;
+    padding: 500px 0 100px 0;
 }
 
 .container__select-route_title {
@@ -199,9 +199,8 @@ p {
                                         /*=== Container ===*/
 
 .news {
-    background-color: #292f34 ;
-
-    margin: 100px 0 100px 0;
+    background: url("../Img/gradient.png");
+    background-size: auto 100%;
     padding: 150px 50px 150px 50px;
     text-align: center;
     display: flex;
@@ -214,9 +213,8 @@ p {
     font-size: 24px;
     color: #d1d2d3;
     text-transform: uppercase;
-    line-height: 1.1;
     text-align: center;
-    margin: 0 0 30px;
+    margin: 0 0 60px;
 
 
 }
@@ -232,11 +230,18 @@ p {
 
 .news_inner-container_1 {
     width: 300px;
-    margin: 0 40px 0 40px;
-    background-color: white;
-    box-shadow: 0 1px 5px #ccc;
-    border-radius: 10px;
+    margin: 0 40px;
+    padding: 100px 250px;
+    color: #d1d2d3;
+    background-color: #212529;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+    transition: all 0.4s ease 0s;
 }
+
+.news_inner-container_1:hover {
+    box-shadow: 0 0 5px 2px #44883c;
+}
+
                                         /*=== Footer ===*/
 
 .footer {
