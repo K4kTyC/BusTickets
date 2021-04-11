@@ -1,0 +1,15 @@
+.fa-clock, .fa-trash, .fa-calendar-check {
+    color: #44883c;
+}
+
+.my-table thead th {
+    border-bottom: 0;
+}
+
+.my-table th {
+    border-top: 0;
+}
+
+.my-table td {
+    border: 0;
+}
