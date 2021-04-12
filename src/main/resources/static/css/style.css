@@ -3,6 +3,7 @@ html, body {
     font-size: 14px;
     font-family: 'Nunito', sans-serif;
     -webkit-font-smoothing: antialiased;
+
 }
 
 /*=== Header ===*/
@@ -29,7 +30,7 @@ html, body {
     background-clip: padding-box, border-box;
 }
 
-.header__logo {
+.navbar-brand {
     margin: 24px;
     float: left;
 }
@@ -282,3 +283,19 @@ html, body {
 .popup__content-text {
 
 }
+
+/*== МОдальное окно регистрации ==*/
+
+
+.popup__tab-signin {
+
+}
+
+.popup__tab-signup {
+
+}
+
+
+
+
+
