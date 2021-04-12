@@ -1,0 +1,39 @@
+.fa-clock, .fa-trash, .fa-calendar-check {
+    color: #44883c;
+}
+
+.table thead th {
+    border-bottom: 0;
+}
+
+.table th {
+    border-top: 0;
+}
+
+.table td {
+    border: 0;
+}
+
+.bootstrap-datetimepicker-widget table td, .bootstrap-datetimepicker-widget table th {
+    border-radius: 0;
+}
+
+.bootstrap-datetimepicker-widget table td.today:before {
+    border-bottom-color: #44883c;
+}
+
+.bootstrap-datetimepicker-widget table td.active, .bootstrap-datetimepicker-widget table td.active:hover {
+    background-color: #44883c;
+}
+
+.bootstrap-datetimepicker-widget table td span.active {
+    background-color: #44883c;
+}
+
+.bootstrap-datetimepicker-widget .timepicker .timepicker-picker a.btn {
+    color: #44883c;
+}
+
+.bootstrap-datetimepicker-widget .timepicker .timepicker-picker a.btn:hover {
+    color: #44883c;
+}
