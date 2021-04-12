@@ -3,6 +3,7 @@ html, body {
     font-size: 14px;
     font-family: 'Nunito', sans-serif;
     -webkit-font-smoothing: antialiased;
+
 }
 
 /*=== Header ===*/
@@ -293,13 +294,8 @@ html, body {
 .popup__tab-signup {
 
 }
-.cd-user-modal {
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.3s, visibility 0.3s;
-}
 
-.cd-user-modal.is-visible {
-    visibility: visible;
-    opacity: 1;
-}
+
+
+
+

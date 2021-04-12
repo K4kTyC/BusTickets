@@ -3,10 +3,12 @@
 <head>
     <meta charset="utf-8">
 
+
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;800&family=Roboto&display=swap"
           rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+
 
     <title>
         Bus Ticket - покупка билетов на рейсовые автобусы
@@ -82,64 +84,66 @@
     <div class="popup__body">
         <div class="popup__content">
             <a href="#" class="popup__close">X</a>
-            <div class="popup__content-title">Личный кабинет</div>
+            <div class="popup__content-title">Личный кабинет
 
 
             <!--- Окно авторизации --->
 
-            <!--- Header --->
+                                                        <!--- Header --->
+              <!--- Свичи на модальные окна --->
             <div id="tabs" class="popup__signin">
                 <ul role="tablist" class="popup__tabs">
-                    <li role="tab" tabindex="0" class="popup__tab-signin"
-                        aria-controls="signin" aria-labelledby="ui-id-1" aria-selected="true" aria-expanded="true">
-                        <a href="#signin" role="presentation" tabindex="-1" class="ui-tabs-anchor" id="ui-id-1">Вход</a></li>
+                    <li role="tab" class="popup__tab-signin__titles"
+                        aria-controls="signin" aria-labelledby="tab-sidnin" aria-selected="false" aria-expanded="false">
+                        <a href="#signin" role="presentation" id="tab-sidnin" >Вход</a>
+                    </li>
 
-                    <li role="tab" tabindex="-1" class="popup__tab-signup"
-                        aria-controls="signup" aria-labelledby="ui-id-2" aria-selected="true" aria-expanded="false">
-                        <a href="#signup" role="presentation" tabindex="-1" class="ui-tabs-anchor" id="ui-id-2">Регистрация</a>
+                    <li role="tab" class="popup__tab-signup__titles"
+                        aria-controls="signup" aria-labelledby="tab-signup" aria-selected="true" aria-expanded="true">
+                        <a href="#signup" role="presentation" id="tab-signup">Регистрация</a>
                     </li>
                 </ul>
 
-                <!--- Modal container --->
+                                     <!--- Modal container --->
 
-                <!--- Login --->
-                <div id="signin" aria-labelledby="ui-id-1" role="tabpanel" class="ui-tabs-panel" aria-hidden="false" style="">
-
-
+                                     <!--- Модальное окно Входа --->
+                <div id="m-signin" aria-labelledby="m-signin" role="tabpanel" class="popup__modal-signin" aria-hidden="false"
+                     style="display: none;">
+                                                            <!--- E-mail --->
                     <div class="modal__content">
                         <form class="modal__form" id="login_form" data-accept="not">
                             <div class="input-wrap">
                                 <div class="input-field">
-                                    <input type="email" name="email" id="user_signin_login" value="" required="required"
-                                           data-format=".+" data-notice="Введите email">
-                                    <label for="user_signin_login">E-mail
-                                    </label>
+                                    <input type="email" name="email" id="user_signin_login" value="" required="required" data-format=".+" data-notice="Введите email">
+                                    <label for="user_signin_login">E-mail</label>
                                 </div>
                             </div>
+
+                                                            <!--- Password --->
                             <div class="input-wrap">
                                 <div class="input-field">
-                                    <input type="password" name="password" id="user_signin_password" value=""
+                                    <input type="password" name="password" id="user_signin_password" value="Пароль"
                                            required="required" data-format=".+" data-notice="Введите пароль">
                                     <label for="user_signin_password">Пароль
                                     </label>
                                 </div>
-                                <span class="js-toggle-password"></span>
                             </div>
-                            <div class="su-requestInform" id="_JS__response_div_modal_login"></div>
-                            <div class="modal__btn-group avp_btn_login_group">
+
+                                                            <!--- Create account--->
+                            <div class="input-wrap" id=""></div>
+                            <div class="input__modal-button">
                                 <input type="submit" class="btn " name="login" value="Войти">
-                                <a class="btn btn--white js-set-tab-signup" href="#signup">Создать аккаунт</a>
+                                <a class="btn btn--white js-set-tab-signup" href="##">Создать аккаунт</a>
                             </div>
-                            <div class="separator"></div>
-                            <a class="link__normal" href="#remind" rel="modal:open">Забыли пароль?</a>
+
                         </form>
                     </div>
                 </div>
-                <!--- Login --->
 
-                <!--- Registr --->
-                <div id="signup" aria-labelledby="ui-id-2" role="tabpanel" class="ui-tabs-panel " aria-hidden="true" style="display: none;">
 
+                <!--- Модальное окно регистрации --->
+                <div id="signup" aria-labelledby="ui-id-2" role="tabpanel" class="popup__modal-signup" aria-hidden="true"
+                     style="">
 
                     <div class="modal__content">
                         <form class="modal__form" id="register_form" data-accept="not">
@@ -149,7 +153,7 @@
                                     <div class="input-field">
                                         <input type="text" name="field_id_15" id="lastname_modal_signup" value=""
                                                required="required" data-format=".+" data-notice="Укажите фамилию">
-                                        <label for="lastname_modal_signup">Фамилия<font color="#F6175A">&nbsp;*</font>
+                                        <label for="lastname_modal_signup">Фамилия
                                         </label>
                                     </div>
                                 </div>
@@ -157,7 +161,7 @@
                                     <div class="input-field">
                                         <input type="text" name="field_id_14" id="firstname_modal_signup" value=""
                                                required="required" data-format=".+" data-notice="Укажите имя">
-                                        <label for="firstname_modal_signup">Имя<font color="#F6175A">&nbsp;*</font>
+                                        <label for="firstname_modal_signup">Имя
                                         </label>
                                     </div>
                                 </div>
@@ -165,8 +169,7 @@
                                     <div class="input-field">
                                         <input type="text" name="field_id_16" id="middlename_modal_signup" value=""
                                                required="required" data-format=".+" data-notice="Укажите отчество">
-                                        <label for="middlename_modal_signup">Отчество<font
-                                                color="#F6175A">&nbsp;*</font>
+                                        <label for="middlename_modal_signup">Отчество
                                         </label>
                                     </div>
                                 </div>
@@ -174,7 +177,7 @@
                                     <div class="input-field">
                                         <input type="text" name="phone" id="phone_modal_signup" value=""
                                                required="required" data-format=".+" data-notice="Укажите телефон">
-                                        <label for="phone_modal_signup">Телефон<font color="#F6175A">&nbsp;*</font>
+                                        <label for="phone_modal_signup">Телефон
                                         </label>
                                     </div>
                                 </div>
@@ -186,7 +189,7 @@
                                 <div class="input-field">
                                     <input type="email" name="email" id="email_modal_signup" value=""
                                            required="required" data-format=".+" data-notice="Укажите почту">
-                                    <label for="email_modal_signup">E-mail<font color="#F6175A">&nbsp;*</font>
+                                    <label for="email_modal_signup">E-mail
                                     </label>
                                 </div>
                             </div>
@@ -196,7 +199,7 @@
                                         <input type="password" name="password" id="password_modal_signup" value=""
                                                required="required" data-format="password"
                                                data-notice="Пароль слишком прост">
-                                        <label for="password_modal_signup">Пароль<font color="#F6175A">&nbsp;*</font>
+                                        <label for="password_modal_signup">Пароль
                                         </label>
                                     </div>
                                     <span class="js-toggle-password"></span>
@@ -210,44 +213,19 @@
                                     <span class="js-toggle-password"></span>
                                 </div>
                             </div>
-                            <div class="input-wrap">
-                                <div class="input-field">
-                                    <input type="text" name="captcha_code" id="captcha_modal_signup" value=""
-                                           required="required">
-                                    <label for="captcha_modal_signup">Капча<font color="#F6175A">&nbsp;*</font>
-                                    </label>
-                                </div>
-                                <div class="input-captcha">
-                                    <div class="img"><img class="_JS__captcha_update" src="captcha/image.php?6640">
-                                    </div>
-                                    <a class="action _JS__captcha_reload" title="Обновить картинку"
-                                       href="javascript:void(0)">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M19.9695 14.9961C19.8636 14.6703 19.5138 14.4922 19.188 14.5979L18.3814 14.8599C18.8755 13.8381 19.1343 12.7145 19.1343 11.5671C19.1343 7.39459 15.7397 4 11.5671 4C7.39459 4 4 7.39459 4 11.5671C4 15.7397 7.39459 19.1343 11.5671 19.1343C11.9097 19.1343 12.1874 18.8565 12.1874 18.514C12.1874 18.1715 11.9097 17.8938 11.5671 17.8938C8.07861 17.8938 5.24051 15.0557 5.24051 11.5671C5.24051 8.07861 8.07861 5.24051 11.5671 5.24051C15.0557 5.24051 17.8938 8.07861 17.8938 11.5671C17.8938 12.5284 17.6769 13.4694 17.2624 14.3245L16.9869 13.4761C16.8811 13.1504 16.5311 12.9722 16.2054 13.0779C15.8796 13.1838 15.7012 13.5337 15.8071 13.8595L16.5385 16.1107C16.6236 16.3728 16.8667 16.5395 17.1282 16.5395C17.1917 16.5395 17.2563 16.5297 17.32 16.509L19.5712 15.7777C19.897 15.6718 20.0753 15.322 19.9695 14.9961Z"
-                                                  fill="#F6175A"></path>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="input-field input-field--checkbox accept-area">
-                                <input type="checkbox" id="agreement_data" name="agreement_data" required="required">
-                                <label for="agreement_data">Даю своё согласие на обработку <a target="_blank"
-                                                                                              href="/politika-konfidentsialnosti">персональных
-                                    данных</a></label>
-                            </div>
+
                             <div class="su-requestInform error" style="display: none"></div>
 
                             <input type="submit" class="btn btn--full" value="Зарегистрироваться">
                         </form>
-                        <!--- Registr --->
+
                     </div>
 
 
                 </div>
             </div>
             <!--- Окно авторизации --->
-
+            </div>
         </div>
 
     </div>
