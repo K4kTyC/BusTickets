@@ -26,13 +26,18 @@
                 <div class="form-group">
                     <input class="add-route_item" id="route-from" type="text" placeholder="Название станции">
                     <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-                        <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" />
+                        <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" placeholder="Дата отправления" />
                         <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                         </div>
                     </div>
-
-                    <button class="add-route_button-submit" type="submit" id="route-submit">Добавить</button>
+                    <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+                        <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" placeholder="Дата прибытия" />
+                        <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
+                    </div>
+                    <button class="add-route_button-submit" type="submit" id="route-submit">Добавить станцию</button>
                 </div>
             </div>
         </div>
