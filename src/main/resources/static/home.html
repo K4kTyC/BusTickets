@@ -4,10 +4,14 @@
     <meta charset="utf-8">
 
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;800&family=Roboto&display=swap"
           rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 
 
     <title>
@@ -20,15 +24,8 @@
 <!-- все пункты должны быть с правой стороны, лк правее всех, если не хочешь, сейчас это не делай, я навигацию потом сам сделаю -->
 <header class="header">
     <div class="header__container">
-        <!-- Перенести размеры в стили-->
         <a class="header__logo" href="home.html"><img src="Img/logoNew.png" alt="На главную" height="48"></a>
-        <ul class="header__nav">
-            <!--
-            <li><a href="#">Купить билет</a></li>
-            <li><a href="#">Новости</a></li>
-            <li><a href="#">О нас</a></li> -->
-            <li><a href="#popup">Личный кабинет</a></li>
-        </ul>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-account">Личный кабинет</button>
     </div>
 </header>
 
@@ -78,6 +75,49 @@
     <div class="footer_block_1"> 2</div>
     <div class="footer_block_1"> 3</div>
 </footer>
+
+
+<div class="modal custom fade" id="modal-account" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" id="login-tab" data-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="true">Вход</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="registration-tab" data-toggle="tab" href="#registration" role="tab" aria-controls="registration" aria-selected="false">Регистрация</a>
+                    </li>
+                </ul>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+                        <input type="text">
+                        <input type="text">
+                    </div>
+                    <div class="tab-pane fade" id="registration" role="tabpanel" aria-labelledby="registration-tab">
+
+                    </div>
+                </div>
+            </div>
+            <!--
+            <div class="modal-footer">
+                TODO: Когда-то тут будет OAuth
+            </div>
+            -->
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
 
 <div id="popup" class="popup">
     <a href="#" class="popup__area"></a>
