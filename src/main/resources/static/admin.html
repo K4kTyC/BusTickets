@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Bus Ticket - панель администратора</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css"
+          integrity="sha512-3JRrEUwaCkFUBLK1N8HehwQgu8e23jTH4np5NHOmQOobuC4ROQxFwFgBLTnhcnQRMs84muMh0PnnwXlPq5MGjg=="
+          crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+          crossorigin="anonymous"/>
+    <link rel="stylesheet" href="css/admin.css"/>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+            integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/ru.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js"
+            integrity="sha512-k6/Bkb8Fxf/c1Tkyl39yJwcOZ1P4cRrJu77p83zJjN2Z55prbFHxPs9vN7q3l3+tSMGPDdoH51AEU8Vgo1cgAA=="
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
+            integrity="sha512-RXf+QSDCUQs5uwRKaDoXt55jygZZm2V++WUZduaU/Ui/9EGp3f/2KZVahFZBKGH0s774sd3HmrhUy+SgOFQLVQ=="
+            crossorigin="anonymous"></script>
+
+</head>
+<body>
+<div class="container">
+    <h1>Добавить маршрут</h1>
+    <form id="add-route-form">
+        <div class="form-row py-2" id="form-row-1">
+            <div class="col-auto">
+                <input class="form-control" id="route-from-1" type="text" placeholder="Название станции">
+            </div>
+            <div class="col-auto">
+                <div class="input-group date" id="datetimepicker-from-1" data-target-input="nearest">
+                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker-from-1"
+                           placeholder="Дата отправления"/>
+                    <div class="input-group-append" data-target="#datetimepicker-from-1" data-toggle="datetimepicker">
+                        <div class="input-group-text"><i class="fas fa-calendar"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-auto">
+                <div class="input-group date" id="datetimepicker-to-1" data-target-input="nearest">
+                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker-to-1"
+                           placeholder="Дата прибытия"/>
+                    <div class="input-group-append" data-target="#datetimepicker-to-1" data-toggle="datetimepicker">
+                        <div class="input-group-text"><i class="fas fa-calendar"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row py-2" id="form-row-2">
+            <div class="col-auto">
+                <input class="form-control" id="route-from-2" type="text" placeholder="Название станции">
+            </div>
+            <div class="col-auto">
+                <div class="input-group date" id="datetimepicker-from-2" data-target-input="nearest">
+                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker-from-2"
+                           placeholder="Дата отправления"/>
+                    <div class="input-group-append" data-target="#datetimepicker-from-2" data-toggle="datetimepicker">
+                        <div class="input-group-text"><i class="fas fa-calendar"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-auto">
+                <div class="input-group date" id="datetimepicker-to-2" data-target-input="nearest">
+                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker-to-2"
+                           placeholder="Дата прибытия"/>
+                    <div class="input-group-append" data-target="#datetimepicker-to-2" data-toggle="datetimepicker">
+                        <div class="input-group-text"><i class="fas fa-calendar"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-success" id="add-station-2">Добавить станцию</button>
+            </div>
+        </div>
+        <div class="form-row py-4" id="form-row-bus">
+            <div class="col-auto">
+                <input class="form-control" id="route-bus-number" type="text" placeholder="Номер автобуса">
+            </div>
+            <div class="col-auto">
+                <select class="form-control" id="route-bus-class">
+                    <option value="1">Обычный</option>
+                    <option value="2">Бизнес</option>
+                </select>
+            </div>
+            <div class="col-auto">
+                <input class="form-control" id="route-bus-seats" type="text" placeholder="Количество мест">
+            </div>
+            <div class="col-auto">
+                <input class="form-control" id="route-bus-price" type="text" placeholder="Стоимость">
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit" id="route-submit">Добавить маршрут</button>
+    </form>
+</div>
+<script type="text/javascript" src="js/DateTimePicker.js"></script>
+<script type="text/javascript" src="js/AdminAddRoute.js"></script>
+</body>
+</html>

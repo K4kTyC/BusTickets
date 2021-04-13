@@ -1,228 +1,301 @@
-
 html, body {
-
     margin: 0;
-    font-family: 'Cardo', serif;
-    font-family: 'Open Sans', sans-serif;
-    font-family: 'Raleway', sans-serif;
     font-size: 14px;
+    font-family: 'Nunito', sans-serif;
     -webkit-font-smoothing: antialiased;
-    color: #ff0000;
-    background-color: #fff
-}
 
-*,
-*:before,
-*:after {
-    box-sizing: border-box;
 }
-
-h1, h2, h3, h4, h5, h6 {
-    margin: 0;
-}
-
-p {
-    margin: 0 0 10px;
-}
-
 
 /*=== Header ===*/
 
 .header__container {
     width: 100%;
-    max-width: 1170px;
     margin: 0 auto;
-
 }
 
-
-/*===HEADER===*/
-
 .header {
+    padding: 0 50px 0 0;
+    height: 96px;
     width: 100%;
     top: 0;
     left: 0;
     z-index: 1000;
     position: fixed;
-    background-color: #FFFFFF;
-    display: flex;
-    justify-content: center;
-
+    display: table-cell;
+    vertical-align: middle;
+    border-bottom: solid 4px transparent;
+    background-image: linear-gradient(#292f34, #292f34),
+    linear-gradient(to right, #006838, #4caa13);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
 }
 
-
-.header__login {
-    color: #01566f;
-    font-weight: bold;
-    padding: 10px 10px 0 0;
-
-}
-
-.login {
-    padding: 10px 0 15px 0;
+.navbar-brand {
+    margin: 24px;
+    float: left;
 }
 
 /*===NAVIGATION===*/
 .header__nav {
-    font-size: 13px;
-    font-weight: 700;
-    text-transform: uppercase;
-    text-decoration: none;
+    margin-top: 30px;
+    float: right;
     list-style: none;
-    display: flex;
     flex-direction: row;
     justify-content: space-around;
+    align-items: center;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.header__nav_select-route {
 
 }
 
+.header__nav_lk {
+    float: right;
+}
 .header__nav li {
-
+    display: inline-block;
 }
 
 .header__nav a {
-    text-decoration: none;
-    color: #01566f;
+    color: #d1d2d3;
     text-align: center;
-
+    text-decoration: none;
+    font-size: 20px;
 }
 
 .header__nav a:hover {
-    color: rgba(1,107,133,0.44);
+    background: linear-gradient(to right, #006838, #378e30);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #44883c;
+    transition: 0.4s;
 }
 
-/*===.nav__link:hover {
-    opacity: 1;
-
-}
-
-.nav__link:first-child {
-    margin-left: 0;
-}  ===/
-
-                                        /*=== Container (бывш- news) ===*/
+                                        /*=== Container ===*/
 
 .container {
+    background: #212529;
     display: flex;
-    height: 920px;
     flex-direction: column;
     justify-content: center;
-    padding-top: 100px;
-    background: #01566f /*== url("../img/intro.jpg")  , фоновая картинка ===*/ no-repeat center / cover;;
+}
+
+.container__select-route {
+    padding: 500px 0 100px 0;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(rgba(41, 47, 52, .9), rgba(41, 47, 52, .9)), url("../Img/mainBG2.jpg") no-repeat center;
+    background-size: 100%;
+    text-align: center;
+}
+
+.container__select-route-block {
+    padding: 50px 0;
+    width: 1250px;
+    height: 250px;
+    background: #292f34;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .7);
+}
+
+.container__select-route_title {
+    padding-bottom: 50px;
+    color: #d1d2d3 ;
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
 }
 
 /*=== Блок формы ввода данных===*/
 .container__select-route_form {
-
-    margin: 30px 0 300px 0;
     display: flex;
     justify-content: center;
-
 }
 
 /*=== Формы заполнения  ===*/
-.container__select-route_item {
-    height: 50px;
-    width: 270px;
+.container__select-route_item{
     margin: 0 10px 0 0;
     padding: 0 10px 0 10px;
-    font-size: 16px;
-    transition: all 0.5s ease 0s;
+    height: 50px;
+    width: 300px;
+    color: #d1d2d3;
+    font-size: 18px;
+    font-family: 'Nunito', sans-serif;
     outline: none;
-
+    border: 0;
+    border-bottom: 4px solid #54595d;
+    background-color: #212529;
+    transition: all 0.4s ease 0s;
 }
 
-/*=== Свечение блоков "input" ===*/
+/*=== Обводка блоков "input" ===*/
+/* https://theadhocracy.co.uk/wrote/gradient-borders-with-rounded-corners-on-input-fields */
+.container__select-route_item:hover {
+    border: 0;
+    border-bottom: double 4px transparent;
+    background-image: linear-gradient(#212529, #212529),
+    linear-gradient(to right, #006838, #378e30);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    box-shadow: 0 0 5px 2px #44883c;
+}
+
 .container__select-route_item:focus {
-    box-shadow: 0 0 15px silver;
+    border: 0;
+    border-bottom: double 4px transparent;
+    background-image: linear-gradient(#212529, #212529),
+    linear-gradient(to right, #006838, #378e30);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
 }
 
-/*=== Calendar ===*/
-.container__select-route_calendar {
-    width: 290px;
-    height: 32.5px;
-    display: flex;
-    flex-direction: row;
-}
-
-/*=== button-search ===*/
-.container__select-route_button-search {
-    padding: 10px ;
+.container__select-route_button-submit {
+    padding: 0 50px;
     margin: 0 10px 0 10px;
-    font-size: 16px;
-    transition: all 0.5s ease 0s;
-    background-color: yellow;
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: all 0.4s ease 0s;
+    background-color: #484e52;
+    border-style: hidden;
     cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
     text-transform: uppercase;
+    color: #d1d2d3;
 }
 
-.form_label {
-    display: block;
+.container__select-route_button-submit:hover {
+    background: linear-gradient(to right, #006838, #378e30);
+    box-shadow: 0 0 5px 2px #44883c;
 }
 
 
-.container__select-route_title {
-    padding-bottom: 10px;
-    color: #cccccc;
-
-}
-
-                                        /*== News ===*/
-.container__select-route_block {
-    text-align: center;
-}
-
-.news__innerr {
-
-}
-
-.news__title {
-
-    font-family: 'Open Sans', sans-serif;
-    font-size: 24px;
-    color: #ffffff;
-    text-transform: uppercase;
-    line-height: 1.1;
-    text-align: left;
-    margin: 0 0 30px;
-
-
-}
-
-.news__subtitle {
-    color: #FFFFFF;
-    font-size: 22px;
-    line-height: 1.5;
-    font-weight: 400;
-    margin-bottom: 60px;
-
-
-}
-
-.news_block {
+.news {
     display: flex;
-    margin: 10px auto;
-    word-wrap: break-word;
-
-
-}
-
-.news_inner_cont_1 {
-    margin-left: 100px;
-    width: 300px;
-    margin: 0 auto;
-    background-color: white;
-    box-shadow: 0 1px 5px #ccc;
-    border-radius: 10px;
-}
-
-.contact {
-    background-color: #01566f;
-}
-
-.tx {
-    color: wheat;
+    flex-direction: column;
+    background: url("../Img/gradient.png");
+    background-size: auto 100%;
     text-align: center;
 }
+
+.news__tittle {
+    margin: 60px 0;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    color: #d1d2d3;
+    text-align: center;
+}
+
+.news_inner-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.news_inner-container_1 {
+    margin: 0 0 300px 0;
+    padding: 100px 0;
+    width: 400px;
+    font-size: 20px;
+    color: #d1d2d3;
+    background-color: #212529;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+    transition: all 0.4s ease 0s;
+}
+
+.news_inner-container_1:hover {
+    box-shadow: 0 0 5px 2px #44883c;
+}
+
+                                        /*=== Footer ===*/
+
+.footer {
+    background: linear-gradient(to right, #006838, #3b8210);
+    color: #d1d2d3;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.footer_block_1 {
+
+}
+
+                                        /*=== Popup ===*/
+.popup {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(33 ,37 ,41 ,0.9);
+    top: 0;
+    left: 0;
+    opacity: 1;
+    visibility: hidden;
+}
+
+.popup:target {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup__area {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.popup__body {
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 10px;
+}
+
+.popup__content {
+    background-color: #292f34;
+    color: #cccccc;
+    max-width: 700px ;
+    max-height: 400px;
+    padding: 30px 30px;
+    text-align: center;
+    position: relative;
+}
+
+.popup__close {
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    text-decoration: none;
+    color: white;
+}
+
+.popup__content-title {
+    text-align: center;
+    padding-bottom: 10px;
+    text-transform: uppercase ;
+    padding-left: 10px;
+}
+
+.popup__content-text {
+
+}
+
+/*== МОдальное окно регистрации ==*/
+
+
+.popup__tab-signin {
+
+}
+
+.popup__tab-signup {
+
+}
+
+
+
+
+
