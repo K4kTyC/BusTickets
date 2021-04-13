@@ -85,7 +85,24 @@
                 <button class="btn btn-success" id="add-station-2">Добавить станцию</button>
             </div>
         </div>
-        <button class="btn btn-primary mt-4" type="submit" id="route-submit">Добавить маршрут</button>
+        <div class="form-row py-4" id="form-row-bus">
+            <div class="col-auto">
+                <input class="form-control" id="route-bus-number" type="text" placeholder="Номер автобуса">
+            </div>
+            <div class="col-auto">
+                <select class="form-control" id="route-bus-class">
+                    <option value="1">Обычный</option>
+                    <option value="2">Бизнес</option>
+                </select>
+            </div>
+            <div class="col-auto">
+                <input class="form-control" id="route-bus-seats" type="text" placeholder="Количество мест">
+            </div>
+            <div class="col-auto">
+                <input class="form-control" id="route-bus-price" type="text" placeholder="Стоимость">
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit" id="route-submit">Добавить маршрут</button>
     </form>
 </div>
 <script type="text/javascript" src="js/DateTimePicker.js"></script>

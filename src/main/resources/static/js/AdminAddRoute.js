@@ -1,6 +1,32 @@
 let numberOfStations = 2
 let addRouteForm = document.getElementById('add-route-form')
 
+addRouteForm.addEventListener('submit', e => e.preventDefault())
+
+document.getElementById('route-submit').addEventListener('click', () => {
+    let routeDto = {
+        stations: [],
+        trip: {
+            bus: {
+                number: document.getElementById('route-bus-number').value,
+                busClass: document.getElementById('route-bus-class').value,
+                numberOfSeats: document.getElementById('route-bus-seats').value
+            },
+            price: document.getElementById('route-bus-price').value
+        }
+    }
+
+    for (let i = 1; i <= numberOfStations; i++) {
+        routeDto.stations.push({
+            name: document.getElementById(`route-from-${i}`).value,
+            datetimeFrom: $(`#datetimepicker-from-${i}`).datetimepicker('date').toJSON(),
+            datetimeTo: $(`#datetimepicker-to-${i}`).datetimepicker('date').toJSON()
+        })
+    }
+
+    console.log(routeDto)
+})
+
 addRouteForm.addEventListener('click', (e) => {
     const isButton = e.target.nodeName === 'BUTTON';
     const isSubmit = e.target.getAttribute('type') === 'submit'
@@ -19,7 +45,7 @@ addRouteForm.addEventListener('click', (e) => {
 
 function formAddStationRow() {
     let num = numberOfStations
-    document.getElementById('route-submit').insertAdjacentHTML('beforebegin', `
+    document.getElementById('form-row-bus').insertAdjacentHTML('beforebegin', `
         <div class="form-row py-2" id="form-row-${num}">
             <div class="col-auto">
                 <input class="form-control" id="route-from-${num}" type="text" placeholder="Название станции">
