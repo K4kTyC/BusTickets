@@ -92,7 +92,19 @@
                             <div class="form-group py-2">
                                 <input name="password" type="password" class="form-control input-field" id="inputLoginPassword" placeholder="Пароль">
                             </div>
-                            <button id="login-submit" type="submit" class="btn form-button-submit mt-4">Войти</button>
+                            <div class="row py-4 align-items-center">
+                                <div class="col">
+                                    <button id="login-submit" type="submit" class="btn form-button-submit">Войти</button>
+                                </div>
+                                <div class="col">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" value="" id="customCheck1" name="remember-me">
+                                        <label class="custom-control-label" for="customCheck1">
+                                            Запомнить меня
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
                         </form>
                     </div>
                     <div class="tab-pane fade" id="registration" role="tabpanel" aria-labelledby="registration-tab">

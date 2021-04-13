@@ -292,7 +292,6 @@ html, body {
 
 }
 
-
 .modal.custom .modal-content {
     background-color: #212529;
     border: 0;
@@ -429,4 +428,61 @@ label {
     outline: none;
     border: none;
     box-shadow: none;
+}
+
+.custom-control-label {
+    padding-left: 0.5em;
+}
+
+.custom-checkbox .custom-control-label::after {
+    width: 20px;
+    height: 20px;
+    border-radius: 0;
+    border: none;
+    background-color: #212529;
+}
+
+.custom-checkbox .custom-control-label::before {
+    width: 20px;
+    height: 20px;
+    border-radius: 0;
+    border: none;
+    background-color: #212529;
+}
+
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+    width: 20px;
+    height: 20px;
+    border-radius: 0;
+    background-color: #212529;
+}
+
+.custom-checkbox .custom-control-input:checked~.custom-control-label::after {
+    width: 20px;
+    height: 20px;
+    background-color: #212529;
+    box-shadow: 0 0 5px 2px #44883c;
+    background-image:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%2344883c' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E");
+}
+
+.custom-control-input:active~.custom-control-label::after {
+    width: 20px;
+    height: 20px;
+    border-radius: 0;
+    background-color: #212529;
+}
+
+.custom-control-input:active~.custom-control-label::before {
+    width: 20px;
+    height: 20px;
+    border-radius: 0;
+    background-color: #212529;
+}
+
+.custom-checkbox .custom-control-input:focus~.custom-control-label::before {
+    width: 20px;
+    height: 20px;
+    border-radius: 0;
+    box-shadow: none;
+    background-color: #212529;
 }
