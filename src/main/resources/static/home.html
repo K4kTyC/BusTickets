@@ -3,12 +3,10 @@
 <head>
     <meta charset="utf-8">
 
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;800&family=Roboto&display=swap"
-          rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;800&family=Roboto&display=swap">
     <link rel="stylesheet" href="css/style.css">
-
 
     <title>
         Bus Ticket - покупка билетов на рейсовые автобусы
@@ -17,18 +15,10 @@
 
 <body>
 
-<!-- все пункты должны быть с правой стороны, лк правее всех, если не хочешь, сейчас это не делай, я навигацию потом сам сделаю -->
 <header class="header">
     <div class="header__container">
-        <!-- Перенести размеры в стили-->
         <a class="header__logo" href="home.html"><img src="Img/logoNew.png" alt="На главную" height="48"></a>
-        <ul class="header__nav">
-            <!--
-            <li><a href="#">Купить билет</a></li>
-            <li><a href="#">Новости</a></li>
-            <li><a href="#">О нас</a></li> -->
-            <li><a href="#popup">Личный кабинет</a></li>
-        </ul>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-account">Личный кабинет</button>
     </div>
 </header>
 
@@ -41,16 +31,12 @@
 
             <form class="container__select-route_form">
 
-                <!-- Формы заполнения "Откуда"  -->
                 <input class="container__select-route_item" id="route-from" type="text" placeholder="Откуда">
 
-                <!-- Формы заполнения "Куда" -->
                 <input class="container__select-route_item" id="route-to" type="text" placeholder="Куда">
 
-                <!-- Формы заполнения "Дата отправления" -->
                 <input class="container__select-route_item" type="date" id="route-date" name="route-to">
 
-                <!-- Кнопка отправки данных-->
                 <button class="container__select-route_button-submit" id="route-submit">Найти
                 </button>
             </form>
@@ -79,157 +65,60 @@
     <div class="footer_block_1"> 3</div>
 </footer>
 
-<div id="popup" class="popup">
-    <a href="#" class="popup__area"></a>
-    <div class="popup__body">
-        <div class="popup__content">
-            <a href="#" class="popup__close">X</a>
-            <div class="popup__content-title">Личный кабинет
 
-
-            <!--- Окно авторизации --->
-
-                                                        <!--- Header --->
-              <!--- Свичи на модальные окна --->
-            <div id="tabs" class="popup__signin">
-                <ul role="tablist" class="popup__tabs">
-                    <li role="tab" class="popup__tab-signin__titles"
-                        aria-controls="signin" aria-labelledby="tab-sidnin" aria-selected="false" aria-expanded="false">
-                        <a href="#signin" role="presentation" id="tab-sidnin" >Вход</a>
+<div class="modal custom fade" id="modal-account" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" id="login-tab" data-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="true">Вход</a>
                     </li>
-
-                    <li role="tab" class="popup__tab-signup__titles"
-                        aria-controls="signup" aria-labelledby="tab-signup" aria-selected="true" aria-expanded="true">
-                        <a href="#signup" role="presentation" id="tab-signup">Регистрация</a>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="registration-tab" data-toggle="tab" href="#registration" role="tab" aria-controls="registration" aria-selected="false">Регистрация</a>
                     </li>
                 </ul>
-
-                                     <!--- Modal container --->
-
-                                     <!--- Модальное окно Входа --->
-                <div id="m-signin" aria-labelledby="m-signin" role="tabpanel" class="popup__modal-signin" aria-hidden="false"
-                     style="display: none;">
-                                                            <!--- E-mail --->
-                    <div class="modal__content">
-                        <form class="modal__form" id="login_form" data-accept="not">
-                            <div class="input-wrap">
-                                <div class="input-field">
-                                    <input type="email" name="email" id="user_signin_login" value="" required="required" data-format=".+" data-notice="Введите email">
-                                    <label for="user_signin_login">E-mail</label>
-                                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="tab-content p-4" id="myTabContent">
+                    <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+                        <form id="login-form">
+                            <div class="form-group py-2">
+                                <input type="text" class="form-control input-field" id="inputLoginUsername" placeholder="Имя пользователя">
                             </div>
-
-                                                            <!--- Password --->
-                            <div class="input-wrap">
-                                <div class="input-field">
-                                    <input type="password" name="password" id="user_signin_password" value="Пароль"
-                                           required="required" data-format=".+" data-notice="Введите пароль">
-                                    <label for="user_signin_password">Пароль
-                                    </label>
-                                </div>
+                            <div class="form-group py-2">
+                                <input type="password" class="form-control input-field" id="inputLoginPassword" placeholder="Пароль">
                             </div>
-
-                                                            <!--- Create account--->
-                            <div class="input-wrap" id=""></div>
-                            <div class="input__modal-button">
-                                <input type="submit" class="btn " name="login" value="Войти">
-                                <a class="btn btn--white js-set-tab-signup" href="##">Создать аккаунт</a>
+                            <button id="login-submit" type="submit" class="btn form-button-submit mt-4">Войти</button>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade" id="registration" role="tabpanel" aria-labelledby="registration-tab">
+                        <form id="registration-form">
+                            <div class="form-group py-2">
+                                <input type="text" class="form-control input-field" id="inputRegisterUsername" placeholder="Имя пользователя">
                             </div>
-
+                            <div class="form-group py-2">
+                                <input type="password" class="form-control input-field" id="inputRegisterPassword" placeholder="Пароль">
+                            </div>
+                            <button id="registration-submit" type="submit" class="btn form-button-submit mt-4">Зарегистрироваться</button>
                         </form>
                     </div>
                 </div>
-
-
-                <!--- Модальное окно регистрации --->
-                <div id="signup" aria-labelledby="ui-id-2" role="tabpanel" class="popup__modal-signup" aria-hidden="true"
-                     style="">
-
-                    <div class="modal__content">
-                        <form class="modal__form" id="register_form" data-accept="not">
-                            <div class="search__section-head"><span>Данные пользователя</span></div>
-                            <div class="inputs">
-                                <div class="input-wrap">
-                                    <div class="input-field">
-                                        <input type="text" name="field_id_15" id="lastname_modal_signup" value=""
-                                               required="required" data-format=".+" data-notice="Укажите фамилию">
-                                        <label for="lastname_modal_signup">Фамилия
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="input-wrap">
-                                    <div class="input-field">
-                                        <input type="text" name="field_id_14" id="firstname_modal_signup" value=""
-                                               required="required" data-format=".+" data-notice="Укажите имя">
-                                        <label for="firstname_modal_signup">Имя
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="input-wrap">
-                                    <div class="input-field">
-                                        <input type="text" name="field_id_16" id="middlename_modal_signup" value=""
-                                               required="required" data-format=".+" data-notice="Укажите отчество">
-                                        <label for="middlename_modal_signup">Отчество
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="input-wrap">
-                                    <div class="input-field">
-                                        <input type="text" name="phone" id="phone_modal_signup" value=""
-                                               required="required" data-format=".+" data-notice="Укажите телефон">
-                                        <label for="phone_modal_signup">Телефон
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="search__section-head"><span>Учетная запись</span></div>
-
-                            <input type="hidden" name="name">
-                            <div class="input-wrap">
-                                <div class="input-field">
-                                    <input type="email" name="email" id="email_modal_signup" value=""
-                                           required="required" data-format=".+" data-notice="Укажите почту">
-                                    <label for="email_modal_signup">E-mail
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="inputs">
-                                <div class="input-wrap">
-                                    <div class="input-field">
-                                        <input type="password" name="password" id="password_modal_signup" value=""
-                                               required="required" data-format="password"
-                                               data-notice="Пароль слишком прост">
-                                        <label for="password_modal_signup">Пароль
-                                        </label>
-                                    </div>
-                                    <span class="js-toggle-password"></span>
-                                </div>
-                                <div class="input-wrap">
-                                    <div class="input-field">
-                                        <input type="password" name="password_confirm" value="" required="required"
-                                               data-format=".+" data-notice="Повторите пароль">
-                                        <!--- Повторите пароль <label for="">Пароль еще раз</label> --->
-                                    </div>
-                                    <span class="js-toggle-password"></span>
-                                </div>
-                            </div>
-
-                            <div class="su-requestInform error" style="display: none"></div>
-
-                            <input type="submit" class="btn btn--full" value="Зарегистрироваться">
-                        </form>
-
-                    </div>
-
-
-                </div>
             </div>
-            <!--- Окно авторизации --->
+            <!--
+            <div class="modal-footer">
+                TODO: Когда-то тут будет OAuth
             </div>
+            -->
         </div>
-
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 
 </body>
 </html>
