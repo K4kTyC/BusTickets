@@ -2,6 +2,7 @@ package com.k4ktyc.bustickets.controller;
 
 import com.k4ktyc.bustickets.model.UserDto;
 import com.k4ktyc.bustickets.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +18,7 @@ public class RegistrationController {
 
     private final UserService userService;
 
+    @Autowired
     public RegistrationController(UserService userService) {
         this.userService = userService;
     }

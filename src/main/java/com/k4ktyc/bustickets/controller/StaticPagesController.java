@@ -15,4 +15,9 @@ public class StaticPagesController {
     public String register() {
         return "register.html";
     }
+
+    @GetMapping("/admin")
+    public String admin() {
+        return "admin.html";
+    }
 }

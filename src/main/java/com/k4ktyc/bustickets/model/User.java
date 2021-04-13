@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -20,6 +21,9 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "role_id", nullable = false, updatable = false)
     private Role role;
+
+    @OneToMany (mappedBy = "user")
+    private List<Order> orders;
 
     public User() {}
 
