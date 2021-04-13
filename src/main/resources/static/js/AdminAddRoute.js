@@ -93,5 +93,5 @@ async function sendNewRouteDto(url, dto) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(dto)
     })
-    return await response.text()
+    return await response.json()
 }
