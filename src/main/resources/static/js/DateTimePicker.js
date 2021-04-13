@@ -39,6 +39,5 @@ $.fn.datetimepicker.Constructor.Default = $.extend({}, $.fn.datetimepicker.Const
         showClear: true,
         showClose: false
     },
-    useCurrent: false,
     minDate: moment().clone().locale('ru')
 });
