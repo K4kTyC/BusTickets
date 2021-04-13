@@ -1,19 +1,6 @@
 document
-    .getElementById('login-form')
-    .addEventListener('submit', e => e.preventDefault())
-
-document
     .getElementById('registration-form')
     .addEventListener('submit', e => e.preventDefault())
-
-document.getElementById('login-submit').addEventListener('click', () => {
-    let userDto = {
-        username: document.getElementById('inputLoginUsername').value,
-        password: document.getElementById('inputLoginPassword').value
-    }
-
-    console.log(sendUserDto('/api/login', userDto))
-})
 
 document.getElementById('registration-submit').addEventListener('click', () => {
     let userDto = {
@@ -23,6 +10,15 @@ document.getElementById('registration-submit').addEventListener('click', () => {
 
     console.log(sendUserDto('/api/register', userDto))
 })
+
+function processUrlParams() {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('needLogin')) {
+        $('#modal-account').modal('show')
+        $('#login-tab').tab('show')
+        history.replaceState(null,'', '/')
+    }
+}
 
 async function sendUserDto(url, dto) {
     const response = await fetch(url, {
