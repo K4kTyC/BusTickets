@@ -24,7 +24,8 @@ public class AdminPageController {
 
 
     @PostMapping(path = "/add_route", consumes = "application/json")
-    public void addNewRoute(@RequestBody @Valid NewRouteDto newRouteDto) {
+    public String addNewRoute(@RequestBody @Valid NewRouteDto newRouteDto) {
         routeService.save(new Route(newRouteDto));
+        return "Маршрут был успешно добавлен.";
     }
 }
