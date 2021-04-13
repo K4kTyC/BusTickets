@@ -1,9 +1,6 @@
 html, body {
     margin: 0;
-    font-size: 14px;
     font-family: 'Nunito', sans-serif;
-    -webkit-font-smoothing: antialiased;
-
 }
 
 /*=== Header ===*/
@@ -296,6 +293,140 @@ html, body {
 }
 
 
+.modal.custom .modal-content {
+    background-color: #212529;
+    border: 0;
+    border-radius: 0;
+    outline: 0;
+}
 
+.modal.custom .modal-header {
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    border-image: 0;
+    border-bottom: 4px solid transparent;
+    background-image: linear-gradient(#212529, #212529),
+    linear-gradient(to right, #006838, #4caa13);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    padding: 2rem 2rem 0 2rem;
+}
 
+.modal.custom .modal-body {
+    background-color: #292f34;
+}
 
+button.close {
+    font-size: 2rem;
+    color: #d1d2d3;
+    opacity: 1;
+    text-shadow: none;
+    transition: all 0.4s ease;
+}
+
+button.close:hover {
+    color: #4caa13;
+    opacity: 1;
+    text-shadow: none;
+}
+
+.nav-tabs {
+    border-bottom: 0;
+}
+
+.nav-tabs .nav-link {
+    margin-bottom: -4px;
+    border: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-image: 0;
+    font-size: 20px;
+    color: #d1d2d3;
+}
+
+.nav-tabs .nav-link.active {
+    color: #d1d2d3;
+    border-top: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+    border-bottom: 0;
+    background-color: #292f34;
+    background-image: linear-gradient(#292f34, #292f34),
+    linear-gradient(to right, #006838, #1a7f2b);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+}
+
+label {
+    color: #d1d2d3;
+    font-size: 18px;
+}
+
+.input-field {
+    height: calc(2em + .75rem + 2px);
+    color: #d1d2d3;
+    font-size: 1.2em;
+    outline: none;
+    border: 0;
+    border-bottom: 4px solid #54595d;
+    border-radius: 0;
+    background-color: #212529;
+    transition: all 0.4s ease;
+}
+
+/*=== Обводка блоков "input" ===*/
+/* https://theadhocracy.co.uk/wrote/gradient-borders-with-rounded-corners-on-input-fields */
+.input-field:hover {
+    border: 0;
+    border-bottom: double 4px transparent;
+    background-color: #212529;
+    background-image: linear-gradient(#212529, #212529),
+    linear-gradient(to right, #006838, #378e30);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    box-shadow: 0 0 5px 2px #44883c;
+}
+
+.input-field:focus {
+    color: #d1d2d3;
+    outline: none;
+    box-shadow: none;
+    border: none;
+    border-bottom: double 4px transparent;
+    background-color: #212529;
+    background-image: linear-gradient(#212529, #212529),
+    linear-gradient(to right, #006838, #378e30);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+}
+
+.form-button-submit {
+    height: calc(2em + .75rem);
+    padding: 0 50px;
+    outline: none;
+    transition: all 0.4s ease 0s;
+    background-color: #484e52;
+    border: none;
+    border-radius: 0;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    color: #d1d2d3;
+}
+
+.form-button-submit:hover {
+    color: #d1d2d3;
+    outline: none;
+    border: none;
+    background: linear-gradient(to right, #006838, #378e30);
+    box-shadow: 0 0 5px 2px #44883c;
+}
+
+.form-button-submit:focus {
+    color: #d1d2d3;
+    outline: none;
+    border: none;
+    box-shadow: none;
+}

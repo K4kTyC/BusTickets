@@ -26,6 +26,14 @@
     background-color: #44883c;
 }
 
+.bootstrap-datetimepicker-widget table td.today::before {
+    border: 0;
+}
+
+.bootstrap-datetimepicker-widget table td.active.today::before {
+    border: 0;
+}
+
 .bootstrap-datetimepicker-widget table td span.active {
     background-color: #44883c;
 }

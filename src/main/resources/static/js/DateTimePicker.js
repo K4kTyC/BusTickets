@@ -32,16 +32,12 @@ $.fn.datetimepicker.Constructor.Default = $.extend({}, $.fn.datetimepicker.Const
         incrementMinute: 'Увеличить на 1 минуту',
         pickMinute: 'Выбрать минуты',
         decrementMinute:'Уменьшить на 1 минуту'
-    }
-});
-
-$(function () {
-    $('#datetimepicker1').datetimepicker({
-        locale: 'ru',
-        buttons: {
-            showToday: true,
-            showClear: true
-        },
-        minDate: moment().clone().locale('ru')
-    });
+    },
+    locale: 'ru',
+    buttons: {
+        showToday: true,
+        showClear: true,
+        showClose: false
+    },
+    minDate: moment().clone().locale('ru')
 });
