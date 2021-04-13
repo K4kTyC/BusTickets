@@ -15,7 +15,6 @@
 
 <body>
 
-<!-- все пункты должны быть с правой стороны, лк правее всех, если не хочешь, сейчас это не делай, я навигацию потом сам сделаю -->
 <header class="header">
     <div class="header__container">
         <a class="header__logo" href="home.html"><img src="Img/logoNew.png" alt="На главную" height="48"></a>
@@ -32,16 +31,12 @@
 
             <form class="container__select-route_form">
 
-                <!-- Формы заполнения "Откуда"  -->
                 <input class="container__select-route_item" id="route-from" type="text" placeholder="Откуда">
 
-                <!-- Формы заполнения "Куда" -->
                 <input class="container__select-route_item" id="route-to" type="text" placeholder="Куда">
 
-                <!-- Формы заполнения "Дата отправления" -->
                 <input class="container__select-route_item" type="date" id="route-date" name="route-to">
 
-                <!-- Кнопка отправки данных-->
                 <button class="container__select-route_button-submit" id="route-submit">Найти
                 </button>
             </form>
@@ -90,25 +85,25 @@
             <div class="modal-body">
                 <div class="tab-content p-4" id="myTabContent">
                     <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
-                        <form>
+                        <form id="login-form">
                             <div class="form-group py-2">
                                 <input type="text" class="form-control input-field" id="inputLoginUsername" placeholder="Имя пользователя">
                             </div>
                             <div class="form-group py-2">
                                 <input type="password" class="form-control input-field" id="inputLoginPassword" placeholder="Пароль">
                             </div>
-                            <button type="submit" class="btn form-button-submit mt-4">Войти</button>
+                            <button id="login-submit" type="submit" class="btn form-button-submit mt-4">Войти</button>
                         </form>
                     </div>
                     <div class="tab-pane fade" id="registration" role="tabpanel" aria-labelledby="registration-tab">
-                        <form>
+                        <form id="registration-form">
                             <div class="form-group py-2">
                                 <input type="text" class="form-control input-field" id="inputRegisterUsername" placeholder="Имя пользователя">
                             </div>
                             <div class="form-group py-2">
                                 <input type="password" class="form-control input-field" id="inputRegisterPassword" placeholder="Пароль">
                             </div>
-                            <button type="submit" class="btn form-button-submit mt-4">Зарегистрироваться</button>
+                            <button id="registration-submit" type="submit" class="btn form-button-submit mt-4">Зарегистрироваться</button>
                         </form>
                     </div>
                 </div>
