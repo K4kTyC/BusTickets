@@ -22,7 +22,7 @@ public class Bus {
 
     private String busClass;
 
-    @OneToMany(mappedBy = "bus")
+    @OneToMany(mappedBy = "bus", cascade = CascadeType.ALL)
     private List<Seat> seats = new ArrayList<>();
 
     public Bus() {}

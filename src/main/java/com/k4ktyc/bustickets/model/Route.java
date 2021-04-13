@@ -16,10 +16,10 @@ public class Route {
     @Id @GeneratedValue
     private long id;
 
-    @OneToMany(mappedBy = "route")
+    @OneToMany(mappedBy = "route", cascade = CascadeType.ALL)
     private List<Station> stations = new ArrayList<>();
 
-    @OneToMany(mappedBy = "route")
+    @OneToMany(mappedBy = "route", cascade = CascadeType.ALL)
     private List<Trip> trips = new ArrayList<>();
 
     public Route() {}

@@ -14,11 +14,11 @@ public class Trip {
     @Id @GeneratedValue
     private long id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "bus_id", nullable = false, updatable = false)
     private Bus bus;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "route_id", nullable = false, updatable = false)
     private Route route;
 

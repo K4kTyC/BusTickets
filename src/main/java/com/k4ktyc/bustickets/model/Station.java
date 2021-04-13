@@ -20,7 +20,7 @@ public class Station {
 
     private LocalDateTime datetimeTo;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "route_id", nullable = false, updatable = false)
     private Route route;
 
