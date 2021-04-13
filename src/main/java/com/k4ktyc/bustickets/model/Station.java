@@ -23,4 +23,12 @@ public class Station {
     @ManyToOne
     @JoinColumn(name = "route_id", nullable = false, updatable = false)
     private Route route;
+
+    public Station() {}
+
+    public Station(StationDto stationDto) {
+        this.name = stationDto.getName();
+        this.datetimeFrom = stationDto.getDatetimeFrom();
+        this.datetimeTo = stationDto.getDatetimeTo();
+    }
 }

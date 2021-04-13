@@ -27,4 +27,12 @@ public class Trip {
     private LocalDateTime datetimeTripFinish;
 
     private int price;
+
+    public Trip() {}
+
+    public Trip(TripDto tripDto) {
+        this.bus = new Bus(tripDto.getBus());
+        this.bus.setTrip(this);
+        this.price = tripDto.getPrice();
+    }
 }

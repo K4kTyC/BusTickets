@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,5 +23,15 @@ public class Bus {
     private String busClass;
 
     @OneToMany(mappedBy = "bus")
-    private List<Seat> seats;
+    private List<Seat> seats = new ArrayList<>();
+
+    public Bus() {}
+
+    public Bus(BusDto busDto) {
+        this.number = busDto.getNumber();
+        this.busClass = busDto.getBusClass() == 1 ? "Regular" : "Business";
+        for (int i = 0; i < busDto.getNumberOfSeats(); i++) {
+            seats.add(new Seat(i + 1, this));
+        }
+    }
 }
