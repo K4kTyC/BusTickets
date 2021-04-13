@@ -391,6 +391,7 @@ label {
 }
 
 .input-field:focus {
+    color: #d1d2d3;
     outline: none;
     box-shadow: none;
     border: none;
