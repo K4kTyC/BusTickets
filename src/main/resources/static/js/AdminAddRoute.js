@@ -24,7 +24,7 @@ document.getElementById('route-submit').addEventListener('click', () => {
         })
     }
 
-    console.log(routeDto)
+    console.log(sendNewRouteDto('/api/admin/add_route', routeDto))
 })
 
 addRouteForm.addEventListener('click', (e) => {
@@ -83,4 +83,15 @@ $(function () {
 function initNewDatetimepickers(num) {
     $(`#datetimepicker-from-${num}`).datetimepicker()
     $(`#datetimepicker-to-${num}`).datetimepicker()
+}
+
+async function sendNewRouteDto(url, dto) {
+    const response = await fetch(url, {
+        method: 'POST',
+        mode: 'same-origin',
+        credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dto)
+    })
+    return await response.text()
 }
