@@ -98,16 +98,24 @@
                     <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
                         <form>
                             <div class="form-group py-2">
-                                <input type="text" class="form-control input-field" id="inputLogin" placeholder="Имя пользователя">
+                                <input type="text" class="form-control input-field" id="inputLoginUsername" placeholder="Имя пользователя">
                             </div>
                             <div class="form-group py-2">
-                                <input type="password" class="form-control input-field" id="inputPassword" placeholder="Пароль">
+                                <input type="password" class="form-control input-field" id="inputLoginPassword" placeholder="Пароль">
                             </div>
                             <button type="submit" class="btn form-button-submit mt-4">Войти</button>
                         </form>
                     </div>
                     <div class="tab-pane fade" id="registration" role="tabpanel" aria-labelledby="registration-tab">
-
+                        <form>
+                            <div class="form-group py-2">
+                                <input type="text" class="form-control input-field" id="inputRegisterUsername" placeholder="Имя пользователя">
+                            </div>
+                            <div class="form-group py-2">
+                                <input type="password" class="form-control input-field" id="inputRegisterPassword" placeholder="Пароль">
+                            </div>
+                            <button type="submit" class="btn form-button-submit mt-4">Зарегистрироваться</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -117,164 +125,6 @@
             </div>
             -->
         </div>
-    </div>
-</div>
-
-
-
-
-
-
-
-<div id="popup" class="popup">
-    <a href="#" class="popup__area"></a>
-    <div class="popup__body">
-        <div class="popup__content">
-            <a href="#" class="popup__close">X</a>
-            <div class="popup__content-title">Личный кабинет
-
-
-            <!--- Окно авторизации --->
-
-                                                        <!--- Header --->
-              <!--- Свичи на модальные окна --->
-            <div id="tabs" class="popup__signin">
-                <ul role="tablist" class="popup__tabs">
-                    <li role="tab" class="popup__tab-signin__titles"
-                        aria-controls="signin" aria-labelledby="tab-sidnin" aria-selected="false" aria-expanded="false">
-                        <a href="#signin" role="presentation" id="tab-sidnin" >Вход</a>
-                    </li>
-
-                    <li role="tab" class="popup__tab-signup__titles"
-                        aria-controls="signup" aria-labelledby="tab-signup" aria-selected="true" aria-expanded="true">
-                        <a href="#signup" role="presentation" id="tab-signup">Регистрация</a>
-                    </li>
-                </ul>
-
-                                     <!--- Modal container --->
-
-                                     <!--- Модальное окно Входа --->
-                <div id="m-signin" aria-labelledby="m-signin" role="tabpanel" class="popup__modal-signin" aria-hidden="false"
-                     style="display: none;">
-                                                            <!--- E-mail --->
-                    <div class="modal__content">
-                        <form class="modal__form" id="login_form" data-accept="not">
-                            <div class="input-wrap">
-                                <div class="input-field">
-                                    <input type="email" name="email" id="user_signin_login" value="" required="required" data-format=".+" data-notice="Введите email">
-                                    <label for="user_signin_login">E-mail</label>
-                                </div>
-                            </div>
-
-                                                            <!--- Password --->
-                            <div class="input-wrap">
-                                <div class="input-field">
-                                    <input type="password" name="password" id="user_signin_password" value="Пароль"
-                                           required="required" data-format=".+" data-notice="Введите пароль">
-                                    <label for="user_signin_password">Пароль
-                                    </label>
-                                </div>
-                            </div>
-
-                                                            <!--- Create account--->
-                            <div class="input-wrap" id=""></div>
-                            <div class="input__modal-button">
-                                <input type="submit" class="btn " name="login" value="Войти">
-                                <a class="btn btn--white js-set-tab-signup" href="##">Создать аккаунт</a>
-                            </div>
-
-                        </form>
-                    </div>
-                </div>
-
-
-                <!--- Модальное окно регистрации --->
-                <div id="signup" aria-labelledby="ui-id-2" role="tabpanel" class="popup__modal-signup" aria-hidden="true"
-                     style="">
-
-                    <div class="modal__content">
-                        <form class="modal__form" id="register_form" data-accept="not">
-                            <div class="search__section-head"><span>Данные пользователя</span></div>
-                            <div class="inputs">
-                                <div class="input-wrap">
-                                    <div class="input-field">
-                                        <input type="text" name="field_id_15" id="lastname_modal_signup" value=""
-                                               required="required" data-format=".+" data-notice="Укажите фамилию">
-                                        <label for="lastname_modal_signup">Фамилия
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="input-wrap">
-                                    <div class="input-field">
-                                        <input type="text" name="field_id_14" id="firstname_modal_signup" value=""
-                                               required="required" data-format=".+" data-notice="Укажите имя">
-                                        <label for="firstname_modal_signup">Имя
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="input-wrap">
-                                    <div class="input-field">
-                                        <input type="text" name="field_id_16" id="middlename_modal_signup" value=""
-                                               required="required" data-format=".+" data-notice="Укажите отчество">
-                                        <label for="middlename_modal_signup">Отчество
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="input-wrap">
-                                    <div class="input-field">
-                                        <input type="text" name="phone" id="phone_modal_signup" value=""
-                                               required="required" data-format=".+" data-notice="Укажите телефон">
-                                        <label for="phone_modal_signup">Телефон
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="search__section-head"><span>Учетная запись</span></div>
-
-                            <input type="hidden" name="name">
-                            <div class="input-wrap">
-                                <div class="input-field">
-                                    <input type="email" name="email" id="email_modal_signup" value=""
-                                           required="required" data-format=".+" data-notice="Укажите почту">
-                                    <label for="email_modal_signup">E-mail
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="inputs">
-                                <div class="input-wrap">
-                                    <div class="input-field">
-                                        <input type="password" name="password" id="password_modal_signup" value=""
-                                               required="required" data-format="password"
-                                               data-notice="Пароль слишком прост">
-                                        <label for="password_modal_signup">Пароль
-                                        </label>
-                                    </div>
-                                    <span class="js-toggle-password"></span>
-                                </div>
-                                <div class="input-wrap">
-                                    <div class="input-field">
-                                        <input type="password" name="password_confirm" value="" required="required"
-                                               data-format=".+" data-notice="Повторите пароль">
-                                        <!--- Повторите пароль <label for="">Пароль еще раз</label> --->
-                                    </div>
-                                    <span class="js-toggle-password"></span>
-                                </div>
-                            </div>
-
-                            <div class="su-requestInform error" style="display: none"></div>
-
-                            <input type="submit" class="btn btn--full" value="Зарегистрироваться">
-                        </form>
-
-                    </div>
-
-
-                </div>
-            </div>
-            <!--- Окно авторизации --->
-            </div>
-        </div>
-
     </div>
 </div>
 
