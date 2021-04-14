@@ -17,7 +17,7 @@
 
 <header class="header">
     <div class="header__container">
-        <a class="header__logo" href="home.html"><img src="Img/logoNew.png" alt="На главную" height="48"></a>
+        <a class="header__logo" href="/"><img src="Img/logoNew.png" alt="На главную" height="48"></a>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-account">Личный кабинет</button>
     </div>
 </header>
@@ -85,7 +85,7 @@
             <div class="modal-body">
                 <div class="tab-content p-4" id="myTabContent">
                     <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
-                        <form action="/login" method="post" id="login-form">
+                        <form action="login" method="post" id="login-form">
                             <div class="form-group py-2">
                                 <input name="username" type="text" class="form-control input-field" id="inputLoginUsername" placeholder="Имя пользователя">
                             </div>
@@ -98,8 +98,8 @@
                                 </div>
                                 <div class="col">
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" value="" id="customCheck1" name="remember-me">
-                                        <label class="custom-control-label" for="customCheck1">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck" name="remember-me">
+                                        <label class="custom-control-label" for="customCheck">
                                             Запомнить меня
                                         </label>
                                     </div>
