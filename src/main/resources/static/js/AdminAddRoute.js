@@ -24,7 +24,7 @@ document.getElementById('route-submit').addEventListener('click', () => {
         })
     }
 
-    console.log(sendNewRouteDto('/api/admin/add_route', routeDto))
+    sendNewRouteDto('/api/admin/add_route', routeDto)
 })
 
 addRouteForm.addEventListener('click', (e) => {
@@ -93,5 +93,7 @@ async function sendNewRouteDto(url, dto) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(dto)
     })
-    return await response.json()
+    const returned = await response.json()
+    alert(returned.text)
+    console.log(returned.newRouteId)
 }

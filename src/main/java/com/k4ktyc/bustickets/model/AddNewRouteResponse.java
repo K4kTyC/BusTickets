@@ -6,10 +6,10 @@ import lombok.Getter;
 public class AddNewRouteResponse {
 
     private final String text;
-    private final RouteDto createdRoute;
+    private final long newRouteId;
 
-    public AddNewRouteResponse(String text, RouteDto route) {
+    public AddNewRouteResponse(String text, Route route) {
         this.text = text;
-        this.createdRoute = route;
+        this.newRouteId = route.getId();
     }
 }
