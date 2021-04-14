@@ -13,26 +13,13 @@
     </title>
 
 </head>
-<body onload="processUrlParams()">
+<body onload="processUrlParams(); checkAuth()">
 
-<nav class="navbar fixed-top navbar-expand-md">
+<nav class="navbar fixed-top navbar-expand-md" id="mainNavbar">
     <a class="navbar-brand mr-auto" href="/home.html"><img src="Img/logoNew.png" alt="На главную" height="48"></a>
 
     <!-- Для неавторизованных -->
-    <a class="nav-link nav-link-main" href="#" data-toggle="modal" data-target="#modal-account">Войти</a>
-
-    <!-- Для авторизованных -->
-    <div class="nav-item dropdown">
-        <a class="nav-link nav-link-main dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            [login]
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#">Заказы</a>
-            <a class="dropdown-item" href="#">Профиль</a>
-            <p class="dropdown-divider"></p>
-            <a class="dropdown-item" href="/logout">Выйти</a>
-        </div>
-    </div>
+    <a id="unauthLink" class="nav-link nav-link-main" href="#" data-toggle="modal" data-target="#modal-account">Войти</a>
 </nav>
 
 <div class="container-fluid m-0 p-0">
@@ -160,6 +147,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 <script type="text/javascript" src="js/ModalForm.js"></script>
+<script type="text/javascript" src="js/Main.js"></script>
 
 </body>
 </html>
