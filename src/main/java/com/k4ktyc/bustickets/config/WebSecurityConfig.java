@@ -32,7 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                     .antMatchers("/css/**", "/js/**", "/Img/**").permitAll()
-                    .antMatchers("/", "/home.html").permitAll()
+                    .antMatchers("/", "/home.html", "/api/checkAuth").permitAll()
                     .antMatchers("/api/register", "/login").anonymous()
                     .antMatchers("/admin", "/api/admin/*").hasRole("ADMIN")
                     .anyRequest().authenticated()
@@ -40,7 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                     .loginPage("/?needLogin")
                     .loginProcessingUrl("/login")
-                    .defaultSuccessUrl("/?success")
+                    .defaultSuccessUrl("/")
                     .failureUrl("/?error")
                     .and()
                 .rememberMe()
@@ -49,7 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .and()
                 .logout()
                     .deleteCookies("JSESSIONID")
-                    .logoutSuccessUrl("/?logout")
+                    .logoutSuccessUrl("/")
                     .and()
                 .csrf().disable();
     }

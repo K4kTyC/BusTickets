@@ -1,4 +1,5 @@
-let isAuthorized = false
+processUrlParams()
+checkAuth()
 
 function processUrlParams() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -11,15 +12,26 @@ function processUrlParams() {
 
 async function checkAuth() {
     const response = await fetch('/api/checkAuth')
-    const value = await response.json()
-    isAuthorized = value.isAuthorized;
+    const data = await response.json()
+    console.log(data)
+    if (data.authorised) {
+        addProfileButtons(data)
+    }
+}
 
-    if (isAuthorized) {
-        document.getElementById('unauthLink').remove()
+function addProfileButtons(data) {
+    document.getElementById('unauthLink').remove()
+
+    if (data.role === 'ROLE_ADMIN') {
         document.getElementById('mainNavbar').insertAdjacentHTML('beforeend', `
+            <a id="addRoute" class="nav-link nav-link-main" href="/admin">Добавить маршрут</a>
+        `)
+    }
+
+    document.getElementById('mainNavbar').insertAdjacentHTML('beforeend', `
             <div class="nav-item dropdown">
                 <a class="nav-link nav-link-main dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                ${value.login}
+                ${data.username}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="/orders">Заказы</a>
@@ -29,5 +41,4 @@ async function checkAuth() {
                 </div>
             </div>
         `)
-    }
 }
