@@ -11,16 +11,29 @@
     <title>
         Bus Ticket - покупка билетов на рейсовые автобусы
     </title>
-</head>
 
+</head>
 <body>
 
-<header class="header">
-    <div class="header__container">
-        <a class="header__logo" href="home.html"><img src="Img/logoNew.png" alt="На главную" height="48"></a>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-account">Личный кабинет</button>
+<nav class="navbar fixed-top navbar-expand">
+    <a class="navbar-brand mr-auto" href="/home.html"><img src="Img/logoNew.png" alt="На главную" height="48"></a>
+
+    <!-- Для неавторизованных -->
+    <a class="nav-link nav-link-main" href="#" data-toggle="modal" data-target="#modal-account">Войти</a>
+
+    <!-- Для авторизованных -->
+    <div class="nav-item dropdown">
+        <a class="nav-link nav-link-main dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            [login]
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="#">Заказы</a>
+            <a class="dropdown-item" href="#">Профиль</a>
+            <p class="dropdown-divider"></p>
+            <a class="dropdown-item" href="/logout">Выйти</a>
+        </div>
     </div>
-</header>
+</nav>
 
 <div class="container">
 
