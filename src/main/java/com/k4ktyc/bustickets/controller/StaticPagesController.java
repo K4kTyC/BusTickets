@@ -11,11 +11,6 @@ public class StaticPagesController {
         return "home.html";
     }
 
-    @GetMapping("/register")
-    public String register() {
-        return "register.html";
-    }
-
     @GetMapping("/admin")
     public String admin() {
         return "admin.html";

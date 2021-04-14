@@ -1,28 +1,157 @@
 html, body {
     margin: 0;
-    font-size: 14px;
     font-family: 'Nunito', sans-serif;
-    -webkit-font-smoothing: antialiased;
-
+    background: #212529;
 }
 
-/*=== Header ===*/
 
-.header__container {
-    width: 100%;
-    margin: 0 auto;
+/*===   Модальное окно входа   ===*/
+
+.modal.custom .modal-content {
+    background-color: #212529;
+    border: 0;
+    border-radius: 0;
+    outline: 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .3);
 }
 
-.header {
-    padding: 0 50px 0 0;
-    height: 96px;
+.modal.custom .modal-header {
+    border: none;
+    border-image: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    padding: 2rem 2rem 0 2rem;
+    box-shadow: inset 0 -10px 10px -10px rgba(0, 0, 0, .3);
+}
+
+.modal.custom .modal-body {
+    background-color: #292f34;
+}
+
+button.close {
+    font-size: 2rem;
+    color: #d1d2d3;
+    opacity: 1;
+    text-shadow: none;
+    transition: all 0.4s ease;
+}
+
+button.close:hover {
+    color: #4caa13;
+    opacity: 1;
+    text-shadow: none;
+}
+
+
+/*===   Вкладки модального окна   ===*/
+
+ul.nav-tabs {
+    border-bottom: 0;
+    background-color: #25292e;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+}
+
+.nav-tabs .nav-link {
+    border: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-image: 0;
+    font-size: 1.25rem;
+    color: #d1d2d3;
+}
+
+.nav-tabs .nav-link.active {
+    color: #d1d2d3;
+    border-bottom: 0;
+    border-top: 4px solid transparent;
+    background-color: #292f34;
+    background-image: linear-gradient(#292f34, #292f34),
+    linear-gradient(to right, #006838, #1a7f2b);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+}
+
+
+/*===   Поля ввода   ===*/
+
+.input-field {
+    height: calc(2em + .75rem + 2px);
     width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    position: fixed;
-    display: table-cell;
-    vertical-align: middle;
+    color: #d1d2d3;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2em;
+    outline: none;
+    border: 0;
+    border-bottom: 4px solid #54595d;
+    border-radius: 0;
+    background-color: #212529;
+    transition: all 0.4s ease;
+    box-shadow: inset 0 0 5px -2px rgba(0, 0, 0, .3);
+}
+
+
+/*=== Обводка блоков "input" ===*/
+/* https://theadhocracy.co.uk/wrote/gradient-borders-with-rounded-corners-on-input-fields */
+.input-field:hover {
+    border: 0;
+    border-bottom: double 4px transparent;
+    background-color: #212529;
+    background-image: linear-gradient(#212529, #212529),
+    linear-gradient(to right, #006838, #378e30);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    box-shadow: 0 0 5px 2px #44883c;
+}
+
+.input-field:focus {
+    color: #d1d2d3;
+    outline: none;
+    box-shadow: none;
+    border: none;
+    border-bottom: double 4px transparent;
+    background-color: #212529;
+    background-image: linear-gradient(#212529, #212529),
+    linear-gradient(to right, #006838, #378e30);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+}
+
+.form-button-submit {
+    height: calc(2em + .75rem);
+    width: 100%;
+    outline: none;
+    transition: all 0.4s ease 0s;
+    background-color: #484e52;
+    border: none;
+    border-radius: 0;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: #d1d2d3;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+}
+
+.form-button-submit:hover {
+    color: #d1d2d3;
+    outline: none;
+    border: none;
+    background: linear-gradient(to right, #006838, #378e30);
+    box-shadow: 0 0 5px 2px #44883c;
+}
+
+.form-button-submit:focus {
+    color: #d1d2d3;
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+
+
+/*===   Панель навигации   ===*/
+
+.navbar {
+    font-size: 1.25rem;
+    padding: 1rem;
     border-bottom: solid 4px transparent;
     background-image: linear-gradient(#292f34, #292f34),
     linear-gradient(to right, #006838, #4caa13);
@@ -31,271 +160,167 @@ html, body {
 }
 
 .navbar-brand {
-    margin: 24px;
-    float: left;
+    margin: 0;
+    padding: 0;
 }
 
-/*===NAVIGATION===*/
-.header__nav {
-    margin-top: 30px;
-    float: right;
-    list-style: none;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    text-transform: uppercase;
-    text-decoration: none;
-}
-
-.header__nav_select-route {
-
-}
-
-.header__nav_lk {
-    float: right;
-}
-.header__nav li {
-    display: inline-block;
-}
-
-.header__nav a {
+.nav-link-main {
     color: #d1d2d3;
-    text-align: center;
-    text-decoration: none;
-    font-size: 20px;
 }
 
-.header__nav a:hover {
-    background: linear-gradient(to right, #006838, #378e30);
+.nav-link-main:hover {
+    background: linear-gradient(to right, #197e2c, #4caa13);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     color: #44883c;
-    transition: 0.4s;
+    transition: 0.2s;
 }
 
-                                        /*=== Container ===*/
-
-.container {
-    background: #212529;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.dropdown-menu {
+    top: 130%;
+    background-color: #292f34;
+    border-radius: 0;
+    border: none;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, .5);
 }
 
-.container__select-route {
-    padding: 500px 0 100px 0;
-    display: flex;
-    justify-content: center;
-    background: linear-gradient(rgba(41, 47, 52, .9), rgba(41, 47, 52, .9)), url("../Img/mainBG2.jpg") no-repeat center;
-    background-size: 100%;
-    text-align: center;
+.dropdown-divider {
+    border-top: 1px solid #54595d;
 }
 
-.container__select-route-block {
-    padding: 50px 0;
-    width: 1250px;
-    height: 250px;
+.dropdown-item {
+    color: #d1d2d3;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.15rem;
+}
+
+.dropdown-item:hover {
+    background: linear-gradient(to right, #056d35, #6eff17);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #44883c;
+    transition: 0.2s;
+}
+
+.dropdown-item:focus {
+    background: linear-gradient(to right, #056d35, #6eff17);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #44883c;
+}
+
+
+/*=== Блок выбора маршрута ===*/
+
+.select-route-block {
+    background: linear-gradient(rgba(41, 47, 52, .9), rgba(41, 47, 52, .9)), url("../Img/mainBG2.jpg") no-repeat center center;
+    background-size: cover;
+    min-height: 40rem;
+}
+
+.select-route-form {
     background: #292f34;
     box-shadow: 0 0 10px rgba(0, 0, 0, .7);
+    margin-top: 5rem;
 }
 
-.container__select-route_title {
-    padding-bottom: 50px;
+.row.title {
     color: #d1d2d3 ;
-    font-family: 'Roboto', sans-serif;
-    font-size: 24px;
+    font-size: 2rem;
 }
 
-/*=== Блок формы ввода данных===*/
-.container__select-route_form {
-    display: flex;
-    justify-content: center;
-}
-
-/*=== Формы заполнения  ===*/
-.container__select-route_item{
-    margin: 0 10px 0 0;
-    padding: 0 10px 0 10px;
-    height: 50px;
-    width: 300px;
-    color: #d1d2d3;
-    font-size: 18px;
-    font-family: 'Nunito', sans-serif;
-    outline: none;
-    border: 0;
-    border-bottom: 4px solid #54595d;
-    background-color: #212529;
-    transition: all 0.4s ease 0s;
-}
-
-/*=== Обводка блоков "input" ===*/
-/* https://theadhocracy.co.uk/wrote/gradient-borders-with-rounded-corners-on-input-fields */
-.container__select-route_item:hover {
-    border: 0;
-    border-bottom: double 4px transparent;
-    background-image: linear-gradient(#212529, #212529),
-    linear-gradient(to right, #006838, #378e30);
-    background-origin: border-box;
-    background-clip: padding-box, border-box;
-    box-shadow: 0 0 5px 2px #44883c;
-}
-
-.container__select-route_item:focus {
-    border: 0;
-    border-bottom: double 4px transparent;
-    background-image: linear-gradient(#212529, #212529),
-    linear-gradient(to right, #006838, #378e30);
-    background-origin: border-box;
-    background-clip: padding-box, border-box;
-}
-
-.container__select-route_button-submit {
-    padding: 0 50px;
-    margin: 0 10px 0 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.4s ease 0s;
-    background-color: #484e52;
-    border-style: hidden;
-    cursor: pointer;
-    font-family: 'Nunito', sans-serif;
-    font-weight: 800;
-    font-size: 16px;
-    text-transform: uppercase;
-    color: #d1d2d3;
-}
-
-.container__select-route_button-submit:hover {
-    background: linear-gradient(to right, #006838, #378e30);
-    box-shadow: 0 0 5px 2px #44883c;
-}
-
-
-.news {
-    display: flex;
-    flex-direction: column;
+.news-block {
     background: url("../Img/gradient.png");
     background-size: auto 100%;
-    text-align: center;
 }
 
-.news__tittle {
-    margin: 60px 0;
+.news-inner {
+    min-height: 25rem;
     font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-    font-size: 24px;
-    color: #d1d2d3;
-    text-align: center;
-}
-
-.news_inner-container {
-    display: flex;
-    justify-content: space-around;
-}
-
-.news_inner-container_1 {
-    margin: 0 0 300px 0;
-    padding: 100px 0;
-    width: 400px;
-    font-size: 20px;
+    font-size: 1.1rem;
     color: #d1d2d3;
     background-color: #212529;
     box-shadow: 0 0 10px rgba(0, 0, 0, .5);
     transition: all 0.4s ease 0s;
 }
 
-.news_inner-container_1:hover {
+.news-inner:hover {
     box-shadow: 0 0 5px 2px #44883c;
 }
 
-                                        /*=== Footer ===*/
+
+/*===   Footer   ===*/
 
 .footer {
     background: linear-gradient(to right, #006838, #3b8210);
     color: #d1d2d3;
-    font-size: 24px;
-    font-weight: bold;
+    font-size: 1.5rem;
+    padding-top: 5rem;
 }
 
-.footer_block_1 {
-
-}
-
-                                        /*=== Popup ===*/
-.popup {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(33 ,37 ,41 ,0.9);
-    top: 0;
-    left: 0;
-    opacity: 1;
-    visibility: hidden;
-}
-
-.popup:target {
-    opacity: 1;
-    visibility: visible;
-}
-
-.popup__area {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-}
-
-.popup__body {
-    min-height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 30px 10px;
-}
-
-.popup__content {
-    background-color: #292f34;
-    color: #cccccc;
-    max-width: 700px ;
-    max-height: 400px;
-    padding: 30px 30px;
+.footer-copy {
     text-align: center;
-    position: relative;
-}
-
-.popup__close {
-    position: absolute;
-    top: 10px;
-    right: 30px;
-    text-decoration: none;
-    color: white;
-}
-
-.popup__content-title {
-    text-align: center;
-    padding-bottom: 10px;
-    text-transform: uppercase ;
-    padding-left: 10px;
-}
-
-.popup__content-text {
-
-}
-
-/*== МОдальное окно регистрации ==*/
-
-
-.popup__tab-signin {
-
-}
-
-.popup__tab-signup {
-
+    font-family: 'Roboto', sans-serif;
 }
 
 
+/*===   Custom checkbox ===*/
 
+.custom-control-label {
+    padding-left: 0.5em;
+    color: #d1d2d3;
+    font-size: 1.2rem;
+}
 
+.custom-checkbox .custom-control-label::after {
+    width: 20px;
+    height: 20px;
+    border-radius: 0;
+    border: none;
+    background-color: #212529;
+}
 
+.custom-checkbox .custom-control-label::before {
+    width: 20px;
+    height: 20px;
+    border-radius: 0;
+    border: none;
+    background-color: #212529;
+}
+
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+    width: 20px;
+    height: 20px;
+    border-radius: 0;
+    background-color: #212529;
+}
+
+.custom-checkbox .custom-control-input:checked~.custom-control-label::after {
+    width: 20px;
+    height: 20px;
+    background-color: #212529;
+    box-shadow: 0 0 5px 2px #44883c;
+    background-image:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%2344883c' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E");
+}
+
+.custom-control-input:active~.custom-control-label::after {
+    width: 20px;
+    height: 20px;
+    border-radius: 0;
+    background-color: #212529;
+}
+
+.custom-control-input:active~.custom-control-label::before {
+    width: 20px;
+    height: 20px;
+    border-radius: 0;
+    background-color: #212529;
+}
+
+.custom-checkbox .custom-control-input:focus~.custom-control-label::before {
+    width: 20px;
+    height: 20px;
+    border-radius: 0;
+    box-shadow: none;
+    background-color: #212529;
+}

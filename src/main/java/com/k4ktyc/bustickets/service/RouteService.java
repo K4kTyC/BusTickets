@@ -15,7 +15,7 @@ public class RouteService {
         this.routeRepository = routeRepository;
     }
 
-    public void save(Route route) {
-        routeRepository.save(route);
+    public Route save(Route route) {
+        return routeRepository.save(route);
     }
 }

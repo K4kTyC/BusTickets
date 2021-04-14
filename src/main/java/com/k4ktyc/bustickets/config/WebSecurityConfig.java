@@ -31,11 +31,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/register", "/api/register").anonymous()
+                    .antMatchers("/css/**", "/js/**", "/Img/**").permitAll()
+                    .antMatchers("/", "/home.html").permitAll()
+                    .antMatchers("/api/register", "/login").anonymous()
                     .antMatchers("/admin", "/api/admin/*").hasRole("ADMIN")
                     .anyRequest().authenticated()
                     .and()
                 .formLogin()
+                    .loginPage("/?needLogin")
+                    .loginProcessingUrl("/login")
+                    .defaultSuccessUrl("/?success")
+                    .failureUrl("/?error")
+                    .and()
+                .rememberMe()
+                    .key("thumbup")
+                    .userDetailsService(userService)
+                    .and()
+                .logout()
+                    .deleteCookies("JSESSIONID")
+                    .logoutSuccessUrl("/?logout")
                     .and()
                 .csrf().disable();
     }

@@ -1,5 +1,6 @@
 package com.k4ktyc.bustickets.controller;
 
+import com.k4ktyc.bustickets.model.AddNewRouteResponse;
 import com.k4ktyc.bustickets.model.NewRouteDto;
 import com.k4ktyc.bustickets.model.Route;
 import com.k4ktyc.bustickets.service.RouteService;
@@ -24,7 +25,8 @@ public class AdminPageController {
 
 
     @PostMapping(path = "/add_route", consumes = "application/json")
-    public void addNewRoute(@RequestBody @Valid NewRouteDto newRouteDto) {
-        routeService.save(new Route(newRouteDto));
+    public AddNewRouteResponse addNewRoute(@RequestBody @Valid NewRouteDto newRouteDto) {
+        Route newRoute = new Route(newRouteDto);
+        return new AddNewRouteResponse("Маршрут был успешно добавлен.", routeService.save(newRoute));
     }
 }
