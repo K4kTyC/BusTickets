@@ -101,7 +101,6 @@ ul.nav-tabs {
     linear-gradient(to right, #006838, #378e30);
     background-origin: border-box;
     background-clip: padding-box, border-box;
-    box-shadow: 0 0 5px 2px #44883c;
 }
 
 .input-field:focus {
