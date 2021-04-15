@@ -25,6 +25,7 @@ document.getElementById('route-submit').addEventListener('click', () => {
     }
 
     sendNewRouteDto('/api/admin/add_route', routeDto)
+    window.location.replace("/");
 })
 
 addRouteForm.addEventListener('click', (e) => {

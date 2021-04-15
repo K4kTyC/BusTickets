@@ -42,3 +42,14 @@ function addProfileButtons(data) {
             </div>
         `)
 }
+
+let swapStationsDeg = 180
+document.getElementById('swap-stations').addEventListener('click', function () {
+    let fromInput = document.getElementById('route-from')
+    let toInput = document.getElementById('route-to')
+    let tmp = fromInput.value
+    fromInput.value = toInput.value
+    toInput.value = tmp
+    document.getElementById('swap-stations').firstElementChild.style.transform = 'rotate(' + swapStationsDeg + 'deg)'
+    swapStationsDeg === 180 ? swapStationsDeg = 0 : swapStationsDeg = 180
+})

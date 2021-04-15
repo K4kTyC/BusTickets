@@ -116,6 +116,36 @@ ul.nav-tabs {
     background-clip: padding-box, border-box;
 }
 
+.form-button {
+    height: calc(2em + .75rem - 4px);
+    color: #54595d;
+    background-color: #212529;
+    border: none;
+    padding: 0;
+    font-size: 1.4rem;
+    border-radius: 0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+}
+
+.form-button:hover {
+    color: #1a7f2b;
+    background-color: #212529;
+    border: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+}
+
+.form-button:focus {
+    color: #54595d;
+    background-color: #212529;
+    border: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+}
+
+.form-button i {
+    transition: all .5s ease-in-out;
+    margin: 1rem;
+}
+
 .form-button-submit {
     height: calc(2em + .75rem);
     width: 100%;
@@ -135,7 +165,6 @@ ul.nav-tabs {
     outline: none;
     border: none;
     background: linear-gradient(to right, #006838, #378e30);
-    box-shadow: 0 0 5px 2px #44883c;
 }
 
 .form-button-submit:focus {
