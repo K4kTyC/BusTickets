@@ -10,14 +10,14 @@
           integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
           crossorigin="anonymous"/>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/routes.css">
 
     <title>
-        Bus Ticket - покупка билетов на рейсовые автобусы
+        Список маршрутов - Bus Ticket
     </title>
 
 </head>
 <body>
-
 <div class="d-flex flex-column min-vh-100">
 
     <nav class="navbar fixed-top navbar-expand-md" id="mainNavbar">
@@ -25,63 +25,75 @@
         <a id="unauthLink" class="nav-link nav-link-main" href="#" data-toggle="modal" data-target="#modal-account">Войти</a>
     </nav>
 
-    <div class="container-fluid m-0 p-0">
-        <div class="row select-route-block justify-content-center m-0">
-            <div class="container py-5">
+    <div class="container py-5">
+        <div class="row py-3"></div>
+        <div class="row title p-5">Список рейсов</div>
 
-                <form class="select-route-form p-5">
-                    <div class="row title justify-content-center m-0">Поиск маршрута</div>
+        <div class="d-none d-lg-flex row trip-list-header p-3">
+            <div class="col-lg-4 trip-info">Маршрут</div>
+            <div class="col-lg-2 trip-datetime">Отправление</div>
+            <div class="col-lg-2 trip-datetime">Прибытие</div>
+            <div class="col-lg-2 trip-seats">Кол-во мест</div>
+            <div class="col-lg-2 trip-price">Стоимость</div>
+        </div>
 
-                    <div class="form-row justify-content-between">
-                        <div class="col-lg-3 mt-5">
-                            <input class="form-control input-field" id="route-from" type="text" placeholder="Откуда">
-                        </div>
-                        <div class="col-lg-1 mt-5">
-                            <a class="form-control btn form-button" id="swap-stations"><i class="fas fa-exchange-alt"></i></a>
-                        </div>
-                        <div class="col-lg-3 mt-5">
-                            <input class="form-control input-field" id="route-to" type="text" placeholder="Куда">
-                        </div>
-                        <div class="col-lg-3 mt-5">
-                            <input class="form-control input-field" type="date" id="route-date" name="route-to">
-                        </div>
-                        <div class="col-lg-2 mt-5">
-                            <button type="submit" class="form-button-submit" id="route-submit">Найти</button>
-                        </div>
-                    </div>
-                </form>
+        <div class="row my-3"></div>
 
+        <div class="row trip-list-content align-items-center px-3 py-5">
+            <div class="col-md-4 trip-info">
+                <p class="trip-route">Минск - Полоцк</p>
+                <p class="trip-class">Бизнес класс</p>
+            </div>
+
+            <div class="col-md-2 trip-datetime">
+                <p class="trip-time">10:34</p>
+                <p class="trip-date">12.01.2021</p>
+            </div>
+
+            <div class="col-md-2 trip-datetime">
+                <p class="trip-time">14:55</p>
+                <p class="trip-date">12.01.2021</p>
+            </div>
+
+            <div class="col-md-2 trip-seats">
+                14 / 50
+            </div>
+
+            <div class="col-md-2 trip-price">
+                12 BYN
             </div>
         </div>
 
-        <div class="row news-block m-0 py-5">
-            <div class="container-fluid m-0 p-0">
+        <div class="row my-1"></div>
 
-                <div class="row title justify-content-center m-0 pb-5">Новости и обновления</div>
+        <div class="row trip-list-content align-items-center px-3 py-5">
+            <div class="col-md-4 trip-info">
+                <p class="trip-route">Минск - Полоцк</p>
+                <p class="trip-class">Бизнес класс</p>
+            </div>
 
-                <div class="row m-0 justify-content-around">
-                    <div class="col-lg-3 mb-4">
-                        <div class="news-inner p-4">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque facilis hic in laborum magni mollitia odit praesentium voluptatum? Eveniet illo ipsa qui reiciendis totam. Eum placeat quisquam reiciendis similique ut!
-                        </div>
-                    </div>
-                    <div class="col-lg-3 mb-4">
-                        <div class="news-inner p-4">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus enim magnam magni obcaecati repudiandae sunt temporibus. Aliquam dolorum eaque ex harum iure nam nobis obcaecati odio omnis, voluptatem! Ipsum, similique.
-                        </div>
-                    </div>
-                    <div class="col-lg-3 mb-4">
-                        <div class="news-inner p-4">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad atque commodi consequatur error eum in inventore, numquam odio perspiciatis, quae qui reprehenderit vero. Error est eum, expedita iste quidem veniam.
-                        </div>
-                    </div>
-                </div>
+            <div class="col-md-2 trip-datetime">
+                <p class="trip-time">10:34</p>
+                <p class="trip-date">12.01.2021</p>
+            </div>
 
+            <div class="col-md-2 trip-datetime">
+                <p class="trip-time">14:55</p>
+                <p class="trip-date">12.01.2021</p>
+            </div>
+
+            <div class="col-md-2 trip-seats">
+                14 / 50
+            </div>
+
+            <div class="col-md-2 trip-price">
+                12 BYN
             </div>
         </div>
+
+
     </div>
 
-    <!-- Типа футер -->
     <footer class="footer mt-auto">
         <div class="footer-copy">© 2021 K4kTyC inc.</div>
     </footer>

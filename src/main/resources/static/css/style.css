@@ -118,27 +118,28 @@ ul.nav-tabs {
 
 .form-button {
     height: calc(2em + .75rem - 4px);
-    color: #54595d;
-    background-color: #212529;
+    color: #d1d2d3;
+    background: #54595d;
     border: none;
     padding: 0;
     font-size: 1.4rem;
     border-radius: 0;
     box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+    transition: all .5s ease-in-out;
 }
 
 .form-button:hover {
-    color: #1a7f2b;
-    background-color: #212529;
+    color: #d1d2d3;
+    outline: none;
     border: none;
-    box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+    background: linear-gradient(to right, #006838, #378e30);
 }
 
 .form-button:focus {
-    color: #54595d;
-    background-color: #212529;
+    color: #d1d2d3;
+    outline: none;
     border: none;
-    box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+    background: linear-gradient(to right, #006838, #378e30);
 }
 
 .form-button i {
@@ -283,7 +284,7 @@ ul.nav-tabs {
     background: linear-gradient(to right, #006838, #3b8210);
     color: #d1d2d3;
     font-size: 1.5rem;
-    padding-top: 5rem;
+    padding-top: 2rem;
 }
 
 .footer-copy {
