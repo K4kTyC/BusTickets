@@ -75,45 +75,46 @@ ul.nav-tabs {
 
 /*===   Поля ввода   ===*/
 
-.input-field {
+.input-wrap {
+    font-size: 1.2em;
+    background-color: #54595d;
     height: calc(2em + .75rem + 2px);
+}
+
+.input-wrap::before {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    background-image: linear-gradient(to right, #006838, #378e30);
+    opacity: 0;
+    height: 100%;
+    width: 100%;
+    top: 0; left: 0;
+    transition: opacity .25s ease-out;
+}
+
+.input-wrap:hover::before {
+    opacity: 1;
+}
+
+.input-wrap:focus-within::before {
+    opacity: 1;
+}
+
+.input-field {
+    padding: .375rem .75rem;
+    top: -100%;
+    position: relative;
+    height: calc(2em + .75rem - 2px);
     width: 100%;
     color: #d1d2d3;
     font-family: 'Roboto', sans-serif;
-    font-size: 1.2em;
     outline: none;
     border: 0;
-    border-bottom: 4px solid #54595d;
     border-radius: 0;
     background-color: #212529;
     transition: all 0.4s ease;
     box-shadow: inset 0 0 5px -2px rgba(0, 0, 0, .3);
-}
-
-
-/*=== Обводка блоков "input" ===*/
-/* https://theadhocracy.co.uk/wrote/gradient-borders-with-rounded-corners-on-input-fields */
-.input-field:hover {
-    border: 0;
-    border-bottom: double 4px transparent;
-    background-color: #212529;
-    background-image: linear-gradient(#212529, #212529),
-    linear-gradient(to right, #006838, #378e30);
-    background-origin: border-box;
-    background-clip: padding-box, border-box;
-}
-
-.input-field:focus {
-    color: #d1d2d3;
-    outline: none;
-    box-shadow: none;
-    border: none;
-    border-bottom: double 4px transparent;
-    background-color: #212529;
-    background-image: linear-gradient(#212529, #212529),
-    linear-gradient(to right, #006838, #378e30);
-    background-origin: border-box;
-    background-clip: padding-box, border-box;
 }
 
 .form-button {
@@ -129,11 +130,6 @@ ul.nav-tabs {
     box-shadow: 0 0 5px rgba(0, 0, 0, .3);
 }
 
-.form-button:hover {
-    text-decoration: none;
-    color: #d1d2d3;
-}
-
 .form-button::before {
     content: '';
     display: inline-block;
@@ -143,7 +139,7 @@ ul.nav-tabs {
     opacity: 0;
     color: #d1d2d3;
     background: linear-gradient(to right, #006838, #378e30);
-    transition: opacity .4s ease-in-out, box-shadow .2s;
+    transition: opacity .25s ease-out, box-shadow .2s;
 }
 
 .form-button:hover::before {
@@ -151,7 +147,7 @@ ul.nav-tabs {
 }
 
 .form-button:active::before {
-    box-shadow: 0 0 5px #44883c;
+    box-shadow: 0 0 10px #44883c;
 }
 
 .form-button:focus {
