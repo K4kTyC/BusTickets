@@ -26,9 +26,9 @@ public class Station {
 
     public Station() {}
 
-    public Station(StationDto stationDto) {
-        this.name = stationDto.getName();
-        this.datetimeFrom = stationDto.getDatetimeFrom();
-        this.datetimeTo = stationDto.getDatetimeTo();
+    public Station(NewStationDto newStationDto) {
+        this.name = newStationDto.getName();
+        this.datetimeFrom = newStationDto.getDatetimeFrom();
+        this.datetimeTo = newStationDto.getDatetimeTo();
     }
 }

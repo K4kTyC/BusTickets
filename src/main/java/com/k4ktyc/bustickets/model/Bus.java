@@ -27,10 +27,10 @@ public class Bus {
 
     public Bus() {}
 
-    public Bus(BusDto busDto) {
-        this.number = busDto.getNumber();
-        this.busClass = busDto.getBusClass() == 1 ? "Regular" : "Business";
-        for (int i = 0; i < busDto.getNumberOfSeats(); i++) {
+    public Bus(NewBusDto newBusDto) {
+        this.number = newBusDto.getNumber();
+        this.busClass = newBusDto.getBusClass() == 1 ? "Econom" : "Business";
+        for (int i = 0; i < newBusDto.getNumberOfSeats(); i++) {
             seats.add(new Seat(i + 1, this));
         }
     }

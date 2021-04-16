@@ -25,7 +25,7 @@
         <a id="unauthLink" class="nav-link nav-link-main" href="#" data-toggle="modal" data-target="#modal-account">Войти</a>
     </nav>
 
-    <div class="container py-5">
+    <div class="container py-5" id="trip-list-container">
         <div class="row py-3"></div>
         <div class="row title p-5">Список рейсов</div>
 
@@ -38,59 +38,6 @@
         </div>
 
         <div class="row my-3"></div>
-
-        <div class="row trip-list-content align-items-center px-3 py-5">
-            <div class="col-md-4 trip-info">
-                <p class="trip-route">Минск - Полоцк</p>
-                <p class="trip-class">Бизнес класс</p>
-            </div>
-
-            <div class="col-md-2 trip-datetime">
-                <p class="trip-time">10:34</p>
-                <p class="trip-date">12.01.2021</p>
-            </div>
-
-            <div class="col-md-2 trip-datetime">
-                <p class="trip-time">14:55</p>
-                <p class="trip-date">12.01.2021</p>
-            </div>
-
-            <div class="col-md-2 trip-seats">
-                14 / 50
-            </div>
-
-            <div class="col-md-2 trip-price">
-                12 BYN
-            </div>
-        </div>
-
-        <div class="row my-1"></div>
-
-        <div class="row trip-list-content align-items-center px-3 py-5">
-            <div class="col-md-4 trip-info">
-                <p class="trip-route">Минск - Полоцк</p>
-                <p class="trip-class">Бизнес класс</p>
-            </div>
-
-            <div class="col-md-2 trip-datetime">
-                <p class="trip-time">10:34</p>
-                <p class="trip-date">12.01.2021</p>
-            </div>
-
-            <div class="col-md-2 trip-datetime">
-                <p class="trip-time">14:55</p>
-                <p class="trip-date">12.01.2021</p>
-            </div>
-
-            <div class="col-md-2 trip-seats">
-                14 / 50
-            </div>
-
-            <div class="col-md-2 trip-price">
-                12 BYN
-            </div>
-        </div>
-
 
     </div>
 
@@ -165,8 +112,13 @@
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+        integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/ru.min.js"></script>
 <script type="text/javascript" src="js/ModalForm.js"></script>
 <script type="text/javascript" src="js/Main.js"></script>
+<script type="text/javascript" src="js/Routes.js"></script>
 
 </body>
 </html>

@@ -43,6 +43,12 @@ function addProfileButtons(data) {
         `)
 }
 
+document.getElementById('login-submit').addEventListener('click', function () {
+    let form = document.getElementById('login-form')
+    form.submit()
+})
+
+
 let swapStationsDeg = 180
 document.getElementById('swap-stations').addEventListener('click', function () {
     let fromInput = document.getElementById('route-from')

@@ -30,9 +30,9 @@ public class Trip {
 
     public Trip() {}
 
-    public Trip(TripDto tripDto) {
-        this.bus = new Bus(tripDto.getBus());
+    public Trip(NewTripDto newTripDto) {
+        this.bus = new Bus(newTripDto.getBus());
         this.bus.setTrip(this);
-        this.price = tripDto.getPrice();
+        this.price = newTripDto.getPrice();
     }
 }

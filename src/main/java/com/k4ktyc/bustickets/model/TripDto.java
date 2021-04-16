@@ -2,14 +2,16 @@ package com.k4ktyc.bustickets.model;
 
 import lombok.Getter;
 
-import javax.validation.constraints.NotNull;
-
 @Getter
 public class TripDto {
 
-    @NotNull
-    private BusDto bus;
+    private final long id;
+    private final BusDto bus;
+    private final int price;
 
-    @NotNull
-    private int price;
+    public TripDto(Trip trip) {
+        this.id = trip.getId();
+        this.price = trip.getPrice();
+        this.bus = new BusDto(trip.getBus());
+    }
 }
