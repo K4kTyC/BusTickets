@@ -1,7 +1,8 @@
-html, body {
+body {
     margin: 0;
     font-family: 'Nunito', sans-serif;
     background: #212529;
+    padding-top: calc(48px + 4px + 2rem);
 }
 
 
@@ -153,6 +154,10 @@ ul.nav-tabs {
 .form-button:focus {
     color: #d1d2d3;
     background: linear-gradient(to right, #006838, #378e30);
+}
+
+.form-button:hover {
+    text-decoration: none;
 }
 
 .form-button * {
