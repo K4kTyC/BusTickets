@@ -3,14 +3,13 @@ package com.k4ktyc.bustickets.model;
 import lombok.Getter;
 
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Getter
-public class NewRouteDto {
+public class NewTripDto {
 
     @NotNull
-    private List<NewStationDto> stations;
+    private NewBusDto bus;
 
     @NotNull
-    private NewTripDto trip;
+    private int price;
 }

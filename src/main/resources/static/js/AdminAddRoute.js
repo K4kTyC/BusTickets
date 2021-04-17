@@ -96,4 +96,5 @@ async function sendNewRouteDto(url, dto) {
     const returned = await response.json()
     alert(returned.text)
     console.log(returned.newRouteId)
+    window.location.replace("/");
 }

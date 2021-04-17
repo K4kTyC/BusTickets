@@ -2,17 +2,22 @@ package com.k4ktyc.bustickets.model;
 
 import lombok.Getter;
 
-import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 public class BusDto {
 
-    @NotNull
-    private int number;
+    private final int number;
+    private final String busClass;
+    private final List<SeatDto> seats;
 
-    @NotNull
-    private int busClass;
-
-    @NotNull
-    private int numberOfSeats;
+    public BusDto(Bus bus) {
+        this.number = bus.getNumber();
+        this.busClass = bus.getBusClass();
+        this.seats = bus.getSeats()
+                .stream().map(SeatDto::new)
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
 }

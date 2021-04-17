@@ -11,6 +11,11 @@ public class StaticPagesController {
         return "home.html";
     }
 
+    @GetMapping("/routes")
+    public String routes() {
+        return "routes.html";
+    }
+
     @GetMapping("/admin")
     public String admin() {
         return "admin.html";
