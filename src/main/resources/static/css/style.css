@@ -1,8 +1,16 @@
+:root {
+    --navbar-height: calc(48px + 4px + 2rem);
+}
+
 body {
     margin: 0;
     font-family: 'Nunito', sans-serif;
     background: #212529;
-    padding-top: calc(48px + 4px + 2rem);
+    padding-top: var(--navbar-height);
+}
+
+.wrapper {
+    min-height: calc(100vh - var(--navbar-height))
 }
 
 

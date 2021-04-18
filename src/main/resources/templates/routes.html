@@ -4,9 +4,9 @@
     <meta charset="utf-8">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous"/>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;800&family=Roboto&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous"/>
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/routes.css}">
 
@@ -16,13 +16,10 @@
 
 </head>
 <body>
-<div class="d-flex flex-column min-vh-100">
 
-    <nav class="navbar fixed-top navbar-expand-md" id="mainNavbar">
-        <a class="navbar-brand mr-auto" href="/"><img src="../static/img/logoNew.png" alt="На главную" height="48"></a>
-        <a id="allRoutes" class="nav-link nav-link-main" href="/routes">Расписание</a>
-        <a id="unauthLink" class="nav-link nav-link-main" href="#" data-toggle="modal" data-target="#modal-account">Войти</a>
-    </nav>
+<div class="d-flex flex-column wrapper">
+
+    <div th:replace="blocks/navigation :: navigation"></div>
 
     <div class="container pb-5" id="trip-list-container">
         <div class="row title p-5">Список рейсов</div>
@@ -39,74 +36,10 @@
 
     </div>
 
-    <footer class="footer mt-auto">
-        <div class="footer-copy">© 2021 K4kTyC inc.</div>
-    </footer>
+    <div th:replace="blocks/footer :: footer"></div>
 
 </div>
 
-<div class="modal custom fade" id="modal-account" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link active" id="login-tab" data-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="true">Вход</a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="registration-tab" data-toggle="tab" href="#registration" role="tab" aria-controls="registration" aria-selected="false">Регистрация</a>
-                    </li>
-                </ul>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="tab-content p-4" id="myTabContent">
-                    <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
-                        <form action="login" method="post" id="login-form">
-                            <div class="form-group py-2">
-                                <input name="username" type="text" class="form-control input-field" id="inputLoginUsername" placeholder="Имя пользователя">
-                            </div>
-                            <div class="form-group py-2">
-                                <input name="password" type="password" class="form-control input-field" id="inputLoginPassword" placeholder="Пароль">
-                            </div>
-                            <div class="row py-4 align-items-center">
-                                <div class="col">
-                                    <button id="login-submit" type="submit" class="btn form-button-submit">Войти</button>
-                                </div>
-                                <div class="col">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck" name="remember-me">
-                                        <label class="custom-control-label" for="customCheck">
-                                            Запомнить меня
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="tab-pane fade" id="registration" role="tabpanel" aria-labelledby="registration-tab">
-                        <form id="registration-form">
-                            <div class="form-group py-2">
-                                <input type="text" class="form-control input-field" id="inputRegisterUsername" placeholder="Имя пользователя">
-                            </div>
-                            <div class="form-group py-2">
-                                <input type="password" class="form-control input-field" id="inputRegisterPassword" placeholder="Пароль">
-                            </div>
-                            <button id="registration-submit" type="submit" class="btn form-button-submit mt-4">Зарегистрироваться</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <!--
-            <div class="modal-footer">
-                TODO: Когда-то тут будет OAuth
-            </div>
-            -->
-        </div>
-    </div>
-</div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
