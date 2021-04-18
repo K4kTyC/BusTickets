@@ -24,33 +24,7 @@
         <div class="row select-route-block justify-content-center m-0">
             <div class="container py-5">
 
-                <form class="select-route-form p-5">
-                    <div class="row title justify-content-center m-0">Поиск билетов</div>
-
-                    <div class="form-row justify-content-between">
-                        <div class="col-lg-3 mt-5">
-                            <div class="input-wrap">
-                                <input class="input-field" id="route-from" type="text" placeholder="Откуда">
-                            </div>
-                        </div>
-                        <div class="col-lg-1 mt-5">
-                            <a class="form-control form-button" id="swap-stations"><i class="fas fa-exchange-alt"></i></a>
-                        </div>
-                        <div class="col-lg-3 mt-5">
-                            <div class="input-wrap">
-                                <input class="input-field" id="route-to" type="text" placeholder="Куда">
-                            </div>
-                        </div>
-                        <div class="col-lg-3 mt-5">
-                            <div class="input-wrap">
-                                <input class="input-field" type="date" id="route-date" name="route-to">
-                            </div>
-                        </div>
-                        <div class="col-lg-2 mt-5">
-                            <a class="form-control form-button" id="route-submit"><span>Найти</span></a>
-                        </div>
-                    </div>
-                </form>
+                <div th:replace="blocks/findTripForm :: form"></div>
 
             </div>
         </div>

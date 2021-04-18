@@ -22,6 +22,9 @@
     <div th:replace="blocks/navigation :: navigation"></div>
 
     <div class="container pb-5" id="trip-list-container">
+
+        <div th:replace="blocks/findTripForm :: form"></div>
+
         <div class="row title p-5">Список рейсов</div>
 
         <div class="d-none d-lg-flex row trip-list-header p-3">
@@ -39,6 +42,8 @@
     <div th:replace="blocks/footer :: footer"></div>
 
 </div>
+
+<div th:replace="blocks/modalAuth :: modal"></div>
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
