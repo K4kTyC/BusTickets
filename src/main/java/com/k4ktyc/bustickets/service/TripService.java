@@ -4,8 +4,6 @@ import com.k4ktyc.bustickets.model.Trip;
 import com.k4ktyc.bustickets.repository.TripRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class TripService {
 

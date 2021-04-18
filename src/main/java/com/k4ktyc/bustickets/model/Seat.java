@@ -15,7 +15,7 @@ public class Seat {
 
     private int number;
 
-    private String status = "free";
+    private boolean isFree = true;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bus_id", nullable = false, updatable = false)
