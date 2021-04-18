@@ -11,9 +11,9 @@ public class MainController {
         return "home";
     }
 
-    @GetMapping("/routes")
-    public String routes() {
-        return "routes";
+    @GetMapping("/trips")
+    public String trips() {
+        return "trips";
     }
 
     @GetMapping("/admin")
