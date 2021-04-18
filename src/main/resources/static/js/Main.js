@@ -24,7 +24,7 @@ function addProfileButtons(data) {
 
     if (data.role === 'ROLE_ADMIN') {
         document.getElementById('mainNavbar').insertAdjacentHTML('beforeend', `
-            <a id="addRoute" class="nav-link nav-link-main" href="/admin">Добавить маршрут</a>
+            <a id="addRoute" class="nav-link nav-link-main" href="/admin">Добавить рейс</a>
         `)
     }
 
