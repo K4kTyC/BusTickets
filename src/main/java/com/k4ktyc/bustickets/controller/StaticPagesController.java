@@ -8,16 +8,16 @@ public class StaticPagesController {
 
     @GetMapping("/")
     public String home() {
-        return "home.html";
+        return "home";
     }
 
     @GetMapping("/routes")
     public String routes() {
-        return "routes.html";
+        return "routes";
     }
 
     @GetMapping("/admin")
     public String admin() {
-        return "admin.html";
+        return "admin";
     }
 }

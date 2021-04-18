@@ -259,7 +259,7 @@ ul.nav-tabs {
 /*=== Блок выбора маршрута ===*/
 
 .select-route-block {
-    background: linear-gradient(rgba(41, 47, 52, .9), rgba(41, 47, 52, .9)), url("../Img/mainBG2.jpg") no-repeat center center;
+    background: linear-gradient(rgba(41, 47, 52, .9), rgba(41, 47, 52, .9)), url("../img/mainBG2.jpg") no-repeat center center;
     background-size: cover;
     min-height: 40rem;
 }
@@ -276,7 +276,7 @@ ul.nav-tabs {
 }
 
 .news-block {
-    background: url("../Img/gradient.png");
+    background: url("../img/gradient.png");
     background-size: auto 100%;
 }
 
