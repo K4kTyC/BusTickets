@@ -4,7 +4,6 @@
     <meta charset="utf-8">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous"/>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;800&family=Roboto&display=swap">
     <link rel="stylesheet" th:href="@{/css/style.css}">
@@ -25,7 +24,7 @@
     <div class="container pb-5" id="trip-info-container">
 
         <div class="row trip-info-title" style="color: #d1d2d3;">
-            <p class="trip-route m-5" th:text="${trip.stationStart} + ' — ' + ${trip.stationFinish}"></p>
+            <p class="trip-route my-5" th:text="${trip.stationStart} + ' — ' + ${trip.stationFinish}"></p>
         </div>
 
         <div class="row trip-list-content align-items-center p-3">
@@ -46,21 +45,37 @@
             <div class="col-lg-4 trip-bus-info">
                 <p class="trip-class" th:text="${tripBusClass}"></p>
                 <p class="trip-class" th:text="'№ ' + ${trip.bus.number}"></p>
-                <p class="trip-price" th:text="${trip.price} + ' BYN'"></p>
             </div>
         </div>
 
         <div class="row my-3"></div>
 
         <div class="row trip-list-content align-items-center p-3">
-            <p class="col-12 trip-route m-5">Выбрать место</p>
-            <div class="col-sm-8">
+            <p class="col-12 trip-route my-5">Выбрать место</p>
+            <div class="col">
                 <select class="form-control" id="trip-select-seat">
-                    <option th:each="seat : ${trip.bus.seats}" th:text="${seat.number}"></option>
+                    <option th:each="seat : ${trip.bus.seats}"
+                            th:text="${seat.number}"
+                            th:if="${seat.free}"></option>
                 </select>
             </div>
-            <div class="col-sm-4">
-                <a class="btn btn-primary" id="trip-make-order">Купить билет</a>
+        </div>
+
+        <div class="row trip-list-content align-items-center justify-content-between p-3">
+            <p class="col-12 trip-route my-5">Данные пассажира</p>
+            <div class="col-sm-3">
+                <div class="input-wrap">
+                    <input class="input-field" id="passenger-name" type="text" placeholder="Имя">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="input-wrap">
+                    <input class="input-field" id="passenger-lastname" type="text" placeholder="Фамилия">
+                </div>
+            </div>
+            <div class="col-sm-6 ml-auto">
+                <span class="trip-price" th:text="'Стоимость: ' + ${trip.price} + ' BYN'"></span>
+                <a class="btn btn-primary" id="trip-make-order">Оформить заказ</a>
             </div>
         </div>
 
@@ -75,14 +90,10 @@
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/ru.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js" integrity="sha512-k6/Bkb8Fxf/c1Tkyl39yJwcOZ1P4cRrJu77p83zJjN2Z55prbFHxPs9vN7q3l3+tSMGPDdoH51AEU8Vgo1cgAA==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" integrity="sha512-RXf+QSDCUQs5uwRKaDoXt55jygZZm2V++WUZduaU/Ui/9EGp3f/2KZVahFZBKGH0s774sd3HmrhUy+SgOFQLVQ==" crossorigin="anonymous"></script>
 <script type="text/javascript" th:src="@{/js/Trips.js}"></script>
 <script type="text/javascript" th:src="@{/js/Main.js}"></script>
 <script type="text/javascript" th:src="@{/js/ModalForm.js}"></script>
-<script type="text/javascript" th:src="@{/js/TripSearch.js}"></script>
+<script type="text/javascript" th:src="@{/js/MakeOrder.js}"></script>
 
 </body>
 </html>
