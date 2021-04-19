@@ -1,5 +1,3 @@
-getAllRoutes(0)
-
 async function getAllRoutes(pageNum) {
     const response = await fetch(`/api/trips?page=${pageNum}`)
     const data = await response.json()
@@ -26,6 +24,10 @@ function fillPage(data) {
             <div class="row my-1"></div>`
 
         $('#trip-list-container').append(pageTemplate)
+
+        $(`#trip-${trip.id}`).on('click', () => {
+            window.location.replace(`/trips/${trip.id}`)
+        })
     }
 }
 

@@ -1,22 +1,22 @@
 package com.k4ktyc.bustickets.controller;
 
+import com.k4ktyc.bustickets.model.SearchData;
 import com.k4ktyc.bustickets.model.TripDto;
 import com.k4ktyc.bustickets.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("api/trips")
-public class TripsController {
+public class TripController {
 
     private final TripService tripService;
 
     @Autowired
-    public TripsController(TripService tripService) {
+    public TripController(TripService tripService) {
         this.tripService = tripService;
     }
 
@@ -24,5 +24,10 @@ public class TripsController {
     @GetMapping
     public Page<TripDto> getAllTrips(@RequestParam(defaultValue = "0") int page) {
         return tripService.getAllTrips(page);
+    }
+
+    @PostMapping(path = "/search", consumes = "application/json")
+    public Page<TripDto> findTrip(@RequestParam(defaultValue = "0") int page, @RequestBody @Valid SearchData searchData) {
+        return tripService.findTrip(page, searchData);
     }
 }

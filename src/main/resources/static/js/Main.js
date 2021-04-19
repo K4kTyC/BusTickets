@@ -8,6 +8,16 @@ function processUrlParams() {
         $('#login-tab').tab('show')
         history.replaceState(null,'', '/')
     }
+
+    if (window.location.pathname === '/trips') {
+        if (urlParams.has('search')) {
+            let trips = JSON.parse(sessionStorage.getItem('tripsSearchResults'))
+            fillPage(trips)
+        } else {
+            getAllRoutes(0)
+        }
+        history.replaceState(null,'', '/trips')
+    }
 }
 
 async function checkAuth() {
@@ -51,8 +61,8 @@ document.getElementById('login-submit').addEventListener('click', function () {
 
 let swapStationsDeg = 180
 document.getElementById('swap-stations').addEventListener('click', function () {
-    let fromInput = document.getElementById('route-from')
-    let toInput = document.getElementById('route-to')
+    let fromInput = document.getElementById('trip-from')
+    let toInput = document.getElementById('trip-to')
     let tmp = fromInput.value
     fromInput.value = toInput.value
     toInput.value = tmp
