@@ -45,7 +45,6 @@ function fillRouteColumn(trip) {
 }
 
 function fillFromToColumns(trip) {
-    // TODO: fix time GMT
     let startTimeDate = moment(trip.datetimeStart).locale('ru')
     let finishTimeDate = moment(trip.datetimeFinish).locale('ru')
 

@@ -12,7 +12,7 @@
     <link rel="shortcut icon" type="image/png" th:href="@{/img/favicon.png}"/>
 
     <title>
-        Список рейсов - Bus Ticket
+        Информация о рейсе - Bus Ticket
     </title>
 
 </head>
@@ -22,21 +22,47 @@
 
     <div th:replace="blocks/navigation :: navigation"></div>
 
-    <div class="container pb-5" id="trip-list-container">
+    <div class="container pb-5" id="trip-info-container">
 
-        <div th:replace="blocks/findTripForm :: form"></div>
+        <div class="row trip-info-title" style="color: #d1d2d3;">
+            <p class="trip-route m-5" th:text="${trip.stationStart} + ' — ' + ${trip.stationFinish}"></p>
+        </div>
 
-        <div class="row title p-5">Список рейсов</div>
-
-        <div class="d-none d-lg-flex row trip-list-header p-3">
-            <div class="col-lg-4 trip-info">Маршрут</div>
-            <div class="col-lg-2 trip-datetime">Отправление</div>
-            <div class="col-lg-2 trip-datetime">Прибытие</div>
-            <div class="col-lg-2 trip-seats">Кол-во мест</div>
-            <div class="col-lg-2 trip-price">Стоимость</div>
+        <div class="row trip-list-content align-items-center p-3">
+            <div class="col-lg-8 trip-info">
+                <div class="row justify-content-between">
+                    <div class="col-sm-4 trip-datetime">
+                        <p class="trip-time" th:text="${tripTimeStart}"></p>
+                        <p class="trip-date" th:text="${tripDateStart}"></p>
+                        <p class="trip-station" th:text="${trip.stationStart}"></p>
+                    </div>
+                    <div class="col-sm-4 trip-datetime">
+                        <p class="trip-time" th:text="${tripTimeFinish}"></p>
+                        <p class="trip-date" th:text="${tripDateFinish}"></p>
+                        <p class="trip-station" th:text="${trip.stationFinish}"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 trip-bus-info">
+                <p class="trip-class" th:text="${tripBusClass}"></p>
+                <p class="trip-class" th:text="'№ ' + ${trip.bus.number}"></p>
+                <p class="trip-price" th:text="${trip.price} + ' BYN'"></p>
+            </div>
         </div>
 
         <div class="row my-3"></div>
+
+        <div class="row trip-list-content align-items-center p-3">
+            <p class="col-12 trip-route m-5">Выбрать место</p>
+            <div class="col-sm-8">
+                <select class="form-control" id="trip-select-seat">
+                    <option th:each="seat : ${trip.bus.seats}" th:text="${seat.number}"></option>
+                </select>
+            </div>
+            <div class="col-sm-4">
+                <a class="btn btn-primary" id="trip-make-order">Купить билет</a>
+            </div>
+        </div>
 
     </div>
 
@@ -55,7 +81,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" integrity="sha512-RXf+QSDCUQs5uwRKaDoXt55jygZZm2V++WUZduaU/Ui/9EGp3f/2KZVahFZBKGH0s774sd3HmrhUy+SgOFQLVQ==" crossorigin="anonymous"></script>
 <script type="text/javascript" th:src="@{/js/Trips.js}"></script>
 <script type="text/javascript" th:src="@{/js/Main.js}"></script>
-<script type="text/javascript" th:src="@{/js/DateTimePicker.js}"></script>
 <script type="text/javascript" th:src="@{/js/ModalForm.js}"></script>
 <script type="text/javascript" th:src="@{/js/TripSearch.js}"></script>
 
