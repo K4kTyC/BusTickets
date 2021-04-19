@@ -12,7 +12,6 @@ $('#trip-search-submit').on('click', () => {
         stationTo: $('#trip-to').val(),
         tripDate: date.toJSON()
     }
-    alert(searchData.tripDate)
     sendSearchData('/api/trips/search', searchData)
 })
 

@@ -2,8 +2,8 @@ $('#trip-submit').on('click', () => {
     let tripDto = {
         stationStart: $('#trip-from').val(),
         stationFinish: $('#trip-to').val(),
-        datetimeStart: $('#datetimepicker-from').datetimepicker('date').toJSON(),
-        datetimeFinish: $('#datetimepicker-to').datetimepicker('date').toJSON(),
+        datetimeStart: $('#datetimepicker-from').datetimepicker('date').parseZone().toJSON(),
+        datetimeFinish: $('#datetimepicker-to').datetimepicker('date').parseZone().toJSON(),
 
         bus: {
             number: $('#trip-bus-number').val(),

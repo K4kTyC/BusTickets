@@ -33,7 +33,7 @@ public class TripService {
     public Page<TripDto> findTrip(int pageNumber, SearchData searchData) {
         PageRequest paging = PageRequest.of(pageNumber, 10);
         Page<Trip> pagedTrips = tripRepository
-                .findTripsByStationStartEqualsAndStationFinishEqualsAndDatetimeStartAfterAndDatetimeFinish(
+                .findTripsByStationStartEqualsAndStationFinishEqualsAndDatetimeStartBetween(
                         paging, searchData.getStationFrom(), searchData.getStationTo(),
                         searchData.getTripDate(), LocalDateTime.of(searchData.getTripDate().toLocalDate(), LocalTime.MAX)
                 );

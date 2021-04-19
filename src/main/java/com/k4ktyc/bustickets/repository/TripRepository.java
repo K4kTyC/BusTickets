@@ -8,6 +8,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import java.time.LocalDateTime;
 
 public interface TripRepository extends PagingAndSortingRepository<Trip, Long> {
-    Page<Trip> findTripsByStationStartEqualsAndStationFinishEqualsAndDatetimeStartAfterAndDatetimeFinish(
+    Page<Trip> findTripsByStationStartEqualsAndStationFinishEqualsAndDatetimeStartBetween(
             Pageable pageable, String sStart, String sFinish, LocalDateTime datetimeStart, LocalDateTime datetimeFinish);
 }
