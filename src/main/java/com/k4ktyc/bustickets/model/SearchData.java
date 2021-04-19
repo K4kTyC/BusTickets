@@ -3,7 +3,7 @@ package com.k4ktyc.bustickets.model;
 import lombok.Getter;
 
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 public class SearchData {
@@ -15,6 +15,6 @@ public class SearchData {
     private String stationTo;
 
     @NotNull
-    private LocalDate tripDate;
+    private LocalDateTime tripDate;
 
 }

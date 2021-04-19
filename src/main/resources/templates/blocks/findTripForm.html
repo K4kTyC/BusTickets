@@ -4,7 +4,7 @@
     <div class="form-row justify-content-between">
         <div class="col-lg-3 mt-5">
             <div class="input-wrap">
-                <input class="input-field" id="route-from" type="text" placeholder="Откуда">
+                <input class="input-field" id="trip-from" type="text" placeholder="Откуда">
             </div>
         </div>
         <div class="col-lg-1 mt-5">
@@ -12,16 +12,20 @@
         </div>
         <div class="col-lg-3 mt-5">
             <div class="input-wrap">
-                <input class="input-field" id="route-to" type="text" placeholder="Куда">
+                <input class="input-field" id="trip-to" type="text" placeholder="Куда">
             </div>
         </div>
         <div class="col-lg-3 mt-5">
-            <div class="input-wrap">
-                <input class="input-field" type="date" id="route-date" name="route-to">
-            </div>
+                <div class="input-wrap input-group date" id="datetimepicker-from" data-target-input="nearest">
+                    <input type="text" class="form-control datetimepicker-input input-field" data-target="#datetimepicker-from"
+                           placeholder="Дата отправления"/>
+                    <div class="input-group-append input-date-btn" data-target="#datetimepicker-from" data-toggle="datetimepicker">
+                        <div class="input-group-text"><i class="fas fa-calendar"></i></div>
+                    </div>
+                </div>
         </div>
         <div class="col-lg-2 mt-5">
-            <a class="form-control form-button" id="route-submit"><span>Найти</span></a>
+            <a class="form-control form-button" id="trip-search-submit"><span>Найти</span></a>
         </div>
     </div>
 </form>

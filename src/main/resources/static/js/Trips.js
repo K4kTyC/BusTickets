@@ -1,5 +1,3 @@
-getAllRoutes(0)
-
 async function getAllRoutes(pageNum) {
     const response = await fetch(`/api/trips?page=${pageNum}`)
     const data = await response.json()
