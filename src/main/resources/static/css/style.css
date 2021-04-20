@@ -4,7 +4,8 @@
 
 body {
     margin: 0;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'M PLUS 1p', sans-serif;
+    -webkit-font-smoothing: antialiased;
     background: #212529;
     padding-top: var(--navbar-height);
 }

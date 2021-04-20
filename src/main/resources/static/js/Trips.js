@@ -26,7 +26,7 @@ function fillPage(data) {
         $('#trip-list-container').append(pageTemplate)
 
         $(`#trip-${trip.id}`).on('click', () => {
-            window.location.replace(`/trips/${trip.id}`)
+            window.location.assign(`/trips/${trip.id}`)
         })
     }
 }
