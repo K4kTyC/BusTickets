@@ -1,8 +1,7 @@
 $('#trip-search-submit').on('click', () => {
     let date = $('#datetimepicker-from').datetimepicker('date').parseZone()
     let now = moment()
-    console.log(date)
-    console.log(now)
+
     if (now.get('date') !== date.get('date') || now.get('month') !== date.get('month')) {
         date.set({ 'hour': 0, 'minute': 0, 'second':0, 'millisecond': 0 })
     }

@@ -17,7 +17,7 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "trip_id", nullable = false, updatable = false)
-    private Trip trips;
+    private Trip trip;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false, updatable = false)

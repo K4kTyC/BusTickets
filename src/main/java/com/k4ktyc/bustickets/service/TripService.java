@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Optional;
 
 @Service
 public class TripService {
@@ -40,7 +41,11 @@ public class TripService {
 
         return pagedTrips.map(TripDto::new);
     }
-    
+
+    public Optional<Trip> findById(long id) {
+        return tripRepository.findById(id);
+    }
+
     public Trip save(Trip newTrip) {
         return tripRepository.save(newTrip);
     }
