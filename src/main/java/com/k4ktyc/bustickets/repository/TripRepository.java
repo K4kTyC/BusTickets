@@ -10,4 +10,6 @@ import java.time.LocalDateTime;
 public interface TripRepository extends PagingAndSortingRepository<Trip, Long> {
     Page<Trip> findTripsByStationStartEqualsAndStationFinishEqualsAndDatetimeStartBetween(
             Pageable pageable, String sStart, String sFinish, LocalDateTime datetimeStart, LocalDateTime datetimeFinish);
+
+    void deleteById(long id);
 }

@@ -5,6 +5,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -32,4 +34,16 @@ public class Order {
     private LocalDateTime dateTimeOrderCreated;
 
     private String status;
+
+
+    public Order() {}
+
+    public Order(NewOrderDto newOrderDto, Trip trip, User user) {
+        this.trip = trip;
+        this.user = user;
+        this.passengers = new ArrayList<>();
+        this.passengers.add(new Passenger(newOrderDto.getPassengerName(), newOrderDto.getPassengerLastname()));
+        this.dateTimeOrderCreated = LocalDateTime.now(ZoneId.of("Europe/Minsk"));
+        this.status = "payed";
+    }
 }
