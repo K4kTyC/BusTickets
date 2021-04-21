@@ -6,6 +6,7 @@ import com.k4ktyc.bustickets.service.PassengerService;
 import com.k4ktyc.bustickets.service.TripService;
 import com.k4ktyc.bustickets.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -44,6 +45,12 @@ public class OrderController {
                                                     ordersAmount));
         }
         return userOrdersDtoList;
+    }
+
+    @PostMapping(path = "/search", consumes = "application/json")
+    public Page<OrderDto> findOrders(@RequestParam(defaultValue = "0") int page, @RequestBody @Valid OrderSearchData orderSearchData) {
+        Passenger passenger = passengerService.findByNameAndLastname(orderSearchData.getName(), orderSearchData.getLastname()).get();
+        return orderService.findOrdersByPassenger(page, passenger);
     }
 
     @PostMapping(consumes = "application/json")

@@ -1,9 +1,12 @@
 package com.k4ktyc.bustickets.service;
 
 import com.k4ktyc.bustickets.model.Order;
+import com.k4ktyc.bustickets.model.OrderDto;
 import com.k4ktyc.bustickets.model.Passenger;
 import com.k4ktyc.bustickets.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,8 +23,10 @@ public class OrderService {
         this.passengerService = passengerService;
     }
 
-    public List<Order> findOrdersByPassenger(Passenger passenger) {
-        return orderRepository.findOrdersByPassengersContains(passenger);
+    public Page<OrderDto> findOrdersByPassenger(int pageNumber, Passenger passenger) {
+        PageRequest paging = PageRequest.of(pageNumber, 10);
+        Page<Order> pagedOrders = orderRepository.findOrdersByPassengersContains(paging, passenger);
+        return pagedOrders.map(OrderDto::new);
     }
 
     public long countByPassenger(Passenger passenger) {

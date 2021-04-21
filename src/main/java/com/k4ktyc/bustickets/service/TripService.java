@@ -1,6 +1,6 @@
 package com.k4ktyc.bustickets.service;
 
-import com.k4ktyc.bustickets.model.SearchData;
+import com.k4ktyc.bustickets.model.TripSearchData;
 import com.k4ktyc.bustickets.model.Trip;
 import com.k4ktyc.bustickets.model.TripDto;
 import com.k4ktyc.bustickets.repository.TripRepository;
@@ -31,12 +31,12 @@ public class TripService {
         return pagedTrips.map(TripDto::new);
     }
 
-    public Page<TripDto> findTrip(int pageNumber, SearchData searchData) {
+    public Page<TripDto> findTrip(int pageNumber, TripSearchData tripSearchData) {
         PageRequest paging = PageRequest.of(pageNumber, 10);
         Page<Trip> pagedTrips = tripRepository
                 .findTripsByStationStartEqualsAndStationFinishEqualsAndDatetimeStartBetween(
-                        paging, searchData.getStationFrom(), searchData.getStationTo(),
-                        searchData.getTripDate(), LocalDateTime.of(searchData.getTripDate().toLocalDate(), LocalTime.MAX)
+                        paging, tripSearchData.getStationFrom(), tripSearchData.getStationTo(),
+                        tripSearchData.getTripDate(), LocalDateTime.of(tripSearchData.getTripDate().toLocalDate(), LocalTime.MAX)
                 );
 
         return pagedTrips.map(TripDto::new);

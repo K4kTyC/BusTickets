@@ -31,6 +31,8 @@ public class Order {
             inverseJoinColumns = @JoinColumn(name = "passenger_id"))
     private List<Passenger> passengers;
 
+    private int seatNumber;
+
     private LocalDateTime dateTimeOrderCreated;
 
     private String status;
@@ -43,6 +45,7 @@ public class Order {
         this.user = user;
         this.passengers = new ArrayList<>();
         this.passengers.add(new Passenger(newOrderDto.getPassengerName(), newOrderDto.getPassengerLastname()));
+        this.seatNumber = newOrderDto.getSeatNumber();
         this.dateTimeOrderCreated = LocalDateTime.now(ZoneId.of("Europe/Minsk"));
         this.status = "payed";
     }

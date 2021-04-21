@@ -6,12 +6,12 @@ $('#trip-search-submit').on('click', () => {
         date.set({ 'hour': 0, 'minute': 0, 'second':0, 'millisecond': 0 })
     }
 
-    let searchData = {
+    let tripSearchData = {
         stationFrom: $('#trip-from').val(),
         stationTo: $('#trip-to').val(),
         tripDate: date.toJSON()
     }
-    sendSearchData('/api/trips/search', searchData)
+    sendSearchData('/api/trips/search', tripSearchData)
 })
 
 async function sendSearchData(url, data) {

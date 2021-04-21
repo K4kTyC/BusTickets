@@ -1,6 +1,6 @@
 package com.k4ktyc.bustickets.controller;
 
-import com.k4ktyc.bustickets.model.SearchData;
+import com.k4ktyc.bustickets.model.TripSearchData;
 import com.k4ktyc.bustickets.model.TripDto;
 import com.k4ktyc.bustickets.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class TripController {
     }
 
     @PostMapping(path = "/search", consumes = "application/json")
-    public Page<TripDto> findTrip(@RequestParam(defaultValue = "0") int page, @RequestBody @Valid SearchData searchData) {
-        return tripService.findTrip(page, searchData);
+    public Page<TripDto> findTrip(@RequestParam(defaultValue = "0") int page, @RequestBody @Valid TripSearchData tripSearchData) {
+        return tripService.findTrip(page, tripSearchData);
     }
 }

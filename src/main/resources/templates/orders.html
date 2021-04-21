@@ -11,7 +11,7 @@
     <link rel="shortcut icon" type="image/png" th:href="@{/img/favicon.png}"/>
 
     <title>
-        Список заказов - Bus Ticket
+        Архив заказов - Bus Ticket
     </title>
 
 </head>
@@ -23,12 +23,27 @@
 
     <div class="container pb-5" id="order-list-container">
 
-        <div class="row title p-5">Список заказов</div>
+        <div class="row title p-5">Архив заказов</div>
 
-        <div class="d-none d-lg-flex row order-list-header p-3">
+        <div class="row order-search-block p-5">
+            <div class="col-sm-3">
+                <div class="input-wrap">
+                    <input class="input-field" id="passenger-name" type="text" placeholder="Имя">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="input-wrap">
+                    <input class="input-field" id="passenger-lastname" type="text" placeholder="Фамилия">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <a class="form-control form-button" id="order-search-submit"><span>Найти</span></a>
+            </div>
+        </div>
+
+        <div class="d-none d-lg-flex row order-list-header px-5 py-3 mb-4 justify-content-between">
             <div class="col-lg-4 text-left">Данные пассажира</div>
-            <div class="col-lg-4 text-center">Кол-во заказов</div>
-        <!--    <div class="col-lg-4 text-right">Заказчик</div> -->
+            <div class="col-lg-4 text-right">Кол-во заказов</div>
         </div>
 
     </div>
@@ -42,9 +57,12 @@
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/ru.min.js"></script>
 <script type="text/javascript" th:src="@{/js/Orders.js}"></script>
 <script type="text/javascript" th:src="@{/js/Main.js}"></script>
 <script type="text/javascript" th:src="@{/js/ModalForm.js}"></script>
+<script type="text/javascript" th:src="@{/js/OrderSearch.js}"></script>
 
 </body>
 </html>

@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Getter
-public class SearchData {
+public class TripSearchData {
 
     @NotNull
     private String stationFrom;
