@@ -51,7 +51,7 @@
             </div>
         </div>
 
-        <div class="row trip-info-content align-items-center px-5">
+        <div class="row trip-info-content align-items-center px-5" id="trip-info-select-seat">
             <p class="col-12 trip-info-title py-5">Выбрать место</p>
             <div class="col pb-5">
                 <select class="form-control" id="trip-select-seat">
@@ -62,7 +62,7 @@
             </div>
         </div>
 
-        <div class="row trip-info-content align-items-center justify-content-between p-5">
+        <div class="row trip-info-content align-items-center justify-content-between p-5" id="trip-info-pass-data">
             <p class="col-12 trip-info-title pb-5">Данные пассажира</p>
             <div class="col-sm-3">
                 <div class="input-wrap">
@@ -78,7 +78,7 @@
                 <span class="trip-price align-middle" th:text="'Стоимость: ' + ${trip.price} + ' BYN'"></span>
             </div>
             <div class="col-sm-3">
-                <a class="form-control form-button" id="trip-make-order"><span>Оформить заказ<span></a>
+                <a class="form-control form-button" id="trip-make-order"><span>Оформить заказ</span></a>
             </div>
         </div>
 
@@ -93,7 +93,6 @@
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-<script type="text/javascript" th:src="@{/js/Trips.js}"></script>
 <script type="text/javascript" th:src="@{/js/Main.js}"></script>
 <script type="text/javascript" th:src="@{/js/ModalForm.js}"></script>
 <script type="text/javascript" th:src="@{/js/MakeOrder.js}"></script>
