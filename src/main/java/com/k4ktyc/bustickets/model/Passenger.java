@@ -20,4 +20,12 @@ public class Passenger {
     private String name;
 
     private String lastname;
+
+
+    public Passenger() {}
+
+    public Passenger(String name, String lastname) {
+        this.name = name;
+        this.lastname = lastname;
+    }
 }

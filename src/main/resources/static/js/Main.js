@@ -36,6 +36,9 @@ function addProfileButtons(data) {
         document.getElementById('mainNavbar').insertAdjacentHTML('beforeend', `
             <a id="addRoute" class="nav-link nav-link-main" href="/admin">Добавить рейс</a>
         `)
+
+        $('#trip-info-select-seat').remove()
+        $('#trip-info-pass-data').remove()
     }
 
     document.getElementById('mainNavbar').insertAdjacentHTML('beforeend', `

@@ -4,11 +4,13 @@
     <meta charset="utf-8">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css" integrity="sha512-3JRrEUwaCkFUBLK1N8HehwQgu8e23jTH4np5NHOmQOobuC4ROQxFwFgBLTnhcnQRMs84muMh0PnnwXlPq5MGjg==" crossorigin="anonymous"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous"/>
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;800&family=Roboto&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;500&family=Roboto&display=swap">
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/trips.css}">
+    <link rel="stylesheet" th:href="@{/css/datetimepicker.css}">
     <link rel="shortcut icon" type="image/png" th:href="@{/img/favicon.png}"/>
 
     <title>
@@ -29,11 +31,11 @@
         <div class="row title p-5">Список рейсов</div>
 
         <div class="d-none d-lg-flex row trip-list-header p-3">
-            <div class="col-lg-4 trip-info">Маршрут</div>
-            <div class="col-lg-2 trip-datetime">Отправление</div>
-            <div class="col-lg-2 trip-datetime">Прибытие</div>
-            <div class="col-lg-2 trip-seats">Кол-во мест</div>
-            <div class="col-lg-2 trip-price">Стоимость</div>
+            <div class="col-lg-4 text-left">Маршрут</div>
+            <div class="col-lg-2 text-center">Отправление</div>
+            <div class="col-lg-2 text-center">Прибытие</div>
+            <div class="col-lg-2 text-right">Кол-во мест</div>
+            <div class="col-lg-2 text-right">Стоимость</div>
         </div>
 
         <div class="row my-3"></div>

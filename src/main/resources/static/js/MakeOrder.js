@@ -13,5 +13,19 @@ $('#trip-make-order').on('click', () => {
         passengerLastname: lastname
     }
 
-
+    sendNewOrderDto('/api/orders', newOrderDto)
 })
+
+async function sendNewOrderDto(url, dto) {
+    const response = await fetch(url, {
+        method: 'POST',
+        mode: 'same-origin',
+        credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dto)
+    })
+    const returned = await response.json()
+    alert(returned.text)
+    console.log(returned.newTripId)
+    window.location.replace("/");
+}

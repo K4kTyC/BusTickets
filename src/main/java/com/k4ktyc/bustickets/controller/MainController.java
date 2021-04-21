@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.Duration;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 @Controller
 public class MainController {
@@ -55,6 +57,18 @@ public class MainController {
         String dateFinish = trip.get().getDatetimeFinish().format(dateFormat);
         String busClass = trip.get().getBus()
                 .getBusClass().equals("Econom") ? "Автобус эконом-класса" : "Автобус бизнес-класса";
+
+        long millis = Duration.between(trip.get().getDatetimeStart(), trip.get().getDatetimeFinish()).toMillis();
+        long hours = TimeUnit.MILLISECONDS.toHours(millis);
+        long minutes = TimeUnit.MILLISECONDS.toMinutes(millis) - TimeUnit.HOURS.toMinutes(hours);
+
+        if (hours == 0) {
+            model.addAttribute("tripTotalTime", String.format("%d мин", minutes));
+        } else if (minutes == 0) {
+            model.addAttribute("tripTotalTime", String.format("%d ч", hours));
+        } else {
+            model.addAttribute("tripTotalTime", String.format("%d ч, %d мин", hours, minutes));
+        }
 
         model.addAttribute("trip", trip.get());
         model.addAttribute("tripTimeStart", timeStart);
