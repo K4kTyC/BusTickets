@@ -1,12 +1,12 @@
 async function getAllRoutes(pageNum) {
     const response = await fetch(`/api/trips?page=${pageNum}`)
     const data = await response.json()
-    fillPage(data)
+    fillPageWithTrips(data)
 }
 
 let pageTemplate
 
-function fillPage(data) {
+function fillPageWithTrips(data) {
     let trips = data.content
 
     for (let i = 0; i < trips.length; i++) {

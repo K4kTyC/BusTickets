@@ -1,7 +1,12 @@
 package com.k4ktyc.bustickets.repository;
 
 import com.k4ktyc.bustickets.model.Order;
-import org.springframework.data.repository.CrudRepository;
+import com.k4ktyc.bustickets.model.Passenger;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
-public interface OrderRepository extends CrudRepository<Order, Long> {
+import java.util.List;
+
+public interface OrderRepository extends PagingAndSortingRepository<Order, Long> {
+    List<Order> findOrdersByPassengersContains(Passenger passenger);
+    long countByPassengersContains(Passenger passenger);
 }

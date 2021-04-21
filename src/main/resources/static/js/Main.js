@@ -12,11 +12,21 @@ function processUrlParams() {
     if (window.location.pathname === '/trips') {
         if (urlParams.has('search')) {
             let trips = JSON.parse(sessionStorage.getItem('tripsSearchResults'))
-            fillPage(trips)
+            fillPageWithTrips(trips)
         } else {
             getAllRoutes(0)
         }
         history.replaceState(null,'', '/trips')
+    }
+
+    if (window.location.pathname === '/orders') {
+        if (urlParams.has('search')) {
+            let orders = JSON.parse(sessionStorage.getItem('ordersSearchResults'))
+            fillPageWithOrders(orders)
+        } else {
+            getAllOrders()
+        }
+        history.replaceState(null, '', '/orders')
     }
 }
 

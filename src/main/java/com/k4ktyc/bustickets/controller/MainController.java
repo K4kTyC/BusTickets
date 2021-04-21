@@ -1,6 +1,11 @@
 package com.k4ktyc.bustickets.controller;
 
+import com.k4ktyc.bustickets.model.Order;
+import com.k4ktyc.bustickets.model.Passenger;
 import com.k4ktyc.bustickets.model.Trip;
+import com.k4ktyc.bustickets.model.UserOrdersDto;
+import com.k4ktyc.bustickets.service.OrderService;
+import com.k4ktyc.bustickets.service.PassengerService;
 import com.k4ktyc.bustickets.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +17,8 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.time.Duration;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
@@ -19,10 +26,14 @@ import java.util.concurrent.TimeUnit;
 public class MainController {
 
     private final TripService tripService;
+    private final OrderService orderService;
+    private final PassengerService passengerService;
 
     @Autowired
-    public MainController(TripService tripService) {
+    public MainController(TripService tripService, OrderService orderService, PassengerService passengerService) {
         this.tripService = tripService;
+        this.orderService = orderService;
+        this.passengerService = passengerService;
     }
 
 
@@ -39,6 +50,11 @@ public class MainController {
     @GetMapping("/admin")
     public String admin() {
         return "admin";
+    }
+
+    @GetMapping("/orders")
+    public String orders() {
+        return "orders";
     }
 
     @GetMapping("/trips/{id}")
