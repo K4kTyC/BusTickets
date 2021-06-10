@@ -44,7 +44,7 @@ public class Order {
         this.trip = trip;
         this.user = user;
         this.passengers = new ArrayList<>();
-        this.passengers.add(new Passenger(newOrderDto.getPassengerName(), newOrderDto.getPassengerLastname()));
+        this.passengers.add(new Passenger(newOrderDto.getPassengerName(), newOrderDto.getPassengerLastname(), user));
         this.seatNumber = newOrderDto.getSeatNumber();
         this.dateTimeOrderCreated = LocalDateTime.now(ZoneId.of("Europe/Minsk"));
         this.status = "payed";

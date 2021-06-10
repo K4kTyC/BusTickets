@@ -16,5 +16,5 @@ async function sendSearchData(url, data) {
     })
     const returned = await response.json()
     sessionStorage.setItem('ordersSearchResults', JSON.stringify(returned))
-    window.location.replace('/orders?search')
+    window.location.assign('/orders?search')
 }

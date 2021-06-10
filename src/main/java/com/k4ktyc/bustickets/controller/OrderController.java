@@ -7,12 +7,15 @@ import com.k4ktyc.bustickets.service.TripService;
 import com.k4ktyc.bustickets.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/orders")
@@ -33,7 +36,17 @@ public class OrderController {
 
 
     @GetMapping
-    public List<UserOrdersDto> getAllUserOrders() {
+    public List<UserOrdersDto> getAllUserOrders(Principal principal) {
+        Optional<User> user = userService.findByUsername(principal.getName());
+        if (user.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Эта функция доступна только авторизованным пользователям.");
+        }
+
+        if ("ROLE_ADMIN".equals(user.get().getRole().getValue())) {
+
+        }
+
+
         Iterable<Passenger> passengers = passengerService.getAllPassengers();
         List<UserOrdersDto> userOrdersDtoList = new ArrayList<>();
 

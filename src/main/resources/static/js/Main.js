@@ -26,7 +26,7 @@ function processUrlParams() {
         } else {
             getAllOrders()
         }
-        history.replaceState(null, '', '/orders')
+        //history.replaceState(null, '', '/orders')
     }
 }
 

@@ -15,13 +15,13 @@ function fillPageWithPassengers(data) {
             <div class="col-md-4 order-passenger">
                 <p class="order-passenger-text">${orders.name} ${orders.lastname}</p>
             </div>
-            <div class="col-md-4 order-orders-amount">
+            <div class="col-md-4 order-orders-amount text-center">
                 <p class="order-orders-amount-text">${orders.amount}</p>
             </div>
         </div>
         
         <div class="row my-1"></div>
-`
+        `
 
         $('#order-list-container').append(pageTemplate)
 
@@ -71,7 +71,7 @@ function fillPageWithOrders(data) {
         </div>
         
         <div class="row my-1"></div>
-`
+        `
 
         $('#order-list-container').append(pageTemplate)
     }
