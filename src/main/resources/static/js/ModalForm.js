@@ -8,7 +8,7 @@ document.getElementById('registration-submit').addEventListener('click', () => {
         password: document.getElementById('inputRegisterPassword').value
     }
 
-    console.log(sendUserDto('/api/register', userDto))
+    sendUserDto('/api/register', userDto)
 })
 
 async function sendUserDto(url, dto) {
@@ -20,5 +20,8 @@ async function sendUserDto(url, dto) {
         body: JSON.stringify(dto)
     })
     const returned = await response.json()
+    if (returned.text === 'You successfully registered') {
+        window.location.replace('/')
+    }
     // TODO: handle errors
 }

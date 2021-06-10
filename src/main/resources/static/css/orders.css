@@ -1,0 +1,25 @@
+.order-list-header {
+    background: #292f34;
+    color: #d1d2d3;
+    font-size: 1.4rem;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+}
+
+.order-list-content {
+    cursor: pointer;
+    background: #292f34;
+    color: #d1d2d3;
+    font-size: 1.3rem;
+    font-family: 'Roboto', sans-serif;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+    transition: all .2s ease-out;
+}
+
+.order-list-content:hover {
+    background: #54595d;
+}
+
+.order-list-content * {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}

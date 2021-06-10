@@ -1,5 +1,6 @@
 package com.k4ktyc.bustickets.controller;
 
+import com.k4ktyc.bustickets.model.RegisterUserResponse;
 import com.k4ktyc.bustickets.model.UserDto;
 import com.k4ktyc.bustickets.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @RestController
@@ -24,10 +27,20 @@ public class RegistrationController {
     }
 
     @PostMapping(consumes = "application/json")
-    public String register(@RequestBody @Valid UserDto userDto) {
+    public RegisterUserResponse register(@RequestBody @Valid UserDto userDto, HttpServletRequest request) {
         if (!userService.registerUser(userDto)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User with such username is already registered");
         }
-        return "You successfully registered";
+
+        authWithHttpServletRequest(request, userDto.getUsername(), userDto.getPassword());
+        return new RegisterUserResponse("You successfully registered");
+    }
+
+    public void authWithHttpServletRequest(HttpServletRequest request, String username, String password) {
+        try {
+            request.login(username, password);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

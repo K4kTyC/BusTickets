@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "trips")
@@ -15,16 +16,14 @@ public class Trip {
     private long id;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "bus_id", nullable = false, updatable = false)
+    @JoinColumn(name = "bus_id", nullable = false)
     private Bus bus;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "route_id", nullable = false, updatable = false)
-    private Route route;
+    private String stationStart;
+    private String stationFinish;
 
-    private LocalDateTime datetimeTripStart;
-
-    private LocalDateTime datetimeTripFinish;
+    private LocalDateTime datetimeStart;
+    private LocalDateTime datetimeFinish;
 
     private int price;
 
@@ -33,6 +32,10 @@ public class Trip {
     public Trip(NewTripDto newTripDto) {
         this.bus = new Bus(newTripDto.getBus());
         this.bus.setTrip(this);
+        this.stationStart = newTripDto.getStationStart();
+        this.stationFinish = newTripDto.getStationFinish();
+        this.datetimeStart = newTripDto.getDatetimeStart();
+        this.datetimeFinish = newTripDto.getDatetimeFinish();
         this.price = newTripDto.getPrice();
     }
 }

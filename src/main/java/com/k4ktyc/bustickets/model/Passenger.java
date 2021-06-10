@@ -3,10 +3,7 @@ package com.k4ktyc.bustickets.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -21,5 +18,21 @@ public class Passenger {
 
     private String lastname;
 
-    private LocalDateTime dateOfBirth;
+    @ManyToOne
+    @JoinColumn(name = "user_id", updatable = false)
+    private User user;
+
+
+    public Passenger() {}
+
+    public Passenger(String name, String lastname, User user) {
+        this.name = name;
+        this.lastname = lastname;
+
+        if ("ROLE_USER".equals(user.getRole().getValue())) {
+            this.user = user;
+        } else {
+            this.user = null;
+        }
+    }
 }

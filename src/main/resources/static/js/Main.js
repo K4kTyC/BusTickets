@@ -8,6 +8,26 @@ function processUrlParams() {
         $('#login-tab').tab('show')
         history.replaceState(null,'', '/')
     }
+
+    if (window.location.pathname === '/trips') {
+        if (urlParams.has('search')) {
+            let trips = JSON.parse(sessionStorage.getItem('tripsSearchResults'))
+            fillPageWithTrips(trips)
+        } else {
+            getAllRoutes(0)
+        }
+        history.replaceState(null,'', '/trips')
+    }
+
+    if (window.location.pathname === '/orders') {
+        if (urlParams.has('search')) {
+            let orders = JSON.parse(sessionStorage.getItem('ordersSearchResults'))
+            fillPageWithOrders(orders)
+        } else {
+            getAllOrders()
+        }
+        //history.replaceState(null, '', '/orders')
+    }
 }
 
 async function checkAuth() {
@@ -24,8 +44,11 @@ function addProfileButtons(data) {
 
     if (data.role === 'ROLE_ADMIN') {
         document.getElementById('mainNavbar').insertAdjacentHTML('beforeend', `
-            <a id="addRoute" class="nav-link nav-link-main" href="/admin">Добавить маршрут</a>
+            <a id="addRoute" class="nav-link nav-link-main" href="/admin">Добавить рейс</a>
         `)
+
+        $('#trip-info-select-seat').remove()
+        $('#trip-info-pass-data').remove()
     }
 
     document.getElementById('mainNavbar').insertAdjacentHTML('beforeend', `
@@ -51,8 +74,8 @@ document.getElementById('login-submit').addEventListener('click', function () {
 
 let swapStationsDeg = 180
 document.getElementById('swap-stations').addEventListener('click', function () {
-    let fromInput = document.getElementById('route-from')
-    let toInput = document.getElementById('route-to')
+    let fromInput = document.getElementById('trip-from')
+    let toInput = document.getElementById('trip-to')
     let tmp = fromInput.value
     fromInput.value = toInput.value
     toInput.value = tmp

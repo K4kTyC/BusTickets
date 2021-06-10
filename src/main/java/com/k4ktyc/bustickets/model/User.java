@@ -22,8 +22,12 @@ public class User {
     @JoinColumn(name = "role_id", nullable = false, updatable = false)
     private Role role;
 
-    @OneToMany (mappedBy = "user")
+    @OneToMany(mappedBy = "user")
     private List<Order> orders;
+
+    @OneToMany(mappedBy = "user")
+    private List<Passenger> passengers;
+
 
     public User() {}
 

@@ -6,10 +6,10 @@ import lombok.Getter;
 public class SeatDto {
 
     private final int number;
-    private final String status;
+    private final boolean isFree;
 
     public SeatDto(Seat seat) {
         this.number = seat.getNumber();
-        this.status = seat.getStatus();
+        this.isFree = seat.isFree();
     }
 }
