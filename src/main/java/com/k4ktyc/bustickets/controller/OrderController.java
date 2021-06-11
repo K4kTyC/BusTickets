@@ -69,7 +69,17 @@ public class OrderController {
     @PostMapping(consumes = "application/json")
     public CreateOrderResponse createOrder(@RequestBody @Valid NewOrderDto newOrderDto, Principal principal) {
         Trip trip = tripService.findById(newOrderDto.getTripId()).get();
-        trip.getBus().getSeats().get(newOrderDto.getSeatNumber()).setFree(false);
+        Seat chosenSeat = null;
+        for (Seat s : trip.getBus().getSeats()) {
+            if (s.getNumber() == newOrderDto.getSeatNumber()) {
+                chosenSeat = s;
+                break;
+            }
+        }
+        if (chosenSeat == null) {
+            return new CreateOrderResponse("Выбранное место уже занято.", 0);
+        }
+        chosenSeat.setFree(false);
         tripService.save(trip);
 
         User user = userService.findByUsername(principal.getName()).get();

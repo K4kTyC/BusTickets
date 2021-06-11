@@ -63,6 +63,7 @@
             <div class="col pb-5">
                 <select class="form-control" id="trip-select-seat">
                     <option th:each="seat : ${trip.bus.seats}"
+                            th:value="${seat.number}"
                             th:text="${seat.number}"
                             th:if="${seat.free}"></option>
                 </select>
