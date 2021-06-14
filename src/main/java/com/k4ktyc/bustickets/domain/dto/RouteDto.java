@@ -23,5 +23,6 @@ public class RouteDto {
     private List<RouteStationDto> routeStations;
 
     @NotNull
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private long price;
 }

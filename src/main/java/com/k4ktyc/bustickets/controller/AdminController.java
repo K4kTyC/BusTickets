@@ -72,12 +72,15 @@ public class AdminController {
         Route route = new Route();
         
         List<RouteStation> routeStations = new ArrayList<>();
+        long price = 0;
         for (RouteStationDto rsDto : routeDto.getRouteStations()) {
-            routeStations.add(createRouteStationFromDto(rsDto, route));
+            RouteStation rs = createRouteStationFromDto(rsDto, route);
+            routeStations.add(rs);
+            price += rs.getPrice();
         }
         
         route.setName(routeDto.getName());
-        route.setPrice(routeDto.getPrice());
+        route.setPrice(price);
         route.setStations(routeStations);
         
         return route;
