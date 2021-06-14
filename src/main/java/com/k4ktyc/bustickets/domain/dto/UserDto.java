@@ -12,6 +12,6 @@ public class UserDto {
     private String username;
 
     @NotNull
-    @Pattern(regexp = "^(?=\\S+$).{5,20}$")
+    //@Pattern(regexp = "^(?=\\S+$).{5,20}$")
     private String password;
 }

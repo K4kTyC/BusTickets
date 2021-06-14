@@ -10,6 +10,7 @@ import com.k4ktyc.bustickets.service.RouteStationService;
 import com.k4ktyc.bustickets.service.StationService;
 import com.k4ktyc.bustickets.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -38,22 +39,22 @@ public class AdminController {
 
 
     @PostMapping(path = "/create-trip", consumes = "application/json")
-    public CreateTripResponse addNewTrip(@RequestBody @Valid TripDto tripDto) {
+    public CreateEntityResponse addNewTrip(@RequestBody @Valid TripDto tripDto) {
         Trip newTrip = new Trip(tripDto);
-        return new CreateTripResponse("Рейс был успешно добавлен.", tripService.save(newTrip));
+        return new CreateEntityResponse("Рейс был успешно добавлен.", tripService.save(newTrip).getId());
     }
 
     @GetMapping("/stations")
-    public List<StationDto> getAllStations() {
-        return stationService.getAllStations();
+    public Page<StationDto> getAllStations(@RequestParam(defaultValue = "0") int page) {
+        return stationService.getAllStations(page);
     }
 
     @PostMapping(path = "/stations", consumes = "application/json")
-    public String addNewStation(@RequestBody @Valid StationDto stationDto) {
+    public CreateEntityResponse addNewStation(@RequestBody @Valid StationDto stationDto) {
         Station newStation = new Station(stationDto);
-        stationService.save(newStation);
+        newStation = stationService.save(newStation);
 
-        return "Остановка была успешно создана.";
+        return new CreateEntityResponse("Станция была успешно создана.", newStation.getId());
     }
 
     @PostMapping(path = "/create-route", consumes = "application/json")

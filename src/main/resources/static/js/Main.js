@@ -28,6 +28,16 @@ function processUrlParams() {
         }
         //history.replaceState(null, '', '/orders')
     }
+
+    if (window.location.pathname === '/admin/stations') {
+        if (urlParams.has('page')) {
+            let trips = JSON.parse(sessionStorage.getItem('tripsSearchResults'))
+            fillPageWithTrips(trips)
+        } else {
+            getAllRoutes(0)
+        }
+        history.replaceState(null,'', '/trips')
+    }
 }
 
 async function checkAuth() {
@@ -45,6 +55,7 @@ function addProfileButtons(data) {
     if (data.role === 'ROLE_ADMIN') {
         document.getElementById('mainNavbar').insertAdjacentHTML('beforeend', `
             <a id="addRoute" class="nav-link nav-link-main" href="/admin">Добавить рейс</a>
+            <a id="stations" class="nav-link nav-link-main" href="/admin/stations">Станции</a>
         `)
 
         $('#trip-info-select-seat').remove()

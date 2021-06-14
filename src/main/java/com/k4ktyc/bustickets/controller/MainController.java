@@ -41,6 +41,11 @@ public class MainController {
         return "admin";
     }
 
+    @GetMapping("/admin/stations")
+    public String stations() {
+        return "admin-stations";
+    }
+
     @GetMapping("/orders")
     public String orders() {
         return "orders";

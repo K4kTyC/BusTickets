@@ -4,6 +4,8 @@ import com.k4ktyc.bustickets.domain.Station;
 import com.k4ktyc.bustickets.domain.dto.StationDto;
 import com.k4ktyc.bustickets.repository.StationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,12 +28,11 @@ public class StationService {
         return stationRepository.save(station);
     }
 
-    public List<StationDto> getAllStations() {
-        Iterable<Station> iterable = stationRepository.findAll();
+    public Page<StationDto> getAllStations(int pageNumber) {
+        PageRequest paging = PageRequest.of(pageNumber, 5);
+        Page<Station> pagedStations = stationRepository.findAll(paging);
 
-        return StreamSupport.stream(iterable.spliterator(), false)
-                .map(StationDto::new)
-                .collect(Collectors.toList());
+        return pagedStations.map(StationDto::new);
     }
 
     public Optional<Station> findById(long id) {

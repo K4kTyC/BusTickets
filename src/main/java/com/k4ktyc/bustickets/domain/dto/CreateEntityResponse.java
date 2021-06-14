@@ -4,13 +4,13 @@ import com.k4ktyc.bustickets.domain.Trip;
 import lombok.Getter;
 
 @Getter
-public class CreateTripResponse {
+public class CreateEntityResponse {
 
     private final String text;
-    private final long newTripId;
+    private final long id;
 
-    public CreateTripResponse(String text, Trip trip) {
+    public CreateEntityResponse(String text, long id) {
         this.text = text;
-        this.newTripId = trip.getId();
+        this.id = id;
     }
 }
