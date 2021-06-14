@@ -14,6 +14,7 @@ public class Station {
     @Id @GeneratedValue
     private long id;
 
+    @Column(unique = true)
     private String name;
 
     @OneToMany(mappedBy = "station")

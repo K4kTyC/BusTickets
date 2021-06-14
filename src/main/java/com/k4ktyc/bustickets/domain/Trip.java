@@ -15,17 +15,26 @@ public class Trip {
     @Id @GeneratedValue
     private long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "bus_id", nullable = false)
-    private Bus bus;
+    @ManyToOne
+    @JoinColumn(name = "route_id", nullable = false)
+    private Route route;
 
-    private String stationStart;
-    private String stationFinish;
+    @ManyToOne
+    @JoinColumn(name = "station_start_id", nullable = false)
+    private Station stationStart;
+
+    @ManyToOne
+    @JoinColumn(name = "station_finish_id", nullable = false)
+    private Station stationFinish;
 
     private LocalDateTime datetimeStart;
     private LocalDateTime datetimeFinish;
 
-    private int price;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "bus_id", nullable = false)
+    private Bus bus;
+
+    private long price;
 
     public Trip() {}
 
