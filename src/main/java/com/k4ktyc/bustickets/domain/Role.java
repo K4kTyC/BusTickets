@@ -1,4 +1,4 @@
-package com.k4ktyc.bustickets.model;
+package com.k4ktyc.bustickets.domain;
 
 import lombok.Getter;
 import lombok.Setter;

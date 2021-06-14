@@ -1,6 +1,6 @@
 package com.k4ktyc.bustickets.service;
 
-import com.k4ktyc.bustickets.model.Passenger;
+import com.k4ktyc.bustickets.domain.Passenger;
 import com.k4ktyc.bustickets.repository.PassengerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

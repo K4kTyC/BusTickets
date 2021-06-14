@@ -1,5 +1,6 @@
-package com.k4ktyc.bustickets.model;
+package com.k4ktyc.bustickets.domain.dto;
 
+import com.k4ktyc.bustickets.domain.Order;
 import lombok.Getter;
 
 import java.time.LocalDateTime;

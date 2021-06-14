@@ -1,15 +1,13 @@
 package com.k4ktyc.bustickets.service;
 
-import com.k4ktyc.bustickets.model.Order;
-import com.k4ktyc.bustickets.model.OrderDto;
-import com.k4ktyc.bustickets.model.Passenger;
+import com.k4ktyc.bustickets.domain.Order;
+import com.k4ktyc.bustickets.domain.dto.OrderDto;
+import com.k4ktyc.bustickets.domain.Passenger;
 import com.k4ktyc.bustickets.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class OrderService {

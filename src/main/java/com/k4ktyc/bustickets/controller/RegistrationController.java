@@ -1,7 +1,7 @@
 package com.k4ktyc.bustickets.controller;
 
-import com.k4ktyc.bustickets.model.RegisterUserResponse;
-import com.k4ktyc.bustickets.model.UserDto;
+import com.k4ktyc.bustickets.domain.dto.RegisterUserResponse;
+import com.k4ktyc.bustickets.domain.dto.UserDto;
 import com.k4ktyc.bustickets.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 

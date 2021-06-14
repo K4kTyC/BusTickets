@@ -1,6 +1,6 @@
 package com.k4ktyc.bustickets.repository;
 
-import com.k4ktyc.bustickets.model.Passenger;
+import com.k4ktyc.bustickets.domain.Passenger;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;

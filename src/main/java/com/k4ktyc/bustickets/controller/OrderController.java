@@ -1,6 +1,7 @@
 package com.k4ktyc.bustickets.controller;
 
-import com.k4ktyc.bustickets.model.*;
+import com.k4ktyc.bustickets.domain.*;
+import com.k4ktyc.bustickets.domain.dto.*;
 import com.k4ktyc.bustickets.service.OrderService;
 import com.k4ktyc.bustickets.service.PassengerService;
 import com.k4ktyc.bustickets.service.TripService;

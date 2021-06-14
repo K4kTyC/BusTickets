@@ -1,7 +1,7 @@
 package com.k4ktyc.bustickets.controller;
 
-import com.k4ktyc.bustickets.model.AuthUserInfo;
-import com.k4ktyc.bustickets.model.User;
+import com.k4ktyc.bustickets.domain.dto.AuthUserInfo;
+import com.k4ktyc.bustickets.domain.User;
 import com.k4ktyc.bustickets.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

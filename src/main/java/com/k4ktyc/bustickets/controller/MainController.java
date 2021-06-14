@@ -1,6 +1,6 @@
 package com.k4ktyc.bustickets.controller;
 
-import com.k4ktyc.bustickets.model.Trip;
+import com.k4ktyc.bustickets.domain.Trip;
 import com.k4ktyc.bustickets.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

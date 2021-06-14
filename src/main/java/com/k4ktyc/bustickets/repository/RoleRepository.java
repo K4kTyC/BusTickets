@@ -1,6 +1,6 @@
 package com.k4ktyc.bustickets.repository;
 
-import com.k4ktyc.bustickets.model.Role;
+import com.k4ktyc.bustickets.domain.Role;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;

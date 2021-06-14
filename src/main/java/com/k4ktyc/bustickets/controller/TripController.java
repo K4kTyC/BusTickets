@@ -1,7 +1,7 @@
 package com.k4ktyc.bustickets.controller;
 
-import com.k4ktyc.bustickets.model.TripSearchData;
-import com.k4ktyc.bustickets.model.TripDto;
+import com.k4ktyc.bustickets.domain.dto.TripSearchData;
+import com.k4ktyc.bustickets.domain.dto.TripDto;
 import com.k4ktyc.bustickets.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

@@ -1,8 +1,8 @@
 package com.k4ktyc.bustickets.controller;
 
-import com.k4ktyc.bustickets.model.CreateTripResponse;
-import com.k4ktyc.bustickets.model.NewTripDto;
-import com.k4ktyc.bustickets.model.Trip;
+import com.k4ktyc.bustickets.domain.dto.CreateTripResponse;
+import com.k4ktyc.bustickets.domain.dto.NewTripDto;
+import com.k4ktyc.bustickets.domain.Trip;
 import com.k4ktyc.bustickets.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

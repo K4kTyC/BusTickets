@@ -1,7 +1,7 @@
 package com.k4ktyc.bustickets.service;
 
-import com.k4ktyc.bustickets.model.User;
-import com.k4ktyc.bustickets.model.UserDto;
+import com.k4ktyc.bustickets.domain.User;
+import com.k4ktyc.bustickets.domain.dto.UserDto;
 import com.k4ktyc.bustickets.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

@@ -1,11 +1,11 @@
-package com.k4ktyc.bustickets.model;
+package com.k4ktyc.bustickets.domain;
 
+import com.k4ktyc.bustickets.domain.dto.NewTripDto;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "trips")
