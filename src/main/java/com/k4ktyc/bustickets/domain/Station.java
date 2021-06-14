@@ -1,5 +1,6 @@
 package com.k4ktyc.bustickets.domain;
 
+import com.k4ktyc.bustickets.domain.dto.StationDto;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,4 +20,11 @@ public class Station {
 
     @OneToMany(mappedBy = "station")
     private List<RouteStation> routes;
+
+
+    public Station() {}
+
+    public Station(StationDto stationDto) {
+        this.name = stationDto.getName();
+    }
 }

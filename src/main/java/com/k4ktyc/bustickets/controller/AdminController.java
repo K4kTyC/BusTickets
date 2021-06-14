@@ -1,7 +1,7 @@
 package com.k4ktyc.bustickets.controller;
 
 import com.k4ktyc.bustickets.domain.dto.CreateTripResponse;
-import com.k4ktyc.bustickets.domain.dto.NewTripDto;
+import com.k4ktyc.bustickets.domain.dto.TripDto;
 import com.k4ktyc.bustickets.domain.Trip;
 import com.k4ktyc.bustickets.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +25,8 @@ public class AdminController {
 
 
     @PostMapping(path = "/create-trip", consumes = "application/json")
-    public CreateTripResponse addNewRoute(@RequestBody @Valid NewTripDto newTripDto) {
-        Trip newTrip = new Trip(newTripDto);
+    public CreateTripResponse addNewRoute(@RequestBody @Valid TripDto tripDto) {
+        Trip newTrip = new Trip(tripDto);
         return new CreateTripResponse("Рейс был успешно добавлен.", tripService.save(newTrip));
     }
 }

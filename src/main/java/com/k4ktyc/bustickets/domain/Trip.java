@@ -1,6 +1,6 @@
 package com.k4ktyc.bustickets.domain;
 
-import com.k4ktyc.bustickets.domain.dto.NewTripDto;
+import com.k4ktyc.bustickets.domain.dto.TripDto;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -36,15 +36,16 @@ public class Trip {
 
     private long price;
 
+
     public Trip() {}
 
-    public Trip(NewTripDto newTripDto) {
-        this.bus = new Bus(newTripDto.getBus());
+    public Trip(TripDto tripDto) {
+        this.bus = new Bus(tripDto.getBus());
         this.bus.setTrip(this);
-        this.stationStart = newTripDto.getStationStart();
-        this.stationFinish = newTripDto.getStationFinish();
-        this.datetimeStart = newTripDto.getDatetimeStart();
-        this.datetimeFinish = newTripDto.getDatetimeFinish();
-        this.price = newTripDto.getPrice();
+        this.stationStart = new Station(tripDto.getStationStart());
+        this.stationFinish = new Station(tripDto.getStationFinish());
+        this.datetimeStart = tripDto.getDatetimeStart();
+        this.datetimeFinish = tripDto.getDatetimeFinish();
+        this.price = tripDto.getPrice();
     }
 }

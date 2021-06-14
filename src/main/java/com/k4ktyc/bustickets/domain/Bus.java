@@ -1,6 +1,6 @@
 package com.k4ktyc.bustickets.domain;
 
-import com.k4ktyc.bustickets.domain.dto.NewBusDto;
+import com.k4ktyc.bustickets.domain.dto.BusDto;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,10 +28,10 @@ public class Bus {
 
     public Bus() {}
 
-    public Bus(NewBusDto newBusDto) {
-        this.number = newBusDto.getNumber();
-        this.busClass = newBusDto.getBusClass() == 1 ? "Econom" : "Business";
-        for (int i = 0; i < newBusDto.getNumberOfSeats(); i++) {
+    public Bus(BusDto busDto) {
+        this.number = busDto.getNumber();
+        this.busClass = busDto.getBusClass();
+        for (int i = 0; i < busDto.getNumberOfSeats(); i++) {
             seats.add(new Seat(i + 1, this));
         }
     }
