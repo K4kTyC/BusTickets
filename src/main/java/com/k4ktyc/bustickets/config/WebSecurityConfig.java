@@ -37,7 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/trips", "/trips/*", "/api/trips", "/api/trips/search").permitAll()
                     .antMatchers(HttpMethod.POST,"/api/orders").hasAnyRole("USER", "EMPLOYEE")
                     .antMatchers("/api/register", "/login").anonymous()
-                    .antMatchers("/admin", "/api/admin/*").hasRole("ADMIN")
+                    .antMatchers("/admin", "/api/admin/*").anonymous()  //TODO: вернуть ограничение
                     .anyRequest().authenticated()
                     .and()
                 .formLogin()

@@ -20,7 +20,7 @@ public class RouteDto {
 
     @NotEmpty
     @Size(min = 2)
-    private List<Long> stationIdList;
+    private List<RouteStationDto> routeStations;
 
     @NotNull
     private long price;

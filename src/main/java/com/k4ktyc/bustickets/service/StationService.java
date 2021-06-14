@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StationService {
@@ -24,5 +25,9 @@ public class StationService {
 
     public Iterable<Station> getAllStations() {
         return stationRepository.findAll();
+    }
+
+    public Optional<Station> findById(long id) {
+        return stationRepository.findById(id);
     }
 }
