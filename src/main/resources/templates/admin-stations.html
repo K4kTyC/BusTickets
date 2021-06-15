@@ -17,6 +17,8 @@
     <meta name="msapplication-TileColor" content="#292f34">
     <meta name="theme-color" content="#ffffff">
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>
         Управление станциями - Bus Ticket
     </title>
@@ -29,23 +31,20 @@
 <div class="d-flex flex-column wrapper">
 
     <div class="container" id="station-list">
-        <form class="my-3" id="add-station-form">
-            <div class="form-row py-2">
-                <div class="col-auto">
-                    <input class="form-control" id="station-name" type="text" placeholder="Название станции">
-                </div>
-                <div class="col-auto">
-                    <a class="btn btn-primary" id="station-submit">Добавить станцию</a>
-                </div>
+        <div class="form-row py-2 my-3">
+            <div class="col-md-3">
+                <input class="form-control" id="station-filter" type="text" placeholder="Фильтр по названию">
             </div>
-        </form>
-
-        <div class="d-none d-lg-flex row station-list-header p-3 mb-3">
-            <div class="col-3 text-center">ID</div>
-            <div class="col-auto text-left">Название</div>
+            <div class="col-md-4"></div>
+            <div class="col-md-3">
+                <input class="form-control" id="station-name" type="text" placeholder="Название станции">
+            </div>
+            <div class="col-md-2">
+                <a class="btn btn-primary" id="station-submit">Добавить станцию</a>
+            </div>
         </div>
 
-        <div id="station-list-elements"></div>
+        <div class="row row-cols-2 row-cols-sm-3 row-cols-md-5 justify-content-center" id="station-list-elements"></div>
     </div>
 
     <nav aria-label="Page navigation">

@@ -2,7 +2,7 @@ let pageNum = 0
 let lastPage = 0
 
 $(function () {
-    getAllStations(pageNum)
+    getAllStations()
 })
 
 $('#station-submit').on('click', () => {
@@ -26,17 +26,17 @@ async function sendStationDto(url, dto) {
     if (response.ok) {
         const returned = await response.json()
 
-        let createdStation = [
-            {
+        let createdStation = {
+            content: [{
                 id: returned.id,
                 name: dto.name
-            }
-        ]
+            }]
+        }
         fillPageWithStations(createdStation)
     }
 }
 
-async function getAllStations(pageNum) {
+async function getAllStations() {
     const response = await fetch(`/api/admin/stations?page=${pageNum}`)
     const data = await response.json()
     lastPage = data.totalPages - 1
@@ -50,31 +50,55 @@ function fillPageWithStations(data) {
         let station = stations[i]
 
         let pageTemplate = `
-            <div class="row station-list-content align-items-center px-3 py-3" id="station-${station.id}">
-                <div class="col-3 text-center station-info">
-                    <p class="station-id">${station.id}</p>
-                </div>
-                <div class="col-auto text-left station-info">
+            <div class="col station-list-content py-3 m-2" id="station-${station.id}">
+                <div class="text-center station-info">
+                    <p class="station-id">ID: ${station.id}</p>
                     <p class="station-name">${station.name}</p>
                 </div>
-            </div>
-            <div class="row my-1"></div>`
+            </div>`
 
         $('#station-list-elements').append(pageTemplate)
     }
 }
 
+async function filterStations() {
+    let filter = $('#station-filter').val()
+
+    const response = await fetch(`/api/admin/stations?page=${pageNum}&filter=${filter}`)
+    const data = await response.json()
+    $('#station-list-elements *').remove()
+    lastPage = data.totalPages - 1
+    fillPageWithStations(data)
+}
+
+$('#station-filter').on('input', () => {
+    clearTimeout()
+    pageNum = 0
+    setTimeout(function () { filterStations() }, 800)
+})
+
 $('#page-prev').on('click', () => {
     if (pageNum > 0) {
         pageNum--
         $('#station-list-elements *').remove()
-        getAllStations(pageNum)
+
+        if ($('#station-filter').val() !== "") {
+            filterStations()
+        } else {
+            getAllStations()
+        }
     }
 })
 
 $('#page-next').on('click', () => {
-    if (pageNum < lastPage)
-    pageNum++
-    $('#station-list-elements *').remove()
-    getAllStations(pageNum)
+    if (pageNum < lastPage) {
+        pageNum++
+        $('#station-list-elements *').remove()
+
+        if ($('#station-filter').val() !== "") {
+            filterStations()
+        } else {
+            getAllStations()
+        }
+    }
 })

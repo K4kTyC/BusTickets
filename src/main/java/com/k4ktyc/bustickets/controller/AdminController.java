@@ -45,8 +45,12 @@ public class AdminController {
     }
 
     @GetMapping("/stations")
-    public Page<StationDto> getAllStations(@RequestParam(defaultValue = "0") int page) {
-        return stationService.getAllStations(page);
+    public Page<StationDto> getAllStations(@RequestParam(defaultValue = "0") int page,
+                                           @RequestParam(defaultValue = "") String filter) {
+        if (filter.isBlank())
+            return stationService.getAllStations(page);
+        else
+            return stationService.getAllStations(page, filter);
     }
 
     @PostMapping(path = "/stations", consumes = "application/json")

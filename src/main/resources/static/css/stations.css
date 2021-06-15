@@ -8,13 +8,9 @@
 .station-list-content {
     background: #292f34;
     color: #d1d2d3;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     font-family: 'Roboto', sans-serif;
     box-shadow: 0 0 5px rgba(0, 0, 0, .5);
-}
-
-.station-info {
-    text-align: left;
 }
 
 .station-info * {

@@ -28,16 +28,6 @@ function processUrlParams() {
         }
         //history.replaceState(null, '', '/orders')
     }
-
-    if (window.location.pathname === '/admin/stations') {
-        if (urlParams.has('page')) {
-            let trips = JSON.parse(sessionStorage.getItem('tripsSearchResults'))
-            fillPageWithTrips(trips)
-        } else {
-            getAllRoutes(0)
-        }
-        history.replaceState(null,'', '/trips')
-    }
 }
 
 async function checkAuth() {

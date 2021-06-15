@@ -6,6 +6,7 @@ import com.k4ktyc.bustickets.repository.StationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,8 +30,15 @@ public class StationService {
     }
 
     public Page<StationDto> getAllStations(int pageNumber) {
-        PageRequest paging = PageRequest.of(pageNumber, 5);
+        PageRequest paging = PageRequest.of(pageNumber, 20, Sort.by("name"));
         Page<Station> pagedStations = stationRepository.findAll(paging);
+
+        return pagedStations.map(StationDto::new);
+    }
+
+    public Page<StationDto> getAllStations(int pageNumber, String filter) {
+        PageRequest paging = PageRequest.of(pageNumber, 20, Sort.by("name"));
+        Page<Station> pagedStations = stationRepository.findByNameContaining(filter, paging);
 
         return pagedStations.map(StationDto::new);
     }
