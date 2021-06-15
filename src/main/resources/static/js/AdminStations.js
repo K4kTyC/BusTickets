@@ -23,16 +23,18 @@ async function sendStationDto(url, dto) {
         body: JSON.stringify(dto)
     })
 
-    if (response.ok) {
+    let stationsOnPage = $('[class*="station-list-content"]').length
+    if (response.ok && stationsOnPage < 20) {
         const returned = await response.json()
 
-        let createdStation = {
-            content: [{
-                id: returned.id,
-                name: dto.name
-            }]
-        }
-        fillPageWithStations(createdStation)
+        let pageTemplate = `
+            <div class="col station-list-content py-3 m-2" id="station-${returned.id}">
+                <div class="text-center station-info">
+                    <p class="station-name">${dto.name}</p>
+                    <p class="station-id">ID: ${returned.id}</p>
+                </div>
+            </div>`
+        $('#station-list-elements').append(pageTemplate)
     }
 }
 
@@ -52,12 +54,44 @@ function fillPageWithStations(data) {
         let pageTemplate = `
             <div class="col station-list-content py-3 m-2" id="station-${station.id}">
                 <div class="text-center station-info">
-                    <p class="station-id">ID: ${station.id}</p>
                     <p class="station-name">${station.name}</p>
+                    <p class="station-id">ID: ${station.id}</p>
                 </div>
             </div>`
 
         $('#station-list-elements').append(pageTemplate)
+    }
+
+    $('[id^=page-link-]').remove()
+
+    if (data.totalPages > 1) {
+        for (let i = 0; i < data.totalPages; i++) {
+            let num = i + 1
+            let pageTemplate = `
+            <li class="page-item" id="page-link-${num}">
+                <a class="pagination-link ${pageNum === i ? "current":""}" id="page-${num}" aria-label="${num}">
+                    <span aria-hidden="true">${num}</span>
+                </a>
+            </li>`
+
+            $('#page-next-li').before(pageTemplate)
+
+            if (pageNum !== i) {
+                $(`#page-link-${num}`).on('click', () => {
+                    pageNum = i
+                    $('#station-list-elements *').remove()
+
+                    if ($('#station-filter').val() !== "") {
+                        filterStations()
+                    } else {
+                        getAllStations()
+                    }
+                })
+            }
+        }
+        $('#pagination').show()
+    } else {
+        $('#pagination').hide()
     }
 }
 

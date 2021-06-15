@@ -151,7 +151,7 @@ ul.nav-tabs {
 .form-button {
     cursor: pointer;
     text-align: center;
-    height: calc(2em + .75rem - 4px);
+    height: calc(2em + .65rem - 4px);
     color: #d1d2d3;
     background: linear-gradient(#54595d, #54595d);
     border: none;
