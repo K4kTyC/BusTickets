@@ -33,6 +33,7 @@ async function sendStationDto(url, dto) {
                     <p class="station-name">${dto.name}</p>
                     <p class="station-id">ID: ${returned.id}</p>
                 </div>
+                <div class="station-delete"><i class="fas fa-trash"></i></div>
             </div>`
         $('#station-list-elements').append(pageTemplate)
     }
@@ -57,9 +58,15 @@ function fillPageWithStations(data) {
                     <p class="station-name">${station.name}</p>
                     <p class="station-id">ID: ${station.id}</p>
                 </div>
+                <div class="station-delete" id="rm-${station.id}"><i class="fas fa-trash"></i></div>
             </div>`
 
         $('#station-list-elements').append(pageTemplate)
+
+        $(`#rm-${station.id}`).on('click', function () {
+            removeStation(station.id)
+            $(`#station-${station.id}`).remove()
+        })
     }
 
     $('[id^=page-link-]').remove()
@@ -103,6 +110,17 @@ async function filterStations() {
     $('#station-list-elements *').remove()
     lastPage = data.totalPages - 1
     fillPageWithStations(data)
+}
+
+async function removeStation(id) {
+    const response = await fetch('/api/admin/stations', {
+        method: 'DELETE',
+        mode: 'same-origin',
+        credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(id)
+    })
+    return await response.json()
 }
 
 $('#station-filter').on('input', () => {

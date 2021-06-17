@@ -18,7 +18,7 @@ public class Station {
     @Column(unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "station")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "station")
     private List<RouteStation> routes;
 
 

@@ -2,6 +2,7 @@ package com.k4ktyc.bustickets.service;
 
 import com.k4ktyc.bustickets.domain.Station;
 import com.k4ktyc.bustickets.domain.dto.StationDto;
+import com.k4ktyc.bustickets.repository.RouteStationRepository;
 import com.k4ktyc.bustickets.repository.StationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -9,19 +10,18 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @Service
 public class StationService {
 
     private final StationRepository stationRepository;
+    private final RouteStationRepository routeStationRepository;
 
     @Autowired
-    public StationService(StationRepository stationRepository) {
+    public StationService(StationRepository stationRepository, RouteStationRepository routeStationRepository) {
         this.stationRepository = stationRepository;
+        this.routeStationRepository = routeStationRepository;
     }
 
 
@@ -41,6 +41,11 @@ public class StationService {
         Page<Station> pagedStations = stationRepository.findByNameContaining(filter, paging);
 
         return pagedStations.map(StationDto::new);
+    }
+
+    public void deleteById(long id) {
+        stationRepository.deleteById(id);
+        //routeStationRepository.deleteWhereStationIsNull();
     }
 
     public Optional<Station> findById(long id) {

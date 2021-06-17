@@ -61,16 +61,21 @@ public class AdminController {
         return new CreateEntityResponse("Станция была успешно создана.", newStation.getId());
     }
 
-    @PostMapping(path = "/create-route", consumes = "application/json")
-    public String addNewRoute(@RequestBody @Valid RouteDto routeDto) {
+    @DeleteMapping(path = "/stations", consumes = "application/json")
+    public void deleteStation(@RequestBody long id) {
+        stationService.deleteById(id);
+    }
+
+    @PostMapping(path = "/route", consumes = "application/json")
+    public CreateEntityResponse addNewRoute(@RequestBody @Valid RouteDto routeDto) {
         Route route = createRouteFromDto(routeDto);
-        routeService.save(route);
+        route = routeService.save(route);
 
         for (RouteStation rs : route.getStations()) {
             routeStationService.save(rs);
         }
 
-        return "Маршрут был успешно создан.";
+        return new CreateEntityResponse("Маршрут был успешно создан.", route.getId());
     }
 
     

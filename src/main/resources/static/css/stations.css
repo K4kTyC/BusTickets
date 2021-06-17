@@ -32,6 +32,9 @@
     /* 1rem = .5rem + .5rem (от m-2 класса) */
     flex: 0 0 calc(100% - 1rem);
     max-width: calc(100% - 1rem);
+
+    display: flex;
+    justify-content: center;
 }
 
 .col-filter {
@@ -46,6 +49,11 @@
     margin: .5rem 0;
 }
 
+.station-info {
+    flex: 1;
+    transition: flex .25s ease-out;
+}
+
 .station-info * {
     margin-top: 0;
     margin-bottom: 0;
@@ -58,6 +66,10 @@
 .station-id {
     font-size: .9em;
     color: #9e9e9e;
+}
+
+.station-delete {
+
 }
 
 .pagination-wrap {
