@@ -46,6 +46,11 @@ public class MainController {
         return "admin-stations";
     }
 
+    @GetMapping("/admin/routes")
+    public String routes() {
+        return "admin-routes";
+    }
+
     @GetMapping("/orders")
     public String orders() {
         return "orders";

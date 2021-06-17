@@ -46,7 +46,12 @@ public class AdminController {
 
     @GetMapping("/stations")
     public Page<StationDto> getAllStations(@RequestParam(defaultValue = "0") int page,
-                                           @RequestParam(defaultValue = "") String filter) {
+                                           @RequestParam(defaultValue = "") String filter,
+                                           @RequestParam(defaultValue = "false") boolean unpaged) {
+        if (unpaged) {
+            return stationService.getAllStations(unpaged);
+        }
+
         if (filter.isBlank())
             return stationService.getAllStations(page);
         else
@@ -66,7 +71,7 @@ public class AdminController {
         stationService.deleteById(id);
     }
 
-    @PostMapping(path = "/route", consumes = "application/json")
+    @PostMapping(path = "/routes", consumes = "application/json")
     public CreateEntityResponse addNewRoute(@RequestBody @Valid RouteDto routeDto) {
         Route route = createRouteFromDto(routeDto);
         route = routeService.save(route);

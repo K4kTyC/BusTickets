@@ -7,6 +7,7 @@ import com.k4ktyc.bustickets.repository.StationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +42,12 @@ public class StationService {
         Page<Station> pagedStations = stationRepository.findByNameContaining(filter, paging);
 
         return pagedStations.map(StationDto::new);
+    }
+
+    public Page<StationDto> getAllStations(boolean isUnpaged) {
+        Page<Station> unpagedStations = stationRepository.findAll(Pageable.unpaged());
+
+        return unpagedStations.map(StationDto::new);
     }
 
     public void deleteById(long id) {
