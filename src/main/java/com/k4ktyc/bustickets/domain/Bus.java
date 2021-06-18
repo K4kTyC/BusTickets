@@ -16,22 +16,24 @@ public class Bus {
     @Id @GeneratedValue
     private long id;
 
-    @OneToOne(mappedBy = "bus")
-    private Trip trip;
+    @ManyToOne
+    @JoinColumn(name = "model_id", nullable = false)
+    private BusModel model;
 
     private int number;
 
-    private String busClass;
-
     @OneToMany(mappedBy = "bus", cascade = CascadeType.ALL)
     private List<Seat> seats = new ArrayList<>();
+
+    @OneToOne(mappedBy = "bus")
+    private Trip trip;
+
 
     public Bus() {}
 
     public Bus(BusDto busDto) {
         this.number = busDto.getNumber();
-        this.busClass = busDto.getBusClass();
-        for (int i = 0; i < busDto.getNumberOfSeats(); i++) {
+        for (int i = 0; i < model.getNumberOfSeats(); i++) {
             seats.add(new Seat(i + 1, this));
         }
     }
