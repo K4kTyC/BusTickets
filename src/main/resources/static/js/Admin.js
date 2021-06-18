@@ -30,6 +30,6 @@ async function sendNewTripDto(url, dto) {
 }
 
 $(function () {
-    $('#datetimepicker-from').datetimepicker()
-    $('#datetimepicker-to').datetimepicker()
+    enableDatetimePicker('datetimepicker-from')
+    enableDatetimePicker('datetimepicker-to')
 })

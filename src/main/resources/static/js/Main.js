@@ -45,8 +45,8 @@ function addProfileButtons(data) {
     if (data.role === 'ROLE_ADMIN') {
         document.getElementById('mainNavbar').insertAdjacentHTML('beforeend', `
             <a id="trips" class="nav-link nav-link-main" href="/admin/trips">Добавить рейс</a>
-            <a id="stations" class="nav-link nav-link-main" href="/admin/stations">Станции</a>
             <a id="routes" class="nav-link nav-link-main" href="/admin/routes">Маршруты</a>
+            <a id="stations" class="nav-link nav-link-main" href="/admin/stations">Станции</a>
         `)
 
         $('#trip-info-select-seat').remove()
@@ -66,6 +66,10 @@ function addProfileButtons(data) {
                 </div>
             </div>
         `)
+}
+
+function enableDatetimePicker(id) {
+    $(`#${id}`).datetimepicker({})
 }
 
 document.getElementById('login-submit').addEventListener('click', function () {

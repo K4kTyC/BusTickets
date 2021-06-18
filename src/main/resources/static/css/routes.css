@@ -1,5 +1,52 @@
-.route-station-info {
+.route-form {
+    background: #292f34;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .7);
+    padding: 1.5rem;
+    margin: 1rem 0;
     display: flex;
     flex-wrap: wrap;
+}
+
+.col-name {
+    flex: 0 0 calc(100% - 4rem);
+    max-width: calc(100% - 4rem);
+    margin: 1rem 2rem 2rem 2rem;
+}
+
+.route-station-info {
+    flex: 0 0 calc(100% - 2rem);
+    max-width: calc(100% - 2rem);
     margin: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.col-select-station, .col-price, .col-datetime {
+    flex: 0 0 calc(30% - 2rem);
+    max-width: calc(30% - 2rem);
+    margin: 0 1rem;
+}
+
+.col-add-station {
+    color: #d1d2d3;
+    font-size: 1.4rem;
+    flex: 0 0 calc(10% - 3rem);
+    max-width: calc(10% - 3rem);
+    margin: 0 2rem 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.col-add-station * {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.col-add-station *:hover {
+    color: #44883c;
+    cursor: pointer;
 }
