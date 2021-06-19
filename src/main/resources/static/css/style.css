@@ -230,6 +230,29 @@ ul.nav-tabs {
 
 .form-select {
     position: relative;
+    font-size: 1.2em;
+    background-color: #54595d;
+    height: calc(2em + .75rem + 2px);
+}
+
+.form-select::before {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    background-image: linear-gradient(to right, #006838, #378e30);
+    opacity: 0;
+    height: 100%;
+    width: 100%;
+    top: 0; left: 0;
+    transition: opacity .25s ease-out;
+}
+
+.form-select:hover::before {
+    opacity: 1;
+}
+
+.form-select:focus-within::before {
+    opacity: 1;
 }
 
 .form-select .chosen-value,
@@ -241,32 +264,37 @@ ul.nav-tabs {
 }
 
 .form-select .chosen-value {
-    font-family: 'Roboto', sans-serif;
-    height: 100%;
-    font-size: 1.2rem;
-    padding: 0 1rem;
-    background-color: #fafcfd;
-    border: 3px solid transparent;
-    transition: 0.3s ease-in-out;
+    padding: .375rem .75rem;
+    top: -100%;
     position: relative;
+    height: calc(2em + .75rem - 2px);
+    width: 100%;
+    color: #d1d2d3;
+    font-family: 'Roboto', sans-serif;
+    font-size: inherit;
+    outline: none;
+    border: 0;
+    border-radius: 0;
+    background-color: #212529;
+    transition: all 0.4s ease;
+    box-shadow: inset 0 0 5px -2px rgba(0, 0, 0, .3);
 }
 
 .form-select .chosen-value:hover {
-    background-color: #ff908b;
     cursor: pointer;
 }
 
 .form-select .chosen-value:focus, .chosen-value.open {
-    box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.2);
-    outline: 0;
-    background-color: #ff908b;
-    color: #000;
+    border: 0;
+    color: #d1d2d3;
+    background-color: #212529;
+    box-shadow: inset 0 0 5px -2px rgba(0, 0, 0, .3);
 }
 
 .form-select .value-list {
     list-style: none;
     margin-top: 3.3rem;
-    box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2);
     overflow: hidden;
     max-height: 0;
     transition: 0.3s ease-in-out;
@@ -278,14 +306,16 @@ ul.nav-tabs {
     max-height: 320px;
     overflow: auto;
     z-index: 1;
-    background-color: #1a7f2b;
+    background-color: #212529;
 }
 
 .form-select .value-list li {
     position: relative;
-    background-color: #fafcfd;
-    padding: 1rem;
+    background-color: #212529;
+    color: #d1d2d3;
+    padding: .5rem 1rem;
     font-size: 1.1rem;
+    font-family: 'Roboto', sans-serif;
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -294,12 +324,30 @@ ul.nav-tabs {
 }
 
 .form-select .value-list li:hover {
-    background-color: #ff908b;
+    background: linear-gradient(to right, #197e2c, #4caa13);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #44883c;
+    transition: 0.2s;
+}
+
+.value-list li.closed {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+    opacity: 0;
 }
 
 .form-select .value-list li.disabled {
     cursor: not-allowed;
-    background-color: #54595d;
+    color: #54595d;
+}
+
+.form-select .value-list li.disabled:hover {
+    background: #212529;
+    -webkit-background-clip: border-box;
+    -webkit-text-fill-color: #54595d;
+    color: #54595d;
 }
 
 
