@@ -1,25 +1,11 @@
 let stationList
 const chosenStations = new Map()
-let stationOnPageAmount = 2
+let stationOnPageAmount = 0
 
 $(function () {
-    getStationList().then(fillSelectsWithStations)
-    addHandlerForSelects()
-
-    for (let i = 0; i < stationOnPageAmount; i++) {
-        enableDatetimePicker(`datetimepicker-arrival-${i}`)
-    }
-
-    $('#add-station').on('click', () => {
-        let stationNum = stationOnPageAmount++
-        addStationInfoTemplate(stationNum)
-        enableDatetimePicker(`datetimepicker-arrival-${stationNum}`)
-        fillSelectWithStations(stationNum)
-        addHandlerForSelect(stationNum)
-
-        if (stationOnPageAmount === stationList.length) {
-            $('#add-station').hide()
-        }
+    getStationList().then(() => {
+        addStation()
+        addStation()
     })
 
     $('#route-submit').on('click', () => {
@@ -59,65 +45,59 @@ async function sendRoute(url, dto) {
     console.log(returned)
 }
 
-function fillSelectsWithStations() {
-    for (let stationNum = 0; stationNum < stationOnPageAmount; stationNum++) {
-        fillSelectWithStations(stationNum)
-    }
-}
-
 function fillSelectWithStations(stationNum) {
     for (let i = 0; i < stationList.length; i++) {
         let station = stationList[i]
 
-        let pageTemplate = `<option value="${station.id}">${station.name}</option>`
-        $(`#select-station-${stationNum}`).append(pageTemplate)
+        let pageTemplate = `<li>${station.name}</li>`
+        $(`#select-station-${stationNum} ul`).append(pageTemplate)
     }
-    disableDuplicateOptions()
-    selectFirstEnabledOption(stationNum)
-    updateChosenList()
-    disableDuplicateOptions()
-}
-
-function addHandlerForSelects() {
-    for (let stationNum = 0; stationNum < stationOnPageAmount; stationNum++) {
-        addHandlerForSelect(stationNum)
-    }
-}
-
-function addHandlerForSelect(stationNum) {
-    $(`#select-station-${stationNum}`).on('change', () => {
-        updateChosenList()
-        disableDuplicateOptions()
+    selectParts.push({
+        $input: $(`#select-station-${stationNum} input`),
+        $list: $(`#select-station-${stationNum} ul`),
+        $options: $(`#select-station-${stationNum} li`)
     })
+    addHandlersForSelect(stationNum)
 }
 
 function updateChosenList() {
     for (let stationNum = 0; stationNum < stationOnPageAmount; stationNum++) {
-        let chosenStationName = $(`#select-station-${stationNum} option:selected`).text()
+        let chosenStationName = selectParts[stationNum].$input.val()
         chosenStations.set(stationNum, chosenStationName)
     }
 }
 
-function selectFirstEnabledOption(stationNum) {
-    $(`#select-station-${stationNum} option:enabled:first`).prop('selected', true)
-}
-
 function disableDuplicateOptions() {
     for (let stationNum = 0; stationNum < stationOnPageAmount; stationNum++) {
-        $(`#select-station-${stationNum} option`).each(function () {
+        selectParts[stationNum].$options.each(function () {
             if (mapContainsValueDifferentKey(chosenStations, $(this).text(), stationNum)) {
-                $(this).prop('disabled', true)
+                $(this).addClass('disabled')
             } else {
-                $(this).prop('disabled', false)
+                $(this).removeClass('disabled')
             }
         })
+    }
+}
+
+function addStation() {
+    let stationNum = stationOnPageAmount++
+    addStationInfoTemplate(stationNum)
+    enableDatetimePicker(`datetimepicker-arrival-${stationNum}`)
+    fillSelectWithStations(stationNum)
+    disableDuplicateOptions()
+
+    if (stationOnPageAmount >= stationList.length) {
+        $('#add-station').hide()
     }
 }
 
 function addStationInfoTemplate(num) {
     let pageTemplate = `
         <div class="route-station-info" id="route-station-info-${num}">
-            <select class="col-select-station" id="select-station-${num}"></select>
+            <div class="col-select form-select" id="select-station-${num}">
+                <input class="chosen-value" type="text" value="" placeholder="Выберите станцию">
+                <ul class="value-list"></ul>
+            </div>
 
             <div class="col-price input-wrap">
                 <input class="input-field" id="route-station-price-${num}" type="text" placeholder="Цена">
@@ -133,7 +113,19 @@ function addStationInfoTemplate(num) {
             </div>
         </div>`
 
-    $(`#route-station-info-${num - 1}`).after(pageTemplate)
+    $('#route-stations').append(pageTemplate)
+
+    if (num === 0) {
+        $(`#route-station-info-${num}`).append(`
+            <div class="col-add-station">
+                <span id="add-station"><i class="fas fa-plus"></i></span>
+            </div>
+`       )
+
+        $('#add-station').on('click', () => {
+            addStation()
+        })
+    }
 }
 
 function mapContainsValueDifferentKey(map, val, key) {

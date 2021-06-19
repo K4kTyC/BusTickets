@@ -148,6 +148,9 @@ ul.nav-tabs {
     color: #d1d2d3;
 }
 
+
+/*===   Кнопка   ===*/
+
 .form-button {
     cursor: pointer;
     text-align: center;
@@ -220,6 +223,83 @@ ul.nav-tabs {
 
 .form-button-submit:focus {
     color: #d1d2d3;
+}
+
+
+/*===   Селект   ===*/
+
+.form-select {
+    position: relative;
+}
+
+.form-select .chosen-value,
+.form-select .value-list {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.form-select .chosen-value {
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+    font-size: 1.2rem;
+    padding: 0 1rem;
+    background-color: #fafcfd;
+    border: 3px solid transparent;
+    transition: 0.3s ease-in-out;
+    position: relative;
+}
+
+.form-select .chosen-value:hover {
+    background-color: #ff908b;
+    cursor: pointer;
+}
+
+.form-select .chosen-value:focus, .chosen-value.open {
+    box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.2);
+    outline: 0;
+    background-color: #ff908b;
+    color: #000;
+}
+
+.form-select .value-list {
+    list-style: none;
+    margin-top: 3.3rem;
+    box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    max-height: 0;
+    transition: 0.3s ease-in-out;
+    padding: 0;
+    z-index: 1;
+}
+
+.form-select .value-list.open {
+    max-height: 320px;
+    overflow: auto;
+    z-index: 1;
+    background-color: #1a7f2b;
+}
+
+.form-select .value-list li {
+    position: relative;
+    background-color: #fafcfd;
+    padding: 1rem;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    opacity: 1;
+}
+
+.form-select .value-list li:hover {
+    background-color: #ff908b;
+}
+
+.form-select .value-list li.disabled {
+    cursor: not-allowed;
+    background-color: #54595d;
 }
 
 

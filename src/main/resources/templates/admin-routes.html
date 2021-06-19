@@ -39,43 +39,7 @@
                 <input class="input-field" id="route-name" type="text" placeholder="Название маршрута">
             </div>
 
-            <div class="route-station-info" id="route-station-info-0">
-                <select class="col-select-station" id="select-station-0"></select>
-
-                <div class="col-price input-wrap">
-                    <input class="input-field" id="route-station-price-0" type="text" placeholder="Цена">
-                </div>
-
-                <div class="col-datetime">
-                    <div class="input-wrap input-group date" id="datetimepicker-arrival-0" data-target-input="nearest">
-                        <input type="text" class="form-control datetimepicker-input input-field" data-target="#datetimepicker-arrival-0" placeholder="Время прибытия"/>
-                        <div class="input-group-append input-date-btn" data-target="#datetimepicker-arrival-0" data-toggle="datetimepicker">
-                            <div class="input-group-text"><i class="fas fa-calendar"></i></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-add-station">
-                    <span id="add-station"><i class="fas fa-plus"></i></span>
-                </div>
-            </div>
-
-            <div class="route-station-info" id="route-station-info-1">
-                <select class="col-select-station" id="select-station-1"></select>
-
-                <div class="col-price input-wrap">
-                    <input class="input-field" id="route-station-price-1" type="text" placeholder="Цена">
-                </div>
-
-                <div class="col-datetime">
-                    <div class="input-wrap input-group date" id="datetimepicker-arrival-1" data-target-input="nearest">
-                        <input type="text" class="form-control datetimepicker-input input-field" data-target="#datetimepicker-arrival-1" placeholder="Время прибытия"/>
-                        <div class="input-group-append input-date-btn" data-target="#datetimepicker-arrival-1" data-toggle="datetimepicker">
-                            <div class="input-group-text"><i class="fas fa-calendar"></i></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div id="route-stations"></div>
 
             <div class="col-submit">
                 <a class="form-control form-button" id="route-submit"><span>Добавить</span></a>
@@ -95,6 +59,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" integrity="sha512-RXf+QSDCUQs5uwRKaDoXt55jygZZm2V++WUZduaU/Ui/9EGp3f/2KZVahFZBKGH0s774sd3HmrhUy+SgOFQLVQ==" crossorigin="anonymous"></script>
 <script type="text/javascript" th:src="@{/js/Main.js}"></script>
 <script type="text/javascript" th:src="@{/js/DateTimePicker.js}"></script>
+<script type="text/javascript" th:src="@{/js/CustomSelect.js}"></script>
 <script type="text/javascript" th:src="@{/js/AdminRoutes.js}"></script>
 </body>
 </html>

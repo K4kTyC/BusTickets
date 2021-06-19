@@ -21,7 +21,7 @@
     flex-wrap: wrap;
 }
 
-.col-select-station, .col-price, .col-datetime {
+.col-select, .col-price, .col-datetime {
     flex: 0 0 calc(30% - 2rem);
     max-width: calc(30% - 2rem);
     margin: 0 1rem;
