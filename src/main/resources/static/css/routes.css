@@ -16,7 +16,7 @@
 .route-station-info {
     flex: 0 0 calc(100% - 2rem);
     max-width: calc(100% - 2rem);
-    margin: 1rem;
+    margin: 1.5rem 1rem;
     display: flex;
     flex-wrap: wrap;
 }

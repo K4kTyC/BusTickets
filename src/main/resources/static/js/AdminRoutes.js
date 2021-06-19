@@ -54,6 +54,7 @@ function fillSelectWithStations(stationNum) {
     }
     selectParts.push({
         $input: $(`#select-station-${stationNum} input`),
+        $arrow: $(`#select-station-${stationNum} .select-arrow`),
         $list: $(`#select-station-${stationNum} ul`),
         $options: $(`#select-station-${stationNum} li`)
     })
@@ -96,6 +97,7 @@ function addStationInfoTemplate(num) {
         <div class="route-station-info" id="route-station-info-${num}">
             <div class="col-select form-select" id="select-station-${num}">
                 <input class="chosen-value" type="text" value="" placeholder="Выберите станцию">
+                <div class="select-arrow"></div>
                 <ul class="value-list"></ul>
             </div>
 

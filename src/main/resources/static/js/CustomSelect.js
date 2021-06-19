@@ -2,6 +2,7 @@ let selectParts = []
 
 function addHandlersForSelect(stationNum) {
     let $input = selectParts[stationNum].$input
+    let $arrow = selectParts[stationNum].$arrow
     let $list = selectParts[stationNum].$list
     let $options = selectParts[stationNum].$options
 
@@ -26,6 +27,7 @@ function addHandlersForSelect(stationNum) {
     $input.on('focus', () => {
         $input.attr('placeholder', 'Фильтр по названию');
         $input.addClass('open')
+        $arrow.addClass('open')
         $list.addClass('open');
         $options.each((i, el) => {
             $(el).removeClass('closed');
@@ -35,6 +37,7 @@ function addHandlersForSelect(stationNum) {
     $input.on('blur', () => {
         $input.attr('placeholder', 'Выберите станцию');
         $input.removeClass('open')
+        $arrow.removeClass('open')
         $list.removeClass('open');
     });
 
@@ -48,5 +51,9 @@ function addHandlersForSelect(stationNum) {
                 $input.focus()
             }
         });
+    })
+
+    $arrow.on('click', () => {
+        $($input).focus()
     })
 }
