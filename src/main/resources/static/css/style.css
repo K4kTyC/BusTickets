@@ -14,6 +14,9 @@ body {
     min-height: calc(100vh - var(--navbar-height))
 }
 
+.fa-trash {
+    cursor: pointer;
+}
 
 /*===   Модальное окно входа   ===*/
 

@@ -68,8 +68,10 @@ function fillPageWithModels(data) {
         $('#bus-list-elements').append(pageTemplate)
 
         $(`#rm-${model.id}`).on('click', function () {
-            removeModel(model.id)
-            $(`#model-${model.id}`).remove()
+            if (confirm("Удалить модель автобуса?")) {
+                removeModel(model.id)
+                $(`#model-${model.id}`).remove()
+            }
         })
     }
 

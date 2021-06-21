@@ -64,8 +64,10 @@ function fillPageWithStations(data) {
         $('#station-list-elements').append(pageTemplate)
 
         $(`#rm-${station.id}`).on('click', function () {
-            removeStation(station.id)
-            $(`#station-${station.id}`).remove()
+            if (confirm("Удалить станцию?")) {
+                removeStation(station.id)
+                $(`#station-${station.id}`).remove()
+            }
         })
     }
 
