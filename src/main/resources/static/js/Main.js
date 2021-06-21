@@ -43,7 +43,7 @@ function addProfileButtons(data) {
     document.getElementById('unauthLink').remove()
 
     if (data.role === 'ROLE_ADMIN') {
-        document.getElementById('mainNavbar').insertAdjacentHTML('beforeend', `
+        document.getElementById('navbarSupportedContent').insertAdjacentHTML('beforeend', `
             <a id="trips" class="nav-link nav-link-main" href="/admin/trips">Добавить рейс</a>
             <a id="buses" class="nav-link nav-link-main" href="/admin/buses">Автобусы</a>
             <a id="routes" class="nav-link nav-link-main" href="/admin/routes">Маршруты</a>
@@ -54,7 +54,7 @@ function addProfileButtons(data) {
         $('#trip-info-pass-data').remove()
     }
 
-    document.getElementById('mainNavbar').insertAdjacentHTML('beforeend', `
+    document.getElementById('navbarSupportedContent').insertAdjacentHTML('beforeend', `
             <div class="nav-item dropdown">
                 <a class="nav-link nav-link-main dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 ${data.username}
