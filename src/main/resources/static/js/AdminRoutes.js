@@ -15,14 +15,21 @@ $(function () {
         }
 
         for (let i = 0; i < stationOnPageAmount; i++) {
+            let id
+            for (const s of stationList) {
+                if (s.name === chosenStations.get(i)) {
+                    id = s.id
+                    break
+                }
+            }
+
             let routeStation = {
-                stationId: $(`#select-station-${i}`).val(),
+                stationId: id,
                 arrivalTime: $(`#datetimepicker-arrival-${i}`).datetimepicker('date').parseZone().toJSON(),
                 price: $(`#route-station-price-${i}`).val()
             }
             routeDto.routeStations.push(routeStation)
         }
-
         sendRoute('/api/admin/routes', routeDto)
     })
 })
@@ -56,9 +63,10 @@ function fillSelectWithStations(stationNum) {
         $input: $(`#select-station-${stationNum} input`),
         $arrow: $(`#select-station-${stationNum} .select-arrow`),
         $list: $(`#select-station-${stationNum} ul`),
-        $options: $(`#select-station-${stationNum} li`)
+        $options: $(`#select-station-${stationNum} li`),
+        valueArray: stationList
     })
-    addHandlersForSelect(stationNum)
+    addHandlersForSelect(stationNum, 'Фильтр по названию', 'Выберите станцию')
 }
 
 function updateChosenList() {

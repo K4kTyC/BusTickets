@@ -1,5 +1,6 @@
 package com.k4ktyc.bustickets.domain;
 
+import com.k4ktyc.bustickets.domain.dto.BusModelDto;
 import lombok.Getter;
 import lombok.Setter;
 

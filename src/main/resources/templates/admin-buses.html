@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;500&family=Roboto&display=swap">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/buses.css}">
+
+    <link rel="apple-touch-icon" sizes="180x180" th:href="@{/img/favicon/apple-touch-icon.png}">
+    <link rel="icon" type="image/png" sizes="32x32" th:href="@{/img/favicon/favicon-32x32.png}">
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/img/favicon/favicon-16x16.png}">
+    <link rel="manifest" th:href="@{/img/favicon/site.webmanifest}">
+    <link rel="mask-icon" th:href="@{/img/favicon/safari-pinned-tab.svg}" color="#42843b">
+    <meta name="msapplication-TileColor" content="#292f34">
+    <meta name="theme-color" content="#ffffff">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Управление автобусами - Bus Ticket
+    </title>
+
+</head>
+<body>
+
+<div th:replace="blocks/navigation :: navigation"></div>
+
+<div class="d-flex flex-column wrapper">
+
+    <div class="container" id="bus-list">
+        <div class="bus-form">
+            <div class="bus-form-row">
+                <div class="col-filter input-wrap">
+                    <input class="input-field" id="bus-filter" type="text" placeholder="Фильтр по модели">
+                </div>
+
+                <div class="col-name input-wrap">
+                    <input class="input-field" id="bus-name" type="text" placeholder="Модель автобуса">
+                </div>
+
+                <div class="col-select form-select" id="select-class">
+                    <input class="chosen-value" type="text" value="" placeholder="Класс автобуса">
+                    <div class="select-arrow"></div>
+                    <ul class="value-list"></ul>
+                </div>
+
+                <div class="col-seats input-wrap">
+                    <input class="input-field" id="bus-seats" type="text" placeholder="Кол-во мест">
+                </div>
+
+                <div class="col-submit">
+                    <a class="form-control form-button" id="bus-submit"><span>Добавить</span></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row bus-list-elements justify-content-center" id="bus-list-elements"></div>
+
+        <nav class="pagination-wrap" aria-label="Page navigation" id="pagination">
+            <ul class="pagination-list justify-content-center my-3">
+                <li id="page-prev-li">
+                    <a class="pagination-link" id="page-prev" aria-label="Previous">
+                        <span><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li id="page-next-li">
+                    <a class="pagination-link" id="page-next" aria-label="Next">
+                        <span><i class="fas fa-chevron-right"></i></span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div th:replace="blocks/footer :: footer"></div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+<script type="text/javascript" th:src="@{/js/Main.js}"></script>
+<script type="text/javascript" th:src="@{/js/CustomSelect.js}"></script>
+<script type="text/javascript" th:src="@{/js/AdminBuses.js}"></script>
+</body>
+</html>

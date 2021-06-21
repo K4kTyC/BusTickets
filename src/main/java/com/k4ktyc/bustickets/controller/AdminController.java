@@ -1,14 +1,8 @@
 package com.k4ktyc.bustickets.controller;
 
-import com.k4ktyc.bustickets.domain.Route;
-import com.k4ktyc.bustickets.domain.RouteStation;
-import com.k4ktyc.bustickets.domain.Station;
+import com.k4ktyc.bustickets.domain.*;
 import com.k4ktyc.bustickets.domain.dto.*;
-import com.k4ktyc.bustickets.domain.Trip;
-import com.k4ktyc.bustickets.service.RouteService;
-import com.k4ktyc.bustickets.service.RouteStationService;
-import com.k4ktyc.bustickets.service.StationService;
-import com.k4ktyc.bustickets.service.TripService;
+import com.k4ktyc.bustickets.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @RestController
 @RequestMapping("/api/admin")
@@ -25,16 +21,19 @@ public class AdminController {
     private final StationService stationService;
     private final RouteService routeService;
     private final RouteStationService routeStationService;
+    private final BusService busService;
 
     @Autowired
     public AdminController(TripService tripService,
                            StationService stationService,
                            RouteService routeService,
-                           RouteStationService routeStationService) {
+                           RouteStationService routeStationService,
+                           BusService busService) {
         this.tripService = tripService;
         this.stationService = stationService;
         this.routeService = routeService;
         this.routeStationService = routeStationService;
+        this.busService = busService;
     }
 
 
@@ -83,7 +82,38 @@ public class AdminController {
         return new CreateEntityResponse("Маршрут был успешно создан.", route.getId());
     }
 
-    
+    @GetMapping("/buses/classes")
+    public List<BusClassDto> getBusClasses() {
+        return StreamSupport.stream(busService.getBusClasses().spliterator(), false)
+                .map(BusClassDto::new).collect(Collectors.toList());
+    }
+
+    @GetMapping("/buses/models")
+    public Page<BusModelDto> getBusModels(@RequestParam(defaultValue = "0") int page,
+                                          @RequestParam(defaultValue = "") String filter,
+                                          @RequestParam(defaultValue = "false") boolean unpaged) {
+        if (unpaged) {
+            return busService.getBusModels(unpaged);
+        }
+        
+        if (filter.isBlank())
+            return busService.getBusModels(page);
+        else
+            return busService.getBusModels(page, filter);
+    }
+
+    @PostMapping(path = "/buses/models", consumes = "application/json")
+    public CreateEntityResponse addNewBusModel(@RequestBody @Valid BusModelDto busModelDto) {
+        BusModelDto newBusModel = busService.save(busModelDto);
+
+        return new CreateEntityResponse("Модель была успешно создана.", newBusModel.getId());
+    }
+
+    @DeleteMapping(path = "/buses/models", consumes = "application/json")
+    public void deleteBusModel(@RequestBody long id) {
+        busService.deleteById(id);
+    }
+
 
     private Route createRouteFromDto(RouteDto routeDto) {
         Route route = new Route();

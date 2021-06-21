@@ -16,9 +16,6 @@ public class BusDto {
     private int number;
 
     @NotNull
-    private String busClass;
-
-    @NotNull
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private int numberOfSeats;
 
@@ -30,7 +27,6 @@ public class BusDto {
 
     public BusDto(Bus bus) {
         this.number = bus.getNumber();
-        this.busClass = bus.getBusClass();
         this.seats = bus.getSeats()
                 .stream().map(SeatDto::new)
                 .collect(Collectors.toCollection(ArrayList::new));

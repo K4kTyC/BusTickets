@@ -17,22 +17,7 @@ public class TripDto {
     private long routeId;
 
     @NotNull
-    private StationDto stationStart;
-
-    @NotNull
-    private StationDto stationFinish;
-
-    @NotNull
-    private LocalDateTime datetimeStart;
-
-    @NotNull
-    private LocalDateTime datetimeFinish;
-
-    @NotNull
     private BusDto bus;
-
-    @NotNull
-    private long price;
 
 
     public TripDto() {}
@@ -40,11 +25,6 @@ public class TripDto {
     public TripDto(Trip trip) {
         this.id = trip.getId();
         this.routeId = trip.getRoute().getId();
-        this.stationStart = new StationDto(trip.getStationStart());
-        this.stationFinish = new StationDto(trip.getStationFinish());
-        this.datetimeStart = trip.getDatetimeStart();
-        this.datetimeFinish = trip.getDatetimeFinish();
         this.bus = new BusDto(trip.getBus());
-        this.price = trip.getPrice();
     }
 }

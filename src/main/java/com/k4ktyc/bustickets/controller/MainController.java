@@ -51,6 +51,11 @@ public class MainController {
         return "admin-routes";
     }
 
+    @GetMapping("/admin/buses")
+    public String buses() {
+        return "admin-buses";
+    }
+
     @GetMapping("/orders")
     public String orders() {
         return "orders";
@@ -66,31 +71,6 @@ public class MainController {
         DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm");
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
-        String timeStart = trip.get().getDatetimeStart().format(timeFormat);
-        String dateStart = trip.get().getDatetimeStart().format(dateFormat);
-        String timeFinish = trip.get().getDatetimeFinish().format(timeFormat);
-        String dateFinish = trip.get().getDatetimeFinish().format(dateFormat);
-        String busClass = trip.get().getBus()
-                .getBusClass().equals("Econom") ? "Автобус эконом-класса" : "Автобус бизнес-класса";
-
-        long millis = Duration.between(trip.get().getDatetimeStart(), trip.get().getDatetimeFinish()).toMillis();
-        long hours = TimeUnit.MILLISECONDS.toHours(millis);
-        long minutes = TimeUnit.MILLISECONDS.toMinutes(millis) - TimeUnit.HOURS.toMinutes(hours);
-
-        if (hours == 0) {
-            model.addAttribute("tripTotalTime", String.format("%d мин", minutes));
-        } else if (minutes == 0) {
-            model.addAttribute("tripTotalTime", String.format("%d ч", hours));
-        } else {
-            model.addAttribute("tripTotalTime", String.format("%d ч, %d мин", hours, minutes));
-        }
-
-        model.addAttribute("trip", trip.get());
-        model.addAttribute("tripTimeStart", timeStart);
-        model.addAttribute("tripDateStart", dateStart);
-        model.addAttribute("tripTimeFinish", timeFinish);
-        model.addAttribute("tripDateFinish", dateFinish);
-        model.addAttribute("tripBusClass", busClass);
         return "trip-info";
     }
 }

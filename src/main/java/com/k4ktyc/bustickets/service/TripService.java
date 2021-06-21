@@ -31,17 +31,6 @@ public class TripService {
         return pagedTrips.map(TripDto::new);
     }
 
-    public Page<TripDto> findTrip(int pageNumber, TripSearchData tripSearchData) {
-        PageRequest paging = PageRequest.of(pageNumber, 10);
-        Page<Trip> pagedTrips = tripRepository
-                .findTripsByStationStartEqualsAndStationFinishEqualsAndDatetimeStartBetween(
-                        paging, tripSearchData.getStationFrom(), tripSearchData.getStationTo(),
-                        tripSearchData.getTripDate(), LocalDateTime.of(tripSearchData.getTripDate().toLocalDate(), LocalTime.MAX)
-                );
-
-        return pagedTrips.map(TripDto::new);
-    }
-
     public Optional<Trip> findById(long id) {
         return tripRepository.findById(id);
     }
