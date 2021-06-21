@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Getter @Setter
 public class Seat {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(generator = "optimized-sequence")
     private long id;
 
     private int number;

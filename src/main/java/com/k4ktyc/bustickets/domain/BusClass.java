@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Getter @Setter
 public class BusClass {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(generator = "optimized-sequence")
     private long id;
 
     private String name;

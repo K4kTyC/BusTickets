@@ -11,7 +11,7 @@ import java.util.List;
 @Getter @Setter
 public class Role {
 
-    @Id
+    @Id @GeneratedValue(generator = "optimized-sequence")
     private long id;
 
     private String value;

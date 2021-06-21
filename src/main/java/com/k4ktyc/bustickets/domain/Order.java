@@ -15,7 +15,7 @@ import java.util.List;
 @Getter @Setter
 public class Order {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(generator = "optimized-sequence")
     private long id;
 
     @ManyToOne

@@ -12,7 +12,7 @@ import java.util.List;
 @Getter @Setter
 public class User {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(generator = "optimized-sequence")
     private long id;
 
     private String username;

@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Getter @Setter
 public class RouteStation {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(generator = "optimized-sequence")
     private long id;
 
     @ManyToOne

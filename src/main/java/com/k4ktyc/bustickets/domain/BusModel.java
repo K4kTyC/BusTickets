@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Getter @Setter
 public class BusModel {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(generator = "optimized-sequence")
     private long id;
 
     private String name;

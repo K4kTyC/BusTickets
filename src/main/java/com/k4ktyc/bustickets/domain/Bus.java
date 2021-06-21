@@ -13,7 +13,7 @@ import java.util.List;
 @Getter @Setter
 public class Bus {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(generator = "optimized-sequence")
     private long id;
 
     @ManyToOne

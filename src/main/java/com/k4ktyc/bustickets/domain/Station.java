@@ -12,7 +12,7 @@ import java.util.List;
 @Getter @Setter
 public class Station {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(generator = "optimized-sequence")
     private long id;
 
     @Column(unique = true)
