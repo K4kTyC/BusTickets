@@ -73,6 +73,19 @@ function enableDatetimePicker(id) {
     $(`#${id}`).datetimepicker({})
 }
 
+let prevScrollpos = window.pageYOffset;
+window.onscroll = function() {
+    const currentScrollPos = window.pageYOffset;
+    if (prevScrollpos > currentScrollPos) {
+        document.getElementById("mainNavbar").style.top = "0";
+    } else {
+        if ($('.navbar-toggler').attr('aria-expanded') === 'false') {
+            document.getElementById("mainNavbar").style.top = "calc(-48px - 4px - 2rem)";
+        }
+    }
+    prevScrollpos = currentScrollPos;
+}
+
 document.getElementById('login-submit').addEventListener('click', function () {
     let form = document.getElementById('login-form')
     form.submit()

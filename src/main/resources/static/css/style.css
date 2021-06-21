@@ -381,6 +381,7 @@ ul.nav-tabs {
     linear-gradient(to right, #006838, #4caa13);
     background-origin: border-box;
     background-clip: padding-box, border-box;
+    transition: top 0.3s;
 }
 
 .navbar-brand {
