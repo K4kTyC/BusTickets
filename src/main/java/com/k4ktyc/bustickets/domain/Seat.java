@@ -18,13 +18,7 @@ public class Seat {
     private boolean isFree = true;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "bus_id", nullable = false, updatable = false)
-    private Bus bus;
+    @JoinColumn(name = "trip_id", nullable = false, updatable = false)
+    private Trip trip;
 
-    public Seat() {}
-
-    public Seat(int number, Bus bus) {
-        this.number = number;
-        this.bus = bus;
-    }
 }

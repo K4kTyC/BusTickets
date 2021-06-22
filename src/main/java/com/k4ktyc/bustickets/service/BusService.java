@@ -1,10 +1,13 @@
 package com.k4ktyc.bustickets.service;
 
+import com.k4ktyc.bustickets.domain.Bus;
 import com.k4ktyc.bustickets.domain.BusClass;
 import com.k4ktyc.bustickets.domain.BusModel;
+import com.k4ktyc.bustickets.domain.dto.BusDto;
 import com.k4ktyc.bustickets.domain.dto.BusModelDto;
 import com.k4ktyc.bustickets.repository.BusClassRepository;
 import com.k4ktyc.bustickets.repository.BusModelRepository;
+import com.k4ktyc.bustickets.repository.BusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,11 +20,15 @@ public class BusService {
 
     private final BusClassRepository busClassRepository;
     private final BusModelRepository busModelRepository;
+    private final BusRepository busRepository;
 
     @Autowired
-    public BusService(BusClassRepository busClassRepository, BusModelRepository busModelRepository) {
+    public BusService(BusClassRepository busClassRepository,
+                      BusModelRepository busModelRepository,
+                      BusRepository busRepository) {
         this.busClassRepository = busClassRepository;
         this.busModelRepository = busModelRepository;
+        this.busRepository = busRepository;
     }
 
 
@@ -54,9 +61,33 @@ public class BusService {
         return unpagedModels.map(this::createDtoFromModel);
     }
 
-    public void deleteById(long id) {
+    public void deleteModelById(long id) {
         busModelRepository.deleteById(id);
     }
+
+
+    public BusDto save(BusDto busDto) {
+        Bus bus = createBusFromDto(busDto);
+        return createDtoFromBus(busRepository.save(bus));
+    }
+
+    public Page<BusDto> getBuses(int pageNumber) {
+        PageRequest paging = PageRequest.of(pageNumber, 20);
+        Page<Bus> pagedBuses = busRepository.findAll(paging);
+
+        return pagedBuses.map(this::createDtoFromBus);
+    }
+
+    public Page<BusDto> getBuses(boolean isUnpaged) {
+        Page<Bus> unpagedBuses = busRepository.findAll(Pageable.unpaged());
+
+        return unpagedBuses.map(this::createDtoFromBus);
+    }
+
+    public void deleteBusById(long id) {
+        busRepository.deleteById(id);
+    }
+
 
 
     private BusModelDto createDtoFromModel(BusModel bm) {
@@ -78,5 +109,24 @@ public class BusService {
         bm.setBusClass(busClass);
 
         return bm;
+    }
+
+    private BusDto createDtoFromBus(Bus bus) {
+        BusDto dto = new BusDto();
+        dto.setId(bus.getId());
+        dto.setNumber(bus.getNumber());
+        dto.setModel(createDtoFromModel(bus.getModel()));
+
+        return dto;
+    }
+
+    private Bus createBusFromDto(BusDto dto) {
+        Bus bus = new Bus();
+        BusModel model = busModelRepository.findById(dto.getModelId()).get();
+
+        bus.setNumber(dto.getNumber());
+        bus.setModel(model);
+
+        return bus;
     }
 }

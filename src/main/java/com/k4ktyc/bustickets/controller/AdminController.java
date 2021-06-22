@@ -1,14 +1,16 @@
 package com.k4ktyc.bustickets.controller;
 
-import com.k4ktyc.bustickets.domain.*;
+import com.k4ktyc.bustickets.domain.Route;
+import com.k4ktyc.bustickets.domain.Station;
 import com.k4ktyc.bustickets.domain.dto.*;
-import com.k4ktyc.bustickets.service.*;
+import com.k4ktyc.bustickets.service.BusService;
+import com.k4ktyc.bustickets.service.RouteService;
+import com.k4ktyc.bustickets.service.StationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -17,30 +19,17 @@ import java.util.stream.StreamSupport;
 @RequestMapping("/api/admin")
 public class AdminController {
 
-    private final TripService tripService;
     private final StationService stationService;
     private final RouteService routeService;
-    private final RouteStationService routeStationService;
     private final BusService busService;
 
     @Autowired
-    public AdminController(TripService tripService,
-                           StationService stationService,
+    public AdminController(StationService stationService,
                            RouteService routeService,
-                           RouteStationService routeStationService,
                            BusService busService) {
-        this.tripService = tripService;
         this.stationService = stationService;
         this.routeService = routeService;
-        this.routeStationService = routeStationService;
         this.busService = busService;
-    }
-
-
-    @PostMapping(path = "/create-trip", consumes = "application/json")
-    public CreateEntityResponse addNewTrip(@RequestBody @Valid TripDto tripDto) {
-        Trip newTrip = new Trip(tripDto);
-        return new CreateEntityResponse("Рейс был успешно добавлен.", tripService.save(newTrip).getId());
     }
 
 
@@ -115,6 +104,29 @@ public class AdminController {
 
     @DeleteMapping(path = "/buses/models", consumes = "application/json")
     public void deleteBusModel(@RequestBody long id) {
-        busService.deleteById(id);
+        busService.deleteModelById(id);
+    }
+
+
+    @GetMapping("/buses")
+    public Page<BusDto> getBuses(@RequestParam(defaultValue = "0") int page,
+                                 @RequestParam(defaultValue = "false") boolean unpaged) {
+        if (unpaged) {
+            return busService.getBuses(unpaged);
+        }
+
+        return busService.getBuses(page);
+    }
+
+    @PostMapping(path = "/buses", consumes = "application/json")
+    public CreateEntityResponse addNewBus(@RequestBody @Valid BusDto busDto) {
+        BusDto newBus = busService.save(busDto);
+
+        return new CreateEntityResponse("Автобус был успешно добавлен.", newBus.getId());
+    }
+
+    @DeleteMapping(path = "/buses", consumes = "application/json")
+    public void deleteBus(@RequestBody long id) {
+        busService.deleteBusById(id);
     }
 }

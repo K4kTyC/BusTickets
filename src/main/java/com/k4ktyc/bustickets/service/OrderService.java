@@ -21,11 +21,11 @@ public class OrderService {
         this.passengerService = passengerService;
     }
 
-    public Page<OrderDto> findOrdersByPassenger(int pageNumber, Passenger passenger) {
-        PageRequest paging = PageRequest.of(pageNumber, 10);
-        Page<Order> pagedOrders = orderRepository.findOrdersByPassengersContains(paging, passenger);
-        return pagedOrders.map(OrderDto::new);
-    }
+//    public Page<OrderDto> findOrdersByPassenger(int pageNumber, Passenger passenger) {
+//        PageRequest paging = PageRequest.of(pageNumber, 10);
+//        Page<Order> pagedOrders = orderRepository.findOrdersByPassengersContains(paging, passenger);
+//        return pagedOrders.map(OrderDto::new);
+//    }
 
     public long countByPassenger(Passenger passenger) {
         return orderRepository.countByPassengersContains(passenger);

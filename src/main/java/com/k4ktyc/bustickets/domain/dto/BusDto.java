@@ -1,34 +1,25 @@
 package com.k4ktyc.bustickets.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.k4ktyc.bustickets.domain.Bus;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
-@Getter
+@Getter @Setter
 public class BusDto {
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private long id;
 
     @NotNull
     private int number;
 
     @NotNull
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private int numberOfSeats;
+    private long modelId;
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private List<SeatDto> seats;
+    private BusModelDto model;
 
-
-    public BusDto() {}
-
-    public BusDto(Bus bus) {
-        this.number = bus.getNumber();
-        this.seats = bus.getSeats()
-                .stream().map(SeatDto::new)
-                .collect(Collectors.toCollection(ArrayList::new));
-    }
 }

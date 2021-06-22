@@ -21,8 +21,8 @@ public class TripController {
     }
 
 
-    @GetMapping
-    public Page<TripDto> getAllTrips(@RequestParam(defaultValue = "0") int page) {
-        return tripService.getAllTrips(page);
-    }
+//    @GetMapping
+//    public Page<TripDto> getAllTrips(@RequestParam(defaultValue = "0") int page) {
+//        return tripService.getAllTrips(page);
+//    }
 }

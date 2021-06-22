@@ -1,10 +1,10 @@
 package com.k4ktyc.bustickets.domain;
 
-import com.k4ktyc.bustickets.domain.dto.TripDto;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "trips")
@@ -18,15 +18,11 @@ public class Trip {
     @JoinColumn(name = "route_id", nullable = false)
     private Route route;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "bus_id", nullable = false)
     private Bus bus;
 
+    @OneToMany(mappedBy = "trip", cascade = CascadeType.ALL)
+    private List<Seat> seats;
 
-    public Trip() {}
-
-    public Trip(TripDto tripDto) {
-        this.bus = new Bus(tripDto.getBus());
-        this.bus.setTrip(this);
-    }
 }

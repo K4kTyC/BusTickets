@@ -19,12 +19,4 @@ public class TripDto {
     @NotNull
     private BusDto bus;
 
-
-    public TripDto() {}
-
-    public TripDto(Trip trip) {
-        this.id = trip.getId();
-        this.routeId = trip.getRoute().getId();
-        this.bus = new BusDto(trip.getBus());
-    }
 }

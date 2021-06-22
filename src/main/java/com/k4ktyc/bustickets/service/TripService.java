@@ -24,12 +24,12 @@ public class TripService {
     }
 
 
-    public Page<TripDto> getAllTrips(int pageNumber) {
-        PageRequest paging = PageRequest.of(pageNumber, 10);
-        Page<Trip> pagedTrips = tripRepository.findAll(paging);
-
-        return pagedTrips.map(TripDto::new);
-    }
+//    public Page<TripDto> getAllTrips(int pageNumber) {
+//        PageRequest paging = PageRequest.of(pageNumber, 10);
+//        Page<Trip> pagedTrips = tripRepository.findAll(paging);
+//
+//        return pagedTrips.map(TripDto::new);
+//    }
 
     public Optional<Trip> findById(long id) {
         return tripRepository.findById(id);

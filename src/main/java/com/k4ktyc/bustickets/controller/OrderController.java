@@ -61,33 +61,33 @@ public class OrderController {
         return userOrdersDtoList;
     }
 
-    @PostMapping(path = "/search", consumes = "application/json")
-    public Page<OrderDto> findOrders(@RequestParam(defaultValue = "0") int page, @RequestBody @Valid OrderSearchData orderSearchData) {
-        Passenger passenger = passengerService.findByNameAndLastname(orderSearchData.getName(), orderSearchData.getLastname()).get();
-        return orderService.findOrdersByPassenger(page, passenger);
-    }
-
-    @PostMapping(consumes = "application/json")
-    public CreateOrderResponse createOrder(@RequestBody @Valid NewOrderDto newOrderDto, Principal principal) {
-        Trip trip = tripService.findById(newOrderDto.getTripId()).get();
-        Seat chosenSeat = null;
-        for (Seat s : trip.getBus().getSeats()) {
-            if (s.getNumber() == newOrderDto.getSeatNumber()) {
-                chosenSeat = s;
-                break;
-            }
-        }
-        if (chosenSeat == null) {
-            return new CreateOrderResponse("Выбранное место уже занято.", 0);
-        }
-        chosenSeat.setFree(false);
-        tripService.save(trip);
-
-        User user = userService.findByUsername(principal.getName()).get();
-
-        Order newOrder = new Order(newOrderDto, trip, user);
-        Order savedOrder = orderService.save(newOrder);
-
-        return new CreateOrderResponse("Заказ обработан, спасибо за покупку!", savedOrder.getId());
-    }
+//    @PostMapping(path = "/search", consumes = "application/json")
+//    public Page<OrderDto> findOrders(@RequestParam(defaultValue = "0") int page, @RequestBody @Valid OrderSearchData orderSearchData) {
+//        Passenger passenger = passengerService.findByNameAndLastname(orderSearchData.getName(), orderSearchData.getLastname()).get();
+//        return orderService.findOrdersByPassenger(page, passenger);
+//    }
+//
+//    @PostMapping(consumes = "application/json")
+//    public CreateOrderResponse createOrder(@RequestBody @Valid NewOrderDto newOrderDto, Principal principal) {
+//        Trip trip = tripService.findById(newOrderDto.getTripId()).get();
+//        Seat chosenSeat = null;
+//        for (Seat s : trip.getBus().getSeats()) {
+//            if (s.getNumber() == newOrderDto.getSeatNumber()) {
+//                chosenSeat = s;
+//                break;
+//            }
+//        }
+//        if (chosenSeat == null) {
+//            return new CreateOrderResponse("Выбранное место уже занято.", 0);
+//        }
+//        chosenSeat.setFree(false);
+//        tripService.save(trip);
+//
+//        User user = userService.findByUsername(principal.getName()).get();
+//
+//        Order newOrder = new Order(newOrderDto, trip, user);
+//        Order savedOrder = orderService.save(newOrder);
+//
+//        return new CreateOrderResponse("Заказ обработан, спасибо за покупку!", savedOrder.getId());
+//    }
 }
