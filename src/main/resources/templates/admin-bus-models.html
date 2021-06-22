@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;500&family=Roboto&display=swap">
     <link rel="stylesheet" th:href="@{/css/style.css}">
-    <link rel="stylesheet" th:href="@{/css/buses.css}">
+    <link rel="stylesheet" th:href="@{/css/bus-models.css}">
 
     <link rel="apple-touch-icon" sizes="180x180" th:href="@{/img/favicon/apple-touch-icon.png}">
     <link rel="icon" type="image/png" sizes="32x32" th:href="@{/img/favicon/favicon-32x32.png}">
@@ -21,7 +21,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>
-        Управление автобусами - Bus Ticket
+        Управление моделями автобусов - Bus Ticket
     </title>
 
 </head>
@@ -32,14 +32,14 @@
 <div class="d-flex flex-column wrapper">
 
     <div class="container" id="bus-list">
-        <div class="bus-form">
-            <div class="bus-form-row">
+        <div class="model-form">
+            <div class="model-form-row">
                 <div class="col-filter input-wrap">
-                    <input class="input-field" id="bus-filter" type="text" placeholder="Фильтр по модели">
+                    <input class="input-field" id="model-filter" type="text" placeholder="Фильтр по модели">
                 </div>
 
                 <div class="col-name input-wrap">
-                    <input class="input-field" id="bus-name" type="text" placeholder="Модель автобуса">
+                    <input class="input-field" id="model-name" type="text" placeholder="Модель автобуса">
                 </div>
 
                 <div class="col-select form-select" id="select-class">
@@ -49,16 +49,16 @@
                 </div>
 
                 <div class="col-seats input-wrap">
-                    <input class="input-field" id="bus-seats" type="text" placeholder="Кол-во мест">
+                    <input class="input-field" id="model-seats" type="text" placeholder="Кол-во мест">
                 </div>
 
                 <div class="col-submit">
-                    <a class="form-control form-button" id="bus-submit"><span>Добавить</span></a>
+                    <a class="form-control form-button" id="model-submit"><span>Добавить</span></a>
                 </div>
             </div>
         </div>
 
-        <div class="row bus-list-elements justify-content-center" id="bus-list-elements"></div>
+        <div class="row model-list-elements justify-content-center" id="model-list-elements"></div>
 
         <nav class="pagination-wrap" aria-label="Page navigation" id="pagination">
             <ul class="pagination-list justify-content-center my-3">
@@ -84,6 +84,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 <script type="text/javascript" th:src="@{/js/Main.js}"></script>
 <script type="text/javascript" th:src="@{/js/CustomSelect.js}"></script>
-<script type="text/javascript" th:src="@{/js/AdminBuses.js}"></script>
+<script type="text/javascript" th:src="@{/js/AdminBusModels.js}"></script>
 </body>
 </html>
