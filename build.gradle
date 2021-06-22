@@ -36,7 +36,7 @@ flyway {
     url = System.getenv('SPRING_DATASOURCE_URL')
     user = System.getenv('SPRING_DATASOURCE_USERNAME')
     password = System.getenv('SPRING_DATASOURCE_PASSWORD')
-    schemas = ['bustickets']
+    schemas = ['db']
 }
 
 test {

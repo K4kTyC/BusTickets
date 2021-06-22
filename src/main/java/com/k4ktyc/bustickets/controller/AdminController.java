@@ -43,6 +43,7 @@ public class AdminController {
         return new CreateEntityResponse("Рейс был успешно добавлен.", tripService.save(newTrip).getId());
     }
 
+
     @GetMapping("/stations")
     public Page<StationDto> getAllStations(@RequestParam(defaultValue = "0") int page,
                                            @RequestParam(defaultValue = "") String filter,
@@ -70,23 +71,26 @@ public class AdminController {
         stationService.deleteById(id);
     }
 
+
+    @GetMapping("/routes")
+    public Page<RouteDto> getRoutes(@RequestParam(defaultValue = "0") int page) {
+        return routeService.getAllRoutes(page);
+    }
+
     @PostMapping(path = "/routes", consumes = "application/json")
     public CreateEntityResponse addNewRoute(@RequestBody @Valid RouteDto routeDto) {
-        Route route = createRouteFromDto(routeDto);
-        route = routeService.save(route);
-
-        for (RouteStation rs : route.getStations()) {
-            routeStationService.save(rs);
-        }
+        Route route = routeService.save(routeDto);
 
         return new CreateEntityResponse("Маршрут был успешно создан.", route.getId());
     }
+
 
     @GetMapping("/buses/classes")
     public List<BusClassDto> getBusClasses() {
         return StreamSupport.stream(busService.getBusClasses().spliterator(), false)
                 .map(BusClassDto::new).collect(Collectors.toList());
     }
+
 
     @GetMapping("/buses/models")
     public Page<BusModelDto> getBusModels(@RequestParam(defaultValue = "0") int page,
@@ -112,37 +116,5 @@ public class AdminController {
     @DeleteMapping(path = "/buses/models", consumes = "application/json")
     public void deleteBusModel(@RequestBody long id) {
         busService.deleteById(id);
-    }
-
-
-    private Route createRouteFromDto(RouteDto routeDto) {
-        Route route = new Route();
-        
-        List<RouteStation> routeStations = new ArrayList<>();
-        long price = 0;
-        for (RouteStationDto rsDto : routeDto.getRouteStations()) {
-            RouteStation rs = createRouteStationFromDto(rsDto, route);
-            routeStations.add(rs);
-            price += rs.getPrice();
-        }
-        
-        route.setName(routeDto.getName());
-        route.setPrice(price);
-        route.setStations(routeStations);
-        
-        return route;
-    }
-
-    private RouteStation createRouteStationFromDto(RouteStationDto rsDto, Route route) {
-        RouteStation routeStation = new RouteStation();
-        
-        Station station = stationService.findById(rsDto.getStationId()).get();
-        
-        routeStation.setArrivalTime(rsDto.getArrivalTime());
-        routeStation.setPrice(rsDto.getPrice());
-        routeStation.setRoute(route);
-        routeStation.setStation(station);
-
-        return routeStation;
     }
 }

@@ -21,7 +21,7 @@
     flex-wrap: wrap;
 }
 
-.col-select, .col-price, .col-datetime {
+.col-select, .col-price, .col-time {
     flex: 0 0 calc(30% - 2rem);
     max-width: calc(30% - 2rem);
     margin: 0 1rem;
@@ -49,4 +49,58 @@
 .col-add-station *:hover {
     color: #44883c;
     cursor: pointer;
+}
+
+
+.route-list-header {
+    background: #292f34;
+    color: #d1d2d3;
+    font-size: 1.2rem;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+    margin: 1.5rem 0 1rem 0;
+}
+
+.route-list-content {
+    background: #292f34;
+    color: #d1d2d3;
+    font-size: 1.1rem;
+    font-family: 'Roboto', sans-serif;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+    margin: 1rem 0;
+    padding: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.route-name {
+    flex: 0 0 25%;
+    max-width: 25%;
+}
+
+.route-stations {
+    flex: 0 0 60%;
+    max-width: 60%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.route-price {
+    flex: 0 0 15%;
+    max-width: 15%;
+    text-align: end;
+}
+
+.station-name {
+    flex: 0 0 45%;
+    max-width: 45%;
+}
+
+.station-time {
+    flex: 0 0 45%;
+    max-width: 45%;
+}
+
+.station-price {
+    flex: 0 0 10%;
+    max-width: 10%;
 }

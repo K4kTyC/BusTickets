@@ -2,6 +2,8 @@ let stationList
 const chosenStations = new Map()
 let stationOnPageAmount = 0
 
+let routeList
+
 $(function () {
     getStationList().then(() => {
         addStation()
@@ -25,13 +27,15 @@ $(function () {
 
             let routeStation = {
                 stationId: id,
-                arrivalTime: $(`#datetimepicker-arrival-${i}`).datetimepicker('date').parseZone().toJSON(),
+                timeGap: $(`#route-station-time-${i}`).val(),
                 price: $(`#route-station-price-${i}`).val()
             }
             routeDto.routeStations.push(routeStation)
         }
         sendRoute('/api/admin/routes', routeDto)
     })
+
+    getRouteList().then(addRoutes)
 })
 
 async function getStationList() {
@@ -91,7 +95,6 @@ function disableDuplicateOptions() {
 function addStation() {
     let stationNum = stationOnPageAmount++
     addStationInfoTemplate(stationNum)
-    enableDatetimePicker(`datetimepicker-arrival-${stationNum}`)
     fillSelectWithStations(stationNum)
     disableDuplicateOptions()
 
@@ -113,13 +116,8 @@ function addStationInfoTemplate(num) {
                 <input class="input-field" id="route-station-price-${num}" type="text" placeholder="Цена">
             </div>
 
-            <div class="col-datetime">
-                <div class="input-wrap input-group date" id="datetimepicker-arrival-${num}" data-target-input="nearest">
-                    <input type="text" class="form-control datetimepicker-input input-field" data-target="#datetimepicker-arrival-${num}" placeholder="Время прибытия"/>
-                    <div class="input-group-append input-date-btn" data-target="#datetimepicker-arrival-${num}" data-toggle="datetimepicker">
-                        <div class="input-group-text"><i class="fas fa-calendar"></i></div>
-                    </div>
-                </div>
+            <div class="col-time input-wrap">
+                <input class="input-field" id="route-station-time-${num}" type="text" placeholder="Время в пути, мин">
             </div>
         </div>`
 
@@ -145,4 +143,48 @@ function mapContainsValueDifferentKey(map, val, key) {
         }
     }
     return false
+}
+
+async function getRouteList() {
+    const response = await fetch('/api/admin/routes')
+    const data = await response.json()
+    routeList = data.content
+}
+
+function addRoutes() {
+    for (const route of routeList) {
+        let id = route.id
+        let name = route.name
+        let stations = route.routeStations
+        let price = route.price / 100
+
+        let templ = `
+            <div class="row route-list-content align-items-center" id="route-${id}">
+                <div class="route-name">${name}</div>
+                <div class="route-stations"></div>
+                <div class="route-price">Итого: ${price} BYN</div>
+            </div>`
+        $('#route-list').append(templ)
+
+        for (const station of stations) {
+            let name = station.stationName
+            let time = ''
+            let price = station.price / 100
+
+            if (station.timeGap < 60) {
+                time = station.timeGap.toString() + ' мин'
+            } else {
+                hours = Math.floor(station.timeGap / 60)
+                minutes = station.timeGap - (hours * 60)
+                time = hours.toString() + ' ч, ' + minutes.toString() + ' мин'
+            }
+
+            let templ = `
+                <div class="station-name">${name}</div>
+                <div class="station-time">${time}</div>
+                <div class="station-price">${price}</div>
+            `
+            $(`#route-${id} .route-stations`).append(templ)
+        }
+    }
 }

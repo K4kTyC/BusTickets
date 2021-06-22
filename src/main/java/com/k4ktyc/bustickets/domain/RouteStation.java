@@ -22,7 +22,7 @@ public class RouteStation {
     @JoinColumn(name = "station_id", nullable = false)
     private Station station;
 
-    private LocalDateTime arrivalTime;
+    private int timeGap;
 
     private long price;
 }
