@@ -11,8 +11,11 @@ import com.k4ktyc.bustickets.repository.StationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,12 +26,28 @@ public class RouteService {
     private final RouteStationRepository routeStationRepository;
 
     @Autowired
-    public RouteService(RouteRepository routeRepository, StationRepository stationRepository, RouteStationRepository routeStationRepository) {
+    public RouteService(RouteRepository routeRepository,
+                        StationRepository stationRepository,
+                        RouteStationRepository routeStationRepository) {
         this.routeRepository = routeRepository;
         this.stationRepository = stationRepository;
         this.routeStationRepository = routeStationRepository;
     }
 
+
+    public boolean isRouteExist(long id) {
+        Optional<Route> route = routeRepository.findById(id);
+        return route.isPresent();
+    }
+
+    public RouteDto getRouteById(long id) {
+        Optional<Route> route = routeRepository.findById(id);
+        if (route.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No route with id: " + id);
+        }
+
+        return createDtoFromRoute(route.get());
+    }
 
     public Route save(RouteDto dto) {
         Route route = createRouteFromDto(dto);
@@ -49,7 +68,7 @@ public class RouteService {
     }
 
 
-    private RouteDto createDtoFromRoute(Route route) {
+    RouteDto createDtoFromRoute(Route route) {
         RouteDto dto = new RouteDto();
 
         dto.setId(route.getId());
@@ -73,7 +92,7 @@ public class RouteService {
         return dto;
     }
 
-    private Route createRouteFromDto(RouteDto dto) {
+    Route createRouteFromDto(RouteDto dto) {
         Route route = new Route();
 
         route.setName(dto.getName());

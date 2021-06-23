@@ -1,22 +1,37 @@
 package com.k4ktyc.bustickets.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.k4ktyc.bustickets.domain.Trip;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.List;
 
-@Getter
+@Getter @Setter
 public class TripDto {
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private long id;
 
     @NotNull
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private long routeId;
 
     @NotNull
-    private BusDto bus;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private long busId;
+
+    @NotNull
+    private LocalDateTime datetime;
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private RouteDto routeDto;
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private BusDto busDto;
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private List<SeatDto> seats;
 
 }

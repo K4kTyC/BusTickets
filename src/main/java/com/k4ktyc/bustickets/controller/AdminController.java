@@ -2,10 +2,12 @@ package com.k4ktyc.bustickets.controller;
 
 import com.k4ktyc.bustickets.domain.Route;
 import com.k4ktyc.bustickets.domain.Station;
+import com.k4ktyc.bustickets.domain.Trip;
 import com.k4ktyc.bustickets.domain.dto.*;
 import com.k4ktyc.bustickets.service.BusService;
 import com.k4ktyc.bustickets.service.RouteService;
 import com.k4ktyc.bustickets.service.StationService;
+import com.k4ktyc.bustickets.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
@@ -21,14 +23,17 @@ public class AdminController {
 
     private final StationService stationService;
     private final RouteService routeService;
+    private final TripService tripService;
     private final BusService busService;
 
     @Autowired
     public AdminController(StationService stationService,
                            RouteService routeService,
+                           TripService tripService,
                            BusService busService) {
         this.stationService = stationService;
         this.routeService = routeService;
+        this.tripService = tripService;
         this.busService = busService;
     }
 
@@ -66,11 +71,45 @@ public class AdminController {
         return routeService.getAllRoutes(page);
     }
 
+    @GetMapping("/routes/{id}")
+    public RouteDto getRoute(@PathVariable long id) {
+        return routeService.getRouteById(id);
+    }
+
+    @GetMapping("/routes/{id}/trips")
+    public Page<TripDto> getTripsByRouteId(@PathVariable long id,
+                                           @RequestParam(defaultValue = "0") int page,
+                                           @RequestParam(defaultValue = "false") boolean unpaged) {
+        if (unpaged) {
+            return tripService.getTripsByRouteId(id, unpaged);
+        }
+
+        return tripService.getTripsByRouteId(id, page);
+    }
+
     @PostMapping(path = "/routes", consumes = "application/json")
     public CreateEntityResponse addNewRoute(@RequestBody @Valid RouteDto routeDto) {
         Route route = routeService.save(routeDto);
 
         return new CreateEntityResponse("Маршрут был успешно создан.", route.getId());
+    }
+
+
+    @GetMapping("/trips")
+    public Page<TripDto> getTrips(@RequestParam(defaultValue = "0") int page,
+                                  @RequestParam(defaultValue = "false") boolean unpaged) {
+        if (unpaged) {
+            return tripService.getTrips(unpaged);
+        }
+
+        return tripService.getTrips(page);
+    }
+
+    @PostMapping(path = "/trips", consumes = "application/json")
+    public CreateEntityResponse addNewTrip(@RequestBody @Valid TripDto tripDto) {
+        Trip trip = tripService.save(tripDto);
+
+        return new CreateEntityResponse("Рейс был успешно создан.", trip.getId());
     }
 
 

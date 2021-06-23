@@ -70,6 +70,12 @@
     padding: 1.5rem;
     display: flex;
     flex-wrap: wrap;
+    cursor: pointer;
+    transition: all .2s ease-out;
+}
+
+.route-list-content:hover {
+    background: #54595d;
 }
 
 .route-name {

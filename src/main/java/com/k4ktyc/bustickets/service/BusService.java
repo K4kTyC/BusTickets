@@ -111,7 +111,7 @@ public class BusService {
         return bm;
     }
 
-    private BusDto createDtoFromBus(Bus bus) {
+    BusDto createDtoFromBus(Bus bus) {
         BusDto dto = new BusDto();
         dto.setId(bus.getId());
         dto.setNumber(bus.getNumber());
@@ -120,7 +120,7 @@ public class BusService {
         return dto;
     }
 
-    private Bus createBusFromDto(BusDto dto) {
+    Bus createBusFromDto(BusDto dto) {
         Bus bus = new Bus();
         BusModel model = busModelRepository.findById(dto.getModelId()).get();
 

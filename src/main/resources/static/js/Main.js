@@ -44,7 +44,6 @@ function addProfileButtons(data) {
 
     if (data.role === 'ROLE_ADMIN') {
         document.getElementById('navbarSupportedContent').insertAdjacentHTML('beforeend', `
-            <a id="trips" class="nav-link nav-link-main" href="/admin/trips">Добавить рейс</a>
             <a id="buses" class="nav-link nav-link-main" href="/admin/buses">Автобусы</a>
             <a id="bus-models" class="nav-link nav-link-main" href="/admin/buses/models">Модели автобусов</a>
             <a id="routes" class="nav-link nav-link-main" href="/admin/routes">Маршруты</a>
@@ -85,6 +84,18 @@ window.onscroll = function() {
         }
     }
     prevScrollpos = currentScrollPos;
+}
+
+function minutesToHours(timeInMinutes) {
+    let time = timeInMinutes
+    if (time < 60) {
+        time = time.toString() + ' мин'
+    } else {
+        let hours = Math.floor(time / 60)
+        let minutes = time - (hours * 60)
+        time = hours.toString() + ' ч, ' + minutes.toString() + ' мин'
+    }
+    return time
 }
 
 document.getElementById('login-submit').addEventListener('click', function () {

@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -13,6 +14,8 @@ public class Trip {
 
     @Id @GeneratedValue(generator = "optimized-sequence")
     private long id;
+
+    private LocalDateTime datetime;
 
     @ManyToOne
     @JoinColumn(name = "route_id", nullable = false)

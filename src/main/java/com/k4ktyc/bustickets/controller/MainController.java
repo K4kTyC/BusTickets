@@ -1,6 +1,8 @@
 package com.k4ktyc.bustickets.controller;
 
+import com.k4ktyc.bustickets.domain.Route;
 import com.k4ktyc.bustickets.domain.Trip;
+import com.k4ktyc.bustickets.service.RouteService;
 import com.k4ktyc.bustickets.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,10 +19,12 @@ import java.util.Optional;
 public class MainController {
 
     private final TripService tripService;
+    private final RouteService routeService;
 
     @Autowired
-    public MainController(TripService tripService) {
+    public MainController(TripService tripService, RouteService routeService) {
         this.tripService = tripService;
+        this.routeService = routeService;
     }
 
 
@@ -62,6 +66,15 @@ public class MainController {
     @GetMapping("/orders")
     public String orders() {
         return "orders";
+    }
+
+    @GetMapping("/admin/routes/{id}")
+    public String routeDetails(@PathVariable(value = "id") long id) {
+        if (!routeService.isRouteExist(id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No route with id: " + id);
+        }
+
+        return "admin-route-details";
     }
 
     @GetMapping("/trips/{id}")

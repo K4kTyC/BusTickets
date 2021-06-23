@@ -166,18 +166,14 @@ function addRoutes() {
             </div>`
         $('#route-list').append(templ)
 
+        $(`#route-${id}`).on('click', () => {
+            window.location.assign(`/admin/routes/${id}`)
+        })
+
         for (const station of stations) {
             let name = station.stationName
-            let time = ''
+            let time = minutesToHours(station.timeGap)
             let price = station.price / 100
-
-            if (station.timeGap < 60) {
-                time = station.timeGap.toString() + ' мин'
-            } else {
-                hours = Math.floor(station.timeGap / 60)
-                minutes = station.timeGap - (hours * 60)
-                time = hours.toString() + ' ч, ' + minutes.toString() + ' мин'
-            }
 
             let templ = `
                 <div class="station-name">${name}</div>

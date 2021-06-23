@@ -21,4 +21,11 @@ public class Seat {
     @JoinColumn(name = "trip_id", nullable = false, updatable = false)
     private Trip trip;
 
+
+    public Seat() {}
+
+    public Seat(int number, Trip trip) {
+        this.number = number;
+        this.trip = trip;
+    }
 }
