@@ -16,7 +16,7 @@ function processUrlParams() {
         } else {
             getAllRoutes(0)
         }
-        history.replaceState(null,'', '/trips')
+        //history.replaceState(null,'', '/trips')
     }
 
     if (window.location.pathname === '/orders') {

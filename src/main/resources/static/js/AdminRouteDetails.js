@@ -104,13 +104,16 @@ function fillPageWithTrips() {
 
     for (let i = 0; i < trips.length; i++) {
         let trip = trips[i]
+        let stations = trip.routeDto.routeStations
 
         let sumTime = 0
-        for (const station of trip.routeDto.routeStations) {
+        for (const station of stations) {
             sumTime += station.timeGap
         }
 
+        let stationStart = stations[0].stationName
         let datetimeStart = moment(trip.datetime).locale('ru')
+        let stationFinish = stations[stations.length - 1].stationName
         let datetimeFinish = moment(trip.datetime).add(sumTime, 'minutes').locale('ru')
 
         let tripTempl = `
@@ -120,10 +123,12 @@ function fillPageWithTrips() {
                 <div class="col-trip-datetime">
                     <p class="trip-time">${datetimeStart.format('HH:mm')}</p>
                     <p class="trip-date">${datetimeStart.format('DD.MM.YYYY')}</p>
+                    <p class="trip-station">${stationStart}</p>
                 </div>
                 <div class="col-trip-datetime">
                     <p class="trip-time">${datetimeFinish.format('HH:mm')}</p>
                     <p class="trip-date">${datetimeFinish.format('DD.MM.YYYY')}</p>
+                    <p class="trip-station">${stationFinish}</p>
                 </div>
             </div>`
 

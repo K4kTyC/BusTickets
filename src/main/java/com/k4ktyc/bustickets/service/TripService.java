@@ -3,20 +3,20 @@ package com.k4ktyc.bustickets.service;
 import com.k4ktyc.bustickets.domain.Bus;
 import com.k4ktyc.bustickets.domain.Route;
 import com.k4ktyc.bustickets.domain.Seat;
-import com.k4ktyc.bustickets.domain.dto.BusDto;
-import com.k4ktyc.bustickets.domain.dto.RouteDto;
-import com.k4ktyc.bustickets.domain.dto.SeatDto;
-import com.k4ktyc.bustickets.domain.dto.TripDto;
+import com.k4ktyc.bustickets.domain.dto.*;
 import com.k4ktyc.bustickets.domain.Trip;
 import com.k4ktyc.bustickets.repository.BusRepository;
 import com.k4ktyc.bustickets.repository.RouteRepository;
+import com.k4ktyc.bustickets.repository.StationRepository;
 import com.k4ktyc.bustickets.repository.TripRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -31,18 +31,21 @@ public class TripService {
     private final TripRepository tripRepository;
     private final RouteRepository routeRepository;
     private final BusRepository busRepository;
+    private final StationRepository stationRepository;
 
     @Autowired
     public TripService(RouteService routeService,
                        BusService busService,
                        TripRepository tripRepository,
                        RouteRepository routeRepository,
-                       BusRepository busRepository) {
+                       BusRepository busRepository,
+                       StationRepository stationRepository) {
         this.routeService = routeService;
         this.busService = busService;
         this.tripRepository = tripRepository;
         this.routeRepository = routeRepository;
         this.busRepository = busRepository;
+        this.stationRepository = stationRepository;
     }
 
 
@@ -52,6 +55,22 @@ public class TripService {
 //
 //        return pagedTrips.map(TripDto::new);
 //    }
+
+    public Page<TripDto> searchTrips(TripSearchData searchData, int pageNumber) {
+        long stationStartId = stationRepository.findByName(searchData.getStationStart()).get().getId();
+        long stationFinishId = stationRepository.findByName(searchData.getStationFinish()).get().getId();
+
+        LocalDateTime dateTimeStart = searchData.getTripDate();
+        LocalDateTime dateTimeFinish = dateTimeStart.plusDays(1);
+
+        PageRequest paging = PageRequest.of(pageNumber, 20);
+        Page<Trip> pagedTrips = tripRepository
+                .searchTrips(dateTimeStart, dateTimeFinish,
+                             stationStartId, stationFinishId,
+                             paging);
+
+        return pagedTrips.map(this::createDtoFromTrip);
+    }
 
     public Optional<Trip> findById(long id) {
         return tripRepository.findById(id);
@@ -64,7 +83,7 @@ public class TripService {
     }
 
     public Page<TripDto> getTripsByRouteId(long routeId, int pageNumber) {
-        PageRequest paging = PageRequest.of(pageNumber, 20);
+        PageRequest paging = PageRequest.of(pageNumber, 20, Sort.by("datetime"));
         Page<Trip> pagedTrips = tripRepository.findByRouteId(routeId, paging);
 
         return pagedTrips.map(this::createDtoFromTrip);

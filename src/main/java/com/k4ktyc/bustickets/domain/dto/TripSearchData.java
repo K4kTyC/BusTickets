@@ -1,20 +1,22 @@
 package com.k4ktyc.bustickets.domain.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Getter
+@AllArgsConstructor
 public class TripSearchData {
 
     @NotNull
-    private String stationFrom;
+    private final LocalDateTime tripDate;
 
     @NotNull
-    private String stationTo;
+    private final String stationStart;
 
     @NotNull
-    private LocalDateTime tripDate;
+    private final String stationFinish;
 
 }

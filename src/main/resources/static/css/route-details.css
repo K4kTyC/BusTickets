@@ -166,7 +166,7 @@
 }
 
 .trip-time {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: bold;
     margin: 0;
     text-align: center;
@@ -176,5 +176,10 @@
     font-size: .9rem;
     opacity: .7;
     margin: 0;
+    text-align: center;
+}
+
+.trip-station {
+    margin: .5rem 0 0 0;
     text-align: center;
 }

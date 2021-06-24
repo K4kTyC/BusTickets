@@ -16,8 +16,8 @@ function fillPageWithTrips(data) {
 
         fillRouteColumn(trip)
         fillFromToColumns(trip)
-        fillSeatsColumn(trip.bus.seats)
-        fillPriceColumn(trip.price)
+        fillSeatsColumn(trip.seats)
+        fillPriceColumn(trip.routeDto.price)
 
         pageTemplate += `
             </div>
@@ -32,9 +32,9 @@ function fillPageWithTrips(data) {
 }
 
 function fillRouteColumn(trip) {
-    let startName = trip.stationStart
-    let finishName = trip.stationFinish
-    let busClass = trip.bus.busClass === 'Econom' ? 'Эконом-класс' : 'Бизнес-класс'
+    let startName = trip.routeDto.routeStations[0].stationName
+    let finishName = trip.routeDto.routeStations[trip.routeDto.routeStations.length - 1].stationName
+    let busClass = trip.busDto.model.busClassName + '-класс'
 
     pageTemplate += `
         <div class="col-md-4 trip-info">
@@ -45,8 +45,13 @@ function fillRouteColumn(trip) {
 }
 
 function fillFromToColumns(trip) {
-    let startTimeDate = moment(trip.datetimeStart).locale('ru')
-    let finishTimeDate = moment(trip.datetimeFinish).locale('ru')
+    let sumTime = 0
+    for (const station of trip.routeDto.routeStations) {
+        sumTime += station.timeGap
+    }
+
+    let startTimeDate = moment(trip.datetime).locale('ru')
+    let finishTimeDate = moment(trip.datetime).add(sumTime, 'minutes').locale('ru')
 
     pageTemplate += `
         <div class="col-md-2 trip-datetime">
