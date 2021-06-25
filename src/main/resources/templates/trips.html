@@ -33,21 +33,19 @@
 
     <div th:replace="blocks/navigation :: navigation"></div>
 
-    <div class="container pb-5" id="trip-list-container">
+    <div class="container" id="trip-list-container">
 
         <div th:replace="blocks/findTripForm :: form"></div>
 
-        <div class="row title p-5">Список рейсов</div>
+        <div class="trip-info-title">Список рейсов</div>
 
-        <div class="d-none d-lg-flex row trip-list-header p-3">
-            <div class="col-lg-4 text-left">Маршрут</div>
-            <div class="col-lg-2 text-center">Отправление</div>
-            <div class="col-lg-2 text-center">Прибытие</div>
-            <div class="col-lg-2 text-right">Кол-во мест</div>
-            <div class="col-lg-2 text-right">Стоимость</div>
+        <div class="d-none d-lg-flex trip-list-header">
+            <div class="col-header-route">Маршрут</div>
+            <div class="col-header-bus">Автобус</div>
+            <div class="col-header-from">Отправление</div>
+            <div class="col-header-to">Прибытие</div>
+            <div class="col-header-price">Цена</div>
         </div>
-
-        <div class="row my-3"></div>
 
     </div>
 

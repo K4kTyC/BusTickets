@@ -1,8 +1,8 @@
 .route-title {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     font-family: 'Roboto', sans-serif;
     color: #d1d2d3;
-    margin: 2rem;
+    padding: 2rem;
 }
 
 .route-details-content {
@@ -114,10 +114,10 @@
     color: #d1d2d3;
     background: #292f34;
     box-shadow: 0 0 5px rgba(0, 0, 0, .5);
-    padding: 1.5rem;
+    padding: 1rem;
     margin-bottom: .5rem;
     display: flex;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
 }
 
 .header-id, .header-bus-number {

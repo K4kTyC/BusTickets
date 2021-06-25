@@ -9,16 +9,6 @@ function processUrlParams() {
         history.replaceState(null,'', '/')
     }
 
-    if (window.location.pathname === '/trips') {
-        if (urlParams.has('search')) {
-            let trips = JSON.parse(sessionStorage.getItem('tripsSearchResults'))
-            fillPageWithTrips(trips)
-        } else {
-            getAllRoutes(0)
-        }
-        //history.replaceState(null,'', '/trips')
-    }
-
     if (window.location.pathname === '/orders') {
         if (urlParams.has('search')) {
             let orders = JSON.parse(sessionStorage.getItem('ordersSearchResults'))

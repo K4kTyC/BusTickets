@@ -25,6 +25,10 @@ public class TripController {
         this.tripService = tripService;
     }
 
+    @GetMapping
+    public Page<TripDto> getAllTrips(@RequestParam(defaultValue = "0") int page) {
+        return tripService.getAllTrips(page);
+    }
 
     @GetMapping("/search")
     public Page<TripDto> search(@RequestParam(defaultValue = "0") int page,

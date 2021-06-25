@@ -1,5 +1,3 @@
-let pageNum = 0
-
 $('#trip-search-submit').on('click', () => {
     let date = $('#datetimepicker-from').datetimepicker('date').parseZone()
     let now = moment()
@@ -19,7 +17,12 @@ $('#trip-search-submit').on('click', () => {
 async function sendSearchData(data) {
     const response = await fetch(`/api/trips/search?page=${pageNum}&datetime=${data.datetime}&start=${data.stationStart}&finish=${data.stationFinish}`)
     const returned = await response.json()
-    sessionStorage.setItem('tripsSearchResults', JSON.stringify(returned))
+    const searchResults = {
+        stationStart: data.stationStart,
+        stationFinish: data.stationFinish,
+        trips: returned
+    }
+    sessionStorage.setItem('tripsSearchResults', JSON.stringify(searchResults))
     window.location.assign('/trips?search')
 }
 

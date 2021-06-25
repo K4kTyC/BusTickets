@@ -18,6 +18,10 @@ body {
     cursor: pointer;
 }
 
+.container {
+    padding: 0;
+}
+
 /*===   Модальное окно входа   ===*/
 
 .modal.custom .modal-content {
@@ -449,9 +453,8 @@ ul.nav-tabs {
 .select-route-form {
     background: #292f34;
     box-shadow: 0 0 10px rgba(0, 0, 0, .7);
-    margin-top: 5rem;
-    margin-right: -15px;
-    margin-left: -15px;
+    margin-top: 1rem;
+    padding: 2rem;
 }
 
 .row.title {

@@ -5,9 +5,9 @@
 }
 
 .trip-info-title {
-    font-size: 1.3rem;
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
+    font-size: 1.4rem;
+    color: #d1d2d3;
+    padding: 2rem;
 }
 
 .trip-info-content {
@@ -19,54 +19,112 @@
 .trip-list-header {
     background: #292f34;
     color: #d1d2d3;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 1rem;
+    margin-bottom: 1rem;
     box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+}
+
+.col-header-route {
+    flex: 0 0 15%;
+    max-width: 15%;
+}
+
+.col-header-bus {
+    flex: 0 0 25%;
+    max-width: 25%;
+}
+
+.col-header-from, .col-header-to {
+    flex: 0 0 22%;
+    max-width: 22%;
+}
+
+.col-header-price {
+    flex: 0 0 16%;
+    max-width: 16%;
 }
 
 .trip-list-content {
-    cursor: pointer;
     background: #292f34;
     color: #d1d2d3;
-    font-size: 1.3rem;
     font-family: 'Roboto', sans-serif;
     box-shadow: 0 0 5px rgba(0, 0, 0, .5);
-    transition: all .2s ease-out;
+    display: flex;
+    align-items: center;
+    padding: 1.5rem 1rem;
+    margin: .7rem 0;
 }
-
-.trip-list-content:hover {
-    background: #54595d;
-}
-
-.trip-list-content * {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-}
-
-.trip-info {
-    text-align: left;
-}
-
-.trip-info * {
-    margin-top: 0;
-    margin-bottom: 0;
-}
-
-.trip-route {
-    font-size: 1.3rem;
-    font-weight: bold;
-}
-
-.trip-bus-info {
-    border-left-style: solid;
-    border-left-width: thin;
-    border-left-color: #54595d;
-}
-
-.trip-class {
-    font-size: 1.1rem;
-    opacity: .7;
+.trip-list-content p {
     margin: 0;
 }
+
+
+.col-content-route {
+    flex: 0 0 15%;
+    max-width: 15%;
+}
+.col-content-route .name {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.col-content-route .bus-class {
+    font-size: 1.1rem;
+    opacity: .7;
+}
+
+
+.col-content-bus {
+    flex: 0 0 25%;
+    max-width: 25%;
+    text-align: center;
+}
+.col-content-bus .number {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.col-content-bus .model {
+    font-size: 1.1rem;
+    opacity: .7;
+}
+.col-content-bus .seats {
+    font-size: 1.2rem;
+}
+
+
+.col-content-station {
+    flex: 0 0 22%;
+    max-width: 22%;
+    text-align: center;
+}
+.col-content-station .time {
+    font-size: 1.8rem;
+    font-weight: bold;
+    font-family: 'M PLUS 1p', sans-serif;
+}
+.col-content-station .date {
+    font-size: .9rem;
+    opacity: .7;
+    font-family: 'M PLUS 1p', sans-serif;
+}
+.col-content-station .station {
+    font-size: 1.1rem;
+    margin: .5rem 0 0 0;
+    text-align: center;
+}
+
+
+.col-content-price {
+    flex: 0 0 16%;
+    max-width: 16%;
+}
+.col-content-price .price {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: .5rem;
+}
+
 
 .trip-total-time {
     font-size: 1.2rem;
@@ -91,39 +149,4 @@
     height: 48px;
     right: -16px;
     top: 42px;
-}
-
-.trip-datetime {
-    text-align: center;
-    font-family: 'M PLUS 1p', sans-serif;
-}
-
-.trip-datetime * {
-    margin-top: 0;
-    margin-bottom: 0;
-}
-
-.trip-seats {
-    text-align: right;
-}
-
-.trip-price {
-    text-align: right;
-    font-size: 1.1rem;
-    font-family: 'Roboto', sans-serif;
-}
-
-.trip-time {
-    font-size: 2rem;
-    font-weight: bold;
-}
-
-.trip-date {
-    font-size: .9rem;
-    opacity: .7;
-}
-
-.trip-station {
-    margin-top: .5rem;
-    font-family: 'Roboto', sans-serif;
 }
