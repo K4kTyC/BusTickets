@@ -1,14 +1,10 @@
 package com.k4ktyc.bustickets.domain;
 
-import com.k4ktyc.bustickets.domain.dto.NewOrderDto;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -23,31 +19,31 @@ public class Order {
     private Trip trip;
 
     @ManyToOne
+    @JoinColumn(name = "station_start_id", nullable = false, updatable = false)
+    private Station stationStart;
+
+    @ManyToOne
+    @JoinColumn(name = "station_finish_id", nullable = false, updatable = false)
+    private Station stationFinish;
+
+    @ManyToOne
     @JoinColumn(name = "user_id", nullable = false, updatable = false)
     private User user;
 
-    @ManyToMany
-    @JoinTable(name = "order_passenger",
-            joinColumns = @JoinColumn(name = "order_id"),
-            inverseJoinColumns = @JoinColumn(name = "passenger_id"))
-    private List<Passenger> passengers;
+    @ManyToOne
+    @JoinColumn(name = "passenger_id", nullable = false, updatable = false)
+    private Passenger passenger;
 
-    private int seatNumber;
+    @ManyToOne
+    @JoinColumn(name = "seat_id", nullable = false, updatable = false)
+    private Seat seat;
+
+    @ManyToOne
+    @JoinColumn(name = "status_id", nullable = false)
+    private OrderStatus status;
 
     private LocalDateTime dateTimeOrderCreated;
 
-    private String status;
+    private long price;
 
-
-    public Order() {}
-
-    public Order(NewOrderDto newOrderDto, Trip trip, User user) {
-        this.trip = trip;
-        this.user = user;
-        this.passengers = new ArrayList<>();
-        this.passengers.add(new Passenger(newOrderDto.getPassengerName(), newOrderDto.getPassengerLastname(), user));
-        this.seatNumber = newOrderDto.getSeatNumber();
-        this.dateTimeOrderCreated = LocalDateTime.now(ZoneId.of("Europe/Minsk"));
-        this.status = "payed";
-    }
 }

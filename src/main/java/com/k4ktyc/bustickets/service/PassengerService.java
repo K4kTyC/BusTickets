@@ -26,10 +26,6 @@ public class PassengerService {
     }
 
     public Passenger save(Passenger passenger) {
-        Optional<Passenger> foundPassenger = findByNameAndLastname(passenger.getName(), passenger.getLastname());
-        if (foundPassenger.isEmpty()) {
-            return passengerRepository.save(passenger);
-        }
-        return foundPassenger.get();
+        return passengerRepository.save(passenger);
     }
 }

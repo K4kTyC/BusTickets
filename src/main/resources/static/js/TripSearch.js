@@ -15,6 +15,9 @@ $('#trip-search-submit').on('click', () => {
 })
 
 async function sendSearchData(data) {
+    if (pageNum === undefined) {
+        var pageNum = 0
+    }
     const response = await fetch(`/api/trips/search?page=${pageNum}&datetime=${data.datetime}&start=${data.stationStart}&finish=${data.stationFinish}`)
     const returned = await response.json()
     const searchResults = {

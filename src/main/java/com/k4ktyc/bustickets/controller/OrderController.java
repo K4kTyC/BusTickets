@@ -9,6 +9,7 @@ import com.k4ktyc.bustickets.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -51,13 +52,13 @@ public class OrderController {
         Iterable<Passenger> passengers = passengerService.getAllPassengers();
         List<UserOrdersDto> userOrdersDtoList = new ArrayList<>();
 
-        for (var passenger : passengers) {
-            long ordersAmount = orderService.countByPassenger(passenger);
-            userOrdersDtoList.add(new UserOrdersDto(passenger.getId(),
-                                                    passenger.getName(),
-                                                    passenger.getLastname(),
-                                                    ordersAmount));
-        }
+//        for (var passenger : passengers) {
+//            long ordersAmount = orderService.countByPassenger(passenger);
+//            userOrdersDtoList.add(new UserOrdersDto(passenger.getId(),
+//                                                    passenger.getName(),
+//                                                    passenger.getLastname(),
+//                                                    ordersAmount));
+//        }
         return userOrdersDtoList;
     }
 
@@ -67,27 +68,10 @@ public class OrderController {
 //        return orderService.findOrdersByPassenger(page, passenger);
 //    }
 //
-//    @PostMapping(consumes = "application/json")
-//    public CreateOrderResponse createOrder(@RequestBody @Valid NewOrderDto newOrderDto, Principal principal) {
-//        Trip trip = tripService.findById(newOrderDto.getTripId()).get();
-//        Seat chosenSeat = null;
-//        for (Seat s : trip.getBus().getSeats()) {
-//            if (s.getNumber() == newOrderDto.getSeatNumber()) {
-//                chosenSeat = s;
-//                break;
-//            }
-//        }
-//        if (chosenSeat == null) {
-//            return new CreateOrderResponse("Выбранное место уже занято.", 0);
-//        }
-//        chosenSeat.setFree(false);
-//        tripService.save(trip);
-//
-//        User user = userService.findByUsername(principal.getName()).get();
-//
-//        Order newOrder = new Order(newOrderDto, trip, user);
-//        Order savedOrder = orderService.save(newOrder);
-//
-//        return new CreateOrderResponse("Заказ обработан, спасибо за покупку!", savedOrder.getId());
-//    }
+    @PostMapping(consumes = "application/json")
+    public ResponseEntity<String> createOrder(@RequestBody @Valid NewOrderDto newOrderDto, Principal principal) {
+        Order newOrder = orderService.createNewOrder(newOrderDto, principal);
+
+        return new ResponseEntity<>(String.valueOf(newOrder.getId()), HttpStatus.OK);
+    }
 }

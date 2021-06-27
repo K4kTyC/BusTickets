@@ -14,13 +14,16 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class TripService {
@@ -46,11 +49,34 @@ public class TripService {
     }
 
 
+    public boolean isTripExists(long id) {
+        Optional<Trip> trip = tripRepository.findById(id);
+        return trip.isPresent();
+    }
+
     public Page<TripDto> getAllTrips(int pageNumber) {
         PageRequest paging = PageRequest.of(pageNumber, 10, Sort.by("datetime"));
         Page<Trip> pagedTrips = tripRepository.findAll(paging);
 
         return pagedTrips.map(this::createDtoFromTrip);
+    }
+
+    public TripDto getTripById(long id) {
+        Trip trip = tripRepository
+                .findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Wrong trip id"));
+
+        return createDtoFromTrip(trip);
+    }
+
+    public List<SeatDto> getSeatsByTripId(long id) {
+        Trip trip = tripRepository
+                .findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Wrong trip id"));
+
+        return trip.getSeats()
+                .stream().map(SeatDto::new)
+                .collect(Collectors.toList());
     }
 
     public Page<TripDto> searchTrips(TripSearchData searchData, int pageNumber) {
@@ -102,6 +128,10 @@ public class TripService {
         Page<Trip> unpagedTrips = tripRepository.findAll(Pageable.unpaged());
 
         return unpagedTrips.map(this::createDtoFromTrip);
+    }
+
+    public Trip update(Trip trip) {
+        return tripRepository.save(trip);
     }
 
     public void delete(long id) {

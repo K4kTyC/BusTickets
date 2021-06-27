@@ -7,6 +7,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface OrderRepository extends PagingAndSortingRepository<Order, Long> {
-    Page<Order> findOrdersByPassengersContains(Pageable pageable, Passenger passenger);
-    long countByPassengersContains(Passenger passenger);
+    //Page<Order> findOrdersByPassengersContains(Pageable pageable, Passenger passenger);
+    //long countByPassengersContains(Passenger passenger);
 }

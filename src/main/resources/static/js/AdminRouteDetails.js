@@ -28,7 +28,6 @@ $(() => {
             busId: busId,
             datetime: $('#datetimepicker-trip').datetimepicker('date').parseZone()
         }
-        console.log(tripDto)
         sendTripDto('/api/admin/trips', tripDto)
     })
 })

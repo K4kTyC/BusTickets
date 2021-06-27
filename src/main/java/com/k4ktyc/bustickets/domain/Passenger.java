@@ -27,11 +27,6 @@ public class Passenger {
     public Passenger(String name, String lastname, User user) {
         this.name = name;
         this.lastname = lastname;
-
-        if ("ROLE_USER".equals(user.getRole().getValue())) {
-            this.user = user;
-        } else {
-            this.user = null;
-        }
+        this.user = user;
     }
 }

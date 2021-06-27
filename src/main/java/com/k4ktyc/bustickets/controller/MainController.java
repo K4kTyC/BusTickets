@@ -71,22 +71,18 @@ public class MainController {
     @GetMapping("/admin/routes/{id}")
     public String routeDetails(@PathVariable(value = "id") long id) {
         if (!routeService.isRouteExist(id)) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No route with id: " + id);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Wrong route id");
         }
 
         return "admin-route-details";
     }
 
     @GetMapping("/trips/{id}")
-    public String tripInfo(@PathVariable(value = "id") long id, Model model) {
-        Optional<Trip> trip = tripService.findById(id);
-        if (trip.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No trip with id: " + id);
+    public String tripInfo(@PathVariable long id) {
+        if (!tripService.isTripExists(id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Wrong trip id");
         }
 
-        DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm");
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-
-        return "trip-info";
+        return "trip-details";
     }
 }

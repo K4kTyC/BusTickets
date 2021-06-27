@@ -1,7 +1,9 @@
 package com.k4ktyc.bustickets.service;
 
+import com.k4ktyc.bustickets.domain.Passenger;
 import com.k4ktyc.bustickets.domain.User;
 import com.k4ktyc.bustickets.domain.dto.UserDto;
+import com.k4ktyc.bustickets.repository.PassengerRepository;
 import com.k4ktyc.bustickets.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -12,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,20 +24,7 @@ public class UserService implements UserDetailsService {
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
 
-    @Autowired
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
-    @Autowired
-    public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
-        this.passwordEncoder = passwordEncoder;
-    }
-
-    @Autowired
-    public void setRoleService(RoleService roleService) {
-        this.roleService = roleService;
-    }
+    private PassengerRepository passengerRepository;
 
 
     @Override
@@ -49,6 +39,10 @@ public class UserService implements UserDetailsService {
 
     public Optional<User> findByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    public List<Passenger> getUserPassengers(long userId) {
+        return passengerRepository.findByUserId(userId);
     }
 
     public boolean registerUser(UserDto userDto) {
@@ -67,5 +61,28 @@ public class UserService implements UserDetailsService {
 
     public boolean isUserExists(User user) {
         return userRepository.findByUsername(user.getUsername()).isPresent();
+    }
+
+
+
+
+    @Autowired
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    @Autowired
+    public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    @Autowired
+    public void setRoleService(RoleService roleService) {
+        this.roleService = roleService;
+    }
+
+    @Autowired
+    public void setPassengerRepository(PassengerRepository passengerRepository) {
+        this.passengerRepository = passengerRepository;
     }
 }
