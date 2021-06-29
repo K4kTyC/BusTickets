@@ -158,7 +158,7 @@ public class TripService {
         return trip;
     }
 
-    private TripDto createDtoFromTrip(Trip trip) {
+    TripDto createDtoFromTrip(Trip trip) {
         TripDto tripDto = new TripDto();
         RouteDto routeDto = routeService.createDtoFromRoute(trip.getRoute());
         BusDto busDto = busService.createDtoFromBus(trip.getBus());

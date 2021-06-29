@@ -39,35 +39,35 @@ public class OrderController {
 
     @GetMapping
     public List<UserOrdersDto> getAllUserOrders(Principal principal) {
-        Optional<User> user = userService.findByUsername(principal.getName());
-        if (user.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Эта функция доступна только авторизованным пользователям.");
-        }
-
-        if ("ROLE_ADMIN".equals(user.get().getRole().getValue())) {
-
-        }
+//        Optional<User> user = userService.findByUsername(principal.getName());
+//        if (user.isEmpty()) {
+//            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Эта функция доступна только авторизованным пользователям.");
+//        }
+//
+//        if ("ROLE_ADMIN".equals(user.get().getRole().getValue())) {
+//
+//        }
 
 
         Iterable<Passenger> passengers = passengerService.getAllPassengers();
         List<UserOrdersDto> userOrdersDtoList = new ArrayList<>();
 
-//        for (var passenger : passengers) {
-//            long ordersAmount = orderService.countByPassenger(passenger);
-//            userOrdersDtoList.add(new UserOrdersDto(passenger.getId(),
-//                                                    passenger.getName(),
-//                                                    passenger.getLastname(),
-//                                                    ordersAmount));
-//        }
+        for (var passenger : passengers) {
+            long ordersAmount = orderService.countByPassenger(passenger);
+            userOrdersDtoList.add(new UserOrdersDto(passenger.getId(),
+                                                    passenger.getName(),
+                                                    passenger.getLastname(),
+                                                    ordersAmount));
+        }
         return userOrdersDtoList;
     }
 
-//    @PostMapping(path = "/search", consumes = "application/json")
-//    public Page<OrderDto> findOrders(@RequestParam(defaultValue = "0") int page, @RequestBody @Valid OrderSearchData orderSearchData) {
-//        Passenger passenger = passengerService.findByNameAndLastname(orderSearchData.getName(), orderSearchData.getLastname()).get();
-//        return orderService.findOrdersByPassenger(page, passenger);
-//    }
-//
+    @PostMapping(path = "/search", consumes = "application/json")
+    public Page<OrderDto> findOrders(@RequestParam(defaultValue = "0") int page, @RequestBody @Valid OrderSearchData orderSearchData) {
+        Passenger passenger = passengerService.findByNameAndLastname(orderSearchData.getName(), orderSearchData.getLastname()).get();
+        return orderService.findOrdersByPassenger(page, passenger);
+    }
+
     @PostMapping(consumes = "application/json")
     public ResponseEntity<String> createOrder(@RequestBody @Valid NewOrderDto newOrderDto, Principal principal) {
         Order newOrder = orderService.createNewOrder(newOrderDto, principal);

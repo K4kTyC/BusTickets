@@ -43,29 +43,29 @@ function fillPageWithOrders(data) {
     let orders = data.content
 
     $('#order-list-container').append(`
-        <div class="row title p-5">${orders[0].passengerName} ${orders[0].passengerLastname}</div>
+        <div class="row title p-5">${orders[0].passenger.name} ${orders[0].passenger.lastname}</div>
     `)
 
     for (let i = 0; i < orders.length; i++) {
         let order = orders[i]
 
-        let startTimeDate = moment(order.trip.datetimeStart).locale('ru')
+        let startTimeDate = moment(order.trip.datetime).locale('ru')
 
         let pageTemplate = `
         <div class="row order-list-content align-items-center px-5 justify-content-between" id="orders-${order.id}">
             <div class="col-md-4 order-info">
-                <p class="order-route">${order.trip.stationStart} — ${order.trip.stationFinish}</p>
+                <p class="order-route">${order.sstart.name} — ${order.sfinish.name}</p>
             </div>
             <div class="col-md-2 order-datetime">
                 <p class="order-time">${startTimeDate.format('HH:mm')}</p>
                 <p class="order-date">${startTimeDate.format('DD.MM.YYYY')}</p>
             </div>
             <div class="col-md-4 order-bus">
-                <p class="order-bus-number">Автобус № ${order.trip.bus.number}</p>
+                <p class="order-bus-number">Автобус № ${order.trip.busDto.number}</p>
                 <p class="order-bus-seat">Место № ${order.seatNumber}</p>
             </div>
             <div class="col-md-2 order-addinfo">
-                <p class="order-price">${order.trip.price} BYN</p>
+                <p class="order-price">${order.trip.routeDto.price} BYN</p>
                 <p class="order-status">${order.status}</p>
             </div>
         </div>

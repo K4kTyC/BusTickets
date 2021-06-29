@@ -1,13 +1,12 @@
 package com.k4ktyc.bustickets.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.k4ktyc.bustickets.domain.Station;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
-@Getter
+@Getter @Setter
 public class StationDto {
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
@@ -16,11 +15,4 @@ public class StationDto {
     @NotBlank
     private String name;
 
-
-    public StationDto() {}
-
-    public StationDto(Station station) {
-        this.id = station.getId();
-        this.name = station.getName();
-    }
 }

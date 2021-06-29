@@ -2,10 +2,13 @@ package com.k4ktyc.bustickets.service;
 
 import com.k4ktyc.bustickets.domain.*;
 import com.k4ktyc.bustickets.domain.dto.NewOrderDto;
+import com.k4ktyc.bustickets.domain.dto.OrderDto;
 import com.k4ktyc.bustickets.repository.OrderRepository;
 import com.k4ktyc.bustickets.repository.OrderStatusRepository;
 import com.k4ktyc.bustickets.repository.StationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -21,6 +24,7 @@ public class OrderService {
     private final TripService tripService;
     private final UserService userService;
     private final PassengerService passengerService;
+    private final StationService stationService;
 
     private final OrderRepository orderRepository;
     private final OrderStatusRepository orderStatusRepository;
@@ -31,25 +35,28 @@ public class OrderService {
                         UserService userService,
                         OrderRepository orderRepository,
                         PassengerService passengerService,
+                        StationService stationService,
                         OrderStatusRepository orderStatusRepository,
                         StationRepository stationRepository) {
         this.tripService = tripService;
         this.userService = userService;
         this.orderRepository = orderRepository;
         this.passengerService = passengerService;
+        this.stationService = stationService;
         this.orderStatusRepository = orderStatusRepository;
         this.stationRepository = stationRepository;
     }
 
-//    public Page<OrderDto> findOrdersByPassenger(int pageNumber, Passenger passenger) {
-//        PageRequest paging = PageRequest.of(pageNumber, 10);
-//        Page<Order> pagedOrders = orderRepository.findOrdersByPassengersContains(paging, passenger);
-//        return pagedOrders.map(OrderDto::new);
-//    }
 
-//    public long countByPassenger(Passenger passenger) {
-//        return orderRepository.countByPassengersContains(passenger);
-//    }
+    public Page<OrderDto> findOrdersByPassenger(int pageNumber, Passenger passenger) {
+        PageRequest paging = PageRequest.of(pageNumber, 10);
+        Page<Order> pagedOrders = orderRepository.findOrdersByPassenger(paging, passenger);
+        return pagedOrders.map(this::createDtoFromOrder);
+    }
+
+    public long countByPassenger(Passenger passenger) {
+        return orderRepository.countByPassenger(passenger);
+    }
 
     public Order save(Order order) {
         return orderRepository.save(order);
@@ -134,5 +141,21 @@ public class OrderService {
         order.setPrice(price);
 
         return orderRepository.save(order);
+    }
+
+
+    private OrderDto createDtoFromOrder(Order order) {
+        OrderDto dto = new OrderDto();
+        dto.setId(order.getId());
+        dto.setTrip(tripService.createDtoFromTrip(order.getTrip()));
+        dto.setSStart(stationService.createDtoFromStation(order.getStationStart()));
+        dto.setSFinish(stationService.createDtoFromStation(order.getStationFinish()));
+        dto.setUser(userService.createDtoFromUser(order.getUser()));
+        dto.setPassenger(passengerService.createDtoFromPassenger(order.getPassenger()));
+        dto.setSeatNumber(order.getSeat().getNumber());
+        dto.setStatus(order.getStatus().getValue());
+        dto.setDateTimeOrderCreated(order.getDateTimeOrderCreated());
+
+        return dto;
     }
 }

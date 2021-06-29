@@ -64,6 +64,13 @@ public class UserService implements UserDetailsService {
     }
 
 
+    UserDto createDtoFromUser(User user) {
+        UserDto dto = new UserDto();
+        dto.setUsername(user.getUsername());
+        dto.setRole(user.getRole().getValue());
+
+        return dto;
+    }
 
 
     @Autowired

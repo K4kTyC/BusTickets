@@ -1,6 +1,7 @@
 package com.k4ktyc.bustickets.service;
 
 import com.k4ktyc.bustickets.domain.Passenger;
+import com.k4ktyc.bustickets.domain.dto.PassengerDto;
 import com.k4ktyc.bustickets.repository.PassengerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,5 +28,15 @@ public class PassengerService {
 
     public Passenger save(Passenger passenger) {
         return passengerRepository.save(passenger);
+    }
+
+
+    PassengerDto createDtoFromPassenger(Passenger passenger) {
+        PassengerDto dto = new PassengerDto();
+        dto.setId(passenger.getId());
+        dto.setName(passenger.getName());
+        dto.setLastname(passenger.getLastname());
+
+        return dto;
     }
 }

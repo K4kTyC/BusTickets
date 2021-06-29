@@ -34,20 +34,20 @@ public class StationService {
         PageRequest paging = PageRequest.of(pageNumber, 20, Sort.by("name"));
         Page<Station> pagedStations = stationRepository.findAll(paging);
 
-        return pagedStations.map(StationDto::new);
+        return pagedStations.map(this::createDtoFromStation);
     }
 
     public Page<StationDto> getAllStations(int pageNumber, String filter) {
         PageRequest paging = PageRequest.of(pageNumber, 20, Sort.by("name"));
         Page<Station> pagedStations = stationRepository.findByNameContaining(filter, paging);
 
-        return pagedStations.map(StationDto::new);
+        return pagedStations.map(this::createDtoFromStation);
     }
 
     public Page<StationDto> getAllStations(boolean isUnpaged) {
         Page<Station> unpagedStations = stationRepository.findAll(Pageable.unpaged());
 
-        return unpagedStations.map(StationDto::new);
+        return unpagedStations.map(this::createDtoFromStation);
     }
 
     public void deleteById(long id) {
@@ -57,5 +57,14 @@ public class StationService {
 
     public Optional<Station> findById(long id) {
         return stationRepository.findById(id);
+    }
+
+
+    StationDto createDtoFromStation(Station station) {
+        StationDto dto = new StationDto();
+        dto.setId(station.getId());
+        dto.setName(station.getName());
+
+        return dto;
     }
 }
