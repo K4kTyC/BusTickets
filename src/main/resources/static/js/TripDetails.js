@@ -57,6 +57,8 @@ async function sendNewOrderDto(url, dto) {
     })
     if (response.ok) {
         alert('Заказ успешно оформлен')
+    } else if (response.status === 403) {
+        alert('Оформление заказа недоступно для администратора')
     }
 }
 

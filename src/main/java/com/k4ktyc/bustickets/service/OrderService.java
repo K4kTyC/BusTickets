@@ -111,7 +111,7 @@ public class OrderService {
 
         OrderStatus status = orderStatusRepository
                 .findByValue("created")
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "order_status error"));
 
         trip = tripService.update(trip);   // To set chosen seat to not free
 
@@ -155,6 +155,7 @@ public class OrderService {
         dto.setSeatNumber(order.getSeat().getNumber());
         dto.setStatus(order.getStatus().getValue());
         dto.setDateTimeOrderCreated(order.getDateTimeOrderCreated());
+        dto.setPrice(order.getPrice());
 
         return dto;
     }

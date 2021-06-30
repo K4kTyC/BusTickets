@@ -65,7 +65,7 @@ function fillPageWithOrders(data) {
                 <p class="order-bus-seat">Место № ${order.seatNumber}</p>
             </div>
             <div class="col-md-2 order-addinfo">
-                <p class="order-price">${order.trip.routeDto.price} BYN</p>
+                <p class="order-price">${order.price / 100} BYN</p>
                 <p class="order-status">${order.status}</p>
             </div>
         </div>

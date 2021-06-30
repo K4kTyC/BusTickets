@@ -26,4 +26,6 @@ public class OrderDto {
 
     private LocalDateTime dateTimeOrderCreated;
 
+    private long price;
+
 }
