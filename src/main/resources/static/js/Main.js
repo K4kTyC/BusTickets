@@ -92,15 +92,3 @@ document.getElementById('login-submit').addEventListener('click', function () {
     let form = document.getElementById('login-form')
     form.submit()
 })
-
-
-let swapStationsDeg = 180
-document.getElementById('swap-stations').addEventListener('click', function () {
-    let fromInput = document.getElementById('trip-from')
-    let toInput = document.getElementById('trip-to')
-    let tmp = fromInput.value
-    fromInput.value = toInput.value
-    toInput.value = tmp
-    document.getElementById('swap-stations').firstElementChild.style.transform = 'rotate(' + swapStationsDeg + 'deg)'
-    swapStationsDeg === 180 ? swapStationsDeg = 0 : swapStationsDeg = 180
-})

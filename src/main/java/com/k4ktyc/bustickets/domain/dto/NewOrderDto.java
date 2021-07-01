@@ -21,6 +21,6 @@ public class NewOrderDto {
     private PassengerDto passenger;
 
     @NotNull
-    private int seatNumber;
+    private int seat;
 
 }

@@ -12,15 +12,15 @@ public class OrderDto {
 
     private TripDto trip;
 
-    private StationDto sStart;
+    private RouteStationDto sStart;
 
-    private StationDto sFinish;
+    private RouteStationDto sFinish;
 
     private UserDto user;
 
     private PassengerDto passenger;
 
-    private int seatNumber;
+    private int seat;
 
     private String status;
 

@@ -1,31 +1,23 @@
 let tripDetails
-let seatList
+let notFreeSeatList
+let freeSeatList
+let stationStart, stationFinish
 
 $(() => {
     let tripId = window.location.href.substring(window.location.href.lastIndexOf('/') + 1)
+    setStartFinishStations()
     getTripDetails(tripId).then(fillPageWithTripDetails)
     getSeatList(tripId).then(fillSelectWithSeats)
 
     $('#order-submit').on('click', () => {
-        let sStart, sFinish
-        // TODO: заменить сессионное хранилище на параметры в URI
-        if (sessionStorage.getItem('tripsSearchResults') === null) {
-            let stations = tripDetails.routeDto.routeStations
-            sStart = stations[0].stationName
-            sFinish = stations[stations.length - 1].stationName
-        } else {
-            sStart = JSON.parse(sessionStorage.getItem('tripsSearchResults')).stationStart
-            sFinish = JSON.parse(sessionStorage.getItem('tripsSearchResults')).stationFinish
-        }
-
         let pName, pLastname
         pName = $('#pass-name').val()
         pLastname = $('#pass-lastname').val()
 
         let orderDto = {
             tripId: tripId,
-            stationStart: sStart,
-            stationFinish: sFinish,
+            stationStart: stationStart,
+            stationFinish: stationFinish,
             passenger: {
                 name: pName,
                 lastname: pLastname
@@ -40,11 +32,6 @@ $(() => {
 async function getTripDetails(tripId) {
     const response = await fetch(`/api/trips/${tripId}`)
     tripDetails = await response.json()
-}
-
-async function getSeatList(tripId) {
-    const response = await fetch(`/api/trips/${tripId}/seats`)
-    seatList = await response.json()
 }
 
 async function sendNewOrderDto(url, dto) {
@@ -65,20 +52,21 @@ async function sendNewOrderDto(url, dto) {
 function fillPageWithTripDetails() {
     let trip = tripDetails
     let stations = trip.routeDto.routeStations
-    let sStartName, sStartIndex, sFinishName, sFinishIndex
+    let sStartIndex, sFinishIndex
+    // TODO: заменить сессионное хранилище на параметры в URI
     if (sessionStorage.getItem('tripsSearchResults') === null) {
         sStartIndex = 0
         sFinishIndex = stations.length - 1
-        sStartName = stations[sStartIndex].stationName
-        sFinishName = stations[sFinishIndex].stationName
+        stationStart = stations[sStartIndex].stationName
+        stationFinish = stations[sFinishIndex].stationName
     } else {
-        sStartName = JSON.parse(sessionStorage.getItem('tripsSearchResults')).stationStart
-        sFinishName = JSON.parse(sessionStorage.getItem('tripsSearchResults')).stationFinish
+        stationStart = JSON.parse(sessionStorage.getItem('tripsSearchResults')).stationStart
+        stationFinish = JSON.parse(sessionStorage.getItem('tripsSearchResults')).stationFinish
         for (let i = 0; i < stations.length; i++) {
-            if (stations[i].stationName === sStartName) {
+            if (stations[i].stationName === stationStart) {
                 sStartIndex = i
             }
-            if (stations[i].stationName === sFinishName) {
+            if (stations[i].stationName === stationFinish) {
                 sFinishIndex = i
             }
         }
@@ -130,12 +118,11 @@ function fillPageWithTripDetails() {
 // TODO: fix filter for seat number
 function fillSelectWithSeats() {
     let seatNum = 0
-    for (let i = 0; i < seatList.length; i++) {
-        let seat = seatList[i]
-
-        if (seat.free) {
-            let seatTempl = `<li>${seat.number}</li>`
+    for (let i = 0; i < tripDetails.busDto.model.numberOfSeats; i++) {
+        if (!notFreeSeatList.includes(i)) {
+            let seatTempl = `<li>${i}</li>`
             $('#select-seat ul').append(seatTempl)
+            freeSeatList.push(i)
             seatNum++
         }
     }
@@ -147,7 +134,17 @@ function fillSelectWithSeats() {
         $arrow: $('#select-seat .select-arrow'),
         $list: $('#select-seat ul'),
         $options: $('#select-seat li'),
-        valueArray: seatList
+        valueArray: freeSeatList
     })
     addHandlersForSelect(0, 'Выберите место', 'Выберите место')
+}
+
+function setStartFinishStations() {
+    if (sessionStorage.getItem('tripsSearchResults') === null) {
+        stationStart = stations[sStartIndex].stationName
+        stationFinish = stations[sFinishIndex].stationName
+    } else {
+        stationStart = JSON.parse(sessionStorage.getItem('tripsSearchResults')).stationStart
+        stationFinish = JSON.parse(sessionStorage.getItem('tripsSearchResults')).stationFinish
+    }
 }

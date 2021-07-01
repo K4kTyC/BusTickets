@@ -81,7 +81,7 @@ public class RouteService {
         return dto;
     }
 
-    private RouteStationDto createDtoFromRouteStation(RouteStation rs) {
+    RouteStationDto createDtoFromRouteStation(RouteStation rs) {
         RouteStationDto dto = new RouteStationDto();
         dto.setId(rs.getId());
         dto.setStationId(rs.getStation().getId());
@@ -109,7 +109,7 @@ public class RouteService {
         return route;
     }
 
-    private RouteStation createRouteStationFromDto(RouteStationDto dto, Route route) {
+    RouteStation createRouteStationFromDto(RouteStationDto dto, Route route) {
         RouteStation rs = new RouteStation();
         Station station = stationRepository.findById(dto.getStationId()).get();
 

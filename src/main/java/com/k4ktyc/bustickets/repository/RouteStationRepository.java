@@ -6,9 +6,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 public interface RouteStationRepository extends CrudRepository<RouteStation, Long> {
     @Modifying
     @Transactional
     @Query("DELETE FROM RouteStation rs WHERE rs.station IS NULL")
     public void deleteWhereStationIsNull();
+
+    Optional<RouteStation> findByStationNameAndRouteId(String name, long routeId);
 }

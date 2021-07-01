@@ -2,13 +2,13 @@ package com.k4ktyc.bustickets.service;
 
 import com.k4ktyc.bustickets.domain.Bus;
 import com.k4ktyc.bustickets.domain.Route;
-import com.k4ktyc.bustickets.domain.Seat;
-import com.k4ktyc.bustickets.domain.dto.*;
+import com.k4ktyc.bustickets.domain.RouteStation;
 import com.k4ktyc.bustickets.domain.Trip;
-import com.k4ktyc.bustickets.repository.BusRepository;
-import com.k4ktyc.bustickets.repository.RouteRepository;
-import com.k4ktyc.bustickets.repository.StationRepository;
-import com.k4ktyc.bustickets.repository.TripRepository;
+import com.k4ktyc.bustickets.domain.dto.BusDto;
+import com.k4ktyc.bustickets.domain.dto.RouteDto;
+import com.k4ktyc.bustickets.domain.dto.TripDto;
+import com.k4ktyc.bustickets.domain.dto.TripSearchData;
+import com.k4ktyc.bustickets.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,11 +19,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @Service
 public class TripService {
@@ -33,19 +30,25 @@ public class TripService {
 
     private final TripRepository tripRepository;
     private final RouteRepository routeRepository;
+    private final RouteStationRepository rsRepository;
     private final BusRepository busRepository;
+    private final OrderRepository orderRepository;
 
     @Autowired
     public TripService(RouteService routeService,
                        BusService busService,
                        TripRepository tripRepository,
                        RouteRepository routeRepository,
-                       BusRepository busRepository) {
+                       RouteStationRepository rsRepository,
+                       BusRepository busRepository,
+                       OrderRepository orderRepository) {
         this.routeService = routeService;
         this.busService = busService;
         this.tripRepository = tripRepository;
         this.routeRepository = routeRepository;
+        this.rsRepository = rsRepository;
         this.busRepository = busRepository;
+        this.orderRepository = orderRepository;
     }
 
 
@@ -69,14 +72,18 @@ public class TripService {
         return createDtoFromTrip(trip);
     }
 
-    public List<SeatDto> getSeatsByTripId(long id) {
+    public List<Integer> getNotFreeSeats(long tripId, String sStart, String sFinish) {
         Trip trip = tripRepository
-                .findById(id)
+                .findById(tripId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Wrong trip id"));
 
-        return trip.getSeats()
-                .stream().map(SeatDto::new)
-                .collect(Collectors.toList());
+        RouteStation rsStart, rsFinish;
+        rsStart = rsRepository.findByStationNameAndRouteId(sStart, trip.getRoute().getId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Wrong start station"));
+        rsFinish = rsRepository.findByStationNameAndRouteId(sFinish, trip.getRoute().getId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Wrong finish station"));
+
+        return orderRepository.findNotFreeSeats(trip.getId(), rsStart.getId(), rsFinish.getId());
     }
 
     public Page<TripDto> searchTrips(TripSearchData searchData, int pageNumber) {
@@ -148,13 +155,6 @@ public class TripService {
         trip.setBus(bus);
         trip.setDatetime(dto.getDatetime());
 
-        List<Seat> seats = new ArrayList<>();
-        for (int i = 0; i < bus.getModel().getNumberOfSeats(); i++) {
-            Seat seat = new Seat(i + 1, trip);
-            seats.add(seat);
-        }
-        trip.setSeats(seats);
-
         return trip;
     }
 
@@ -167,9 +167,6 @@ public class TripService {
         tripDto.setRouteDto(routeDto);
         tripDto.setBusDto(busDto);
         tripDto.setDatetime(trip.getDatetime());
-        tripDto.setSeats(trip.getSeats()
-                .stream().map(SeatDto::new)
-                .collect(Collectors.toList()));
 
         return tripDto;
     }

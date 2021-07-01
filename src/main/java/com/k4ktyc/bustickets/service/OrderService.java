@@ -5,7 +5,7 @@ import com.k4ktyc.bustickets.domain.dto.NewOrderDto;
 import com.k4ktyc.bustickets.domain.dto.OrderDto;
 import com.k4ktyc.bustickets.repository.OrderRepository;
 import com.k4ktyc.bustickets.repository.OrderStatusRepository;
-import com.k4ktyc.bustickets.repository.StationRepository;
+import com.k4ktyc.bustickets.repository.RouteStationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,30 +21,30 @@ import java.util.List;
 @Service
 public class OrderService {
 
+    private final RouteService routeService;
     private final TripService tripService;
     private final UserService userService;
     private final PassengerService passengerService;
-    private final StationService stationService;
 
     private final OrderRepository orderRepository;
     private final OrderStatusRepository orderStatusRepository;
-    private final StationRepository stationRepository;
+    private final RouteStationRepository rsRepository;
 
     @Autowired
-    public OrderService(TripService tripService,
+    public OrderService(RouteService routeService,
+                        TripService tripService,
                         UserService userService,
                         OrderRepository orderRepository,
                         PassengerService passengerService,
-                        StationService stationService,
                         OrderStatusRepository orderStatusRepository,
-                        StationRepository stationRepository) {
+                        RouteStationRepository rsRepository) {
+        this.routeService = routeService;
         this.tripService = tripService;
         this.userService = userService;
         this.orderRepository = orderRepository;
         this.passengerService = passengerService;
-        this.stationService = stationService;
         this.orderStatusRepository = orderStatusRepository;
-        this.stationRepository = stationRepository;
+        this.rsRepository = rsRepository;
     }
 
 
@@ -67,12 +67,10 @@ public class OrderService {
                 .findById(dto.getTripId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Wrong trip id"));
 
-        Station sStart, sFinish;
-        sStart = stationRepository
-                .findByName(dto.getStationStart())
+        RouteStation rsStart, rsFinish;
+        rsStart = rsRepository.findByStationNameAndRouteId(dto.getStationStart(), trip.getRoute().getId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Wrong start station"));
-        sFinish = stationRepository
-                .findByName(dto.getStationFinish())
+        rsFinish = rsRepository.findByStationNameAndRouteId(dto.getStationFinish(), trip.getRoute().getId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Wrong finish station"));
 
         User user = userService
@@ -92,28 +90,16 @@ public class OrderService {
             passenger = passengerService.save(p);
         }
 
-        Seat chosenSeat = null;
-        for (Seat s : trip.getSeats()) {
-            if (s.getNumber() == dto.getSeatNumber()) {
-                chosenSeat = s;
-                break;
-            }
-        }
-        if (chosenSeat == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Wrong seat number");
-        }
-        if (!chosenSeat.isFree()) {
-            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Chosen seat is already taken");
-        }
-        chosenSeat.setFree(false);
-
         LocalDateTime datetime = LocalDateTime.now(ZoneId.of("Europe/Minsk"));
 
         OrderStatus status = orderStatusRepository
                 .findByValue("created")
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "order_status error"));
 
-        trip = tripService.update(trip);   // To set chosen seat to not free
+        List<Integer> notFreeSeats = orderRepository.findNotFreeSeats(trip.getId(), rsStart.getId(), rsFinish.getId());
+        if (notFreeSeats.contains(dto.getSeat())) {
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Chosen seat is already taken");
+        }
 
         long price = 0;
         boolean isCounter = false;
@@ -121,23 +107,23 @@ public class OrderService {
             if (isCounter) {
                 price += rs.getPrice();
             }
-            if (rs.getStation() == sStart) {
+            if (rs == rsStart) {
                 isCounter = true;
             }
-            if (rs.getStation() == sFinish) {
+            if (rs == rsFinish) {
                 isCounter = false;
             }
         }
 
         Order order = new Order();
         order.setTrip(trip);
-        order.setStationStart(sStart);
-        order.setStationFinish(sFinish);
+        order.setStationStart(rsStart);
+        order.setStationFinish(rsFinish);
         order.setUser(user);
         order.setPassenger(passenger);
-        order.setSeat(chosenSeat);
-        order.setDateTimeOrderCreated(datetime);
         order.setStatus(status);
+        order.setDateTimeOrderCreated(datetime);
+        order.setSeat(dto.getSeat());
         order.setPrice(price);
 
         return orderRepository.save(order);
@@ -148,13 +134,13 @@ public class OrderService {
         OrderDto dto = new OrderDto();
         dto.setId(order.getId());
         dto.setTrip(tripService.createDtoFromTrip(order.getTrip()));
-        dto.setSStart(stationService.createDtoFromStation(order.getStationStart()));
-        dto.setSFinish(stationService.createDtoFromStation(order.getStationFinish()));
+        dto.setSStart(routeService.createDtoFromRouteStation(order.getStationStart()));
+        dto.setSFinish(routeService.createDtoFromRouteStation(order.getStationFinish()));
         dto.setUser(userService.createDtoFromUser(order.getUser()));
         dto.setPassenger(passengerService.createDtoFromPassenger(order.getPassenger()));
-        dto.setSeatNumber(order.getSeat().getNumber());
         dto.setStatus(order.getStatus().getValue());
         dto.setDateTimeOrderCreated(order.getDateTimeOrderCreated());
+        dto.setSeat(order.getSeat());
         dto.setPrice(order.getPrice());
 
         return dto;

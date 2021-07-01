@@ -25,7 +25,4 @@ public class Trip {
     @JoinColumn(name = "bus_id", nullable = false)
     private Bus bus;
 
-    @OneToMany(mappedBy = "trip", cascade = CascadeType.ALL)
-    private List<Seat> seats;
-
 }

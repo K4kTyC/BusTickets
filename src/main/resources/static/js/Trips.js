@@ -1,15 +1,18 @@
 let pageNum = 0
 let lastPage = 0
 let tripList
-let isSearch = false
+const notFreeSeatList = new Map()
+let searchData
 
 $(() => {
-    if (new URLSearchParams(window.location.search).has('search')) {
-        isSearch = true
-        let pagedTrips = JSON.parse(sessionStorage.getItem('tripsSearchResults')).trips
-        tripList = pagedTrips.content
-        lastPage = pagedTrips.totalPages - 1
-        fillPageWithTrips()
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('search')) {
+        searchData = {
+            date: urlParams.get('date'),
+            start: urlParams.get('start'),
+            finish: urlParams.get('finish')
+        }
+        searchTrips().then(fillPageWithTrips)
     } else {
         getAllTrips().then(fillPageWithTrips)
     }
@@ -20,6 +23,22 @@ async function getAllTrips() {
     const data = await response.json()
     tripList = data.content
     lastPage = data.totalPages - 1
+}
+
+async function searchTrips() {
+    const response = await fetch(`/api/trips/search?page=${pageNum}&datetime=${searchData.date}&start=${searchData.start}&finish=${searchData.finish}`)
+    const returned = await response.json()
+    tripList = returned.content
+    lastPage = returned.totalPages - 1
+    for (const trip of tripList) {
+        await getSeatList(trip.id)
+    }
+}
+
+async function getSeatList(tripId) {
+    const response = await fetch(`/api/trips/${tripId}/seats?stationStart=${searchData.start}&stationFinish=${searchData.finish}`)
+    const notFreeSeats = await response.json()
+    notFreeSeatList.set(tripId, notFreeSeats)
 }
 
 function fillPageWithTrips() {
@@ -38,9 +57,9 @@ function fillPageWithTrips() {
         let seatAmount = countFreeSeats(trip.seats)
 
         let stationStartIndex, stationFinishIndex
-        if (isSearch) {
-            let stationStartName = JSON.parse(sessionStorage.getItem('tripsSearchResults')).stationStart
-            let stationFinishName = JSON.parse(sessionStorage.getItem('tripsSearchResults')).stationFinish
+        if (searchData !== undefined) {
+            let stationStartName = searchData.start
+            let stationFinishName = searchData.finish
 
             for (let j = 0; j < stations.length; j++) {
                 if (stations[j].stationName === stationStartName) {

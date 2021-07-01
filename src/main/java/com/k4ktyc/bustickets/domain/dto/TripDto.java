@@ -6,7 +6,6 @@ import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Getter @Setter
 public class TripDto {
@@ -30,8 +29,5 @@ public class TripDto {
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private BusDto busDto;
-
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private List<SeatDto> seats;
 
 }
