@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 public interface TripRepository extends PagingAndSortingRepository<Trip, Long> {
     void deleteById(long id);
     Page<Trip> findByRouteId(long id, Pageable pageable);
+    Page<Trip> findByDatetimeAfter(LocalDateTime now, Pageable pageable);
 
     @Query(nativeQuery = true,
            value = "SELECT trips.* FROM trips" +

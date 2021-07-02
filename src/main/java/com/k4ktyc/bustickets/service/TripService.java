@@ -18,7 +18,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,8 +60,9 @@ public class TripService {
     }
 
     public Page<TripDto> getAllTrips(int pageNumber) {
+        LocalDateTime today = LocalDateTime.of(LocalDate.now(), LocalTime.MIN);
         PageRequest paging = PageRequest.of(pageNumber, 10, Sort.by("datetime"));
-        Page<Trip> pagedTrips = tripRepository.findAll(paging);
+        Page<Trip> pagedTrips = tripRepository.findByDatetimeAfter(today, paging);
 
         return pagedTrips.map(this::createDtoFromTrip);
     }

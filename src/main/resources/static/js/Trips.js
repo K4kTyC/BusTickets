@@ -14,6 +14,7 @@ $(() => {
         }
         searchTrips().then(fillPageWithTrips)
     } else {
+        // TODO: скрывать уже отправившиеся, сделать кнопку для их отображения
         getAllTrips().then(fillPageWithTrips)
     }
 })
