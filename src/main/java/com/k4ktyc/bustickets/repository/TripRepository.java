@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDateTime;
 
@@ -16,14 +17,14 @@ public interface TripRepository extends PagingAndSortingRepository<Trip, Long> {
     @Query(value = "SELECT trip FROM Trip trip" +
                    "    JOIN trip.route.stations rs1" +
                    "    JOIN trip.route.stations rs2" +
-                   "    WHERE trip.datetime > ?1 AND trip.datetime < ?2" +
-                   "      AND rs1.station.name = ?3 AND rs2.station.name = ?4" +
+                   "    WHERE trip.datetime > :dateStart AND trip.datetime < :dateFinish" +
+                   "      AND rs1.station.name = :sStart AND rs2.station.name = :sFinish" +
                    "      AND rs1.id < rs2.id" +
                    "    ORDER BY trip.datetime"
     )
-    Page<Trip> searchTrips(LocalDateTime dateStart,
-                           LocalDateTime dateFinish,
-                           String stationStart,
-                           String stationFinish,
+    Page<Trip> searchTrips(@Param("dateStart") LocalDateTime dateStart,
+                           @Param("dateFinish") LocalDateTime dateFinish,
+                           @Param("sStart") String stationStart,
+                           @Param("sFinish") String stationFinish,
                            Pageable pageable);
 }
