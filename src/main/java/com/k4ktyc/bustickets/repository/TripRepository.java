@@ -13,27 +13,13 @@ public interface TripRepository extends PagingAndSortingRepository<Trip, Long> {
     Page<Trip> findByRouteId(long id, Pageable pageable);
     Page<Trip> findByDatetimeAfter(LocalDateTime now, Pageable pageable);
 
-    @Query(nativeQuery = true,
-           value = "SELECT trips.* FROM trips" +
-                   "    INNER JOIN routes r ON trips.route_id = r.id" +
-                   "    INNER JOIN route_station rs1 ON r.id = rs1.route_id" +
-                   "    INNER JOIN route_station rs2 ON r.id = rs2.route_id" +
-                   "    INNER JOIN stations s1 ON rs1.station_id = s1.id" +
-                   "    INNER JOIN stations s2 ON rs2.station_id = s2.id" +
-                   "    WHERE datetime > ?1 AND datetime < ?2" +
-                   "      AND s1.name = ?3 AND s2.name = ?4" +
+    @Query(value = "SELECT trip FROM Trip trip" +
+                   "    JOIN trip.route.stations rs1" +
+                   "    JOIN trip.route.stations rs2" +
+                   "    WHERE trip.datetime > ?1 AND trip.datetime < ?2" +
+                   "      AND rs1.station.name = ?3 AND rs2.station.name = ?4" +
                    "      AND rs1.id < rs2.id" +
-                   "    ORDER BY datetime",
-           countQuery = "SELECT COUNT(*) FROM trips" +
-                        "    INNER JOIN routes r ON trips.route_id = r.id" +
-                        "    INNER JOIN route_station rs1 ON r.id = rs1.route_id" +
-                        "    INNER JOIN route_station rs2 ON r.id = rs2.route_id" +
-                        "    INNER JOIN stations s1 ON rs1.station_id = s1.id" +
-                        "    INNER JOIN stations s2 ON rs2.station_id = s2.id" +
-                        "    WHERE datetime > ?1 AND datetime < ?2" +
-                        "      AND s1.name = ?3 AND s2.name = ?4" +
-                        "      AND rs1.id < rs2.id" +
-                        "    ORDER BY datetime"
+                   "    ORDER BY trip.datetime"
     )
     Page<Trip> searchTrips(LocalDateTime dateStart,
                            LocalDateTime dateFinish,

@@ -13,6 +13,8 @@ $(() => {
             finish: urlParams.get('finish')
         }
         searchTrips().then(fillPageWithTrips)
+        $('#trip-from').val(searchData.start)
+        $('#trip-to').val(searchData.finish)
     } else {
         // TODO: скрывать уже отправившиеся, сделать кнопку для их отображения
         getAllTrips().then(fillPageWithTrips)

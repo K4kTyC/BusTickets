@@ -66,6 +66,10 @@ window.onscroll = function() {
     prevScrollpos = currentScrollPos;
 }
 
+function capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 function minutesToHours(timeInMinutes) {
     let time = timeInMinutes
     if (time < 60) {

@@ -6,8 +6,8 @@ $('#trip-search-submit').on('click', () => {
         date.set({ 'hour': 0, 'minute': 0, 'second':0, 'millisecond': 0 })
     }
 
-    let start = $('#trip-from').val()
-    let finish = $('#trip-to').val()
+    let start = capitalize($('#trip-from').val().toLowerCase())
+    let finish = capitalize($('#trip-to').val().toLowerCase())
 
     window.location.assign(`/trips?search&date=${date.toJSON()}&start=${start}&finish=${finish}`)
 })
