@@ -66,11 +66,11 @@
     max-width: 15%;
 }
 .col-content-route .name {
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: bold;
 }
 .col-content-route .bus-class {
-    font-size: 1.1rem;
+    font-size: .9rem;
     opacity: .7;
 }
 
@@ -81,15 +81,15 @@
     text-align: center;
 }
 .col-content-bus .number {
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: bold;
 }
 .col-content-bus .model {
-    font-size: 1.1rem;
+    font-size: .9rem;
     opacity: .7;
 }
 .col-content-bus .seats {
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 
@@ -99,7 +99,7 @@
     text-align: center;
 }
 .col-content-station .time {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: bold;
     font-family: 'M PLUS 1p', sans-serif;
 }
@@ -109,7 +109,7 @@
     font-family: 'M PLUS 1p', sans-serif;
 }
 .col-content-station .station {
-    font-size: 1.1rem;
+    font-size: 1rem;
     margin: .5rem 0 0 0;
     text-align: center;
 }
