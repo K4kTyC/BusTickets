@@ -16,9 +16,9 @@ public interface OrderRepository extends PagingAndSortingRepository<Order, Long>
     @Query(nativeQuery = true,
     value = "SELECT seat FROM orders" +
             "   WHERE trip_id = ?1 AND" +
-            "       ((station_start_id < ?2 AND station_finish_id > ?2) OR" +
-            "        (station_start_id > ?2 AND station_start_id < ?3) OR" +
-            "        (station_start_id = ?2))" +
+            "       ((route_station_start_id < ?2 AND route_station_finish_id > ?2) OR" +
+            "        (route_station_start_id > ?2 AND route_station_start_id < ?3) OR" +
+            "        (route_station_start_id = ?2))" +
             "   ORDER BY seat")
     List<Integer> findNotFreeSeats(long tripId, long startId, long finishId);
 }

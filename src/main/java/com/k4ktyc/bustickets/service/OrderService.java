@@ -3,6 +3,7 @@ package com.k4ktyc.bustickets.service;
 import com.k4ktyc.bustickets.domain.*;
 import com.k4ktyc.bustickets.domain.dto.NewOrderDto;
 import com.k4ktyc.bustickets.domain.dto.OrderDto;
+import com.k4ktyc.bustickets.domain.dto.UserOrdersDto;
 import com.k4ktyc.bustickets.repository.OrderRepository;
 import com.k4ktyc.bustickets.repository.OrderStatusRepository;
 import com.k4ktyc.bustickets.repository.RouteStationRepository;
@@ -16,6 +17,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.security.Principal;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -48,14 +50,28 @@ public class OrderService {
     }
 
 
-    public Page<OrderDto> findOrdersByPassenger(int pageNumber, Passenger passenger) {
+    public List<UserOrdersDto> countOrdersByPassengers() {
+        Iterable<Passenger> passengers = passengerService.getAllPassengers();
+        List<UserOrdersDto> userOrdersDtoList = new ArrayList<>();
+
+        for (var passenger : passengers) {
+            long ordersAmount = orderRepository.countByPassenger(passenger);
+            userOrdersDtoList.add(new UserOrdersDto(
+                    passenger.getId(),
+                    passenger.getName(),
+                    passenger.getLastname(),
+                    ordersAmount));
+        }
+        return userOrdersDtoList;
+    }
+
+    public Page<OrderDto> findOrdersByPassenger(int pageNumber, String name, String lastname) {
+        Passenger passenger = passengerService
+                .findByNameAndLastname(name, lastname)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Wrong passenger data"));
         PageRequest paging = PageRequest.of(pageNumber, 10);
         Page<Order> pagedOrders = orderRepository.findOrdersByPassenger(paging, passenger);
         return pagedOrders.map(this::createDtoFromOrder);
-    }
-
-    public long countByPassenger(Passenger passenger) {
-        return orderRepository.countByPassenger(passenger);
     }
 
     public Order save(Order order) {

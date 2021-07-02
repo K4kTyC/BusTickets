@@ -23,6 +23,9 @@ async function getAllTrips() {
     const data = await response.json()
     tripList = data.content
     lastPage = data.totalPages - 1
+    for (const trip of tripList) {
+        await getSeatList(trip.id)
+    }
 }
 
 async function searchTrips() {
@@ -36,7 +39,12 @@ async function searchTrips() {
 }
 
 async function getSeatList(tripId) {
-    const response = await fetch(`/api/trips/${tripId}/seats?stationStart=${searchData.start}&stationFinish=${searchData.finish}`)
+    let response
+    if (searchData === undefined) {
+        response = await fetch(`/api/trips/${tripId}/seats`)
+    } else {
+        response = await fetch(`/api/trips/${tripId}/seats?stationStart=${searchData.start}&stationFinish=${searchData.finish}`)
+    }
     const notFreeSeats = await response.json()
     notFreeSeatList.set(tripId, notFreeSeats)
 }
@@ -54,7 +62,7 @@ function fillPageWithTrips() {
 
         let busNumber = trip.busDto.number
         let busModel = trip.busDto.model.name
-        let seatAmount = countFreeSeats(trip.seats)
+        let seatAmount = countFreeSeats(trip.id, trip.busDto.model.numberOfSeats)
 
         let stationStartIndex, stationFinishIndex
         if (searchData !== undefined) {
@@ -127,15 +135,16 @@ function fillPageWithTrips() {
         $('#trip-list-container').append(tripTempl)
 
         $(`#buy-ticket-${trip.id}`).on('click', () => {
-            window.location.assign(`/trips/${trip.id}`)
+            if (searchData === undefined) {
+                window.location.assign(`/trips/${trip.id}`)
+            } else {
+                window.location.assign(`/trips/${trip.id}?search&start=${searchData.start}&finish=${searchData.finish}`)
+            }
         })
     }
 }
 
-function countFreeSeats(seats) {
-    let num = 0
-    seats.forEach(seat => {
-        if (seat.free) num++
-    })
-    return num
+function countFreeSeats(tripId, totalSeats) {
+    let notFreeSeatsAmount = notFreeSeatList.get(tripId).length
+    return totalSeats - notFreeSeatsAmount
 }

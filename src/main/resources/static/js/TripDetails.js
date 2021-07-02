@@ -1,18 +1,36 @@
 let tripDetails
 let notFreeSeatList
-let freeSeatList
-let stationStart, stationFinish
+let freeSeatList = []
+let searchData
 
 $(() => {
-    let tripId = window.location.href.substring(window.location.href.lastIndexOf('/') + 1)
-    setStartFinishStations()
-    getTripDetails(tripId).then(fillPageWithTripDetails)
-    getSeatList(tripId).then(fillSelectWithSeats)
+    let tripId
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('search')) {
+        searchData = {
+            start: urlParams.get('start'),
+            finish: urlParams.get('finish')
+        }
+        tripId = window.location.href.substring(window.location.href.lastIndexOf('/') + 1, window.location.href.indexOf('?'))
+    } else {
+        tripId = window.location.href.substring(window.location.href.lastIndexOf('/') + 1)
+    }
+    getTripDetails(tripId)
 
     $('#order-submit').on('click', () => {
         let pName, pLastname
         pName = $('#pass-name').val()
         pLastname = $('#pass-lastname').val()
+
+        let stationStart, stationFinish
+        if (searchData === undefined) {
+            let stations = tripDetails.routeDto.routeStations
+            stationStart = stations[0].stationName
+            stationFinish = stations[stations.length - 1].stationName
+        } else {
+            stationStart = searchData.start
+            stationFinish = searchData.finish
+        }
 
         let orderDto = {
             tripId: tripId,
@@ -22,7 +40,7 @@ $(() => {
                 name: pName,
                 lastname: pLastname
             },
-            seatNumber: parseInt(selectParts[0].$input.val())
+            seat: parseInt(selectParts[0].$input.val())
         }
         console.log(orderDto)
         sendNewOrderDto('/api/orders', orderDto)
@@ -32,6 +50,19 @@ $(() => {
 async function getTripDetails(tripId) {
     const response = await fetch(`/api/trips/${tripId}`)
     tripDetails = await response.json()
+    await getSeatList(tripDetails.id)
+    fillPageWithTripDetails()
+    fillSelectWithSeats()
+}
+
+async function getSeatList(tripId) {
+    let response
+    if (searchData === undefined) {
+        response = await fetch(`/api/trips/${tripId}/seats`)
+    } else {
+        response = await fetch(`/api/trips/${tripId}/seats?stationStart=${searchData.start}&stationFinish=${searchData.finish}`)
+    }
+    notFreeSeatList = await response.json()
 }
 
 async function sendNewOrderDto(url, dto) {
@@ -52,21 +83,21 @@ async function sendNewOrderDto(url, dto) {
 function fillPageWithTripDetails() {
     let trip = tripDetails
     let stations = trip.routeDto.routeStations
-    let sStartIndex, sFinishIndex
-    // TODO: заменить сессионное хранилище на параметры в URI
-    if (sessionStorage.getItem('tripsSearchResults') === null) {
+    let sStartIndex, sStartName, sFinishIndex, sFinishName
+
+    if (searchData === undefined) {
         sStartIndex = 0
         sFinishIndex = stations.length - 1
-        stationStart = stations[sStartIndex].stationName
-        stationFinish = stations[sFinishIndex].stationName
+        sStartName = stations[sStartIndex].stationName
+        sFinishName = stations[sFinishIndex].stationName
     } else {
-        stationStart = JSON.parse(sessionStorage.getItem('tripsSearchResults')).stationStart
-        stationFinish = JSON.parse(sessionStorage.getItem('tripsSearchResults')).stationFinish
+        sStartName = searchData.start
+        sFinishName = searchData.finish
         for (let i = 0; i < stations.length; i++) {
-            if (stations[i].stationName === stationStart) {
+            if (stations[i].stationName === sStartName) {
                 sStartIndex = i
             }
-            if (stations[i].stationName === stationFinish) {
+            if (stations[i].stationName === sFinishName) {
                 sFinishIndex = i
             }
         }
@@ -117,17 +148,16 @@ function fillPageWithTripDetails() {
 
 // TODO: fix filter for seat number
 function fillSelectWithSeats() {
-    let seatNum = 0
-    for (let i = 0; i < tripDetails.busDto.model.numberOfSeats; i++) {
+    let totalSeatsAmount = tripDetails.busDto.model.numberOfSeats
+    for (let i = 1; i <= totalSeatsAmount; i++) {
         if (!notFreeSeatList.includes(i)) {
             let seatTempl = `<li>${i}</li>`
             $('#select-seat ul').append(seatTempl)
             freeSeatList.push(i)
-            seatNum++
         }
     }
 
-    $('.seats-number').append(`Свободных мест: ${seatNum}`)
+    $('.seats-number').append(`Свободных мест: ${countFreeSeats(totalSeatsAmount)}`)
 
     selectParts.push({
         $input: $('#select-seat input'),
@@ -139,12 +169,7 @@ function fillSelectWithSeats() {
     addHandlersForSelect(0, 'Выберите место', 'Выберите место')
 }
 
-function setStartFinishStations() {
-    if (sessionStorage.getItem('tripsSearchResults') === null) {
-        stationStart = stations[sStartIndex].stationName
-        stationFinish = stations[sFinishIndex].stationName
-    } else {
-        stationStart = JSON.parse(sessionStorage.getItem('tripsSearchResults')).stationStart
-        stationFinish = JSON.parse(sessionStorage.getItem('tripsSearchResults')).stationFinish
-    }
+function countFreeSeats(totalSeats) {
+    let notFreeSeatsAmount = notFreeSeatList.length
+    return totalSeats - notFreeSeatsAmount
 }

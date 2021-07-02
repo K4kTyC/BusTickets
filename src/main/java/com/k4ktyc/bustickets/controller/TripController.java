@@ -2,7 +2,6 @@ package com.k4ktyc.bustickets.controller;
 
 import com.k4ktyc.bustickets.domain.dto.TripDto;
 import com.k4ktyc.bustickets.domain.dto.TripSearchData;
-import com.k4ktyc.bustickets.repository.OrderRepository;
 import com.k4ktyc.bustickets.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -35,8 +34,8 @@ public class TripController {
 
     @GetMapping("/{id}/seats")
     public List<Integer> getNotFreeSeats(@PathVariable long id,
-                                         @RequestParam String stationStart,
-                                         @RequestParam String stationFinish) {
+                                         @RequestParam(defaultValue = "") String stationStart,
+                                         @RequestParam(defaultValue = "") String stationFinish) {
 
         return tripService.getNotFreeSeats(id, stationStart, stationFinish);
     }

@@ -8,16 +8,6 @@ function processUrlParams() {
         $('#login-tab').tab('show')
         history.replaceState(null,'', '/')
     }
-
-    if (window.location.pathname === '/orders') {
-        if (urlParams.has('search')) {
-            let orders = JSON.parse(sessionStorage.getItem('ordersSearchResults'))
-            fillPageWithOrders(orders)
-        } else {
-            getAllOrders()
-        }
-        //history.replaceState(null, '', '/orders')
-    }
 }
 
 async function checkAuth() {

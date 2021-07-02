@@ -1,7 +1,39 @@
+let pageNum = 0
+let lastPage = 0
+let searchData
+let orderList
+
+$(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('search')) {
+        searchData = {
+            name: urlParams.get('name'),
+            lastname: urlParams.get('lastname')
+        }
+        searchOrders().then(fillPageWithOrders)
+    } else {
+        getAllOrders()
+    }
+
+    $('#order-search-submit').on('click', () => {
+        let name = $('#passenger-name').val()
+        let lastname = $('#passenger-lastname').val()
+
+        window.location.assign(`/orders?search&name=${name}&lastname=${lastname}`)
+    })
+})
+
 async function getAllOrders() {
     const response = await fetch('/api/orders')
     const data = await response.json()
     fillPageWithPassengers(data)
+}
+
+async function searchOrders() {
+    const response = await fetch(`/api/orders/search?page=${pageNum}&name=${searchData.name}&lastname=${searchData.lastname}`)
+    const returned = await response.json()
+    orderList = returned.content
+    lastPage = returned.totalPages - 1
 }
 
 function fillPageWithPassengers(data) {
@@ -27,20 +59,18 @@ function fillPageWithPassengers(data) {
 
         $(`#orders-${orders.passengerId}`).on('click', () => {
             let passenger = $(`#orders-${orders.passengerId}`).children('.order-passenger').children('.order-passenger-text').text().split(' ')
-            let searchData = {
-                name: passenger[0],
-                lastname: passenger[1]
-            }
-            console.log(searchData)
-            sendSearchData('/api/orders/search', searchData)
+            let name = passenger[0]
+            let lastname = passenger[1]
+
+            window.location.assign(`/orders?search&name=${name}&lastname=${lastname}`)
         })
     }
 }
 
-function fillPageWithOrders(data) {
+function fillPageWithOrders() {
     $('.order-list-header').remove()
 
-    let orders = data.content
+    let orders = orderList
 
     $('#order-list-container').append(`
         <div class="row title p-5">${orders[0].passenger.name} ${orders[0].passenger.lastname}</div>
@@ -54,7 +84,7 @@ function fillPageWithOrders(data) {
         let pageTemplate = `
         <div class="row order-list-content align-items-center px-5 justify-content-between" id="orders-${order.id}">
             <div class="col-md-4 order-info">
-                <p class="order-route">${order.sstart.name} — ${order.sfinish.name}</p>
+                <p class="order-route">${order.sstart.stationName} — ${order.sfinish.stationName}</p>
             </div>
             <div class="col-md-2 order-datetime">
                 <p class="order-time">${startTimeDate.format('HH:mm')}</p>
@@ -62,7 +92,7 @@ function fillPageWithOrders(data) {
             </div>
             <div class="col-md-4 order-bus">
                 <p class="order-bus-number">Автобус № ${order.trip.busDto.number}</p>
-                <p class="order-bus-seat">Место № ${order.seatNumber}</p>
+                <p class="order-bus-seat">Место № ${order.seat}</p>
             </div>
             <div class="col-md-2 order-addinfo">
                 <p class="order-price">${order.price / 100} BYN</p>

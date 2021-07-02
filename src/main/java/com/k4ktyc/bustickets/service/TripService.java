@@ -78,10 +78,16 @@ public class TripService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Wrong trip id"));
 
         RouteStation rsStart, rsFinish;
-        rsStart = rsRepository.findByStationNameAndRouteId(sStart, trip.getRoute().getId())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Wrong start station"));
-        rsFinish = rsRepository.findByStationNameAndRouteId(sFinish, trip.getRoute().getId())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Wrong finish station"));
+        if (sStart.isBlank() || sFinish.isBlank()) {
+            List<RouteStation> stations = trip.getRoute().getStations();
+            rsStart = stations.get(0);
+            rsFinish = stations.get(stations.size() - 1);
+        } else {
+            rsStart = rsRepository.findByStationNameAndRouteId(sStart, trip.getRoute().getId())
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Wrong start station"));
+            rsFinish = rsRepository.findByStationNameAndRouteId(sFinish, trip.getRoute().getId())
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Wrong finish station"));
+        }
 
         return orderRepository.findNotFreeSeats(trip.getId(), rsStart.getId(), rsFinish.getId());
     }
