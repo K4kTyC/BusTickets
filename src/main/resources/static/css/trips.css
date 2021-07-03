@@ -1,3 +1,7 @@
+.container .select-route-form {
+    margin-top: 2rem;
+}
+
 .trip-info-container {
     background: #292f34;
     box-shadow: 0 0 5px rgba(0, 0, 0, .5);

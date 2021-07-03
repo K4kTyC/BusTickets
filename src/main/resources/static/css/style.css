@@ -11,7 +11,7 @@ body {
 }
 
 .wrapper {
-    min-height: calc(100vh - var(--navbar-height))
+    min-height: 100vh;
 }
 
 .fa-trash {
@@ -447,13 +447,18 @@ ul.nav-tabs {
 .select-route-block {
     background: linear-gradient(rgba(41, 47, 52, .9), rgba(41, 47, 52, .9)), url("../img/mainBG2.jpg") no-repeat center center;
     background-size: cover;
-    min-height: 40rem;
+    min-height: 100vh;
+    margin: calc(-1 * var(--navbar-height)) 0 0 0;
+}
+
+.select-route-block .container {
+    display: flex;
+    align-items: center;
 }
 
 .select-route-form {
     background: #292f34;
     box-shadow: 0 0 10px rgba(0, 0, 0, .7);
-    margin-top: 1rem;
     padding: 2rem;
 }
 

@@ -56,14 +56,16 @@ function enableDatetimePicker(id) {
 let prevScrollpos = window.pageYOffset;
 window.onscroll = function() {
     const currentScrollPos = window.pageYOffset;
+    const navbar = document.getElementById("mainNavbar")
     if (prevScrollpos > currentScrollPos) {
-        document.getElementById("mainNavbar").style.top = "0";
-    } else {
+        navbar.style.top = "0";
+        prevScrollpos = currentScrollPos;
+    } else if (prevScrollpos < currentScrollPos - navbar.offsetHeight) {
         if ($('.navbar-toggler').attr('aria-expanded') === 'false') {
-            document.getElementById("mainNavbar").style.top = "calc(-48px - 4px - 2rem)";
+            navbar.style.top = "calc(-48px - 4px - 2rem)";
+            prevScrollpos = currentScrollPos;
         }
     }
-    prevScrollpos = currentScrollPos;
 }
 
 function capitalize(string) {
