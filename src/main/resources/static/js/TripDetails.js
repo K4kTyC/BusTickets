@@ -42,7 +42,6 @@ $(() => {
             },
             seat: parseInt(selectParts[0].$input.val())
         }
-        console.log(orderDto)
         sendNewOrderDto('/api/orders', orderDto)
     })
 })
@@ -73,7 +72,12 @@ async function sendNewOrderDto(url, dto) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(dto)
     })
-    if (response.ok) {
+    if (response.redirected) {
+        if (response.url.substring(response.url.lastIndexOf('/') + 1) === '?needLogin') {
+            $('#modal-account').modal('show')
+            $('#login-tab').tab('show')
+        }
+    } else if (response.ok) {
         alert('Заказ успешно оформлен')
     } else if (response.status === 403) {
         alert('Оформление заказа недоступно для администратора')

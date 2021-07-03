@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -37,13 +38,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers(HttpMethod.GET, "/trips/**", "/api/trips/**").permitAll()
                     .antMatchers(HttpMethod.POST, "/api/orders").hasAnyRole("USER", "EMPLOYEE")  // TODO: запретить админу только создание заказа
                     .antMatchers("/api/register", "/login").anonymous()
-                    .antMatchers("/admin/*", "/api/admin/*").hasRole("ADMIN")
+                    .antMatchers("/admin/**", "/api/admin/**").hasRole("ADMIN")
                     .anyRequest().authenticated()
                     .and()
                 .formLogin()
                     .loginPage("/?needLogin")
                     .loginProcessingUrl("/login")
-                    .defaultSuccessUrl("/")
+                    .successHandler(successHandler())
                     .failureUrl("/?error")
                     .and()
                 .rememberMe()
@@ -69,4 +70,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         authProvider.setPasswordEncoder(getPasswordEncoder());
         return authProvider;
     }
+
+    @Bean
+    public AuthenticationSuccessHandler successHandler() {
+        return new CustomLoginSuccessHandler("/");
+    }
+
 }
