@@ -4,10 +4,12 @@
 
 body {
     margin: 0;
-    font-family: 'M PLUS 1p', sans-serif;
-    -webkit-font-smoothing: antialiased;
     background: #212529;
     padding-top: var(--navbar-height);
+}
+
+body, body * {
+    font-family: 'M PLUS 1p', sans-serif; !important;
 }
 
 .wrapper {
