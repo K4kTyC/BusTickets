@@ -131,7 +131,7 @@ function fillPageWithTrips() {
                 </div>
                 <div class="col-content-price">
                     <p class="price">${sumPrice} BYN</p>
-                    <a class="form-control form-button" id="buy-ticket-${trip.id}"><span>купить</span></a>
+                    <a class="form-button" id="buy-ticket-${trip.id}"><span>купить</span></a>
                 </div>
             </div>
         `

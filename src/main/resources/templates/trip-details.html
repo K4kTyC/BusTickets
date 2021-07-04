@@ -1,23 +1,8 @@
 <!DOCTYPE html>
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="utf-8">
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;500&family=Roboto&display=swap">
+<head th:replace="blocks/default-header :: header(~{::title}, ~{::link})">
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/trip-details.css}">
-
-    <link rel="apple-touch-icon" sizes="180x180" th:href="@{/img/favicon/apple-touch-icon.png}">
-    <link rel="icon" type="image/png" sizes="32x32" th:href="@{/img/favicon/favicon-32x32.png}">
-    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/img/favicon/favicon-16x16.png}">
-    <link rel="manifest" th:href="@{/img/favicon/site.webmanifest}">
-    <link rel="mask-icon" th:href="@{/img/favicon/safari-pinned-tab.svg}" color="#42843b">
-    <meta name="msapplication-TileColor" content="#292f34">
-    <meta name="theme-color" content="#ffffff">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>
         Покупка билета - Bus Ticket
@@ -58,7 +43,7 @@
 
             <div class="trip-buy">
                 <div class="trip-price"></div>
-                <a class="form-control form-button" id="order-submit"><span>оформить заказ</span></a>
+                <a class="form-button" id="order-submit"><span>оформить заказ</span></a>
             </div>
         </div>
 

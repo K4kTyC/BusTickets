@@ -105,12 +105,12 @@
 .col-content-station .time {
     font-size: 1.6rem;
     font-weight: bold;
-    font-family: 'M PLUS 1p', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 .col-content-station .date {
     font-size: .9rem;
     opacity: .7;
-    font-family: 'M PLUS 1p', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 .col-content-station .station {
     font-size: 1rem;
@@ -133,7 +133,7 @@
 .trip-total-time {
     font-size: 1.2rem;
     text-align: center;
-    font-family: 'M PLUS 1p', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .trip-total-time::before {

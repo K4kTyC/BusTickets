@@ -49,10 +49,6 @@ function addProfileButtons(data) {
         `)
 }
 
-function enableDatetimePicker(id) {
-    $(`#${id}`).datetimepicker({})
-}
-
 let prevScrollpos = window.pageYOffset;
 window.onscroll = function() {
     const currentScrollPos = window.pageYOffset;

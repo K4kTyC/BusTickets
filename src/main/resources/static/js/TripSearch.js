@@ -23,8 +23,9 @@ document.getElementById('swap-stations').addEventListener('click', function () {
     swapStationsDeg === 180 ? swapStationsDeg = 0 : swapStationsDeg = 180
 })
 
-$(function () {
+$(() => {
     $('#datetimepicker-from').datetimepicker({
-        format: 'L'
+        format: 'L',
+        debug: true
     })
 })

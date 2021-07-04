@@ -6,7 +6,7 @@ $.fn.datetimepicker.Constructor.Default = $.extend({}, $.fn.datetimepicker.Const
         down: 'fas fa-arrow-down',
         previous: 'fas fa-chevron-left',
         next: 'fas fa-chevron-right',
-        today: 'fas fa-calendar-check',
+        today: 'today-text',
         clear: 'fas fa-trash',
         close: 'fas fa-times'
     },
@@ -21,14 +21,9 @@ $.fn.datetimepicker.Constructor.Default = $.extend({}, $.fn.datetimepicker.Const
         selectYear: 'Выбрать год',
         prevYear: 'Предыдущий год',
         nextYear: 'Следующий год',
-        selectDecade: 'Выбрать десятилетие',
-        prevDecade: 'Предыдущее десятилетие',
-        nextDecade: 'Следующее десятилетие',
-        prevCentury: 'Предыдущий век',
-        nextCentury: 'Следующий век',
         incrementHour: 'Увеличить на 1 час',
         pickHour: 'Выбрать часы',
-        decrementHour:'Уменишить на 1 час',
+        decrementHour:'Уменьшить на 1 час',
         incrementMinute: 'Увеличить на 1 минуту',
         pickMinute: 'Выбрать минуты',
         decrementMinute:'Уменьшить на 1 минуту'
@@ -39,5 +34,13 @@ $.fn.datetimepicker.Constructor.Default = $.extend({}, $.fn.datetimepicker.Const
         showClear: true,
         showClose: false
     },
-    minDate: moment().clone().locale('ru')
+    widgetPositioning: {
+        vertical: 'bottom'
+    },
+    focusOnShow: false,
+    minDate: moment().millisecond(0).second(0).minute(0).hour(0).locale('ru')
 });
+
+function enableDatetimePicker(id) {
+    $(`#${id}`).datetimepicker({})
+}

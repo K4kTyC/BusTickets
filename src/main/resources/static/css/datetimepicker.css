@@ -1,4 +1,17 @@
-.fa-clock, .fa-trash, .fa-calendar-check {
+.fa-clock, .fa-trash {
+    color: #d1d2d3;
+}
+
+.fa-clock:hover, .fa-trash:hover {
+    color: #44883c;
+}
+
+.today-text:before {
+    content: 'сегодня';
+    color: #d1d2d3;
+}
+
+.today-text:hover:before {
     color: #44883c;
 }
 
@@ -57,6 +70,11 @@
 
 .bootstrap-datetimepicker-widget .timepicker .timepicker-picker a.btn:hover {
     color: #44883c;
+}
+
+.bootstrap-datetimepicker-widget .datepicker-years thead .picker-switch {
+    cursor: default !important;
+    pointer-events: none !important;
 }
 
 .bootstrap-datetimepicker-widget.dropdown-menu.top::before {
