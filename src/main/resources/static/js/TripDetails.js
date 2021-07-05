@@ -143,6 +143,7 @@ function fillPageWithTripDetails() {
                 <div class="time">${timeFinish}</div>
                 <div class="date">${dateFinish}</div>
             </div>
+            <div class="col-total-time">${minutesToHours(sumTime)}</div>
         </div>
     `
     $('.trip-stations').append(tripTempl)

@@ -1,18 +1,26 @@
+.trip-details-title {
+    font-size: 1.4rem;
+    color: #d1d2d3;
+    padding: 2rem;
+}
+
+
+
 .trip-details-content {
     background: #292f34;
+    font-size: 1.1rem;
     color: #d1d2d3;
     box-shadow: 0 0 5px rgba(0, 0, 0, .5);
-    padding: 0 2rem;
-    margin: 2rem 0;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
 }
 
 
 
 .trip-stations, .trip-select-seats, .trip-passenger {
     border-bottom-style: solid;
-    border-bottom-width: thin;
+    border-bottom-width: 1px;
     border-bottom-color: #54595d;
-    padding: 2rem;
 }
 
 
@@ -20,27 +28,26 @@
 .trip-station-info {
     display: flex;
     flex-wrap: wrap;
-    padding: 1.3rem 0;
     align-items: center;
+    justify-content: space-between;
     text-align: center;
+    padding: 1.2rem 0;
 }
 .col-station {
-    font-size: 1.2rem;
-    flex: 0 0 35%;
-    max-width: 35%;
+    flex: 0 0 50%;
+    max-width: 50%;
+    font-size: 1rem;
 }
 .col-station .time {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: bold;
-    text-align: center;
 }
 .col-station .date {
     font-size: .9rem;
     opacity: .7;
-    text-align: center;
 }
 .col-timegap {
-    font-size: 1.1rem;
+    display: none;
     flex: 0 0 30%;
     max-width: 30%;
     position: relative;
@@ -63,53 +70,169 @@
     right: 5%;
     top: -145%;
 }
+.col-total-time {
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding-top: 1rem;
+}
 
 
-
+.trip-select-seats {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 1.5rem;
+}
 .trip-select-seats .seats-number {
-    font-size: 1.4rem;
-    font-family: 'Roboto', sans-serif;
-    color: #d1d2d3;
+
 }
 .trip-select-seats .form-select {
+    flex: 0 0 100%;
+    max-width: 100%;
     margin-top: 1rem;
-    width: 30%;
 }
 
 
-
+.trip-passenger {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 1.5rem;
+}
 .trip-passenger-title {
-    font-size: 1.4rem;
-    font-family: 'Roboto', sans-serif;
-    color: #d1d2d3;
+
 }
 .passenger-info {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 1rem;
+    justify-content: space-between;
 }
 .passenger-info .col-name,
 .passenger-info .col-lastname {
-    flex: 0 0 30%;
-    max-width: 30%;
-    margin-right: 1rem;
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-top: 1rem;
 }
 
 .trip-buy {
     display: flex;
-    justify-content: end;
-    align-items: center;
     flex-wrap: wrap;
-    padding: 2rem;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem;
 }
 .trip-buy .trip-price {
-    font-size: 1.4rem;
-    font-family: 'Roboto', sans-serif;
-    color: #d1d2d3;
-    flex: 0 0 25%;
-    max-width: 25%;
+    flex: 0 0 100%;
+    max-width: 100%;
 }
 .trip-buy a {
-    flex: 0 0 25%;
-    max-width: 25%;
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-top: 1rem;
+}
+
+
+
+@media only screen and (min-width: 768px) {
+    .trip-details-content {
+        padding: 2rem;
+        margin-bottom: 2rem;
+    }
+
+
+
+    .col-station {
+        font-size: 1.2rem;
+        flex: 0 0 35%;
+        max-width: 35%;
+    }
+    .col-station .time {
+        font-size: 1.8rem;
+    }
+    .col-timegap {
+        display: initial;
+    }
+    .col-total-time {
+        display: none;
+    }
+
+
+
+    .trip-select-seats .seats-number {
+        flex: 0 0 100%;
+        max-width: 100%;
+        font-size: 1.2rem;
+    }
+    .trip-select-seats .form-select {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+
+
+    .trip-passenger-title {
+        flex: 0 0 100%;
+        max-width: 100%;
+        font-size: 1.2rem;
+    }
+    .passenger-info {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .passenger-info .col-name,
+    .passenger-info .col-lastname {
+        flex: 0 0 48%;
+        max-width: 48%;
+    }
+
+
+
+    .trip-buy .trip-price {
+        flex: 1 0 40%;
+        font-size: 1.2rem;
+        text-align: right;
+        padding-right: 2rem;
+    }
+    .trip-buy a {
+        flex: 0 0 40%;
+        max-width: 40%;
+        margin: 0;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .trip-select-seats .seats-number {
+        font-size: 1.3rem;
+    }
+    .trip-select-seats .form-select {
+        flex: 0 0 30%;
+        max-width: 30%;
+    }
+
+
+
+    .trip-passenger-title {
+        font-size: 1.3rem;
+    }
+    .passenger-info {
+        justify-content: start;
+    }
+    .passenger-info .col-name,
+    .passenger-info .col-lastname {
+        flex: 0 0 30%;
+        max-width: 30%;
+        margin-right: 1rem;
+    }
+
+
+
+    .trip-buy {
+        justify-content: end;
+    }
+    .trip-buy .trip-price {
+        font-size: 1.3rem;
+    }
+    .trip-buy a {
+
+    }
 }
