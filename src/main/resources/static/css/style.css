@@ -445,7 +445,7 @@ ul.nav-tabs {
 
 /*=== Блок поиска маршрута ===*/
 
-.select-route-block {
+.find-trip-block {
     background: #212529;
     min-height: calc(100vh - var(--navbar-height));
     margin: 0;
@@ -455,7 +455,7 @@ ul.nav-tabs {
 }
 
 @media only screen and (min-width: 768px) {
-    .select-route-block {
+    .find-trip-block {
         background: linear-gradient(rgba(41, 47, 52, .9), rgba(41, 47, 52, .9)), url("../img/mainBG2.jpg") no-repeat center center;
         background-size: cover;
         min-height: 100vh;
@@ -463,7 +463,7 @@ ul.nav-tabs {
     }
 }
 
-.select-route-form .title {
+.find-trip-form .title {
     color: #d1d2d3 ;
     font-size: 1.6rem;
     flex: 0 0 100%;

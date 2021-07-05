@@ -15,6 +15,7 @@ $(() => {
         searchTrips().then(fillPageWithTrips)
         $('#trip-from').val(searchData.start)
         $('#trip-to').val(searchData.finish)
+        $('#datetimepicker-from').datetimepicker({format: 'L', date: searchData.date})
     } else {
         // TODO: скрывать уже отправившиеся, сделать кнопку для их отображения
         getAllTrips().then(fillPageWithTrips)
@@ -111,13 +112,8 @@ function fillPageWithTrips() {
         let tripTempl = `
             <div class="trip-list-content" id="trip-${trip.id}">
                 <div class="col-content-route">
-                    <p class="name">${routeName}</p>
-                    <p class="bus-class">${busClass}-класс</p>
-                </div>
-                <div class="col-content-bus">
-                    <p class="number">№ ${busNumber}</p>
-                    <p class="model">${busModel}</p>
-                    <p class="seats">Свободно мест: ${seatAmount}</p>
+                    <span class="name">${routeName}</span>
+                    <span class="bus-class">${busClass}-класс</span>
                 </div>
                 <div class="col-content-station station-from">
                     <p class="time">${timeStart}</p>
@@ -128,6 +124,11 @@ function fillPageWithTrips() {
                     <p class="time">${timeFinish}</p>
                     <p class="date">${dateFinish}</p>
                     <p class="station">${stationFinish}</p>
+                </div>
+                <div class="col-content-bus">
+                    <p class="number">№ ${busNumber}</p>
+                    <p class="model">${busModel}</p>
+                    <p class="seats">Свободно мест: ${seatAmount}</p>
                 </div>
                 <div class="col-content-price">
                     <p class="price">${sumPrice} BYN</p>
@@ -144,6 +145,14 @@ function fillPageWithTrips() {
                 window.location.assign(`/trips/${trip.id}?search&start=${searchData.start}&finish=${searchData.finish}`)
             }
         })
+    }
+
+    if (searchData !== undefined) {
+        $('.trip-list-title')[0].scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+            inline: 'nearest'
+        });
     }
 }
 

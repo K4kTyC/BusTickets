@@ -22,15 +22,17 @@
 
     <div class="container" id="trip-list-container">
 
-        <div th:replace="blocks/findTripForm :: form"></div>
+        <div class="find-trip-block">
+            <div th:replace="blocks/findTripForm :: form"></div>
+        </div>
 
-        <div class="trip-info-title">Список рейсов</div>
+        <div class="trip-list-title">Список рейсов</div>
 
-        <div class="d-none d-lg-flex trip-list-header">
+        <div class="trip-list-header">
             <div class="col-header-route">Маршрут</div>
-            <div class="col-header-bus">Автобус</div>
             <div class="col-header-from">Отправление</div>
             <div class="col-header-to">Прибытие</div>
+            <div class="col-header-bus">Автобус</div>
             <div class="col-header-price">Цена</div>
         </div>
 

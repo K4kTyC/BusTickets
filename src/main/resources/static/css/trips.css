@@ -1,5 +1,16 @@
-.container .select-route-form {
-    margin-top: 2rem;
+.find-trip-block {
+    min-height: calc(100vh - var(--navbar-height));
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media only screen and (min-width: 768px) {
+    .find-trip-block {
+        min-height: auto;
+        margin-top: 2rem;
+    }
 }
 
 .trip-info-container {
@@ -8,19 +19,16 @@
     color: #d1d2d3;
 }
 
-.trip-info-title {
+.trip-list-title {
     font-size: 1.4rem;
     color: #d1d2d3;
     padding: 2rem;
 }
 
-.trip-info-content {
-    border-top-style: solid;
-    border-top-width: thin;
-    border-top-color: #54595d;
-}
+
 
 .trip-list-header {
+    display: none;
     background: #292f34;
     color: #d1d2d3;
     font-size: 1.2rem;
@@ -29,35 +37,40 @@
     margin-bottom: 1rem;
     box-shadow: 0 0 5px rgba(0, 0, 0, .5);
 }
+@media only screen and (min-width: 992px) {
+    .trip-list-header {
+        display: flex;
+    }
+}
 
 .col-header-route {
     flex: 0 0 15%;
     max-width: 15%;
 }
-
 .col-header-bus {
     flex: 0 0 25%;
     max-width: 25%;
 }
-
 .col-header-from, .col-header-to {
     flex: 0 0 22%;
     max-width: 22%;
 }
-
 .col-header-price {
     flex: 0 0 16%;
     max-width: 16%;
 }
 
+
+
 .trip-list-content {
     background: #292f34;
     color: #d1d2d3;
-    font-family: 'Roboto', sans-serif;
     box-shadow: 0 0 5px rgba(0, 0, 0, .5);
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 1rem;
+    padding: 1rem;
     margin: .7rem 0;
 }
 .trip-list-content p {
@@ -66,12 +79,20 @@
 
 
 .col-content-route {
-    flex: 0 0 15%;
-    max-width: 15%;
+    flex: 0 0 100%;
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    padding-bottom: .5rem;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color: #54595d;
 }
 .col-content-route .name {
     font-size: 1rem;
     font-weight: bold;
+    margin-right: 1rem;
 }
 .col-content-route .bus-class {
     font-size: .9rem;
@@ -79,10 +100,35 @@
 }
 
 
-.col-content-bus {
-    flex: 0 0 25%;
-    max-width: 25%;
+.col-content-station {
+    flex: 0 0 50%;
+    max-width: 50%;
     text-align: center;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color: #54595d;
+    padding: 1rem .5rem;
+}
+.col-content-station .time {
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+.col-content-station .date {
+    font-size: .9rem;
+    opacity: .7;
+}
+.col-content-station .station {
+    font-size: 1rem;
+    margin: .5rem 0 0 0;
+    text-align: center;
+}
+
+
+.col-content-bus {
+    flex: 0 0 50%;
+    max-width: 50%;
+    text-align: center;
+    padding: 1rem .5rem;
 }
 .col-content-bus .number {
     font-size: 1rem;
@@ -97,31 +143,10 @@
 }
 
 
-.col-content-station {
-    flex: 0 0 22%;
-    max-width: 22%;
-    text-align: center;
-}
-.col-content-station .time {
-    font-size: 1.6rem;
-    font-weight: bold;
-    font-family: 'Montserrat', sans-serif;
-}
-.col-content-station .date {
-    font-size: .9rem;
-    opacity: .7;
-    font-family: 'Montserrat', sans-serif;
-}
-.col-content-station .station {
-    font-size: 1rem;
-    margin: .5rem 0 0 0;
-    text-align: center;
-}
-
-
 .col-content-price {
-    flex: 0 0 16%;
-    max-width: 16%;
+    flex: 0 0 40%;
+    max-width: 40%;
+    padding: 1rem .5rem;
 }
 .col-content-price .price {
     text-align: center;
@@ -133,7 +158,6 @@
 .trip-total-time {
     font-size: 1.2rem;
     text-align: center;
-    font-family: 'Montserrat', sans-serif;
 }
 
 .trip-total-time::before {
@@ -153,4 +177,116 @@
     height: 48px;
     right: -16px;
     top: 42px;
+}
+
+
+@media only screen and (min-width: 768px) {
+    .col-content-station {
+        border-bottom: none;
+    }
+
+    .col-content-station, .col-content-bus {
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+
+    .col-content-price {
+        flex: 0 0 20%;
+        max-width: 20%;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .col-content-route {
+        flex: 0 0 15%;
+        max-width: 15%;
+        padding-bottom: 0;
+        border-bottom: none;
+    }
+    .col-content-route .name {
+        font-size: 1rem;
+        font-weight: bold;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .col-content-route .bus-class {
+        font-size: .9rem;
+        opacity: .7;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+
+    .col-content-bus {
+        flex: 0 0 25%;
+        max-width: 25%;
+        text-align: center;
+    }
+    .col-content-bus .number {
+        font-size: 1rem;
+        font-weight: bold;
+    }
+    .col-content-bus .model {
+        font-size: .9rem;
+        opacity: .7;
+    }
+    .col-content-bus .seats {
+        font-size: 1rem;
+    }
+
+
+    .col-content-station {
+        flex: 0 0 22%;
+        max-width: 22%;
+        text-align: center;
+    }
+    .col-content-station .time {
+        font-size: 1.6rem;
+        font-weight: bold;
+    }
+    .col-content-station .date {
+        font-size: .9rem;
+        opacity: .7;
+    }
+    .col-content-station .station {
+        font-size: 1rem;
+        margin: .5rem 0 0 0;
+        text-align: center;
+    }
+
+
+    .col-content-price {
+        flex: 0 0 16%;
+        max-width: 16%;
+    }
+    .col-content-price .price {
+        text-align: center;
+        font-size: 1.2rem;
+        margin-bottom: .5rem;
+    }
+
+
+    .trip-total-time {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    .trip-total-time::before {
+        content: '';
+        border-top: 3px dashed #54595d;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 50px;
+    }
+
+    .trip-total-time::after {
+        content: '';
+        background-image: url("data:image/svg+xml,%3Csvg width='24' height='48' viewBox='0 0 16 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6.414 6.685L1.68 11.413a.771.771 0 0 1-1.09-1.088L4.778 6.14.59 1.957A.77.77 0 1 1 1.68.868l4.734 4.729a.767.767 0 0 1 0 1.088z' fill='%2354595d'/%3E%3C/svg%3E");
+        position: absolute;
+        width: 24px;
+        height: 48px;
+        right: -16px;
+        top: 42px;
+    }
 }
