@@ -45,9 +45,7 @@ function enableDatetimePicker(id) {
     $(`#${id}`).datetimepicker({})
 }
 
-$(document).on('mouseup touchend', function (e) {
+$("body").click(function(){
     let container = $('.bootstrap-datetimepicker-widget');
-    if (!container.is(e.target) && container.has(e.target).length === 0) {
-        container.parent().datetimepicker('hide');
-    }
+    container.parent().datetimepicker('hide');
 });
