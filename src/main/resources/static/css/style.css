@@ -446,22 +446,34 @@ ul.nav-tabs {
 /*=== Блок поиска маршрута ===*/
 
 .select-route-block {
-    background: linear-gradient(rgba(41, 47, 52, .9), rgba(41, 47, 52, .9)), url("../img/mainBG2.jpg") no-repeat center center;
-    background-size: cover;
-    min-height: 100vh;
-    margin: calc(-1 * var(--navbar-height)) 0 0 0;
-}
-
-.select-route-block .container {
+    background: #212529;
+    min-height: calc(100vh - var(--navbar-height));
+    margin: 0;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.row.title {
-    color: #d1d2d3 ;
-    font-size: 2rem;
+@media only screen and (min-width: 768px) {
+    .select-route-block {
+        background: linear-gradient(rgba(41, 47, 52, .9), rgba(41, 47, 52, .9)), url("../img/mainBG2.jpg") no-repeat center center;
+        background-size: cover;
+        min-height: 100vh;
+        margin: calc(-1 * var(--navbar-height)) 0 0 0;
+    }
 }
+
+.select-route-form .title {
+    color: #d1d2d3 ;
+    font-size: 1.6rem;
+    flex: 0 0 100%;
+    max-width: 100%;
+    text-align: center;
+    padding-bottom: 1rem;
+}
+
+
+/*=== Блок новостей ===*/
 
 .news-block {
     background: url("../img/gradient.png");

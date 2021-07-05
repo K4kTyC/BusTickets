@@ -35,7 +35,7 @@ $.fn.datetimepicker.Constructor.Default = $.extend({}, $.fn.datetimepicker.Const
         showClose: false
     },
     widgetPositioning: {
-        vertical: 'bottom'
+        vertical: 'auto'
     },
     focusOnShow: false,
     minDate: moment().millisecond(0).second(0).minute(0).hour(0).locale('ru')
