@@ -25,7 +25,6 @@ document.getElementById('swap-stations').addEventListener('click', function () {
 
 $(() => {
     $('#datetimepicker-from').datetimepicker({
-        format: 'L',
-        debug: true
+        format: 'L'
     })
 })

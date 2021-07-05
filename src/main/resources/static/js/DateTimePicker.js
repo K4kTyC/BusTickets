@@ -44,3 +44,10 @@ $.fn.datetimepicker.Constructor.Default = $.extend({}, $.fn.datetimepicker.Const
 function enableDatetimePicker(id) {
     $(`#${id}`).datetimepicker({})
 }
+
+$(document).on('mouseup touchend', function (e) {
+    let container = $('.bootstrap-datetimepicker-widget');
+    if (!container.is(e.target) && container.has(e.target).length === 0) {
+        container.parent().datetimepicker('hide');
+    }
+});
