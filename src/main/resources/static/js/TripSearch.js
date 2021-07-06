@@ -28,3 +28,8 @@ $(() => {
         format: 'L'
     })
 })
+
+document.getElementById('login-submit').addEventListener('click', function () {
+    let form = document.getElementById('login-form')
+    form.submit()
+})

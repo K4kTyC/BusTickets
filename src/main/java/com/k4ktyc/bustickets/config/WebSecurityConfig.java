@@ -34,9 +34,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                     .antMatchers("/css/**", "/js/**", "/img/**").permitAll()
-                    .antMatchers("/", "/home.html", "/api/checkAuth").permitAll()
+                    .antMatchers("/", "/home.html").permitAll()
                     .antMatchers(HttpMethod.GET, "/trips/**", "/api/trips/**").permitAll()
                     .antMatchers(HttpMethod.POST, "/api/orders").hasAnyRole("USER", "EMPLOYEE")  // TODO: запретить админу только создание заказа
+                    .antMatchers("/orders/**").hasAnyRole("ADMIN", "EMPLOYEE")
                     .antMatchers("/api/register", "/login").anonymous()
                     .antMatchers("/admin/**", "/api/admin/**").hasRole("ADMIN")
                     .anyRequest().authenticated()
