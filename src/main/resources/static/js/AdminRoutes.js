@@ -108,7 +108,9 @@ function addStationInfoTemplate(num) {
         <div class="route-station-info" id="route-station-info-${num}">
             <div class="col-select form-select" id="select-station-${num}">
                 <input class="chosen-value" type="text" value="" placeholder="Выберите станцию">
-                <div class="select-arrow"></div>
+                <div class="select-arrow">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
                 <ul class="value-list"></ul>
             </div>
 

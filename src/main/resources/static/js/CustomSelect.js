@@ -46,6 +46,10 @@ function addHandlersForSelect(num, placeholderFocus, placeholderBlur) {
         $(el).on('click', () => {
             if (!$(el).hasClass('disabled')) {
                 $input.val($(el).text())
+                $options.each((i, el2) => {
+                    $(el2).removeClass('chosen')
+                })
+                $(el).addClass('chosen')
                 if (selectParts.length > 1) {
                     updateChosenList()
                     disableDuplicateOptions()

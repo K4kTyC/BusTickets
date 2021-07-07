@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="blocks/default-header :: header(~{::title}, ~{::link})">
+
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/trip-details.css}">
 
@@ -26,7 +27,9 @@
                 <div class="seats-number"></div>
                 <div class="form-select" id="select-seat">
                     <input class="chosen-value" type="text" value="" placeholder="Выберите место">
-                    <div class="select-arrow"></div>
+                    <div class="select-arrow">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
                     <ul class="value-list"></ul>
                 </div>
             </div>
