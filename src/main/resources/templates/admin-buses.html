@@ -17,27 +17,25 @@
 <div class="d-flex flex-column wrapper">
 
     <div class="container" id="bus-list">
-        <div class="bus-form">
-            <div class="bus-form-row">
-                <div class="col-number input-wrap">
-                    <input class="input-field" id="bus-number" type="text" placeholder="Номер автобуса">
+        <div class="add-bus-form">
+            <div class="col-select form-select" id="select-model">
+                <input class="chosen-value" type="text" value="" placeholder="Модель автобуса">
+                <div class="select-arrow">
+                    <i class="fas fa-chevron-left"></i>
                 </div>
+                <ul class="value-list"></ul>
+            </div>
 
-                <div class="col-select form-select" id="select-model">
-                    <input class="chosen-value" type="text" value="" placeholder="Модель автобуса">
-                    <div class="select-arrow">
-                        <i class="fas fa-chevron-left"></i>
-                    </div>
-                    <ul class="value-list"></ul>
-                </div>
+            <div class="col-number input-wrap">
+                <input class="input-field" id="bus-number" type="text" placeholder="Номер автобуса">
+            </div>
 
-                <div class="col-submit">
-                    <a class="form-button" id="bus-submit"><span>Добавить</span></a>
-                </div>
+            <div class="col-submit">
+                <a class="form-button" id="bus-submit"><span>Добавить</span></a>
             </div>
         </div>
 
-        <div class="row bus-list-elements justify-content-center" id="bus-list-elements"></div>
+        <div class="bus-list-elements"></div>
 
         <nav class="pagination-wrap" aria-label="Page navigation" id="pagination">
             <ul class="pagination-list justify-content-center my-3">

@@ -57,17 +57,20 @@ function fillPageWithBuses() {
         let bus = buses[i]
 
         let pageTemplate = `
-            <div class="col buses-list-content py-3 m-2" id="bus-${bus.id}">
-                <div class="text-center bus-info">
+            <div class="bus-list-content" id="bus-${bus.id}">
+                <div class="bus-info">
                     <p class="bus-number">№ ${bus.number}</p>
                     <p class="bus-model">${bus.model.name}</p>
-                    <p class="bus-seats">Мест: ${bus.model.numberOfSeats}</p>
                     <p class="bus-class">${bus.model.busClassName}-класс</p>
+                    <p class="bus-seats">Мест: ${bus.model.numberOfSeats}</p>
                 </div>
-                <div class="bus-delete" id="rm-${bus.id}"><i class="fas fa-trash"></i></div>
+                <div class="bus-func">
+                    <div class="bus-edit" id="edit-${bus.id}"><i class="fas fa-pen"></i></div>
+                    <div class="bus-delete" id="rm-${bus.id}"><i class="fas fa-trash"></i></div>
+                </div>
             </div>`
 
-        $('#bus-list-elements').append(pageTemplate)
+        $('.bus-list-elements').append(pageTemplate)
 
         $(`#rm-${bus.id}`).on('click', function () {
             if (confirm("Удалить автобус?")) {

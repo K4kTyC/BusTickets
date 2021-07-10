@@ -40,6 +40,7 @@ function addHandlersForSelect(num, placeholderFocus, placeholderBlur) {
         $input.removeClass('open')
         $arrow.removeClass('open')
         $list.removeClass('open');
+        $input.val($($list).children('.chosen').text())
     });
 
     $options.each((i, el) => {
