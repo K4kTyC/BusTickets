@@ -16,29 +16,31 @@
 
     <div th:replace="blocks/navigation :: navigation"></div>
 
-    <div class="container pb-5" id="order-list-container">
+    <div class="container" id="order-list-container">
 
-        <div class="row title p-5">Архив заказов</div>
+        <div class="order-search-block">
+            <div class="order-search-title">Поиск пассажира</div>
 
-        <div class="row order-search-block p-5">
-            <div class="col-sm-3">
+            <div class="col-search-name">
                 <div class="input-wrap">
                     <input class="input-field" id="passenger-name" type="text" placeholder="Имя">
                 </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-search-lastname">
                 <div class="input-wrap">
                     <input class="input-field" id="passenger-lastname" type="text" placeholder="Фамилия">
                 </div>
             </div>
-            <div class="col-sm-2">
+            <div class="col-search-submit">
                 <a class="form-button" id="order-search-submit"><span>Найти</span></a>
             </div>
         </div>
 
-        <div class="d-none d-lg-flex row order-list-header px-5 py-3 mb-4 justify-content-between">
-            <div class="col-lg-4 text-left">Данные пассажира</div>
-            <div class="col-lg-4 text-center">Кол-во заказов</div>
+        <div class="order-list-title">Архив заказов</div>
+
+        <div class="order-list-header">
+            <div class="col-header-passenger">Данные пассажира</div>
+            <div class="col-header-amount">Кол-во заказов</div>
         </div>
 
     </div>
