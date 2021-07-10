@@ -74,10 +74,9 @@ function fillPageWithOrders() {
         let stations = order.trip.routeDto.routeStations
         let timeGap = 0
         for (const s of stations) {
-            if (s.stationName !== order.sstart.stationName) {
-                timeGap += s.timeGap
-            } else {
-                break;
+            timeGap += s.timeGap
+            if (s.stationName === order.sstart.stationName) {
+                break
             }
         }
 
