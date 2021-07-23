@@ -12,15 +12,15 @@ function processUrlParams() {
 let prevScrollpos = window.pageYOffset;
 window.onscroll = function() {
     const currentScrollPos = window.pageYOffset;
-    const navbar = document.getElementById("mainNavbar")
+    const navbar = document.getElementById("navbar-main")
     if (prevScrollpos > currentScrollPos) {
         navbar.style.top = "0";
         prevScrollpos = currentScrollPos;
-    } else if (prevScrollpos < currentScrollPos - navbar.offsetHeight) {
-        if ($('.navbar-toggler').attr('aria-expanded') === 'false') {
-            navbar.style.top = "calc(-48px - 4px - 2rem)";
-            prevScrollpos = currentScrollPos;
-        }
+    } else if (prevScrollpos < currentScrollPos - 80) {
+        $('#nav-toggle').prop('checked', false)
+        $('.dropdown-toggle').dropdown('hide')
+        navbar.style.top = "calc(-48px - 4px - 2em)";
+        prevScrollpos = currentScrollPos;
     }
 }
 
