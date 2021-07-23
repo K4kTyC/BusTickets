@@ -66,7 +66,7 @@ function fillPageWithModels() {
                 <div class="model-delete" id="rm-${model.id}"><i class="fas fa-trash"></i></div>
             </div>`
 
-        $('#model-list-elements').append(pageTemplate)
+        $('.model-list-elements').append(pageTemplate)
 
         $(`#rm-${model.id}`).on('click', function () {
             if (confirm("Удалить модель автобуса?")) {
@@ -93,7 +93,7 @@ function fillPageWithModels() {
             if (pageNum !== i) {
                 $(`#page-link-${num}`).on('click', () => {
                     pageNum = i
-                    $('#model-list-elements *').remove()
+                    $('.model-list-elements *').remove()
 
                     if ($('#model-filter').val() !== "") {
                         filterBuses().then(fillPageWithModels)
@@ -114,7 +114,7 @@ async function filterBuses() {
 
     const response = await fetch(`/api/admin/buses/models?page=${pageNum}&filter=${filter}`)
     const data = await response.json()
-    $('#model-list-elements *').remove()
+    $('.model-list-elements *').remove()
     lastPage = data.totalPages - 1
     busModelList = data.content
 }
@@ -155,7 +155,7 @@ $('#model-filter').on('input', () => {
 $('#page-prev').on('click', () => {
     if (pageNum > 0) {
         pageNum--
-        $('#model-list-elements *').remove()
+        $('.model-list-elements *').remove()
 
         if ($('#model-filter').val() !== "") {
             filterBuses().then(fillPageWithModels)
@@ -168,7 +168,7 @@ $('#page-prev').on('click', () => {
 $('#page-next').on('click', () => {
     if (pageNum < lastPage) {
         pageNum++
-        $('#model-list-elements *').remove()
+        $('.model-list-elements *').remove()
 
         if ($('#model-filter').val() !== "") {
             filterBuses().then(fillPageWithModels)
