@@ -1,6 +1,6 @@
 package com.k4ktyc.bustickets.service;
 
-import com.k4ktyc.bustickets.model.Role;
+import com.k4ktyc.bustickets.domain.Role;
 import com.k4ktyc.bustickets.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

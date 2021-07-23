@@ -1,5 +1,31 @@
-<nav th:fragment="navigation" class="navbar fixed-top navbar-expand-md" id="mainNavbar">
-    <a class="navbar-brand mr-auto" href="/"><img th:src="@{/img/logoico.png}" alt="На главную" height="48"></a>
-    <a id="allRoutes" class="nav-link nav-link-main" href="/trips">Расписание</a>
-    <a id="unauthLink" class="nav-link nav-link-main" href="#" data-toggle="modal" data-target="#modal-account">Войти</a>
+<nav th:fragment="navigation" class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNavbar">
+    <a class="navbar-brand" href="/"><img th:src="@{/img/logoico.png}" alt="На главную" height="48"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <a id="trips" class="nav-link nav-link-main" href="/trips">Расписание</a>
+        <a th:if="${user.role == 'ANONYMOUS'}" id="login-link" class="nav-link nav-link-main" href="#" data-toggle="modal" data-target="#modal-account">Войти</a>
+        <div th:unless="${user.role == 'ANONYMOUS'}" style="display: flex">
+            <div th:if="${user.role == 'ADMIN'}" style="display: inherit">
+                <a id="orders" class="nav-link nav-link-main" href="/orders">Заказы</a>
+                <a id="buses" class="nav-link nav-link-main" href="/admin/buses">Автобусы</a>
+                <a id="bus-models" class="nav-link nav-link-main" href="/admin/buses/models">Модели автобусов</a>
+                <a id="routes" class="nav-link nav-link-main" href="/admin/routes">Маршруты</a>
+                <a id="stations" class="nav-link nav-link-main" href="/admin/stations">Станции</a>
+            </div>
+            <div th:if="${user.role == 'EMPLOYEE'}" style="display: inherit">
+                <a id="orders" class="nav-link nav-link-main" href="/orders">Заказы</a>
+            </div>
+            <div class="nav-item dropdown">
+                <a th:text="${user.username}" class="nav-link nav-link-main dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a th:if="${user.role == 'USER'}" class="dropdown-item" href="/user/orders">Заказы</a>
+                    <a class="dropdown-item" href="/user">Профиль</a>
+                    <p class="dropdown-divider"></p>
+                    <a class="dropdown-item" href="/logout">Выйти</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </nav>

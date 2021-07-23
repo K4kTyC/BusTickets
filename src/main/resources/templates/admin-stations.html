@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="blocks/default-header :: header(~{::title}, ~{::link})">
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/stations.css}">
+
+    <title>
+        Управление станциями - Bus Ticket
+    </title>
+
+</head>
+<body>
+
+<div th:replace="blocks/navigation :: navigation"></div>
+
+<div class="d-flex flex-column wrapper">
+
+    <div class="container" id="station-list">
+        <div class="station-form">
+            <div class="station-form-row">
+                <div class="col-filter input-wrap">
+                    <input class="input-field" id="station-filter" type="text" placeholder="Фильтр по названию">
+                </div>
+                <div class="col-name input-wrap">
+                    <input class="input-field" id="station-name" type="text" placeholder="Название станции">
+                </div>
+                <div class="col-submit">
+                    <a class="form-button" id="station-submit"><span>Добавить</span></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row station-list-elements justify-content-center" id="station-list-elements"></div>
+
+        <nav class="pagination-wrap" aria-label="Page navigation" id="pagination">
+            <ul class="pagination-list justify-content-center my-3">
+                <li id="page-prev-li">
+                    <a class="pagination-link" id="page-prev" aria-label="Previous">
+                        <span><i class="fas fa-chevron-left"></i></span>
+                    </a>
+                </li>
+                <li id="page-next-li">
+                    <a class="pagination-link" id="page-next" aria-label="Next">
+                        <span><i class="fas fa-chevron-right"></i></span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div th:replace="blocks/footer :: footer"></div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+<script type="text/javascript" th:src="@{/js/AdminStations.js}"></script>
+<script type="text/javascript" th:src="@{/js/Main.js}"></script>
+</body>
+</html>

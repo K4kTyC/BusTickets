@@ -1,0 +1,70 @@
+.find-trip-form {
+    background: #292f34;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .7);
+    padding: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    font-size: 1.1rem;
+}
+
+.find-trip-form .col-from,
+.find-trip-form .col-to,
+.find-trip-form .col-date {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.find-trip-form .col-swap {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.find-trip-form .col-submit {
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+    .find-trip-form .col-from,
+    .find-trip-form .col-to,
+    .find-trip-form .col-date {
+        flex: 0 0 44%;
+        max-width: 44%;
+    }
+
+    .find-trip-form .col-swap {
+        flex: 0 0 8%;
+        max-width: 8%;
+    }
+
+    .find-trip-form .col-submit {
+        flex: 0 0 20%;
+        max-width: 20%;
+        align-self: normal;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .find-trip-form .col-from,
+    .find-trip-form .col-to,
+    .find-trip-form .col-date {
+        flex: 0 0 25%;
+        max-width: 25%;
+        margin-bottom: 0;
+    }
+
+    .find-trip-form .col-swap {
+        flex: 0 0 8%;
+        max-width: 8%;
+        margin-bottom: 0;
+    }
+
+    .find-trip-form .col-submit {
+        flex: 0 0 13%;
+        max-width: 13%;
+    }
+}
+

@@ -1,23 +1,11 @@
 <!DOCTYPE html>
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="utf-8">
+<head th:replace="blocks/default-header :: header(~{::title}, ~{::link})">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css" integrity="sha512-3JRrEUwaCkFUBLK1N8HehwQgu8e23jTH4np5NHOmQOobuC4ROQxFwFgBLTnhcnQRMs84muMh0PnnwXlPq5MGjg==" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;500&family=Roboto&display=swap">
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/trip-search.css}">
     <link rel="stylesheet" th:href="@{/css/datetimepicker.css}">
-
-    <link rel="apple-touch-icon" sizes="180x180" th:href="@{/img/favicon/apple-touch-icon.png}">
-    <link rel="icon" type="image/png" sizes="32x32" th:href="@{/img/favicon/favicon-32x32.png}">
-    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/img/favicon/favicon-16x16.png}">
-    <link rel="manifest" th:href="@{/img/favicon/site.webmanifest}">
-    <link rel="mask-icon" th:href="@{/img/favicon/safari-pinned-tab.svg}" color="#42843b">
-    <meta name="msapplication-TileColor" content="#292f34">
-    <meta name="theme-color" content="#ffffff">
 
     <title>
         Bus Ticket - покупка билетов на рейсовые автобусы
@@ -31,18 +19,14 @@
     <div th:replace="blocks/navigation :: navigation"></div>
 
     <div class="container-fluid m-0 p-0">
-        <div class="row select-route-block justify-content-center m-0">
-            <div class="container py-5">
-
-                <div th:replace="blocks/findTripForm :: form"></div>
-
-            </div>
+        <div class="find-trip-block">
+            <div th:replace="blocks/findTripForm :: form"></div>
         </div>
 
         <div class="row news-block m-0 py-5">
             <div class="container-fluid m-0 p-0">
 
-                <div class="row title justify-content-center m-0 pb-5">Новости и обновления</div>
+                <div class="row title justify-content-center m-0 pb-5" style="color: #d1d2d3">Новости и обновления</div>
 
                 <div class="row m-0 justify-content-around">
                     <div class="col-lg-3 mb-4">
@@ -78,7 +62,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/ru.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js" integrity="sha512-k6/Bkb8Fxf/c1Tkyl39yJwcOZ1P4cRrJu77p83zJjN2Z55prbFHxPs9vN7q3l3+tSMGPDdoH51AEU8Vgo1cgAA==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" integrity="sha512-RXf+QSDCUQs5uwRKaDoXt55jygZZm2V++WUZduaU/Ui/9EGp3f/2KZVahFZBKGH0s774sd3HmrhUy+SgOFQLVQ==" crossorigin="anonymous"></script>
 <script type="text/javascript" th:src="@{/js/Main.js}"></script>
 <script type="text/javascript" th:src="@{/js/DateTimePicker.js}"></script>
 <script type="text/javascript" th:src="@{/js/ModalForm.js}"></script>

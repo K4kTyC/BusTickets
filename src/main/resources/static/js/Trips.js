@@ -1,84 +1,162 @@
-async function getAllRoutes(pageNum) {
+let pageNum = 0
+let lastPage = 0
+let tripList
+const notFreeSeatList = new Map()
+let searchData
+
+$(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('search')) {
+        searchData = {
+            date: urlParams.get('date'),
+            start: urlParams.get('start'),
+            finish: urlParams.get('finish')
+        }
+        searchTrips().then(fillPageWithTrips)
+        $('#trip-from').val(searchData.start)
+        $('#trip-to').val(searchData.finish)
+        $('#datetimepicker-from').datetimepicker({format: 'L', date: searchData.date})
+    } else {
+        // TODO: скрывать уже отправившиеся, сделать кнопку для их отображения
+        getAllTrips().then(fillPageWithTrips)
+    }
+})
+
+async function getAllTrips() {
     const response = await fetch(`/api/trips?page=${pageNum}`)
     const data = await response.json()
-    fillPageWithTrips(data)
-}
-
-let pageTemplate
-
-function fillPageWithTrips(data) {
-    let trips = data.content
-
-    for (let i = 0; i < trips.length; i++) {
-        let trip = trips[i]
-
-        pageTemplate = `<div class="row trip-list-content align-items-center px-3 py-5" id="trip-${trip.id}">`
-
-        fillRouteColumn(trip)
-        fillFromToColumns(trip)
-        fillSeatsColumn(trip.bus.seats)
-        fillPriceColumn(trip.price)
-
-        pageTemplate += `
-            </div>
-            <div class="row my-1"></div>`
-
-        $('#trip-list-container').append(pageTemplate)
-
-        $(`#trip-${trip.id}`).on('click', () => {
-            window.location.assign(`/trips/${trip.id}`)
-        })
+    tripList = data.content
+    lastPage = data.totalPages - 1
+    for (const trip of tripList) {
+        await getSeatList(trip.id)
     }
 }
 
-function fillRouteColumn(trip) {
-    let startName = trip.stationStart
-    let finishName = trip.stationFinish
-    let busClass = trip.bus.busClass === 'Econom' ? 'Эконом-класс' : 'Бизнес-класс'
-
-    pageTemplate += `
-        <div class="col-md-4 trip-info">
-            <p class="trip-route">${startName} — ${finishName}</p>
-            <p class="trip-class">${busClass}</p>
-        </div>
-    `
+async function searchTrips() {
+    const response = await fetch(`/api/trips/search?page=${pageNum}&datetime=${searchData.date}&start=${searchData.start}&finish=${searchData.finish}`)
+    const returned = await response.json()
+    tripList = returned.content
+    lastPage = returned.totalPages - 1
+    for (const trip of tripList) {
+        await getSeatList(trip.id)
+    }
 }
 
-function fillFromToColumns(trip) {
-    let startTimeDate = moment(trip.datetimeStart).locale('ru')
-    let finishTimeDate = moment(trip.datetimeFinish).locale('ru')
-
-    pageTemplate += `
-        <div class="col-md-2 trip-datetime">
-            <p class="trip-time">${startTimeDate.format('HH:mm')}</p>
-            <p class="trip-date">${startTimeDate.format('DD.MM.YYYY')}</p>
-        </div>  
-         <div class="col-md-2 trip-datetime">
-            <p class="trip-time">${finishTimeDate.format('HH:mm')}</p>
-            <p class="trip-date">${finishTimeDate.format('DD.MM.YYYY')}</p>
-        </div>   
-    `
+async function getSeatList(tripId) {
+    let response
+    if (searchData === undefined) {
+        response = await fetch(`/api/trips/${tripId}/seats`)
+    } else {
+        response = await fetch(`/api/trips/${tripId}/seats?stationStart=${searchData.start}&stationFinish=${searchData.finish}`)
+    }
+    const notFreeSeats = await response.json()
+    notFreeSeatList.set(tripId, notFreeSeats)
 }
 
-function fillSeatsColumn(seats) {
-    let numOfFree = 0
-    seats.forEach(seat => {
-        if (seat.free) {
-            numOfFree++
+function fillPageWithTrips() {
+    let trips = tripList
+
+    for (let i = 0; i < trips.length; i++) {
+        let trip = trips[i]
+        let route = trip.routeDto
+        let stations = trip.routeDto.routeStations
+
+        let routeName = trip.routeDto.name
+        let busClass = trip.busDto.model.busClassName
+
+        let busNumber = trip.busDto.number
+        let busModel = trip.busDto.model.name
+        let seatAmount = countFreeSeats(trip.id, trip.busDto.model.numberOfSeats)
+
+        let stationStartIndex, stationFinishIndex
+        if (searchData !== undefined) {
+            let stationStartName = searchData.start
+            let stationFinishName = searchData.finish
+
+            for (let j = 0; j < stations.length; j++) {
+                if (stations[j].stationName === stationStartName) {
+                    stationStartIndex = j
+                }
+                if (stations[j].stationName === stationFinishName) {
+                    stationFinishIndex = j
+                }
+            }
+        } else {
+            stationStartIndex = 0
+            stationFinishIndex = stations.length - 1
         }
-    })
 
-    pageTemplate += `
-        <div class="col-md-2 trip-seats">
-            ${numOfFree} / ${seats.length}
-        </div>  
-    `
+        let startTimeGap = 0
+        for (let j = 0; j < stationStartIndex; j++) {
+            startTimeGap += stations[j + 1].timeGap
+        }
+
+        let sumTime = 0, sumPrice = 0
+        for (let j = stationStartIndex; j < stationFinishIndex; j++) {
+            sumTime += stations[j + 1].timeGap
+            sumPrice += stations[j + 1].price
+        }
+        sumPrice /= 100
+
+        let startTimeDate = moment(trip.datetime).add(startTimeGap, 'minutes').locale('ru')
+        let timeStart = startTimeDate.format('HH:mm')
+        let dateStart = startTimeDate.format('DD.MM.YYYY')
+
+        let finishTimeDate = startTimeDate.add(sumTime, 'minutes')
+        let timeFinish = finishTimeDate.format('HH:mm')
+        let dateFinish = finishTimeDate.format('DD.MM.YYYY')
+
+        let stationStart = stations[stationStartIndex].stationName
+        let stationFinish = stations[stationFinishIndex].stationName
+
+        let tripTempl = `
+            <div class="trip-list-content" id="trip-${trip.id}">
+                <div class="col-content-route">
+                    <span class="name">${routeName}</span>
+                    <span class="bus-class">${busClass}-класс</span>
+                </div>
+                <div class="col-content-station station-from">
+                    <p class="time">${timeStart}</p>
+                    <p class="date">${dateStart}</p>
+                    <p class="station">${stationStart}</p>
+                </div>
+                <div class="col-content-station station-to">
+                    <p class="time">${timeFinish}</p>
+                    <p class="date">${dateFinish}</p>
+                    <p class="station">${stationFinish}</p>
+                </div>
+                <div class="col-content-bus">
+                    <p class="number">№ ${busNumber}</p>
+                    <p class="model">${busModel}</p>
+                    <p class="seats">Свободно мест: ${seatAmount}</p>
+                </div>
+                <div class="col-content-price">
+                    <p class="price">${sumPrice} BYN</p>
+                    <a class="form-button" id="buy-ticket-${trip.id}"><span>купить</span></a>
+                </div>
+            </div>
+        `
+        $('#trip-list-container').append(tripTempl)
+
+        $(`#buy-ticket-${trip.id}`).on('click', () => {
+            if (searchData === undefined) {
+                window.location.assign(`/trips/${trip.id}`)
+            } else {
+                window.location.assign(`/trips/${trip.id}?search&start=${searchData.start}&finish=${searchData.finish}`)
+            }
+        })
+    }
+
+    if (searchData !== undefined) {
+        $('.trip-list-title')[0].scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+            inline: 'nearest'
+        });
+    }
 }
 
-function fillPriceColumn(price) {
-    pageTemplate += `
-        <div class="col-md-2 trip-price">
-            ${price} BYN
-        </div>
-    `
+function countFreeSeats(tripId, totalSeats) {
+    let notFreeSeatsAmount = notFreeSeatList.get(tripId).length
+    return totalSeats - notFreeSeatsAmount
 }

@@ -6,29 +6,30 @@ $('#trip-search-submit').on('click', () => {
         date.set({ 'hour': 0, 'minute': 0, 'second':0, 'millisecond': 0 })
     }
 
-    let tripSearchData = {
-        stationFrom: $('#trip-from').val(),
-        stationTo: $('#trip-to').val(),
-        tripDate: date.toJSON()
-    }
-    sendSearchData('/api/trips/search', tripSearchData)
+    let start = capitalize($('#trip-from').val().toLowerCase())
+    let finish = capitalize($('#trip-to').val().toLowerCase())
+
+    window.location.assign(`/trips?search&date=${date.toJSON()}&start=${start}&finish=${finish}`)
 })
 
-async function sendSearchData(url, data) {
-    const response = await fetch(url, {
-        method: 'POST',
-        mode: 'same-origin',
-        credentials: 'same-origin',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-    })
-    const returned = await response.json()
-    sessionStorage.setItem('tripsSearchResults', JSON.stringify(returned))
-    window.location.replace('/trips?search')
-}
+let swapStationsDeg = 180
+document.getElementById('swap-stations').addEventListener('click', function () {
+    let fromInput = document.getElementById('trip-from')
+    let toInput = document.getElementById('trip-to')
+    let tmp = fromInput.value
+    fromInput.value = toInput.value
+    toInput.value = tmp
+    document.getElementById('swap-stations').firstElementChild.style.transform = 'rotate(' + swapStationsDeg + 'deg)'
+    swapStationsDeg === 180 ? swapStationsDeg = 0 : swapStationsDeg = 180
+})
 
-$(function () {
+$(() => {
     $('#datetimepicker-from').datetimepicker({
         format: 'L'
     })
+})
+
+document.getElementById('login-submit').addEventListener('click', function () {
+    let form = document.getElementById('login-form')
+    form.submit()
 })

@@ -1,21 +1,9 @@
 <!DOCTYPE html>
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="utf-8">
+<head th:replace="blocks/default-header :: header(~{::title}, ~{::link})">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;500&family=Roboto&display=swap">
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/orders.css}">
-
-    <link rel="apple-touch-icon" sizes="180x180" th:href="@{/img/favicon/apple-touch-icon.png}">
-    <link rel="icon" type="image/png" sizes="32x32" th:href="@{/img/favicon/favicon-32x32.png}">
-    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/img/favicon/favicon-16x16.png}">
-    <link rel="manifest" th:href="@{/img/favicon/site.webmanifest}">
-    <link rel="mask-icon" th:href="@{/img/favicon/safari-pinned-tab.svg}" color="#42843b">
-    <meta name="msapplication-TileColor" content="#292f34">
-    <meta name="theme-color" content="#ffffff">
 
     <title>
         Архив заказов - Bus Ticket
@@ -28,29 +16,31 @@
 
     <div th:replace="blocks/navigation :: navigation"></div>
 
-    <div class="container pb-5" id="order-list-container">
+    <div class="container" id="order-list-container">
 
-        <div class="row title p-5">Архив заказов</div>
+        <div class="order-search-block">
+            <div class="order-search-title">Поиск пассажира</div>
 
-        <div class="row order-search-block p-5">
-            <div class="col-sm-3">
+            <div class="col-search-name">
                 <div class="input-wrap">
                     <input class="input-field" id="passenger-name" type="text" placeholder="Имя">
                 </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-search-lastname">
                 <div class="input-wrap">
                     <input class="input-field" id="passenger-lastname" type="text" placeholder="Фамилия">
                 </div>
             </div>
-            <div class="col-sm-2">
-                <a class="form-control form-button" id="order-search-submit"><span>Найти</span></a>
+            <div class="col-search-submit">
+                <a class="form-button" id="order-search-submit"><span>Найти</span></a>
             </div>
         </div>
 
-        <div class="d-none d-lg-flex row order-list-header px-5 py-3 mb-4 justify-content-between">
-            <div class="col-lg-4 text-left">Данные пассажира</div>
-            <div class="col-lg-4 text-center">Кол-во заказов</div>
+        <div class="order-list-title">Архив заказов</div>
+
+        <div class="order-list-header">
+            <div class="col-header-passenger">Данные пассажира</div>
+            <div class="col-header-amount">Кол-во заказов</div>
         </div>
 
     </div>
@@ -69,7 +59,6 @@
 <script type="text/javascript" th:src="@{/js/Orders.js}"></script>
 <script type="text/javascript" th:src="@{/js/Main.js}"></script>
 <script type="text/javascript" th:src="@{/js/ModalForm.js}"></script>
-<script type="text/javascript" th:src="@{/js/OrderSearch.js}"></script>
 
 </body>
 </html>

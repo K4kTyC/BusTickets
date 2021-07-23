@@ -1,13 +1,15 @@
 package com.k4ktyc.bustickets.controller;
 
-import com.k4ktyc.bustickets.model.TripSearchData;
-import com.k4ktyc.bustickets.model.TripDto;
+import com.k4ktyc.bustickets.domain.dto.TripDto;
+import com.k4ktyc.bustickets.domain.dto.TripSearchData;
 import com.k4ktyc.bustickets.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/trips")
@@ -20,14 +22,31 @@ public class TripController {
         this.tripService = tripService;
     }
 
-
     @GetMapping
     public Page<TripDto> getAllTrips(@RequestParam(defaultValue = "0") int page) {
         return tripService.getAllTrips(page);
     }
 
-    @PostMapping(path = "/search", consumes = "application/json")
-    public Page<TripDto> findTrip(@RequestParam(defaultValue = "0") int page, @RequestBody @Valid TripSearchData tripSearchData) {
-        return tripService.findTrip(page, tripSearchData);
+    @GetMapping("/{id}")
+    public TripDto getTrip(@PathVariable long id) {
+        return tripService.getTripById(id);
+    }
+
+    @GetMapping("/{id}/seats")
+    public List<Integer> getNotFreeSeats(@PathVariable long id,
+                                         @RequestParam(defaultValue = "") String stationStart,
+                                         @RequestParam(defaultValue = "") String stationFinish) {
+
+        return tripService.getNotFreeSeats(id, stationStart, stationFinish);
+    }
+
+    @GetMapping("/search")
+    public Page<TripDto> search(@RequestParam(defaultValue = "0") int page,
+                                @RequestParam String datetime,
+                                @RequestParam String start,
+                                @RequestParam String finish) {
+        TripSearchData searchData = new TripSearchData(LocalDateTime.parse(datetime, DateTimeFormatter.ISO_ZONED_DATE_TIME), start, finish);
+
+        return tripService.searchTrips(searchData, page);
     }
 }
