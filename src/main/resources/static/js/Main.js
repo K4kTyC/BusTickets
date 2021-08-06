@@ -19,6 +19,7 @@ window.onscroll = function() {
     } else if (prevScrollpos < currentScrollPos - 80) {
         $('#nav-toggle').prop('checked', false)
         $('.dropdown-toggle').dropdown('hide')
+        $('.navbar .dropdown-toggle').blur();
         navbar.style.top = "calc(-48px - 4px - 2em)";
         prevScrollpos = currentScrollPos;
     }
