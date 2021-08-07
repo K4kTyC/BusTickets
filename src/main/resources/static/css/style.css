@@ -836,3 +836,73 @@ header nav li {
     box-shadow: none;
     background-color: #212529;
 }
+
+
+/*===   Pagination   ===*/
+
+.pagination-wrap {
+    background: #292f34;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .7);
+    margin: 0;
+    display: none;
+}
+
+.pagination-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    height: 3.5rem;
+    width: 100%;
+}
+
+.pagination-link {
+    color: #d1d2d3;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    width: 3.5rem;
+}
+
+.pagination-link::before {
+    content: '';
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    background: linear-gradient(to right, #006838, #378e30);
+    transition: opacity .25s ease-out;
+    z-index: -1;
+    position: absolute;
+}
+
+.pagination-link:is([class*="current"]) {
+    color: #44883c;
+    border-bottom: 4px solid;
+    border-image: linear-gradient(to right, #006838, #378e30) 1;
+}
+
+.pagination-link:hover:is([class*="dots"]) {
+    cursor: default;
+}
+
+.pagination-link:hover:is([class*="current"]) {
+    color: #44883c;
+    cursor: default;
+}
+
+.pagination-link:hover:not([class*="dots"]):not([class*="current"])::before {
+    opacity: 1;
+}
+
+.pagination-link * {
+    font-size: 1.1rem;
+    font-weight: bold;
+}

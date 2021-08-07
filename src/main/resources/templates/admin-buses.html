@@ -35,9 +35,11 @@
             </div>
         </div>
 
-        <div class="bus-list-elements"></div>
+        <div class="bus-list-elements" id="bus-list-elements"></div>
 
-        <div th:replace="blocks/pagination :: pagination"></div>
+        <nav class="pagination-wrap" aria-label="Page navigation" id="pagination">
+            <ul class="pagination-list" id="pagination-list"></ul>
+        </nav>
 
     </div>
 
@@ -52,6 +54,7 @@
         crossorigin="anonymous"></script>
 <script type="text/javascript" th:src="@{/js/Main.js}"></script>
 <script type="text/javascript" th:src="@{/js/CustomSelect.js}"></script>
+<script type="text/javascript" th:src="@{/js/Pagination.js}"></script>
 <script type="text/javascript" th:src="@{/js/AdminBuses.js}"></script>
 </body>
 </html>

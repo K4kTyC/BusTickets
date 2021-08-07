@@ -1,11 +1,14 @@
-let pageNum = 0
-let lastPage = 0
-let busModelList
-let busList
+let pagination = new Pagination(() => {
+    $('#bus-list-elements *').remove();
+    getBuses().then(fillPageWithBuses);
+});
+
+let busModelList;
+let busList;
 
 $(() => {
-    getBusModelList().then(fillSelectWithModels)
-    getBuses().then(fillPageWithBuses)
+    getBusModelList().then(fillSelectWithModels);
+    pagination.elementsRefreshFunc();
 })
 
 $('#bus-submit').on('click', () => {
@@ -32,7 +35,7 @@ async function sendBusDto(url, dto) {
         method: 'POST',
         mode: 'same-origin',
         credentials: 'same-origin',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(dto)
     });
 }
@@ -44,10 +47,10 @@ async function getBusModelList() {
 }
 
 async function getBuses() {
-    const response = await fetch(`/api/admin/buses?page=${pageNum}`)
-    const data = await response.json()
-    lastPage = data.totalPages - 1
-    busList = data.content
+    const response = await fetch(`/api/admin/buses?page=${pagination.curPage - 1}`);
+    const data = await response.json();
+    pagination.lastPage = data.totalPages;
+    busList = data.content;
 }
 
 function fillPageWithBuses() {
@@ -70,9 +73,9 @@ function fillPageWithBuses() {
                 </div>
             </div>`
 
-        $('.bus-list-elements').append(pageTemplate)
+        $('#bus-list-elements').append(pageTemplate)
 
-        $(`#rm-${bus.id}`).on('click', function () {
+        $(`#rm-${bus.id}`).on('click', () => {
             if (confirm("Удалить автобус?")) {
                 removeBus(bus.id)
                 $(`#bus-${bus.id}`).remove()
@@ -80,32 +83,7 @@ function fillPageWithBuses() {
         })
     }
 
-    $('[id^=page-link-]').remove()
-
-    if (lastPage > 0) {
-        for (let i = 0; i < lastPage + 1; i++) {
-            let num = i + 1
-            let pageTemplate = `
-            <li class="page-item" id="page-link-${num}">
-                <a class="pagination-link ${pageNum === i ? "current":""}" id="page-${num}" aria-label="${num}">
-                    <span aria-hidden="true">${num}</span>
-                </a>
-            </li>`
-
-            $('#page-next-li').before(pageTemplate)
-
-            if (pageNum !== i) {
-                $(`#page-link-${num}`).on('click', () => {
-                    pageNum = i
-                    $('#bus-list-elements *').remove()
-                    getBuses().then(fillPageWithBuses)
-                })
-            }
-        }
-        $('#pagination').show()
-    } else {
-        $('#pagination').hide()
-    }
+    pagination.update();
 }
 
 function fillSelectWithModels() {
@@ -130,23 +108,7 @@ async function removeBus(id) {
         method: 'DELETE',
         mode: 'same-origin',
         credentials: 'same-origin',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(id)
     });
 }
-
-$('#page-prev').on('click', () => {
-    if (pageNum > 0) {
-        pageNum--
-        $('#bus-list-elements *').remove()
-        getBuses().then(fillPageWithBuses)
-    }
-})
-
-$('#page-next').on('click', () => {
-    if (pageNum < lastPage) {
-        pageNum++
-        $('#bus-list-elements *').remove()
-        getBuses().then(fillPageWithBuses)
-    }
-})
