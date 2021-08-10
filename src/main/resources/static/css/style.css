@@ -902,7 +902,26 @@ header nav li {
     opacity: 1;
 }
 
-.pagination-link * {
+.pagination-link *,
+.pagination-link-mobile * {
     font-size: 1.1rem;
     font-weight: bold;
+}
+
+.pagination-link-mobile {
+    color: #d1d2d3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    height: 100%;
+}
+
+.pagination-link-mobile:is([class*="current"]) {
+    flex-grow: 1;
+}
+
+.pagination-link-mobile:not([class*="current"]) {
+    flex: 0 0 30%;
+    max-width: 30%;
 }
