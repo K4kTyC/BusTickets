@@ -5,6 +5,50 @@ class Pagination {
 
     constructor(func) {
         this.elementsRefreshFunc = func;
+        this.addChoosePageTemplate();
+    }
+
+    addChoosePageTemplate() {
+        const $paginationList = $('#pagination-list');
+        const templ = `
+            <div class="pagination-link choose" id="page-choose">
+                <span><i class="far fa-edit"></i></span>
+            </div>
+            
+            <div class="modal pagination" id="modal-choose-page">
+                <div class="content">
+                    <span class="title">Быстрый переход</span>
+                    <span class="modal-close" id="modal-choose-page-close"><i class="fas fa-times"></i></span>
+                    <div class="choose-page input-wrap">
+                        <input class="input-field" id="page-number" type="text" placeholder="Номер страницы">
+                    </div>
+                    <div class="choose-page-submit">
+                        <a class="form-button" id="page-number-submit"><span>Перейти</span></a>
+                    </div>
+                </div>
+            </div>
+        `;
+        $paginationList.after(templ);
+        $('#page-choose').on('click', () => {
+            $('#modal-choose-page').css('display', 'flex');
+        });
+        $('#modal-choose-page-close').on('click', () => {
+            $('#modal-choose-page').css('display', 'none');
+        });
+        $('#page-number-submit').on('click', () => {
+            const pageNum = parseInt($('#page-number').val());
+            if (pageNum > 0 && pageNum <= this.lastPage) {
+                this.curPage = pageNum;
+                this.elementsRefreshFunc();
+                $('#modal-choose-page').css('display', 'none');
+                $('#page-number').val('');
+            }
+        });
+        window.onclick = function (e) {
+            if (e.target === $('#modal-choose-page')[0]) {
+                $('#modal-choose-page').css('display', 'none');
+            }
+        };
     }
 
     update() {
@@ -57,9 +101,9 @@ class Pagination {
         // Add link to the previous page
         if (this.curPage > 1) {
             const templ = `
-                    <li class="pagination-link" id="page-prev">
-                        <span><i class="fas fa-chevron-left"></i></span>
-                    </li>`;
+                <li class="pagination-link" id="page-prev">
+                    <span><i class="fas fa-chevron-left"></i></span>
+                </li>`;
             $paginationList.append(templ);
             $('#page-prev').on('click', () => {
                 if (this.curPage > 1) {
@@ -123,9 +167,9 @@ class Pagination {
         // Add link to the next page
         if (this.curPage < this.lastPage) {
             const templ = `
-                    <li class="pagination-link" id="page-next">
-                        <span><i class="fas fa-chevron-right"></i></span>
-                    </li>`;
+                <li class="pagination-link" id="page-next">
+                    <span><i class="fas fa-chevron-right"></i></span>
+                </li>`;
             $paginationList.append(templ);
             $('#page-next').on('click', () => {
                 if (this.curPage < this.lastPage) {
@@ -160,7 +204,10 @@ class Pagination {
             </li>
         `;
         $paginationList.append(templ);
-
+        $('#page-link').on('click', () => {
+            $('#modal-choose-page').css('display', 'flex');
+        });
+        
         // Add link to the next page
         templ = `
             <li class="pagination-link-mobile" id="page-next">
