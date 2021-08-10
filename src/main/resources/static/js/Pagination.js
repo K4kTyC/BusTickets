@@ -26,21 +26,32 @@ class Pagination {
         const $paginationList = $('#pagination-list');
         $paginationList.children().remove();
 
-        let leftDotsNeeded = this.curPage > 4;
-        let rightDotsNeeded = this.curPage < this.lastPage - 3;
+        let isLeftDotsNeeded = false;
+        let isRightDotsNeeded = false;
 
-        // Show only 1 page before and only 1 page after current
-        let mostLeftPageBeforeCurrent = this.curPage - 1;
-        let mostRightPageAfterCurrent = this.curPage + 1;
+        let mostLeftPageBeforeCurrent = 1;
+        let mostRightPageAfterCurrent = 7;
 
-        // If there is only 1 page between the first page and the page before current,
-        // then show it as a link instead of dots
-        if (!leftDotsNeeded && this.curPage > 3) {
-            mostLeftPageBeforeCurrent--;
-        }
-        // Same for the page after current
-        if (!rightDotsNeeded && this.curPage < this.lastPage - 2) {
-            mostRightPageAfterCurrent++;
+        // If there are less than 8 pages then show links to all pages,
+        // otherwise display pagination in compact style.
+        // default style example:  < 1 2 3 4 5 6 7 >
+        // compact style example:  < 1 ... 4 5 6 ... 11 > (page 5 is current)
+        let isCompactStyle = this.lastPage > 7;
+
+        if (isCompactStyle) {
+            isLeftDotsNeeded = this.curPage > 4;
+            isRightDotsNeeded = this.curPage < this.lastPage - 3;
+
+            if (this.curPage < 5) {
+                mostLeftPageBeforeCurrent = 1;
+                mostRightPageAfterCurrent = 5;
+            } else if (this.curPage > this.lastPage - 4) {
+                mostLeftPageBeforeCurrent = this.lastPage - 4;
+                mostRightPageAfterCurrent = this.lastPage;
+            } else {
+                mostLeftPageBeforeCurrent = this.curPage - 1;
+                mostRightPageAfterCurrent = this.curPage + 1;
+            }
         }
 
         // Add link to the previous page
@@ -58,26 +69,20 @@ class Pagination {
             });
         }
 
-        if (this.curPage > 2) {
-            // Add link to the first page
+        // Add link to the first page and dots on the left side
+        if (isCompactStyle && isLeftDotsNeeded) {
             const templ = `
-                    <li class="pagination-link" id="page-link-1">
-                        <span>1</span>
-                    </li>`;
+                <li class="pagination-link" id="page-link-1">
+                   <span>1</span>
+                </li>
+                <li class="pagination-link dots">
+                    <span>...</span>
+                </li>`;
             $paginationList.append(templ);
             $('#page-link-1').on('click', () => {
                 this.curPage = 1;
                 this.elementsRefreshFunc();
             });
-
-            // Add dots on the left side if there are more than 4 pages before current
-            if (leftDotsNeeded) {
-                const templ = `
-                        <li class="pagination-link dots">
-                            <span>...</span>
-                        </li>`;
-                $paginationList.append(templ);
-            }
         }
 
         // Add link to the current page and to the pages that are before and after current
@@ -99,21 +104,15 @@ class Pagination {
             }
         }
 
-        if (this.curPage < this.lastPage - 1) {
-            // Add dots on the right side if there are more than 4 pages after current
-            if (rightDotsNeeded) {
-                const templ = `
-                        <li class="pagination-link dots">
-                            <span>...</span>
-                        </li>`;
-                $paginationList.append(templ);
-            }
-
-            // Add link to the last page
+        // Add link to the last page and dots on the right side
+        if (isCompactStyle && isRightDotsNeeded) {
             const templ = `
-                    <li class="pagination-link" id="page-link-${this.lastPage}">
+                <li class="pagination-link dots">
+                    <span>...</span>
+                </li>
+                <li class="pagination-link" id="page-link-${this.lastPage}">
                         <span>${this.lastPage}</span>
-                    </li>`;
+                </li>`;
             $paginationList.append(templ);
             $(`#page-link-${this.lastPage}`).on('click', () => {
                 this.curPage = this.lastPage;
