@@ -1,8 +1,16 @@
-let pageNum = 0
-let lastPage = 0
-let tripList
-const notFreeSeatList = new Map()
-let searchData
+let pagination = new Pagination(() => {
+    $('#trip-list-elements *').remove();
+    if (searchData !== undefined) {
+        getFilteredTrips().then(fillPageWithTrips);
+    } else {
+        // TODO: скрывать уже отправившиеся, сделать кнопку для их отображения
+        getTripList().then(fillPageWithTrips);
+    }
+});
+
+let tripList;
+let searchData;
+const notFreeSeatList = new Map();
 
 $(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -11,34 +19,31 @@ $(() => {
             date: urlParams.get('date'),
             start: urlParams.get('start'),
             finish: urlParams.get('finish')
-        }
-        searchTrips().then(fillPageWithTrips)
-        $('#trip-from').val(searchData.start)
-        $('#trip-to').val(searchData.finish)
-        $('#datetimepicker-from').datetimepicker({format: 'L', date: searchData.date})
-    } else {
-        // TODO: скрывать уже отправившиеся, сделать кнопку для их отображения
-        getAllTrips().then(fillPageWithTrips)
+        };
+        $('#trip-from').val(searchData.start);
+        $('#trip-to').val(searchData.finish);
+        $('#datetimepicker-from').datetimepicker({format: 'L', date: searchData.date});
     }
+    pagination.elementsRefreshFunc();
 })
 
-async function getAllTrips() {
-    const response = await fetch(`/api/trips?page=${pageNum}`)
-    const data = await response.json()
-    tripList = data.content
-    lastPage = data.totalPages - 1
+async function getTripList() {
+    const response = await fetch(`/api/trips?page=${pagination.curPage - 1}`);
+    const data = await response.json();
+    pagination.lastPage = data.totalPages;
+    tripList = data.content;
     for (const trip of tripList) {
-        await getSeatList(trip.id)
+        await getSeatList(trip.id);
     }
 }
 
-async function searchTrips() {
-    const response = await fetch(`/api/trips/search?page=${pageNum}&datetime=${searchData.date}&start=${searchData.start}&finish=${searchData.finish}`)
-    const returned = await response.json()
-    tripList = returned.content
-    lastPage = returned.totalPages - 1
+async function getFilteredTrips() {
+    const response = await fetch(`/api/trips/search?page=${pagination.curPage - 1}&datetime=${searchData.date}&start=${searchData.start}&finish=${searchData.finish}`);
+    const data = await response.json();
+    pagination.lastPage = data.totalPages;
+    tripList = data.content;
     for (const trip of tripList) {
-        await getSeatList(trip.id)
+        await getSeatList(trip.id);
     }
 }
 
@@ -136,7 +141,7 @@ function fillPageWithTrips() {
                 </div>
             </div>
         `
-        $('#trip-list-container').append(tripTempl)
+        $('#trip-list-elements').append(tripTempl)
 
         $(`#buy-ticket-${trip.id}`).on('click', () => {
             if (searchData === undefined) {
@@ -154,6 +159,8 @@ function fillPageWithTrips() {
             inline: 'nearest'
         });
     }
+
+    pagination.update();
 }
 
 function countFreeSeats(tripId, totalSeats) {

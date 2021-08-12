@@ -1,7 +1,15 @@
-let pageNum = 0
-let lastPage = 0
-let searchData
-let orderList
+let pagination = new Pagination(() => {
+    $('#order-list-elements *').remove();
+    if (searchData !== undefined) {
+        getOrdersList().then(fillPageWithOrders);
+    } else {
+        getPassengerList().then(fillPageWithPassengers);
+    }
+});
+
+let searchData;
+let passengerList;
+let orderList;
 
 $(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -9,60 +17,57 @@ $(() => {
         searchData = {
             name: urlParams.get('name'),
             lastname: urlParams.get('lastname')
-        }
-        searchOrders().then(fillPageWithOrders)
-    } else {
-        getAllOrders()
+        };
     }
-
     $('#order-search-submit').on('click', () => {
         let name = $('#passenger-name').val()
         let lastname = $('#passenger-lastname').val()
 
         window.location.assign(`/orders?search&name=${name}&lastname=${lastname}`)
     })
+    pagination.elementsRefreshFunc();
 })
 
-async function getAllOrders() {
-    const response = await fetch('/api/orders')
-    const data = await response.json()
-    fillPageWithPassengers(data)
+async function getPassengerList() {
+    const response = await fetch('/api/orders');
+    const data = await response.json();
+    //pagination.lastPage = data.totalPages;
+    passengerList = data//.content;
 }
 
-async function searchOrders() {
-    const response = await fetch(`/api/orders/search?page=${pageNum}&name=${searchData.name}&lastname=${searchData.lastname}`)
-    const returned = await response.json()
-    orderList = returned.content
-    lastPage = returned.totalPages - 1
+async function getOrdersList() {
+    const response = await fetch(`/api/orders/search?page=${pagination.curPage - 1}&name=${searchData.name}&lastname=${searchData.lastname}`);
+    const data = await response.json();
+    pagination.lastPage = data.totalPages;
+    orderList = data.content;
 }
 
-function fillPageWithPassengers(data) {
-    let passengerOrders = data
+function fillPageWithPassengers() {
+    let passengers = passengerList;
 
-    for (let i = 0; i < passengerOrders.length; i++) {
-        let orders = passengerOrders[i]
+    for (let i = 0; i < passengers.length; i++) {
+        let passenger = passengers[i];
 
         let pageTemplate = `
-        <div class="order-list-content passengers" id="orders-${orders.passengerId}">
-            <div class="col-passenger">${orders.name} ${orders.lastname}</div>
-            <div class="col-amount"><span>Заказов: </span>${orders.amount}</div>
-        </div>
-        `
+        <div class="order-list-content passengers" id="passenger-${passenger.passengerId}">
+            <div class="col-passenger">${passenger.name} ${passenger.lastname}</div>
+            <div class="col-amount"><span>Заказов: </span>${passenger.amount}</div>
+        </div>`;
 
-        $('#order-list-container').append(pageTemplate)
+        $('#passenger-list-elements').append(pageTemplate);
 
-        $(`#orders-${orders.passengerId}`).on('click', () => {
-            let passenger = $(`#orders-${orders.passengerId}`).children('.col-passenger').text().split(' ')
-            let name = passenger[0]
-            let lastname = passenger[1]
+        $(`#passenger-${passenger.passengerId}`).on('click', () => {
+            let pass = $(`#passenger-${passenger.passengerId}`).children('.col-passenger').text().split(' ');
+            let name = pass[0];
+            let lastname = pass[1];
 
-            window.location.assign(`/orders?search&name=${name}&lastname=${lastname}`)
-        })
+            window.location.assign(`/orders?search&name=${name}&lastname=${lastname}`);
+        });
     }
 }
 
 function fillPageWithOrders() {
-    $('.order-list-header').remove()
+    $('#passenger-list-header').remove();
 
     let orders = orderList
 
@@ -104,6 +109,8 @@ function fillPageWithOrders() {
         </div>
         `
 
-        $('#order-list-container').append(pageTemplate)
+        $('#order-list-elements').append(pageTemplate)
     }
+
+    pagination.update();
 }

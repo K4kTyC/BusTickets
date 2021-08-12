@@ -28,8 +28,18 @@
 .bus-list-elements {
     display: grid;
     grid-template-columns: 1fr;
+    grid-auto-rows: minmax(115px, auto);
     grid-gap: 1rem;
     padding: 2rem 0;
+    opacity: 1;
+    transition: opacity .1s ease-in-out;
+}
+
+.bus-list-elements.updating {
+    opacity: 0;
+}
+
+.bus-list-elements .placeholder {
 }
 
 .bus-list-content {

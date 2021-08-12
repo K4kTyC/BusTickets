@@ -29,6 +29,7 @@ public class OrderController {
 
     @GetMapping
     public List<UserOrdersDto> getAllUserOrders() {
+        // TODO: добавить пагинацию
         return orderService.countOrdersByPassengers();
     }
 

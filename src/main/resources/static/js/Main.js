@@ -5,24 +5,31 @@ function processUrlParams() {
     if (urlParams.has('needLogin')) {
         $('#modal-account').modal('show')
         $('#login-tab').tab('show')
-        history.replaceState(null,'', '/')
+        history.replaceState(null, '', '/')
     }
 }
 
 let prevScrollpos = window.pageYOffset;
-window.onscroll = function() {
+window.onscroll = function () {
     const currentScrollPos = window.pageYOffset;
-    const navbar = document.getElementById("navbar-main")
     if (prevScrollpos > currentScrollPos) {
-        navbar.style.top = "0";
+        showNavbar();
         prevScrollpos = currentScrollPos;
     } else if (prevScrollpos < currentScrollPos - 80) {
-        $('#nav-toggle').prop('checked', false)
-        $('.dropdown-toggle').dropdown('hide')
-        $('.navbar .dropdown-toggle').blur();
-        navbar.style.top = "calc(-48px - 4px - 2em)";
+        hideNavbar();
         prevScrollpos = currentScrollPos;
     }
+};
+
+function showNavbar() {
+    $('#navbar-main')[0].style.top = "0";
+}
+
+function hideNavbar() {
+    $('#nav-toggle').prop('checked', false);
+    $('.dropdown-toggle').dropdown('hide');
+    $('.navbar .dropdown-toggle').blur();
+    $('#navbar-main')[0].style.top = "calc(-48px - 4px - 2em)";
 }
 
 function capitalize(string) {

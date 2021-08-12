@@ -1,12 +1,24 @@
 let pagination = new Pagination(() => {
-    $('#bus-list-elements *').remove();
-    getBuses().then(fillPageWithBuses);
+    $('#bus-list-elements').addClass('updating');
+    
+    getBuses().then(() => {
+        setTimeout(fillPageWithBuses, 100);
+    });
+
+    const offsetPosition = $('#bus-list-elements').offset().top - $('#navbar-main').outerHeight();
+    window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+    });
 });
 
 let busModelList;
 let busList;
 
+const busPlaceholderAmount = 16;
+
 $(() => {
+    addPlaceholders();
     getBusModelList().then(fillSelectWithModels);
     pagination.elementsRefreshFunc();
 })
@@ -54,10 +66,12 @@ async function getBuses() {
 }
 
 function fillPageWithBuses() {
-    let buses = busList
+    $('#bus-list-elements .placeholder *').remove();
+    let $placeholders = $('.bus-list-elements .placeholder');
+    let buses = busList;
 
     for (let i = 0; i < buses.length; i++) {
-        let bus = buses[i]
+        let bus = buses[i];
 
         let pageTemplate = `
             <div class="bus-list-content" id="bus-${bus.id}">
@@ -71,17 +85,19 @@ function fillPageWithBuses() {
                     <div class="bus-edit" id="edit-${bus.id}"><i class="fas fa-pen"></i></div>
                     <div class="bus-delete" id="rm-${bus.id}"><i class="fas fa-trash"></i></div>
                 </div>
-            </div>`
+            </div>`;
 
-        $('#bus-list-elements').append(pageTemplate)
+        $placeholders[i].insertAdjacentHTML("afterbegin", pageTemplate);
 
         $(`#rm-${bus.id}`).on('click', () => {
             if (confirm("Удалить автобус?")) {
-                removeBus(bus.id)
-                $(`#bus-${bus.id}`).remove()
+                removeBus(bus.id);
+                $(`#bus-${bus.id}`).remove();
             }
-        })
+        });
     }
+
+    $('#bus-list-elements').removeClass('updating');
 
     pagination.update();
 }
@@ -111,4 +127,12 @@ async function removeBus(id) {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(id)
     });
+}
+
+function addPlaceholders() {
+    let templ = '';
+    for (let i = 0; i < busPlaceholderAmount; i++) {
+        templ += '<div class="placeholder"></div>';
+    }
+    $('#bus-list-elements').append(templ);
 }
