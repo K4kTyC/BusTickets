@@ -1,6 +1,6 @@
 let pagination = new Pagination(() => {
     $('#bus-list-elements').addClass('updating');
-    
+
     getBuses().then(() => {
         setTimeout(fillPageWithBuses, 100);
     });
@@ -23,27 +23,68 @@ $(() => {
     pagination.elementsRefreshFunc();
 })
 
-$('#bus-submit').on('click', () => {
-    let id
+$('#bus-submit').on('click', createNewBus);
+
+function createNewBus() {
+    const $busModel = selectParts[0].$input;
+    const $busNumber = $('#bus-number');
+    const reg = new RegExp('^\\d+$');
+
+    let modelId;
+    let busNumber = parseInt($busNumber.val(), 10);
 
     for (const m of busModelList) {
-        if (m.name === selectParts[0].$input.val()) {
-            id = m.id
-            break
+        if (m.name === $busModel.val()) {
+            modelId = m.id;
+            break;
         }
     }
 
-    let busDto = {
-        number: $('#bus-number').val(),
-        modelId: id
+    if (modelId === undefined) {
+        highlightElement($busModel.parent());
+        new NotificationPopup('Выберите модель автобуса');
+        return;
     }
-    sendBusDto('/api/admin/buses', busDto)
+    if ($busNumber.val() === '') {
+        highlightElement($busNumber.parent());
+        new NotificationPopup('Укажите номер автобуса');
+        return;
+    }
+    if (!reg.test($busNumber.val())) {
+        highlightElement($busNumber.parent());
+        new NotificationPopup('Номер автобуса должен состоять только из цифр');
+        return;
+    }
+    if (isNaN(busNumber) || busNumber < 1) {
+        highlightElement($busNumber.parent());
+        new NotificationPopup('Укажите корректный номер автобуса');
+        return;
+    }
 
-    $('#bus-number').val("")
-})
+    const busDto = {
+        number: busNumber,
+        modelId: modelId
+    };
+    sendBusDto('/api/admin/buses', busDto).then((response) => {
+        switch (response.status) {
+            case 200: {
+                new NotificationPopup('Автобус успешно добавлен');
+                $busNumber.val('');
+                break;
+            }
+            case 409: {
+                response.text().then((msg) => {
+                    highlightElement($busNumber.parent());
+                    new NotificationPopup(msg);
+                });
+                break;
+            }
+        }
+    });
+}
 
 async function sendBusDto(url, dto) {
-    await fetch(url, {
+    return await fetch(url, {
         method: 'POST',
         mode: 'same-origin',
         credentials: 'same-origin',

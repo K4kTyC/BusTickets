@@ -10,8 +10,11 @@ import com.k4ktyc.bustickets.service.StationService;
 import com.k4ktyc.bustickets.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityExistsException;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -127,7 +130,7 @@ public class AdminController {
         if (unpaged) {
             return busService.getBusModels(unpaged);
         }
-        
+
         if (filter.isBlank())
             return busService.getBusModels(page);
         else
@@ -158,10 +161,16 @@ public class AdminController {
     }
 
     @PostMapping(path = "/buses", consumes = "application/json")
-    public CreateEntityResponse addNewBus(@RequestBody @Valid BusDto busDto) {
-        BusDto newBus = busService.save(busDto);
+    public ResponseEntity<String> addNewBus(@RequestBody @Valid BusDto busDto) {
+        BusDto newBus;
 
-        return new CreateEntityResponse("Автобус был успешно добавлен.", newBus.getId());
+        try {
+            newBus = busService.save(busDto);
+        } catch (EntityExistsException e) {
+            return new ResponseEntity<>("Автобус с таким номером уже существует", HttpStatus.CONFLICT);
+        }
+
+        return new ResponseEntity<>(String.valueOf(newBus.getId()), HttpStatus.OK);
     }
 
     @DeleteMapping(path = "/buses", consumes = "application/json")

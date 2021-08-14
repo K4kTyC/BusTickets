@@ -40,7 +40,13 @@ function addHandlersForSelect(num, placeholderFocus, placeholderBlur) {
         $input.removeClass('open')
         $arrow.removeClass('open')
         $list.removeClass('open');
-        $input.val($($list).children('.chosen').text())
+        if ($input.val() === '') {
+            $options.each((i, el2) => {
+                $(el2).removeClass('chosen');
+            });
+        } else {
+            $input.val($($list).children('.chosen').text());
+        }
     });
 
     $options.each((i, el) => {

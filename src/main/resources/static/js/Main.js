@@ -9,6 +9,12 @@ function processUrlParams() {
     }
 }
 
+$(() => {
+    $('input[type="text"]').blur(function () {
+        this.value = this.value.trim();
+    });
+});
+
 let prevScrollpos = window.pageYOffset;
 window.onscroll = function () {
     const currentScrollPos = window.pageYOffset;
@@ -30,6 +36,14 @@ function hideNavbar() {
     $('.dropdown-toggle').dropdown('hide');
     $('.navbar .dropdown-toggle').blur();
     $('#navbar-main')[0].style.top = "calc(-48px - 4px - 2em)";
+}
+
+function highlightElement(element) {
+    const $el = $(element);
+    $el.addClass('highlight');
+    $el.children().on('click mouseenter focus', () => {
+        $el.removeClass('highlight');
+    });
 }
 
 function capitalize(string) {

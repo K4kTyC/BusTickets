@@ -15,6 +15,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityExistsException;
+
 @Service
 public class BusService {
 
@@ -68,6 +70,9 @@ public class BusService {
 
     public BusDto save(BusDto busDto) {
         Bus bus = createBusFromDto(busDto);
+        if (busRepository.existsByNumber(bus.getNumber())) {
+            throw new EntityExistsException();
+        }
         return createDtoFromBus(busRepository.save(bus));
     }
 
