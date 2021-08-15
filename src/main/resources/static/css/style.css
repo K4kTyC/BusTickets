@@ -1,5 +1,5 @@
 :root {
-    --navbar-height: calc(48px + 4px + 2rem);
+    --navbar-height: calc(48px + 4px + 2em);
     --input-height: 54px;
 }
 
@@ -430,6 +430,7 @@ ul.nav-tabs {
     padding: 1em;
     background: #292f34;
     transition: top 0.2s;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .7);;
 }
 
 .navbar .gradient-line {
@@ -455,27 +456,34 @@ ul.nav-tabs {
 
 header nav {
     width: 100%;
-    max-height: 0;
-    transform: scaleY(0);
-    transform-origin: top;
-    transition: max-height .3s ease-in-out, transform .3s ease-in-out;
-    background: #292f34;
+    background: #131517ab;
+    position: absolute;
+    top: var(--navbar-height);
+    left: 0;
+    height: calc(100vh - var(--navbar-height));
+    opacity: 0;
+    transition: opacity 200ms linear 100ms, transform 0ms 300ms;
+    transform: translateX(100%);
 }
 
 header nav ul {
-    margin: 1em 0 0 0;
-    padding: 0;
     list-style: none;
     display: flex;
     flex-direction: column;
-    border-top: solid 1px #54595d;
-    opacity: 0;
-    transition: opacity .1s ease-in-out;
+    padding: .5em 0 0 4em;
+    background: #292f34;
+    width: max-content;
+    margin: 0 0 0 auto;
+    height: 100%;
+    transform: translateX(100%);
+    transition: transform 200ms ease-out 0ms;
+    overflow: auto;
+    box-shadow: 0 15px 10px rgba(0, 0, 0, .7);
 }
 
 header nav li {
-    margin-top: 1em;
-    text-align: right;
+    display: flex;
+    justify-content: right;
 }
 
 .navbar-link {
@@ -483,7 +491,7 @@ header nav li {
     text-decoration: none;
     background-color: inherit;
     position: relative;
-    padding: .4em .6em;
+    padding: .5em 1em;
 }
 
 .navbar-link::before {
@@ -492,10 +500,11 @@ header nav li {
     height: 2px;
     background: linear-gradient(to right, #006838, #4caa13);
     position: absolute;
-    top: 100%;
-    left: 10%;
-    right: 10%;
+    bottom: 0;
+    left: 1em;
+    right: 1em;
     transform: scaleX(0);
+    transform-origin: right;
     transition: transform .2s ease-out;
 }
 
@@ -515,14 +524,14 @@ header nav li {
 }
 
 .nav-toggle:checked ~ nav {
-    max-height: 1000px;
-    transform: scaleY(1);
-    transition: max-height 0.35s ease-in-out, transform 0.3s ease-in-out;
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 200ms linear 100ms, transform 0ms 0ms;
 }
 
 .nav-toggle:checked ~ nav ul {
-    opacity: 1;
-    transition: opacity .2s ease-in-out .2s;
+    transform: translateX(0);
+    transition: transform 200ms cubic-bezier(.4, .45, .48, .99) 200ms;
 }
 
 .nav-toggle-label {
@@ -565,12 +574,6 @@ header nav li {
 .nav-toggle:checked ~ .nav-toggle-label::after {
     transform: translateY(-.6em) rotate(45deg);
     transform-origin: center;
-}
-
-@media only screen and (min-width: 768px) {
-    .nav-toggle-label {
-        display: none;
-    }
 }
 
 .navbar .dropdown {
@@ -687,7 +690,12 @@ header nav li {
     transition: transform .2s ease-out;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 992px) {
+
+    .navbar-link::before {
+        transform-origin: center;
+    }
+
     .navbar .dropdown-toggle span {
         display: initial;
         overflow: hidden;
@@ -717,6 +725,10 @@ header nav li {
 
     .navbar .dropdown-menu {
         right: -1em;
+    }
+
+    .nav-toggle-label {
+        display: none;
     }
 }
 

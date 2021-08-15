@@ -28,7 +28,6 @@
 .bus-list-elements {
     display: grid;
     grid-template-columns: 1fr;
-    grid-auto-rows: minmax(115px, auto);
     grid-gap: 1rem;
     padding: 2rem 0;
     opacity: 1;
@@ -150,5 +149,6 @@
 
     .bus-list-elements {
         grid-template-columns: repeat(4, 1fr);
+        grid-auto-rows: minmax(115px, auto);
     }
 }
