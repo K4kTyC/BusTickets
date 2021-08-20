@@ -379,12 +379,20 @@ ul.nav-tabs {
     padding: .5rem 1rem;
     cursor: pointer;
     border-left: 4px solid transparent;
+    opacity: 1;
 }
 
 .form-select .value-list li.chosen {
     border-left: 4px solid #197e2c;
     box-shadow: inset 100px 0 40px -40px #292f34;
     cursor: default;
+}
+
+.form-select .value-list li.closed {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    padding: 0;
 }
 
 .form-select .value-list li:hover {

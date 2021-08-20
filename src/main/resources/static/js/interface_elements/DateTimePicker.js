@@ -43,7 +43,7 @@ $.fn.datetimepicker.Constructor.Default = $.extend({}, $.fn.datetimepicker.Const
 });
 
 function enableDatetimePicker(id) {
-    $(`#${id}`).datetimepicker({})
+    $(`#${id}`).datetimepicker({});
 }
 
 $("body").click(function (e) {

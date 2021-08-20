@@ -76,3 +76,12 @@ function minutesToHours(timeInMinutes) {
     }
     return time
 }
+
+function mapContainsSameValueWithDifferentKey(map, val, key) {
+    for (let [k, v] of map) {
+        if (v === val && k !== key) {
+            return true
+        }
+    }
+    return false
+}
