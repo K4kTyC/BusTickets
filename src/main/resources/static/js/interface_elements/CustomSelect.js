@@ -19,7 +19,7 @@ class CustomSelect {
     placeholderFocus;
     placeholderBlur;
 
-    constructor($select, placeholders, values, isChained, chosenValuesMap) {
+    constructor($select, placeholders, values, isChained = false, chosenValuesMap) {
         this.id = CustomSelect.counter++;
         this.$input = $select.find('input');
         this.$arrow = $select.find('.select-arrow');
@@ -88,18 +88,7 @@ class CustomSelect {
         });
 
         this.$options.each((i, el) => {
-            $(el).on('click', () => {
-                if (!$(el).hasClass('disabled')) {
-                    this.$input.val($(el).text());
-                    this.$options.removeClass('chosen');
-                    $(el).addClass('chosen');
-                    if (this.isSelectChainedToOthers) {
-                        CustomSelect.updateChosenValuesList(this.chosenValues);
-                    }
-                } else {
-                    this.$input.focus();
-                }
-            });
+            $(el).on('click', {select: this, option: el}, this.optionClickHandler);
         });
 
         this.$arrow.on('click', () => {
@@ -121,6 +110,30 @@ class CustomSelect {
                     $(this).removeClass('disabled');
                 }
             });
+        }
+    }
+
+    updateOptions() {
+        this.$options = this.$list.find('li');
+        this.$options.each((i, el) => {
+            $(el).off('click');
+            $(el).on('click', {select: this, option: el}, this.optionClickHandler);
+        });
+    }
+
+    optionClickHandler(event) {
+        const select = event.data.select;
+        const el = event.data.option;
+
+        if (!$(el).hasClass('disabled')) {
+            select.$input.val($(el).text());
+            select.$options.removeClass('chosen');
+            $(el).addClass('chosen');
+            if (select.isSelectChainedToOthers) {
+                CustomSelect.updateChosenValuesList(select.chosenValues);
+            }
+        } else {
+            select.$input.focus();
         }
     }
 }

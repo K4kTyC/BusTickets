@@ -1,11 +1,12 @@
 let pagination = new Pagination(() => {
-    $('#bus-list-elements').addClass('updating');
+    const $busList = $('#bus-list-elements');
+    $busList.addClass('updating');
 
     getBuses().then(() => {
         setTimeout(fillPageWithBuses, 100);
     });
 
-    const offsetPosition = $('#bus-list-elements').offset().top - $('#navbar-main').outerHeight();
+    const offsetPosition = $busList.offset().top - $('#navbar-main').outerHeight();
     window.scrollTo({
         top: offsetPosition,
         behavior: "smooth"
@@ -15,9 +16,11 @@ let pagination = new Pagination(() => {
 let busModelList;
 let busList;
 
+const selectFieldContainer = new Map();
 const busPlaceholderAmount = 16;
 
 $(() => {
+    createSelectFieldObjects();
     addPlaceholders();
     getBusModelList().then(fillSelectWithModels);
     pagination.elementsRefreshFunc();
@@ -26,7 +29,7 @@ $(() => {
 $('#bus-submit').on('click', createNewBus);
 
 function createNewBus() {
-    const $busModel = selectParts[0].$input;
+    const $busModel = selectFieldContainer.get('bus-model').$input;
     const $busNumber = $('#bus-number');
     const reg = new RegExp('^\\d+$');
 
@@ -144,20 +147,13 @@ function fillPageWithBuses() {
 }
 
 function fillSelectWithModels() {
+    const $select = selectFieldContainer.get('bus-model');
     for (let i = 0; i < busModelList.length; i++) {
-        let model = busModelList[i]
-
-        let pageTemplate = `<li>${model.name}</li>`
-        $('#select-model ul').append(pageTemplate)
+        const model = busModelList[i];
+        const templ = `<li>${model.name}</li>`;
+        $select.$list.append(templ);
     }
-    selectParts.push({
-        $input: $('#select-model input'),
-        $arrow: $('#select-model .select-arrow'),
-        $list: $('#select-model ul'),
-        $options: $('#select-model li'),
-        valueArray: busModelList
-    })
-    addHandlersForSelect(0, 'Фильтр по названию', 'Модель автобуса')
+    $select.updateOptions();
 }
 
 async function removeBus(id) {
@@ -168,6 +164,16 @@ async function removeBus(id) {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(id)
     });
+}
+
+function createSelectFieldObjects() {
+    const $busModel = $('#select-model');
+    const placeholders = {
+        focused: 'Фильтр по названию',
+        blurred: 'Модель автобуса'
+    };
+    const busModelSelect = new CustomSelect($busModel, placeholders, busModelList);
+    selectFieldContainer.set('bus-model', busModelSelect);
 }
 
 function addPlaceholders() {

@@ -61,7 +61,7 @@ class NotificationPopup {
         setTimeout(() => {
             this.$notification.remove();
             this.$progressBar.remove();
-        }, this.closingAnimationTime);
+        }, this.closingAnimationTime - 50);
     }
 
     openingAnimation() {
