@@ -5,23 +5,60 @@ function processUrlParams() {
     if (urlParams.has('needLogin')) {
         $('#modal-account').modal('show')
         $('#login-tab').tab('show')
-        history.replaceState(null,'', '/')
+        history.replaceState(null, '', '/')
     }
 }
 
-let prevScrollpos = window.pageYOffset;
-window.onscroll = function() {
-    const currentScrollPos = window.pageYOffset;
-    const navbar = document.getElementById("mainNavbar")
-    if (prevScrollpos > currentScrollPos) {
-        navbar.style.top = "0";
-        prevScrollpos = currentScrollPos;
-    } else if (prevScrollpos < currentScrollPos - navbar.offsetHeight) {
-        if ($('.navbar-toggler').attr('aria-expanded') === 'false') {
-            navbar.style.top = "calc(-48px - 4px - 2rem)";
-            prevScrollpos = currentScrollPos;
+$(() => {
+    $('input[type="text"]').blur(function () {
+        this.value = this.value.trim();
+    });
+
+    $('#nav-toggle').change(function () {
+        if (this.checked) {
+            $('body').css('overflow', 'hidden');
+        } else {
+            $('body').css('overflow', 'auto');
         }
+    });
+
+    $('#navbar-main nav').on('click', function (e) {
+        if (e.target !== this.children[0]) {
+            $('#nav-toggle').prop('checked', false);
+        }
+    });
+});
+
+let prevScrollpos = window.pageYOffset;
+window.onscroll = function () {
+    const currentScrollPos = window.pageYOffset;
+    if (prevScrollpos > currentScrollPos) {
+        showNavbar();
+        prevScrollpos = currentScrollPos;
+    } else if (prevScrollpos < currentScrollPos - 80) {
+        hideNavbar();
+        prevScrollpos = currentScrollPos;
     }
+};
+
+function showNavbar() {
+    $('#navbar-main')[0].style.top = "0";
+}
+
+function hideNavbar() {
+    if (!$('#nav-toggle').prop('checked')) {
+        $('.dropdown-toggle').dropdown('hide');
+        $('.navbar .dropdown-toggle').blur();
+        $('#navbar-main')[0].style.top = 'calc(-48px - 4px - 2em - 5px)'; // content + border + padding + shadow
+    }
+}
+
+function highlightElement(element) {
+    const $el = $(element);
+    $el.addClass('highlight');
+    $el.children().on('click mouseenter focus', () => {
+        $el.removeClass('highlight');
+    });
 }
 
 function capitalize(string) {
@@ -38,4 +75,13 @@ function minutesToHours(timeInMinutes) {
         time = hours.toString() + ' ч, ' + minutes.toString() + ' мин'
     }
     return time
+}
+
+function mapContainsSameValueWithDifferentKey(map, val, key) {
+    for (let [k, v] of map) {
+        if (v === val && k !== key) {
+            return true
+        }
+    }
+    return false
 }

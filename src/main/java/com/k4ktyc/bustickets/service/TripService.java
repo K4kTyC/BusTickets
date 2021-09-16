@@ -61,7 +61,7 @@ public class TripService {
 
     public Page<TripDto> getAllTrips(int pageNumber) {
         LocalDateTime today = LocalDateTime.of(LocalDate.now(), LocalTime.MIN);
-        PageRequest paging = PageRequest.of(pageNumber, 10, Sort.by("datetime"));
+        PageRequest paging = PageRequest.of(pageNumber, 5, Sort.by("datetime"));
         Page<Trip> pagedTrips = tripRepository.findByDatetimeAfter(today, paging);
 
         return pagedTrips.map(this::createDtoFromTrip);
@@ -101,11 +101,11 @@ public class TripService {
 
         PageRequest paging = PageRequest.of(pageNumber, 20);
         Page<Trip> pagedTrips = tripRepository.searchTrips(
-                                    dateTimeStart,
-                                    dateTimeFinish,
-                                    searchData.getStationStart(),
-                                    searchData.getStationFinish(),
-                                    paging);
+                dateTimeStart,
+                dateTimeFinish,
+                searchData.getStationStart(),
+                searchData.getStationFinish(),
+                paging);
 
         return pagedTrips.map(this::createDtoFromTrip);
     }

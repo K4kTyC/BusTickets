@@ -15,6 +15,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityExistsException;
+
 @Service
 public class BusService {
 
@@ -68,11 +70,14 @@ public class BusService {
 
     public BusDto save(BusDto busDto) {
         Bus bus = createBusFromDto(busDto);
+        if (busRepository.existsByNumber(bus.getNumber())) {
+            throw new EntityExistsException();
+        }
         return createDtoFromBus(busRepository.save(bus));
     }
 
     public Page<BusDto> getBuses(int pageNumber) {
-        PageRequest paging = PageRequest.of(pageNumber, 20);
+        PageRequest paging = PageRequest.of(pageNumber, 16);
         Page<Bus> pagedBuses = busRepository.findAll(paging);
 
         return pagedBuses.map(this::createDtoFromBus);
@@ -87,7 +92,6 @@ public class BusService {
     public void deleteBusById(long id) {
         busRepository.deleteById(id);
     }
-
 
 
     private BusModelDto createDtoFromModel(BusModel bm) {

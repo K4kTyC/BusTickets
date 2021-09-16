@@ -2,7 +2,10 @@
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="blocks/default-header :: header(~{::title}, ~{::link})">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css" integrity="sha512-3JRrEUwaCkFUBLK1N8HehwQgu8e23jTH4np5NHOmQOobuC4ROQxFwFgBLTnhcnQRMs84muMh0PnnwXlPq5MGjg==" crossorigin="anonymous"/>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css"
+          integrity="sha512-3JRrEUwaCkFUBLK1N8HehwQgu8e23jTH4np5NHOmQOobuC4ROQxFwFgBLTnhcnQRMs84muMh0PnnwXlPq5MGjg=="
+          crossorigin="anonymous"/>
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/trip-search.css}">
     <link rel="stylesheet" th:href="@{/css/datetimepicker.css}">
@@ -14,7 +17,7 @@
 </head>
 <body>
 
-<div class="d-flex flex-column wrapper">
+<div class="wrapper">
 
     <div th:replace="blocks/navigation :: navigation"></div>
 
@@ -31,17 +34,23 @@
                 <div class="row m-0 justify-content-around">
                     <div class="col-lg-3 mb-4">
                         <div class="news-inner p-4">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque facilis hic in laborum magni mollitia odit praesentium voluptatum? Eveniet illo ipsa qui reiciendis totam. Eum placeat quisquam reiciendis similique ut!
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque facilis hic in laborum magni
+                            mollitia odit praesentium voluptatum? Eveniet illo ipsa qui reiciendis totam. Eum placeat
+                            quisquam reiciendis similique ut!
                         </div>
                     </div>
                     <div class="col-lg-3 mb-4">
                         <div class="news-inner p-4">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus enim magnam magni obcaecati repudiandae sunt temporibus. Aliquam dolorum eaque ex harum iure nam nobis obcaecati odio omnis, voluptatem! Ipsum, similique.
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus enim magnam magni
+                            obcaecati repudiandae sunt temporibus. Aliquam dolorum eaque ex harum iure nam nobis
+                            obcaecati odio omnis, voluptatem! Ipsum, similique.
                         </div>
                     </div>
                     <div class="col-lg-3 mb-4">
                         <div class="news-inner p-4">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad atque commodi consequatur error eum in inventore, numquam odio perspiciatis, quae qui reprehenderit vero. Error est eum, expedita iste quidem veniam.
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad atque commodi consequatur error
+                            eum in inventore, numquam odio perspiciatis, quae qui reprehenderit vero. Error est eum,
+                            expedita iste quidem veniam.
                         </div>
                     </div>
                 </div>
@@ -57,13 +66,21 @@
 <div th:replace="blocks/modalAuth :: modal"></div>
 
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+        integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+        crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/ru.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js" integrity="sha512-k6/Bkb8Fxf/c1Tkyl39yJwcOZ1P4cRrJu77p83zJjN2Z55prbFHxPs9vN7q3l3+tSMGPDdoH51AEU8Vgo1cgAA==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js"
+        integrity="sha512-k6/Bkb8Fxf/c1Tkyl39yJwcOZ1P4cRrJu77p83zJjN2Z55prbFHxPs9vN7q3l3+tSMGPDdoH51AEU8Vgo1cgAA=="
+        crossorigin="anonymous"></script>
 <script type="text/javascript" th:src="@{/js/Main.js}"></script>
-<script type="text/javascript" th:src="@{/js/DateTimePicker.js}"></script>
+<script type="text/javascript" th:src="@{/js/interface_elements/DateTimePicker.js}"></script>
 <script type="text/javascript" th:src="@{/js/ModalForm.js}"></script>
 <script type="text/javascript" th:src="@{/js/TripSearch.js}"></script>
 

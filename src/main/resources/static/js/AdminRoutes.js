@@ -1,13 +1,13 @@
-let stationList
-const chosenStations = new Map()
-let stationOnPageAmount = 0
+let stationList;
+const chosenStations = new Map();
+let stationOnPageAmount = 0;
 
-let routeList
+let routeList;
 
 $(function () {
     getStationList().then(() => {
-        addStation()
-        addStation()
+        addStation();
+        addStation();
     })
 
     $('#route-submit').on('click', () => {
@@ -49,7 +49,7 @@ async function sendRoute(url, dto) {
         method: 'POST',
         mode: 'same-origin',
         credentials: 'same-origin',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(dto)
     })
     const returned = await response.json()
@@ -57,56 +57,35 @@ async function sendRoute(url, dto) {
 }
 
 function fillSelectWithStations(stationNum) {
+    const $select = $(`#route-station-info-${stationNum} #select-station`);
+
     for (let i = 0; i < stationList.length; i++) {
-        let station = stationList[i]
-
-        let pageTemplate = `<li>${station.name}</li>`
-        $(`#select-station-${stationNum} ul`).append(pageTemplate)
+        const station = stationList[i];
+        const templ = `<li>${station.name}</li>`;
+        $select.find('ul').append(templ);
     }
-    selectParts.push({
-        $input: $(`#select-station-${stationNum} input`),
-        $arrow: $(`#select-station-${stationNum} .select-arrow`),
-        $list: $(`#select-station-${stationNum} ul`),
-        $options: $(`#select-station-${stationNum} li`),
-        valueArray: stationList
-    })
-    addHandlersForSelect(stationNum, 'Фильтр по названию', 'Выберите станцию')
-}
 
-function updateChosenList() {
-    for (let stationNum = 0; stationNum < stationOnPageAmount; stationNum++) {
-        let chosenStationName = selectParts[stationNum].$input.val()
-        chosenStations.set(stationNum, chosenStationName)
-    }
-}
-
-function disableDuplicateOptions() {
-    for (let stationNum = 0; stationNum < stationOnPageAmount; stationNum++) {
-        selectParts[stationNum].$options.each(function () {
-            if (mapContainsValueDifferentKey(chosenStations, $(this).text(), stationNum)) {
-                $(this).addClass('disabled')
-            } else {
-                $(this).removeClass('disabled')
-            }
-        })
-    }
+    const placeholders = {
+        focused: 'Фильтр по названию',
+        blurred: 'Выберите станцию'
+    };
+    new CustomSelect($select, placeholders, stationList, true, chosenStations);
 }
 
 function addStation() {
-    let stationNum = stationOnPageAmount++
-    addStationInfoTemplate(stationNum)
-    fillSelectWithStations(stationNum)
-    disableDuplicateOptions()
+    let stationNum = stationOnPageAmount++;
+    addStationInfoTemplate(stationNum);
+    fillSelectWithStations(stationNum);
 
     if (stationOnPageAmount >= stationList.length) {
-        $('#add-station').hide()
+        $('#add-station').hide();
     }
 }
 
 function addStationInfoTemplate(num) {
     let pageTemplate = `
         <div class="route-station-info" id="route-station-info-${num}">
-            <div class="col-select form-select" id="select-station-${num}">
+            <div class="col-select form-select" id="select-station">
                 <input class="chosen-value" type="text" value="" placeholder="Выберите станцию">
                 <div class="select-arrow">
                     <i class="fas fa-chevron-left"></i>
@@ -115,11 +94,11 @@ function addStationInfoTemplate(num) {
             </div>
 
             <div class="col-price input-wrap">
-                <input class="input-field" id="route-station-price-${num}" type="text" placeholder="Цена">
+                <input class="input-field" id="route-station-price" type="text" placeholder="Цена">
             </div>
 
             <div class="col-time input-wrap">
-                <input class="input-field" id="route-station-time-${num}" type="text" placeholder="Время в пути, мин">
+                <input class="input-field" id="route-station-time" type="text" placeholder="Время в пути, мин">
             </div>
         </div>`
 
@@ -130,21 +109,12 @@ function addStationInfoTemplate(num) {
             <div class="col-add-station">
                 <span id="add-station"><i class="fas fa-plus"></i></span>
             </div>
-`       )
+`)
 
         $('#add-station').on('click', () => {
             addStation()
         })
     }
-}
-
-function mapContainsValueDifferentKey(map, val, key) {
-    for (let [k, v] of map) {
-        if (v === val && k !== key) {
-            return true
-        }
-    }
-    return false
 }
 
 async function getRouteList() {

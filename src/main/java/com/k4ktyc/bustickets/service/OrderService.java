@@ -69,7 +69,7 @@ public class OrderService {
         Passenger passenger = passengerService
                 .findByNameAndLastname(name, lastname)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Wrong passenger data"));
-        PageRequest paging = PageRequest.of(pageNumber, 10);
+        PageRequest paging = PageRequest.of(pageNumber, 5);
         Page<Order> pagedOrders = orderRepository.findOrdersByPassenger(paging, passenger);
         return pagedOrders.map(this::createDtoFromOrder);
     }

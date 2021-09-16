@@ -1,8 +1,16 @@
-let pageNum = 0
-let lastPage = 0
+let pagination = new Pagination(() => {
+    $('#station-list-elements *').remove();
+    if ($('#station-filter').val() !== "") {
+        getFilteredStationList().then(fillPageWithStations);
+    } else {
+        getStationList().then(fillPageWithStations);
+    }
+});
 
-$(function () {
-    getAllStations()
+let stationList;
+
+$(() => {
+    pagination.elementsRefreshFunc();
 })
 
 $('#station-submit').on('click', () => {
@@ -19,7 +27,7 @@ async function sendStationDto(url, dto) {
         method: 'POST',
         mode: 'same-origin',
         credentials: 'same-origin',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(dto)
     })
 
@@ -39,18 +47,18 @@ async function sendStationDto(url, dto) {
     }
 }
 
-async function getAllStations() {
-    const response = await fetch(`/api/admin/stations?page=${pageNum}`)
-    const data = await response.json()
-    lastPage = data.totalPages - 1
-    fillPageWithStations(data)
+async function getStationList() {
+    const response = await fetch(`/api/admin/stations?page=${pagination.curPage - 1}`);
+    const data = await response.json();
+    pagination.lastPage = data.totalPages;
+    stationList = data.content;
 }
 
-function fillPageWithStations(data) {
-    let stations = data.content
+function fillPageWithStations() {
+    let stations = stationList;
 
     for (let i = 0; i < stations.length; i++) {
-        let station = stations[i]
+        let station = stations[i];
 
         let pageTemplate = `
             <div class="col station-list-content py-3 m-2" id="station-${station.id}">
@@ -59,59 +67,28 @@ function fillPageWithStations(data) {
                     <p class="station-id">ID: ${station.id}</p>
                 </div>
                 <div class="station-delete" id="rm-${station.id}"><i class="fas fa-trash"></i></div>
-            </div>`
+            </div>`;
 
-        $('#station-list-elements').append(pageTemplate)
+        $('#station-list-elements').append(pageTemplate);
 
         $(`#rm-${station.id}`).on('click', function () {
             if (confirm("Удалить станцию?")) {
-                removeStation(station.id)
-                $(`#station-${station.id}`).remove()
+                removeStation(station.id);
+                $(`#station-${station.id}`).remove();
             }
-        })
+        });
     }
 
-    $('[id^=page-link-]').remove()
-
-    if (data.totalPages > 1) {
-        for (let i = 0; i < data.totalPages; i++) {
-            let num = i + 1
-            let pageTemplate = `
-            <li class="page-item" id="page-link-${num}">
-                <a class="pagination-link ${pageNum === i ? "current":""}" id="page-${num}" aria-label="${num}">
-                    <span aria-hidden="true">${num}</span>
-                </a>
-            </li>`
-
-            $('#page-next-li').before(pageTemplate)
-
-            if (pageNum !== i) {
-                $(`#page-link-${num}`).on('click', () => {
-                    pageNum = i
-                    $('#station-list-elements *').remove()
-
-                    if ($('#station-filter').val() !== "") {
-                        filterStations()
-                    } else {
-                        getAllStations()
-                    }
-                })
-            }
-        }
-        $('#pagination').show()
-    } else {
-        $('#pagination').hide()
-    }
+    pagination.update();
 }
 
-async function filterStations() {
-    let filter = $('#station-filter').val()
+async function getFilteredStationList() {
+    let filter = $('#station-filter').val();
 
-    const response = await fetch(`/api/admin/stations?page=${pageNum}&filter=${filter}`)
-    const data = await response.json()
-    $('#station-list-elements *').remove()
-    lastPage = data.totalPages - 1
-    fillPageWithStations(data)
+    const response = await fetch(`/api/admin/stations?page=${pagination.curPage - 1}&filter=${filter}`);
+    const data = await response.json();
+    pagination.lastPage = data.totalPages;
+    stationList = data.content;
 }
 
 async function removeStation(id) {
@@ -119,40 +96,16 @@ async function removeStation(id) {
         method: 'DELETE',
         mode: 'same-origin',
         credentials: 'same-origin',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(id)
     })
     return await response.json()
 }
 
 $('#station-filter').on('input', () => {
-    clearTimeout()
-    pageNum = 0
-    setTimeout(function () { filterStations() }, 800)
-})
-
-$('#page-prev').on('click', () => {
-    if (pageNum > 0) {
-        pageNum--
-        $('#station-list-elements *').remove()
-
-        if ($('#station-filter').val() !== "") {
-            filterStations()
-        } else {
-            getAllStations()
-        }
-    }
-})
-
-$('#page-next').on('click', () => {
-    if (pageNum < lastPage) {
-        pageNum++
-        $('#station-list-elements *').remove()
-
-        if ($('#station-filter').val() !== "") {
-            filterStations()
-        } else {
-            getAllStations()
-        }
-    }
+    clearTimeout();
+    pagination.curPage = 1;
+    setTimeout(() => {
+        pagination.elementsRefreshFunc();
+    }, 800);
 })

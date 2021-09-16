@@ -1,38 +1,97 @@
-let pageNum = 0
-let lastPage = 0
-let busModelList
-let busList
+let pagination = new Pagination(() => {
+    const $busList = $('#bus-list-elements');
+    $busList.addClass('updating');
+
+    getBuses().then(() => {
+        setTimeout(fillPageWithBuses, 100);
+    });
+
+    const offsetPosition = $busList.offset().top - $('#navbar-main').outerHeight();
+    window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+    });
+});
+
+let busModelList;
+let busList;
+
+const selectFieldContainer = new Map();
+const busPlaceholderAmount = 16;
 
 $(() => {
-    getBusModelList().then(fillSelectWithModels)
-    getBuses().then(fillPageWithBuses)
+    createSelectFieldObjects();
+    addPlaceholders();
+    getBusModelList().then(fillSelectWithModels);
+    pagination.elementsRefreshFunc();
 })
 
-$('#bus-submit').on('click', () => {
-    let id
+$('#bus-submit').on('click', createNewBus);
+
+function createNewBus() {
+    const $busModel = selectFieldContainer.get('bus-model').$input;
+    const $busNumber = $('#bus-number');
+    const reg = new RegExp('^\\d+$');
+
+    let modelId;
+    let busNumber = parseInt($busNumber.val(), 10);
 
     for (const m of busModelList) {
-        if (m.name === selectParts[0].$input.val()) {
-            id = m.id
-            break
+        if (m.name === $busModel.val()) {
+            modelId = m.id;
+            break;
         }
     }
 
-    let busDto = {
-        number: $('#bus-number').val(),
-        modelId: id
+    if (modelId === undefined) {
+        highlightElement($busModel.parent());
+        new NotificationPopup('Выберите модель автобуса');
+        return;
     }
-    sendBusDto('/api/admin/buses', busDto)
+    if ($busNumber.val() === '') {
+        highlightElement($busNumber.parent());
+        new NotificationPopup('Укажите номер автобуса');
+        return;
+    }
+    if (!reg.test($busNumber.val())) {
+        highlightElement($busNumber.parent());
+        new NotificationPopup('Номер автобуса должен состоять только из цифр');
+        return;
+    }
+    if (isNaN(busNumber) || busNumber < 1) {
+        highlightElement($busNumber.parent());
+        new NotificationPopup('Укажите корректный номер автобуса');
+        return;
+    }
 
-    $('#bus-number').val("")
-})
+    const busDto = {
+        number: busNumber,
+        modelId: modelId
+    };
+    sendBusDto('/api/admin/buses', busDto).then((response) => {
+        switch (response.status) {
+            case 200: {
+                new NotificationPopup('Автобус успешно добавлен');
+                $busNumber.val('');
+                break;
+            }
+            case 409: {
+                response.text().then((msg) => {
+                    highlightElement($busNumber.parent());
+                    new NotificationPopup(msg);
+                });
+                break;
+            }
+        }
+    });
+}
 
 async function sendBusDto(url, dto) {
-    await fetch(url, {
+    return await fetch(url, {
         method: 'POST',
         mode: 'same-origin',
         credentials: 'same-origin',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(dto)
     });
 }
@@ -44,17 +103,19 @@ async function getBusModelList() {
 }
 
 async function getBuses() {
-    const response = await fetch(`/api/admin/buses?page=${pageNum}`)
-    const data = await response.json()
-    lastPage = data.totalPages - 1
-    busList = data.content
+    const response = await fetch(`/api/admin/buses?page=${pagination.curPage - 1}`);
+    const data = await response.json();
+    pagination.lastPage = data.totalPages;
+    busList = data.content;
 }
 
 function fillPageWithBuses() {
-    let buses = busList
+    $('#bus-list-elements .placeholder *').remove();
+    let $placeholders = $('.bus-list-elements .placeholder');
+    let buses = busList;
 
     for (let i = 0; i < buses.length; i++) {
-        let bus = buses[i]
+        let bus = buses[i];
 
         let pageTemplate = `
             <div class="bus-list-content" id="bus-${bus.id}">
@@ -68,61 +129,31 @@ function fillPageWithBuses() {
                     <div class="bus-edit" id="edit-${bus.id}"><i class="fas fa-pen"></i></div>
                     <div class="bus-delete" id="rm-${bus.id}"><i class="fas fa-trash"></i></div>
                 </div>
-            </div>`
+            </div>`;
 
-        $('.bus-list-elements').append(pageTemplate)
+        $placeholders[i].insertAdjacentHTML("afterbegin", pageTemplate);
 
-        $(`#rm-${bus.id}`).on('click', function () {
+        $(`#rm-${bus.id}`).on('click', () => {
             if (confirm("Удалить автобус?")) {
-                removeBus(bus.id)
-                $(`#bus-${bus.id}`).remove()
+                removeBus(bus.id);
+                $(`#bus-${bus.id}`).remove();
             }
-        })
+        });
     }
 
-    $('[id^=page-link-]').remove()
+    $('#bus-list-elements').removeClass('updating');
 
-    if (lastPage > 0) {
-        for (let i = 0; i < lastPage + 1; i++) {
-            let num = i + 1
-            let pageTemplate = `
-            <li class="page-item" id="page-link-${num}">
-                <a class="pagination-link ${pageNum === i ? "current":""}" id="page-${num}" aria-label="${num}">
-                    <span aria-hidden="true">${num}</span>
-                </a>
-            </li>`
-
-            $('#page-next-li').before(pageTemplate)
-
-            if (pageNum !== i) {
-                $(`#page-link-${num}`).on('click', () => {
-                    pageNum = i
-                    $('#bus-list-elements *').remove()
-                    getBuses().then(fillPageWithBuses)
-                })
-            }
-        }
-        $('#pagination').show()
-    } else {
-        $('#pagination').hide()
-    }
+    pagination.update();
 }
 
 function fillSelectWithModels() {
+    const $select = selectFieldContainer.get('bus-model');
     for (let i = 0; i < busModelList.length; i++) {
-        let model = busModelList[i]
-
-        let pageTemplate = `<li>${model.name}</li>`
-        $('#select-model ul').append(pageTemplate)
+        const model = busModelList[i];
+        const templ = `<li>${model.name}</li>`;
+        $select.$list.append(templ);
     }
-    selectParts.push({
-        $input: $('#select-model input'),
-        $arrow: $('#select-model .select-arrow'),
-        $list: $('#select-model ul'),
-        $options: $('#select-model li'),
-        valueArray: busModelList
-    })
-    addHandlersForSelect(0, 'Фильтр по названию', 'Модель автобуса')
+    $select.updateOptions();
 }
 
 async function removeBus(id) {
@@ -130,23 +161,25 @@ async function removeBus(id) {
         method: 'DELETE',
         mode: 'same-origin',
         credentials: 'same-origin',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(id)
     });
 }
 
-$('#page-prev').on('click', () => {
-    if (pageNum > 0) {
-        pageNum--
-        $('#bus-list-elements *').remove()
-        getBuses().then(fillPageWithBuses)
-    }
-})
+function createSelectFieldObjects() {
+    const $busModel = $('#select-model');
+    const placeholders = {
+        focused: 'Фильтр по названию',
+        blurred: 'Модель автобуса'
+    };
+    const busModelSelect = new CustomSelect($busModel, placeholders, busModelList);
+    selectFieldContainer.set('bus-model', busModelSelect);
+}
 
-$('#page-next').on('click', () => {
-    if (pageNum < lastPage) {
-        pageNum++
-        $('#bus-list-elements *').remove()
-        getBuses().then(fillPageWithBuses)
+function addPlaceholders() {
+    let templ = '';
+    for (let i = 0; i < busPlaceholderAmount; i++) {
+        templ += '<div class="placeholder"></div>';
     }
-})
+    $('#bus-list-elements').append(templ);
+}
