@@ -1,27 +1,24 @@
+const $busList = $('#bus-list-elements');
+
 let pagination = new Pagination(() => {
-    const $busList = $('#bus-list-elements');
-    $busList.addClass('updating');
-
-    getBuses().then(() => {
-        setTimeout(fillPageWithBuses, 100);
-    });
-
     const offsetPosition = $busList.offset().top - $('#navbar-main').outerHeight();
     window.scrollTo({
         top: offsetPosition,
         behavior: "smooth"
     });
+
+    updateContent();
 });
+
+const selectFieldContainer = new Map();
+const defaultBusPlaceholderAmount = 16;
 
 let busModelList;
 let busList;
-
-const selectFieldContainer = new Map();
-const busPlaceholderAmount = 16;
+let busPlaceholderAmount = 0;
 
 $(() => {
     createSelectFieldObjects();
-    addPlaceholders();
     getBusModelList().then(fillSelectWithModels);
     pagination.elementsRefreshFunc();
 })
@@ -102,7 +99,48 @@ async function getBusModelList() {
     busModelList = data.content
 }
 
+async function updateContent() {
+    let p1 = startLoadingAnimation();
+    let p2 = getBuses();
+    await p1;
+    await p2;
+
+    fillPageWithBuses();
+
+    setTimeout(() => {
+        $busList.addClass('updated');
+    }, 1);
+    setTimeout(() => {
+        $busList.removeClass('updating');
+        $busList.removeClass('updated');
+    }, 300);
+}
+
+async function startLoadingAnimation() {
+    $busList.addClass('updating');
+
+    // wait for opacity transition
+    await new Promise(r => setTimeout(r, 250));
+
+    $busList.find('.bus-list-content').remove();
+
+    if (busPlaceholderAmount < defaultBusPlaceholderAmount) {
+        addPlaceholders(defaultBusPlaceholderAmount - busPlaceholderAmount);
+        busPlaceholderAmount = defaultBusPlaceholderAmount;
+    }
+    for (const p of $busList.children('.placeholder')) {
+        p.insertAdjacentHTML("afterbegin", `
+            <div class="skeleton"></div>
+            <div class="skeleton"></div>
+            <div class="skeleton"></div>
+        `);
+    }
+}
+
 async function getBuses() {
+
+    await new Promise(r => setTimeout(r, 5000));
+
     const response = await fetch(`/api/admin/buses?page=${pagination.curPage - 1}`);
     const data = await response.json();
     pagination.lastPage = data.totalPages;
@@ -110,8 +148,11 @@ async function getBuses() {
 }
 
 function fillPageWithBuses() {
-    $('#bus-list-elements .placeholder *').remove();
-    let $placeholders = $('.bus-list-elements .placeholder');
+    $busList.children('.placeholder').remove();
+    busPlaceholderAmount = busList.length;
+    addPlaceholders(busPlaceholderAmount);
+
+    let $placeholders = $busList.children('.placeholder');
     let buses = busList;
 
     for (let i = 0; i < buses.length; i++) {
@@ -140,9 +181,6 @@ function fillPageWithBuses() {
             }
         });
     }
-
-    $('#bus-list-elements').removeClass('updating');
-
     pagination.update();
 }
 
@@ -176,10 +214,10 @@ function createSelectFieldObjects() {
     selectFieldContainer.set('bus-model', busModelSelect);
 }
 
-function addPlaceholders() {
+function addPlaceholders(amount) {
     let templ = '';
-    for (let i = 0; i < busPlaceholderAmount; i++) {
+    for (let i = 0; i < amount; i++) {
         templ += '<div class="placeholder"></div>';
     }
-    $('#bus-list-elements').append(templ);
+    $busList.append(templ);
 }
