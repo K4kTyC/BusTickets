@@ -2,10 +2,19 @@ class Pagination {
     curPage = 1;
     lastPage = 0;
     elementsRefreshFunc;
+    isRefreshing = false;
 
     constructor(func) {
         this.elementsRefreshFunc = func;
         this.addChoosePageTemplate();
+    }
+
+    async refresh() {
+        if (!pagination.isRefreshing) {
+            pagination.isRefreshing = true;
+            await this.elementsRefreshFunc();
+            pagination.isRefreshing = false;
+        }
     }
 
     addChoosePageTemplate() {
@@ -39,7 +48,7 @@ class Pagination {
             const pageNum = parseInt($('#page-number').val());
             if (pageNum > 0 && pageNum <= this.lastPage) {
                 this.curPage = pageNum;
-                this.elementsRefreshFunc();
+                this.refresh();
                 $('#modal-choose-page').css('display', 'none');
                 $('#page-number').val('');
             }
@@ -108,7 +117,7 @@ class Pagination {
             $('#page-prev').on('click', () => {
                 if (this.curPage > 1) {
                     this.curPage--;
-                    this.elementsRefreshFunc();
+                    this.refresh();
                 }
             });
         }
@@ -125,7 +134,7 @@ class Pagination {
             $paginationList.append(templ);
             $('#page-link-1').on('click', () => {
                 this.curPage = 1;
-                this.elementsRefreshFunc();
+                this.refresh();
             });
         }
 
@@ -143,7 +152,7 @@ class Pagination {
             if (this.curPage !== pageNum) {
                 $(`#page-link-${pageNum}`).on('click', () => {
                     this.curPage = pageNum;
-                    this.elementsRefreshFunc();
+                    this.refresh();
                 });
             }
         }
@@ -160,7 +169,7 @@ class Pagination {
             $paginationList.append(templ);
             $(`#page-link-${this.lastPage}`).on('click', () => {
                 this.curPage = this.lastPage;
-                this.elementsRefreshFunc();
+                this.refresh();
             });
         }
 
@@ -174,7 +183,7 @@ class Pagination {
             $('#page-next').on('click', () => {
                 if (this.curPage < this.lastPage) {
                     this.curPage++;
-                    this.elementsRefreshFunc();
+                    this.refresh();
                 }
             });
         }
@@ -193,7 +202,7 @@ class Pagination {
         $('#page-prev').on('click', () => {
             if (this.curPage > 1) {
                 this.curPage--;
-                this.elementsRefreshFunc();
+                this.refresh();
             }
         });
 
@@ -207,7 +216,7 @@ class Pagination {
         $('#page-link').on('click', () => {
             $('#modal-choose-page').css('display', 'flex');
         });
-        
+
         // Add link to the next page
         templ = `
             <li class="pagination-link-mobile" id="page-next">
@@ -217,7 +226,7 @@ class Pagination {
         $('#page-next').on('click', () => {
             if (this.curPage < this.lastPage) {
                 this.curPage++;
-                this.elementsRefreshFunc();
+                this.refresh();
             }
         });
     }

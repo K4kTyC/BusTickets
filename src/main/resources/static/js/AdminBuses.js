@@ -1,13 +1,13 @@
 const $busList = $('#bus-list-elements');
 
-let pagination = new Pagination(() => {
+let pagination = new Pagination(async () => {
+    await updateContent();
+
     const offsetPosition = $busList.offset().top - $('#navbar-main').outerHeight();
     window.scrollTo({
         top: offsetPosition,
         behavior: "smooth"
     });
-
-    updateContent();
 });
 
 const selectFieldContainer = new Map();
@@ -20,7 +20,7 @@ let busPlaceholderAmount = 0;
 $(() => {
     createSelectFieldObjects();
     getBusModelList().then(fillSelectWithModels);
-    pagination.elementsRefreshFunc();
+    pagination.refresh();
 })
 
 $('#bus-submit').on('click', createNewBus);
@@ -133,13 +133,14 @@ async function startLoadingAnimation() {
             <div class="skeleton"></div>
             <div class="skeleton"></div>
             <div class="skeleton"></div>
+            <div class="skeleton"></div>
         `);
     }
 }
 
 async function getBuses() {
 
-    await new Promise(r => setTimeout(r, 5000));
+    /*await new Promise(r => setTimeout(r, 5000));*/
 
     const response = await fetch(`/api/admin/buses?page=${pagination.curPage - 1}`);
     const data = await response.json();
