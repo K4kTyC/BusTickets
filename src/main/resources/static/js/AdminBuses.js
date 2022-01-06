@@ -10,7 +10,7 @@ let pagination = new Pagination(async () => {
     });
 });
 
-const selectFieldContainer = new Map();
+const UISelectContainer = new Map(); // key - description, value - CustomSelect instance
 const defaultBusPlaceholderAmount = 16;
 
 let busModelList;
@@ -18,15 +18,17 @@ let busList;
 let busPlaceholderAmount = 0;
 
 $(() => {
-    createSelectFieldObjects();
-    getBusModelList().then(fillSelectWithModels);
+    getBusModelList().then(() => {
+        createUISelectObject();
+        fillUISelectWithModels();
+    });
     pagination.refresh();
 })
 
 $('#bus-submit').on('click', createNewBus);
 
 function createNewBus() {
-    const $busModel = selectFieldContainer.get('bus-model').$input;
+    const $busModel = UISelectContainer.get('bus-model').$input;
     const $busNumber = $('#bus-number');
     const reg = new RegExp('^\\d+$');
 
@@ -185,8 +187,8 @@ function fillPageWithBuses() {
     pagination.update();
 }
 
-function fillSelectWithModels() {
-    const $select = selectFieldContainer.get('bus-model');
+function fillUISelectWithModels() {
+    const $select = UISelectContainer.get('bus-model');
     for (let i = 0; i < busModelList.length; i++) {
         const model = busModelList[i];
         const templ = `<li>${model.name}</li>`;
@@ -205,14 +207,14 @@ async function removeBus(id) {
     });
 }
 
-function createSelectFieldObjects() {
+function createUISelectObject() {
     const $busModel = $('#select-model');
     const placeholders = {
         focused: 'Фильтр по названию',
         blurred: 'Модель автобуса'
     };
     const busModelSelect = new CustomSelect($busModel, placeholders, busModelList);
-    selectFieldContainer.set('bus-model', busModelSelect);
+    UISelectContainer.set('bus-model', busModelSelect);
 }
 
 function addPlaceholders(amount) {

@@ -24,7 +24,7 @@ $(() => {
 
     $('#navbar-main nav').on('click', function (e) {
         if (e.target !== this.children[0]) {
-            $('#nav-toggle').prop('checked', false);
+            $('#nav-toggle').prop('checked', false).change();
         }
     });
 });

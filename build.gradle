@@ -33,9 +33,9 @@ dependencies {
 }
 
 flyway {
-    url = System.getenv('SPRING_DATASOURCE_URL')
-    user = System.getenv('SPRING_DATASOURCE_USERNAME')
-    password = System.getenv('SPRING_DATASOURCE_PASSWORD')
+    url = System.getenv('BUSTICKETS_DATASOURCE_URL')
+    user = System.getenv('BUSTICKETS_DATASOURCE_USERNAME')
+    password = System.getenv('BUSTICKETS_DATASOURCE_PASSWORD')
     schemas = ['db']
 }
 
