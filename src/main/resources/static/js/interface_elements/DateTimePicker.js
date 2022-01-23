@@ -1,54 +1,54 @@
-$.fn.datetimepicker.Constructor.Default = $.extend({}, $.fn.datetimepicker.Constructor.Default, {
-	icons: {
-		time: 'fas fa-clock',
-		date: 'fas fa-calendar',
-		up: 'fas fa-arrow-up',
-		down: 'fas fa-arrow-down',
-		previous: 'fas fa-chevron-left',
-		next: 'fas fa-chevron-right',
-		today: 'today-text',
-		clear: 'fas fa-trash',
-		close: 'fas fa-times'
-	},
-	tooltips: {
-		today: 'Сегодня',
-		clear: 'Очистить выбор',
-		close: 'Закрыть',
-		selectTime: 'Выбрать время',
-		selectMonth: 'Выбрать месяц',
-		prevMonth: 'Предыдущий месяц',
-		nextMonth: 'Следующий месяц',
-		selectYear: 'Выбрать год',
-		prevYear: 'Предыдущий год',
-		nextYear: 'Следующий год',
-		incrementHour: 'Увеличить на 1 час',
-		pickHour: 'Выбрать часы',
-		decrementHour: 'Уменьшить на 1 час',
-		incrementMinute: 'Увеличить на 1 минуту',
-		pickMinute: 'Выбрать минуты',
-		decrementMinute: 'Уменьшить на 1 минуту'
-	},
+tempusDominus.DefaultOptions.restrictions.minDate = new Date(new Date(Date.now()).setHours(0, 0, 0, 0));
+
+tempusDominus.DefaultOptions.localization = {
+	today: 'Сегодня',
+	clear: 'Очистить выбор',
+	close: 'Закрыть',
+	selectMonth: 'Выбрать месяц',
+	previousMonth: 'Предыдущий месяц',
+	nextMonth: 'Следующий месяц',
+	selectYear: 'Выбрать год',
+	previousYear: 'Предыдущий год',
+	nextYear: 'Следующий год',
+	selectDecade: 'Select Decade',
+	previousDecade: 'Previous Decade',
+	nextDecade: 'Next Decade',
+	previousCentury: 'Previous Century',
+	nextCentury: 'Next Century',
+	pickHour: 'Выбрать кол-во часов',
+	incrementHour: 'Увеличить на 1 час',
+	decrementHour: 'Уменьшить на 1 час',
+	pickMinute: 'Выбрать кол-во минут',
+	incrementMinute: 'Увеличить на 1 минуту',
+	decrementMinute: 'Уменьшить на 1 минуту',
+	pickSecond: 'Pick Second',
+	incrementSecond: 'Increment Second',
+	decrementSecond: 'Decrement Second',
+	toggleMeridiem: 'Toggle Meridiem',
+	selectTime: 'Выбрать время',
+	selectDate: 'Выбрать дату',
+	dayViewHeaderFormat: {month: 'long', year: 'numeric'},
 	locale: 'ru',
-	buttons: {
-		showToday: true,
-		showClear: true,
-		showClose: false
-	},
-	widgetPositioning: {
-		vertical: 'auto'
-	},
-	focusOnShow: false,
-	allowInputToggle: true,
-	minDate: moment().millisecond(0).second(0).minute(0).hour(0).locale('ru')
-});
+	startOfTheWeek: 1
+};
 
-function enableDatetimePicker(id) {
-	$(`#${id}`).datetimepicker({});
-}
+tempusDominus.DefaultOptions.display.icons.today = 'today-text';
 
-$("body").click(function (e) {
-	if (e.target != $('.datetimepicker-input')[0]) {
-		let container = $('.bootstrap-datetimepicker-widget');
-		container.parent().datetimepicker('hide');
-	}
-});
+tempusDominus.DefaultOptions.display.buttons = {
+	today: true,
+	clear: true,
+	close: false
+};
+
+tempusDominus.DefaultOptions.display.components = {
+	calendar: true,
+	date: true,
+	month: true,
+	year: true,
+	decades: false,
+	clock: false,
+	hours: true,
+	minutes: true,
+	seconds: false,
+	useTwentyfourHour: true
+};

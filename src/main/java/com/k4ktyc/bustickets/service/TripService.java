@@ -8,7 +8,11 @@ import com.k4ktyc.bustickets.domain.dto.BusDto;
 import com.k4ktyc.bustickets.domain.dto.RouteDto;
 import com.k4ktyc.bustickets.domain.dto.TripDto;
 import com.k4ktyc.bustickets.domain.dto.TripSearchData;
-import com.k4ktyc.bustickets.repository.*;
+import com.k4ktyc.bustickets.repository.BusRepository;
+import com.k4ktyc.bustickets.repository.OrderRepository;
+import com.k4ktyc.bustickets.repository.RouteRepository;
+import com.k4ktyc.bustickets.repository.RouteStationRepository;
+import com.k4ktyc.bustickets.repository.TripRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -62,7 +66,7 @@ public class TripService {
     public Page<TripDto> getAllTrips(int pageNumber) {
         LocalDateTime today = LocalDateTime.of(LocalDate.now(), LocalTime.MIN);
         PageRequest paging = PageRequest.of(pageNumber, 5, Sort.by("datetime"));
-        Page<Trip> pagedTrips = tripRepository.findByDatetimeAfter(today, paging);
+        Page<Trip> pagedTrips = tripRepository.findAll(paging) /*tripRepository.findByDatetimeAfter(today, paging)*/;
 
         return pagedTrips.map(this::createDtoFromTrip);
     }

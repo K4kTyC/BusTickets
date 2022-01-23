@@ -61,7 +61,7 @@ function fillPageWithStations() {
 		let station = stations[i];
 
 		let pageTemplate = `
-			<div class="col station-list-content py-3 m-2" id="station-${station.id}">'
+			<div class="col station-list-content py-3 m-2" id="station-${station.id}">
 				<div class="text-center station-info">
 					<p class="station-name">${station.name}</p>
 					<p class="station-id">ID: ${station.id}</p>
