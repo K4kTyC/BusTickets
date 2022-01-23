@@ -2,91 +2,91 @@
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="blocks/default-header :: header(~{::title}, ~{::link})">
 
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css"
-          integrity="sha512-3JRrEUwaCkFUBLK1N8HehwQgu8e23jTH4np5NHOmQOobuC4ROQxFwFgBLTnhcnQRMs84muMh0PnnwXlPq5MGjg=="
-          crossorigin="anonymous"/>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-    <link rel="stylesheet" th:href="@{/css/route-details.css}">
-    <link rel="stylesheet" th:href="@{/css/datetimepicker.css}">
+	<link rel="stylesheet"
+		  href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css"
+		  integrity="sha512-3JRrEUwaCkFUBLK1N8HehwQgu8e23jTH4np5NHOmQOobuC4ROQxFwFgBLTnhcnQRMs84muMh0PnnwXlPq5MGjg=="
+		  crossorigin="anonymous"/>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+	<link rel="stylesheet" th:href="@{/css/route-details.css}">
+	<link rel="stylesheet" th:href="@{/css/datetimepicker.css}">
 
-    <title>
-        Информация о маршруте - Bus Ticket
-    </title>
+	<title>
+		Информация о маршруте - Bus Ticket
+	</title>
 
 </head>
 <body>
 
 <div class="d-flex flex-column wrapper">
 
-    <div th:replace="blocks/navigation :: navigation"></div>
+	<div th:replace="blocks/navigation :: navigation"></div>
 
-    <div class="container" id="route-details-container">
+	<div class="container" id="route-details-container">
 
-        <div class="route-title" id="route-name"></div>
+		<div class="route-title" id="route-name"></div>
 
-        <div class="route-details-content">
-            <div class="route-stations"></div>
-            <div class="route-summary"></div>
-        </div>
+		<div class="route-details-content">
+			<div class="route-stations"></div>
+			<div class="route-summary"></div>
+		</div>
 
-        <div class="route-title">Создание рейса</div>
+		<div class="route-title">Создание рейса</div>
 
-        <div class="trip-create">
-            <div class="col-select form-select" id="select-bus">
-                <input class="chosen-value" type="text" value="" placeholder="Выберите автобус">
-                <div class="select-arrow">
-                    <i class="fas fa-chevron-left"></i>
-                </div>
-                <ul class="value-list"></ul>
-            </div>
+		<div class="trip-create">
+			<div class="col-select form-select" id="select-bus">
+				<input class="chosen-value" type="text" value="" placeholder="Выберите автобус">
+				<div class="select-arrow">
+					<i class="fas fa-chevron-left"></i>
+				</div>
+				<ul class="value-list"></ul>
+			</div>
 
-            <div class="col-datetime">
-                <div class="input-group date input-wrap date-picker" id="datetimepicker-trip"
-                     data-target-input="nearest">
-                    <input type="text" class="datetimepicker-input input-field date-picker"
-                           data-target="#datetimepicker-trip" placeholder="Дата отправления"/>
-                    <div class="input-date-btn" data-target="#datetimepicker-trip" data-toggle="datetimepicker">
-                        <i class="fas fa-calendar"></i>
-                    </div>
-                </div>
-            </div>
+			<div class="col-datetime">
+				<div class="input-group date input-wrap date-picker" id="datetimepicker-trip"
+					 data-target-input="nearest">
+					<input type="text" class="datetimepicker-input input-field date-picker"
+						   data-target="#datetimepicker-trip" placeholder="Дата отправления"/>
+					<div class="input-date-btn" data-target="#datetimepicker-trip" data-toggle="datetimepicker">
+						<i class="fas fa-calendar"></i>
+					</div>
+				</div>
+			</div>
 
-            <div class="col-submit">
-                <a class="form-button" id="trip-submit"><span>Добавить</span></a>
-            </div>
-        </div>
+			<div class="col-submit">
+				<a class="form-button" id="trip-submit"><span>Добавить</span></a>
+			</div>
+		</div>
 
-        <div class="route-title">Список рейсов</div>
+		<div class="route-title">Список рейсов</div>
 
-        <div class="trip-list-header">
-            <div class="header-id">ID рейса</div>
-            <div class="header-bus-number">Номер автобуса</div>
-            <div class="header-time">Отправление</div>
-            <div class="header-time">Прибытие</div>
-        </div>
+		<div class="trip-list-header">
+			<div class="header-id">ID рейса</div>
+			<div class="header-bus-number">Номер автобуса</div>
+			<div class="header-time">Отправление</div>
+			<div class="header-time">Прибытие</div>
+		</div>
 
-        <div class="trip-list"></div>
+		<div class="trip-list"></div>
 
-    </div>
+	</div>
 
-    <div th:replace="blocks/footer :: footer"></div>
+	<div th:replace="blocks/footer :: footer"></div>
 
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-        crossorigin="anonymous"></script>
+		integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+		crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
-        integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
-        crossorigin="anonymous"></script>
+		integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+		crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/ru.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js"
-        integrity="sha512-k6/Bkb8Fxf/c1Tkyl39yJwcOZ1P4cRrJu77p83zJjN2Z55prbFHxPs9vN7q3l3+tSMGPDdoH51AEU8Vgo1cgAA=="
-        crossorigin="anonymous"></script>
+		integrity="sha512-k6/Bkb8Fxf/c1Tkyl39yJwcOZ1P4cRrJu77p83zJjN2Z55prbFHxPs9vN7q3l3+tSMGPDdoH51AEU8Vgo1cgAA=="
+		crossorigin="anonymous"></script>
 <script type="text/javascript" th:src="@{/js/Main.js}"></script>
 <script type="text/javascript" th:src="@{/js/interface_elements/DateTimePicker.js}"></script>
 <script type="text/javascript" th:src="@{/js/interface_elements/CustomSelect.js}"></script>
