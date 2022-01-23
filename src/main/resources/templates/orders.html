@@ -2,57 +2,57 @@
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="blocks/default-header :: header(~{::title}, ~{::link})">
 
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-    <link rel="stylesheet" th:href="@{/css/orders.css}">
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+	<link rel="stylesheet" th:href="@{/css/orders.css}">
 
-    <title>
-        Архив заказов - Bus Ticket
-    </title>
+	<title>
+		Архив заказов - Bus Ticket
+	</title>
 
 </head>
 <body>
 
 <div class="d-flex flex-column wrapper">
 
-    <div th:replace="blocks/navigation :: navigation"></div>
+	<div th:replace="blocks/navigation :: navigation"></div>
 
-    <div class="container" id="order-list-container">
+	<div class="container" id="order-list-container">
 
-        <div class="order-search-block">
-            <div class="order-search-title">Поиск пассажира</div>
+		<div class="order-search-block">
+			<div class="order-search-title">Поиск пассажира</div>
 
-            <div class="col-search-name">
-                <div class="input-wrap">
-                    <input class="input-field" id="passenger-name" type="text" placeholder="Имя">
-                </div>
-            </div>
-            <div class="col-search-lastname">
-                <div class="input-wrap">
-                    <input class="input-field" id="passenger-lastname" type="text" placeholder="Фамилия">
-                </div>
-            </div>
-            <div class="col-search-submit">
-                <a class="form-button" id="order-search-submit"><span>Найти</span></a>
-            </div>
-        </div>
+			<div class="col-search-name">
+				<div class="input-wrap">
+					<input class="input-field" id="passenger-name" type="text" placeholder="Имя">
+				</div>
+			</div>
+			<div class="col-search-lastname">
+				<div class="input-wrap">
+					<input class="input-field" id="passenger-lastname" type="text" placeholder="Фамилия">
+				</div>
+			</div>
+			<div class="col-search-submit">
+				<a class="form-button" id="order-search-submit"><span>Найти</span></a>
+			</div>
+		</div>
 
-        <div class="order-list-title">Архив заказов</div>
+		<div class="order-list-title">Архив заказов</div>
 
-        <div class="passenger-list-header" id="passenger-list-header">
-            <div class="col-header-passenger">Данные пассажира</div>
-            <div class="col-header-amount">Кол-во заказов</div>
-        </div>
+		<div class="passenger-list-header" id="passenger-list-header">
+			<div class="col-header-passenger">Данные пассажира</div>
+			<div class="col-header-amount">Кол-во заказов</div>
+		</div>
 
-        <div id="passenger-list-elements"></div>
-        <div id="order-list-elements"></div>
+		<div id="passenger-list-elements"></div>
+		<div id="order-list-elements"></div>
 
-        <nav class="pagination-wrap" aria-label="Page navigation" id="pagination">
-            <ul class="pagination-list" id="pagination-list"></ul>
-        </nav>
+		<nav class="pagination-wrap" aria-label="Page navigation" id="pagination">
+			<ul class="pagination-list" id="pagination-list"></ul>
+		</nav>
 
-    </div>
+	</div>
 
-    <div th:replace="blocks/footer :: footer"></div>
+	<div th:replace="blocks/footer :: footer"></div>
 
 </div>
 
@@ -60,14 +60,14 @@
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-        crossorigin="anonymous"></script>
+		integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+		crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
-        integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
-        crossorigin="anonymous"></script>
+		integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+		crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/ru.min.js"></script>
 <script type="text/javascript" th:src="@{/js/interface_elements/Pagination.js}"></script>
 <script type="text/javascript" th:src="@{/js/Orders.js}"></script>

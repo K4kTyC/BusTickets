@@ -1,274 +1,274 @@
 .order-search-block {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    background: #292f34;
-    box-shadow: 0 0 10px rgba(0, 0, 0, .7);
-    padding: 2rem;
-    font-size: 1.1rem;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	background: #292f34;
+	box-shadow: 0 0 10px rgba(0, 0, 0, .7);
+	padding: 2rem;
+	font-size: 1.1rem;
 }
 
 .order-search-title {
-    flex: 0 0 100%;
-    max-width: 100%;
-    margin-bottom: 1.5rem;
-    color: #d1d2d3;
-    font-size: 1.6rem;
-    text-align: center;
+	flex: 0 0 100%;
+	max-width: 100%;
+	margin-bottom: 1.5rem;
+	color: #d1d2d3;
+	font-size: 1.6rem;
+	text-align: center;
 }
 
 .col-search-name, .col-search-lastname {
-    flex: 0 0 100%;
-    max-width: 100%;
-    margin-bottom: 1.5rem;
+	flex: 0 0 100%;
+	max-width: 100%;
+	margin-bottom: 1.5rem;
 }
 
 .col-search-submit {
-    flex: 0 0 100%;
-    max-width: 100%;
+	flex: 0 0 100%;
+	max-width: 100%;
 }
 
 
 .order-list-title {
-    font-size: 1.4rem;
-    color: #d1d2d3;
-    padding: 2rem;
+	font-size: 1.4rem;
+	color: #d1d2d3;
+	padding: 2rem;
 }
 
 .passenger-list-header {
-    display: none;
-    align-items: center;
-    background: #292f34;
-    color: #d1d2d3;
-    font-size: 1.3rem;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+	display: none;
+	align-items: center;
+	background: #292f34;
+	color: #d1d2d3;
+	font-size: 1.3rem;
+	padding: 1rem;
+	margin-bottom: 1rem;
+	box-shadow: 0 0 5px rgba(0, 0, 0, .5);
 }
 
 .col-header-passenger, .col-header-amount {
-    flex: 0 0 100%;
-    max-width: 100%;
+	flex: 0 0 100%;
+	max-width: 100%;
 }
 
 
 .order-list-content {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    background: #292f34;
-    color: #d1d2d3;
-    box-shadow: 0 0 5px rgba(0, 0, 0, .5);
-    transition: all .2s ease-out;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	padding: 1rem;
+	margin-bottom: 1rem;
+	background: #292f34;
+	color: #d1d2d3;
+	box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+	transition: all .2s ease-out;
 }
 
 .order-list-content.passengers {
-    font-size: 1.2rem;
-    margin-bottom: .5rem;
+	font-size: 1.2rem;
+	margin-bottom: .5rem;
 }
 
 .order-list-content.passengers:hover {
-    background: #54595d;
-    cursor: pointer;
+	background: #54595d;
+	cursor: pointer;
 }
 
 .order-list-content p {
-    margin: 0;
+	margin: 0;
 }
 
 .col-passenger {
-    flex: 0 0 100%;
-    max-width: 100%;
-    text-align: center;
-    margin-bottom: 1rem;
+	flex: 0 0 100%;
+	max-width: 100%;
+	text-align: center;
+	margin-bottom: 1rem;
 }
 
 .col-amount {
-    flex: 0 0 100%;
-    max-width: 100%;
-    text-align: center;
+	flex: 0 0 100%;
+	max-width: 100%;
+	text-align: center;
 }
 
 
 .col-content-route {
-    flex: 0 0 100%;
-    max-width: 100%;
-    padding-bottom: .5rem;
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
-    border-bottom-color: #54595d;
-    font-weight: bold;
+	flex: 0 0 100%;
+	max-width: 100%;
+	padding-bottom: .5rem;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #54595d;
+	font-weight: bold;
 }
 
 .col-content-datetime-bus {
-    flex: 0 0 100%;
-    max-width: 100%;
-    display: flex;
-    align-items: center;
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
-    border-bottom-color: #54595d;
-    padding: 1rem .5rem;
+	flex: 0 0 100%;
+	max-width: 100%;
+	display: flex;
+	align-items: center;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #54595d;
+	padding: 1rem .5rem;
 }
 
 .col-content-datetime {
-    flex: 0 0 50%;
-    max-width: 50%;
-    text-align: center;
+	flex: 0 0 50%;
+	max-width: 50%;
+	text-align: center;
 }
 
 .col-content-datetime .order-time {
-    font-size: 1.6rem;
-    font-weight: bold;
+	font-size: 1.6rem;
+	font-weight: bold;
 }
 
 .col-content-datetime .order-date {
-    font-size: .9rem;
-    opacity: .7;
+	font-size: .9rem;
+	opacity: .7;
 }
 
 .col-content-bus {
-    flex: 0 0 50%;
-    max-width: 50%;
-    text-align: right;
+	flex: 0 0 50%;
+	max-width: 50%;
+	text-align: right;
 }
 
 .col-content-info {
-    flex: 0 0 100%;
-    max-width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    padding: 1rem .5rem;
+	flex: 0 0 100%;
+	max-width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	padding: 1rem .5rem;
 }
 
 .col-content-info .order-price {
-    flex: 0 0 50%;
-    max-width: 50%;
-    text-align: center;
-    font-size: 1.2rem;
+	flex: 0 0 50%;
+	max-width: 50%;
+	text-align: center;
+	font-size: 1.2rem;
 }
 
 .col-content-info .order-status {
-    flex: 0 0 50%;
-    max-width: 50%;
-    text-align: right;
+	flex: 0 0 50%;
+	max-width: 50%;
+	text-align: right;
 }
 
 
 @media only screen and (min-width: 768px) {
-    .order-search-block {
-        margin-top: 2rem;
-        justify-content: space-between;
-    }
+	.order-search-block {
+		margin-top: 2rem;
+		justify-content: space-between;
+	}
 
-    .col-search-name, .col-search-lastname {
-        flex: 0 0 48%;
-        max-width: 48%;
-    }
+	.col-search-name, .col-search-lastname {
+		flex: 0 0 48%;
+		max-width: 48%;
+	}
 
-    .col-search-submit {
-        flex: 0 0 48%;
-        max-width: 48%;
-        margin-left: auto;
-    }
-
-
-    .passenger-list-header {
-        display: flex;
-    }
-
-    .col-header-passenger {
-        flex: 0 0 75%;
-        max-width: 75%;
-        text-align: left;
-    }
-
-    .col-header-amount {
-        flex: 0 0 25%;
-        max-width: 25%;
-        text-align: center;
-    }
-
-    .col-passenger {
-        flex: 0 0 75%;
-        max-width: 75%;
-        text-align: left;
-        margin: 0;
-    }
-
-    .col-amount {
-        flex: 0 0 25%;
-        max-width: 25%;
-    }
-
-    .col-amount span {
-        display: none;
-    }
+	.col-search-submit {
+		flex: 0 0 48%;
+		max-width: 48%;
+		margin-left: auto;
+	}
 
 
-    .col-content-datetime-bus {
-        flex: 0 0 70%;
-        max-width: 70%;
-        border-bottom: none;
-    }
+	.passenger-list-header {
+		display: flex;
+	}
 
-    .col-content-bus {
-        text-align: center;
-    }
+	.col-header-passenger {
+		flex: 0 0 75%;
+		max-width: 75%;
+		text-align: left;
+	}
 
-    .col-content-info {
-        flex: 0 0 30%;
-        max-width: 30%;
-    }
+	.col-header-amount {
+		flex: 0 0 25%;
+		max-width: 25%;
+		text-align: center;
+	}
 
-    .col-content-info .order-price {
-        flex: 0 0 100%;
-        max-width: 100%;
-        text-align: right;
-    }
+	.col-passenger {
+		flex: 0 0 75%;
+		max-width: 75%;
+		text-align: left;
+		margin: 0;
+	}
 
-    .col-content-info .order-status {
-        flex: 0 0 100%;
-        max-width: 100%;
-    }
+	.col-amount {
+		flex: 0 0 25%;
+		max-width: 25%;
+	}
+
+	.col-amount span {
+		display: none;
+	}
+
+
+	.col-content-datetime-bus {
+		flex: 0 0 70%;
+		max-width: 70%;
+		border-bottom: none;
+	}
+
+	.col-content-bus {
+		text-align: center;
+	}
+
+	.col-content-info {
+		flex: 0 0 30%;
+		max-width: 30%;
+	}
+
+	.col-content-info .order-price {
+		flex: 0 0 100%;
+		max-width: 100%;
+		text-align: right;
+	}
+
+	.col-content-info .order-status {
+		flex: 0 0 100%;
+		max-width: 100%;
+	}
 }
 
 @media only screen and (min-width: 992px) {
-    .col-search-name, .col-search-lastname {
-        flex: 0 0 35%;
-        max-width: 35%;
-        margin: 0;
-    }
+	.col-search-name, .col-search-lastname {
+		flex: 0 0 35%;
+		max-width: 35%;
+		margin: 0;
+	}
 
-    .col-search-submit {
-        flex: 0 0 22%;
-        max-width: 22%;
-        margin: 0;
-    }
+	.col-search-submit {
+		flex: 0 0 22%;
+		max-width: 22%;
+		margin: 0;
+	}
 
 
-    .col-content-route {
-        flex: 0 0 25%;
-        max-width: 25%;
-        padding: 0;
-        border-bottom: none;
-        font-size: 1.1rem;
-    }
+	.col-content-route {
+		flex: 0 0 25%;
+		max-width: 25%;
+		padding: 0;
+		border-bottom: none;
+		font-size: 1.1rem;
+	}
 
-    .col-content-datetime-bus {
-        flex: 0 0 50%;
-        max-width: 50%;
-        padding: 0;
-        border-bottom: none;
-    }
+	.col-content-datetime-bus {
+		flex: 0 0 50%;
+		max-width: 50%;
+		padding: 0;
+		border-bottom: none;
+	}
 
-    .col-content-info {
-        flex: 0 0 25%;
-        max-width: 25%;
-        padding: 0;
-    }
+	.col-content-info {
+		flex: 0 0 25%;
+		max-width: 25%;
+		padding: 0;
+	}
 }

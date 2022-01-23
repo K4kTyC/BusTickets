@@ -2,59 +2,59 @@
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="blocks/default-header :: header(~{::title}, ~{::link})">
 
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-    <link rel="stylesheet" th:href="@{/css/trip-details.css}">
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+	<link rel="stylesheet" th:href="@{/css/trip-details.css}">
 
-    <title>
-        Покупка билета - Bus Ticket
-    </title>
+	<title>
+		Покупка билета - Bus Ticket
+	</title>
 
 </head>
 <body>
 
 <div class="d-flex flex-column wrapper">
 
-    <div th:replace="blocks/navigation :: navigation"></div>
+	<div th:replace="blocks/navigation :: navigation"></div>
 
-    <div class="container" id="trip-details-container">
+	<div class="container" id="trip-details-container">
 
-        <div class="trip-details-title">Оформление заказа</div>
+		<div class="trip-details-title">Оформление заказа</div>
 
-        <div class="trip-details-content">
-            <div class="trip-stations"></div>
+		<div class="trip-details-content">
+			<div class="trip-stations"></div>
 
-            <div class="trip-select-seats">
-                <div class="seats-number"></div>
-                <div class="form-select" id="select-seat">
-                    <input class="chosen-value" type="text" value="" placeholder="Выберите место">
-                    <div class="select-arrow">
-                        <i class="fas fa-chevron-left"></i>
-                    </div>
-                    <ul class="value-list"></ul>
-                </div>
-            </div>
+			<div class="trip-select-seats">
+				<div class="seats-number"></div>
+				<div class="form-select" id="select-seat">
+					<input class="chosen-value" type="text" value="" placeholder="Выберите место">
+					<div class="select-arrow">
+						<i class="fas fa-chevron-left"></i>
+					</div>
+					<ul class="value-list"></ul>
+				</div>
+			</div>
 
-            <div class="trip-passenger">
-                <div class="trip-passenger-title">Данные пассажира</div>
-                <div class="passenger-info">
-                    <div class="col-name input-wrap">
-                        <input class="input-field" id="pass-name" type="text" placeholder="Имя">
-                    </div>
-                    <div class="col-lastname input-wrap">
-                        <input class="input-field" id="pass-lastname" type="text" placeholder="Фамилия">
-                    </div>
-                </div>
-            </div>
+			<div class="trip-passenger">
+				<div class="trip-passenger-title">Данные пассажира</div>
+				<div class="passenger-info">
+					<div class="col-name input-wrap">
+						<input class="input-field" id="pass-name" type="text" placeholder="Имя">
+					</div>
+					<div class="col-lastname input-wrap">
+						<input class="input-field" id="pass-lastname" type="text" placeholder="Фамилия">
+					</div>
+				</div>
+			</div>
 
-            <div class="trip-buy">
-                <div class="trip-price"></div>
-                <a class="form-button" id="order-submit"><span>оформить заказ</span></a>
-            </div>
-        </div>
+			<div class="trip-buy">
+				<div class="trip-price"></div>
+				<a class="form-button" id="order-submit"><span>оформить заказ</span></a>
+			</div>
+		</div>
 
-    </div>
+	</div>
 
-    <div th:replace="blocks/footer :: footer"></div>
+	<div th:replace="blocks/footer :: footer"></div>
 
 </div>
 
@@ -62,14 +62,14 @@
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-        crossorigin="anonymous"></script>
+		integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+		crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
-        integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
-        crossorigin="anonymous"></script>
+		integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+		crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/ru.min.js"></script>
 <script type="text/javascript" th:src="@{/js/Main.js}"></script>
 <script type="text/javascript" th:src="@{/js/ModalForm.js}"></script>

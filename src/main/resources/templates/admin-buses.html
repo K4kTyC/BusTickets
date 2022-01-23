@@ -2,12 +2,12 @@
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="blocks/default-header :: header(~{::title}, ~{::link})">
 
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-    <link rel="stylesheet" th:href="@{/css/buses.css}">
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+	<link rel="stylesheet" th:href="@{/css/buses.css}">
 
-    <title>
-        Управление парком автобусов - Bus Ticket
-    </title>
+	<title>
+		Управление парком автобусов - Bus Ticket
+	</title>
 
 </head>
 <body>
@@ -16,44 +16,44 @@
 
 <div class="d-flex flex-column wrapper">
 
-    <div class="container" id="bus-list">
-        <div class="add-bus-form">
-            <div class="col-select form-select" id="select-model">
-                <input class="chosen-value" type="text" value="" placeholder="Модель автобуса">
-                <div class="select-arrow">
-                    <i class="fas fa-chevron-left"></i>
-                </div>
-                <ul class="value-list"></ul>
-            </div>
+	<div class="container" id="bus-list">
+		<div class="add-bus-form">
+			<div class="col-select form-select" id="select-model">
+				<input class="chosen-value" type="text" value="" placeholder="Модель автобуса">
+				<div class="select-arrow">
+					<i class="fas fa-chevron-left"></i>
+				</div>
+				<ul class="value-list"></ul>
+			</div>
 
-            <div class="col-number input-wrap">
-                <input class="input-field" id="bus-number" type="text" placeholder="Номер автобуса">
-            </div>
+			<div class="col-number input-wrap">
+				<input class="input-field" id="bus-number" type="text" placeholder="Номер автобуса">
+			</div>
 
-            <div class="col-submit">
-                <a class="form-button" id="bus-submit"><span>Добавить</span></a>
-            </div>
-        </div>
+			<div class="col-submit">
+				<a class="form-button" id="bus-submit"><span>Добавить</span></a>
+			</div>
+		</div>
 
-        <div class="bus-list-elements" id="bus-list-elements"></div>
+		<div class="bus-list-elements" id="bus-list-elements"></div>
 
-        <nav class="pagination-wrap" aria-label="Page navigation" id="pagination">
-            <ul class="pagination-list" id="pagination-list"></ul>
-        </nav>
+		<nav class="pagination-wrap" aria-label="Page navigation" id="pagination">
+			<ul class="pagination-list" id="pagination-list"></ul>
+		</nav>
 
-    </div>
+	</div>
 
-    <div th:replace="blocks/footer :: footer"></div>
+	<div th:replace="blocks/footer :: footer"></div>
 
-    <div class="notification-wrapper" id="notification-wrapper"></div>
+	<div class="notification-wrapper" id="notification-wrapper"></div>
 
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-        crossorigin="anonymous"></script>
+		integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+		crossorigin="anonymous"></script>
 <script type="text/javascript" th:src="@{/js/Main.js}"></script>
 <script type="text/javascript" th:src="@{/js/interface_elements/CustomSelect.js}"></script>
 <script type="text/javascript" th:src="@{/js/interface_elements/Pagination.js}"></script>
