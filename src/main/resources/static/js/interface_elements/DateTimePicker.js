@@ -32,14 +32,6 @@ tempusDominus.DefaultOptions.localization = {
 	startOfTheWeek: 1
 };
 
-tempusDominus.DefaultOptions.display.icons.today = 'today-text';
-
-tempusDominus.DefaultOptions.display.buttons = {
-	today: true,
-	clear: true,
-	close: false
-};
-
 tempusDominus.DefaultOptions.display.components = {
 	calendar: true,
 	date: true,
