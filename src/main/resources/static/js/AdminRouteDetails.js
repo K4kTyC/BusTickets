@@ -4,11 +4,19 @@ let routeDetails
 let busList
 let tripList
 
+const picker = new tempusDominus.TempusDominus(document.getElementById('datetimepicker-trip'), {
+	display: {
+		components: {
+			clock: true
+		}
+	},
+	promptTimeOnDateChange: true
+});
+
 $(() => {
 	let routeId = window.location.href.substring(window.location.href.lastIndexOf('/') + 1)
 	getRouteDetails(routeId).then(fillPageWithRouteDetails)
 	getBusList().then(fillSelectWithBuses)
-	enableDatetimePicker('datetimepicker-trip');
 	getTrips(routeId).then(fillPageWithTrips)
 
 	$('#trip-submit').on('click', () => {
@@ -26,7 +34,7 @@ $(() => {
 		let tripDto = {
 			routeId: routeId,
 			busId: busId,
-			datetime: $('#datetimepicker-trip').datetimepicker('date').parseZone()
+			datetime: picker.dates.picked[0]
 		}
 		sendTripDto('/api/admin/trips', tripDto)
 	})
@@ -111,9 +119,9 @@ function fillPageWithTrips() {
 		}
 
 		let stationStart = stations[0].stationName
-		let datetimeStart = moment(trip.datetime).locale('ru')
+		let datetimeStart = dayjs(trip.datetime).locale('ru')
 		let stationFinish = stations[stations.length - 1].stationName
-		let datetimeFinish = moment(trip.datetime).add(sumTime, 'minutes').locale('ru')
+		let datetimeFinish = dayjs(trip.datetime).add(sumTime, 'minutes').locale('ru')
 
 		let tripTempl = `
             <div class="trip-info">

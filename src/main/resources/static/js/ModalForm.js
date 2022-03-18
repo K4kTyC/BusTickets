@@ -11,6 +11,11 @@ document.getElementById('registration-submit').addEventListener('click', () => {
 	sendUserDto('/api/register', userDto)
 })
 
+document.getElementById('login-submit').addEventListener('click', function () {
+	let form = document.getElementById('login-form');
+	form.submit();
+});
+
 async function sendUserDto(url, dto) {
 	const response = await fetch(url, {
 		method: 'POST',

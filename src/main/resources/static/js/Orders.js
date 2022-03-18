@@ -85,7 +85,7 @@ function fillPageWithOrders() {
 			}
 		}
 
-		let startTimeDate = moment(order.trip.datetime).add(timeGap, 'minutes').locale('ru')
+		let startTimeDate = dayjs(order.trip.datetime).add(timeGap, 'minutes').locale('ru');
 
 		let pageTemplate = `
         <div class="order-list-content" id="orders-${order.id}">

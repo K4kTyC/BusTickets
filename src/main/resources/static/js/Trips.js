@@ -103,7 +103,7 @@ function fillPageWithTrips() {
 		}
 		sumPrice /= 100
 
-		let startTimeDate = moment(trip.datetime).add(startTimeGap, 'minutes').locale('ru')
+		let startTimeDate = dayjs(trip.datetime).add(startTimeGap, 'minutes').locale('ru');
 		let timeStart = startTimeDate.format('HH:mm')
 		let dateStart = startTimeDate.format('DD.MM.YYYY')
 

@@ -1,112 +1,173 @@
-.fa-clock, .fa-trash {
-	color: #d1d2d3;
-}
-
-.fa-clock:hover, .fa-trash:hover {
-	color: #44883c;
-}
-
-.today-text:before {
-	content: 'сегодня';
-	color: #d1d2d3;
-}
-
-.today-text:hover:before {
-	color: #44883c;
-}
-
-.dropdown-menu {
-	color: #d1d2d3;
-}
-
-.table {
-	color: #d1d2d3;
-}
-
-.table thead th {
-	border-bottom: 0;
-}
-
-.table th {
-	border-top: 0;
-}
-
-.table td {
-	border: 0;
-}
-
-.bootstrap-datetimepicker-widget table td.day:hover {
-	background: #44883c;
-	color: #d1d2d3;
-}
-
-.bootstrap-datetimepicker-widget table td, .bootstrap-datetimepicker-widget table th {
+.tempus-dominus-widget {
+	padding: 4px;
 	border-radius: 0;
-}
-
-.bootstrap-datetimepicker-widget table td.today:before {
-	border: none;
-}
-
-.bootstrap-datetimepicker-widget table td.active, .bootstrap-datetimepicker-widget table td.active:hover {
-	background-color: #44883c;
-}
-
-.bootstrap-datetimepicker-widget table td.today::before {
-	border: 0;
-}
-
-.bootstrap-datetimepicker-widget table td.active.today::before {
-	border-bottom: 2px solid #54595d;
-}
-
-.bootstrap-datetimepicker-widget table td span.active {
-	background-color: #44883c;
-}
-
-.bootstrap-datetimepicker-widget .timepicker .timepicker-picker a.btn {
-	color: #44883c;
-}
-
-.bootstrap-datetimepicker-widget .timepicker .timepicker-picker a.btn:hover {
-	color: #44883c;
-}
-
-.bootstrap-datetimepicker-widget .datepicker-years thead .picker-switch {
-	cursor: default !important;
-	pointer-events: none !important;
-}
-
-.bootstrap-datetimepicker-widget.dropdown-menu.top::before {
-	border: none;
-}
-
-.bootstrap-datetimepicker-widget.dropdown-menu.top::after {
-	border: none;
-}
-
-.bootstrap-datetimepicker-widget.dropdown-menu.bottom::before {
-	border: none;
-}
-
-.bootstrap-datetimepicker-widget.dropdown-menu.bottom::after {
-	border: none;
-}
-
-.bootstrap-datetimepicker-widget table thead tr:first-child th {
+	background-color: #212529;
+	width: initial;
+	min-width: calc((32px * 7) + (4px * 8));
 	color: #d1d2d3;
+	user-select: none;
+	z-index: 999;
 }
 
-.bootstrap-datetimepicker-widget table thead tr:first-child th:hover {
-	background: inherit;
-	color: #44883c;
+.tempus-dominus-widget .calendar-header {
+	margin: 5px 0;
 }
 
-.bootstrap-datetimepicker-widget table td span {
+.tempus-dominus-widget .date-container-decades,
+.tempus-dominus-widget .date-container-months,
+.tempus-dominus-widget .date-container-years {
+	justify-items: center;
+	grid-gap: 4px;
+	grid-auto-rows: calc((32px * 7 + 4px * 3) / 4);
+}
+
+.tempus-dominus-widget .date-container-days {
+	justify-items: center;
+	grid-gap: 4px;
+	grid-auto-columns: 32px;
+	grid-auto-rows: 32px;
+}
+
+.tempus-dominus-widget .date-container-days .dow {
+	color: #d1d2d3;
+	align-self: center;
+}
+
+
+.tempus-dominus-widget .date-container-days div:not(.no-highlight).active,
+.tempus-dominus-widget .date-container-decades div:not(.no-highlight).active,
+.tempus-dominus-widget .date-container-months div:not(.no-highlight).active,
+.tempus-dominus-widget .date-container-years div:not(.no-highlight).active,
+.tempus-dominus-widget .time-container-clock div:not(.no-highlight).active,
+.tempus-dominus-widget .time-container-hour div:not(.no-highlight).active,
+.tempus-dominus-widget .time-container-minute div:not(.no-highlight).active,
+.tempus-dominus-widget .time-container-second div:not(.no-highlight).active {
+	text-shadow: 1px 1px 0 rgba(0, 0, 0, .65);
+	background-image: linear-gradient(to right, #016838, #4caa13);
+	background-color: #2c8e23;
+}
+
+.tempus-dominus-widget .date-container-days div:not(.no-highlight).today::before,
+.tempus-dominus-widget .date-container-decades div:not(.no-highlight).today::before,
+.tempus-dominus-widget .date-container-months div:not(.no-highlight).today::before,
+.tempus-dominus-widget .date-container-years div:not(.no-highlight).today::before,
+.tempus-dominus-widget .time-container-clock div:not(.no-highlight).today::before,
+.tempus-dominus-widget .time-container-hour div:not(.no-highlight).today::before,
+.tempus-dominus-widget .time-container-minute div:not(.no-highlight).today::before,
+.tempus-dominus-widget .time-container-second div:not(.no-highlight).today::before {
+	all: initial;
+}
+
+.tempus-dominus-widget .date-container-decades [data-action],
+.tempus-dominus-widget .date-container-months [data-action],
+.tempus-dominus-widget .date-container-years [data-action],
+.tempus-dominus-widget .date-container-days [data-action] {
+	cursor: default;
+}
+
+.tempus-dominus-widget [data-action].disabled,
+.tempus-dominus-widget [data-action].disabled:hover {
+	background: none;
+	color: #54595d;
+	cursor: default;
+}
+
+.tempus-dominus-widget .date-container-days div:not(.no-highlight),
+.tempus-dominus-widget .date-container-decades div:not(.no-highlight),
+.tempus-dominus-widget .date-container-months div:not(.no-highlight),
+.tempus-dominus-widget .date-container-years div:not(.no-highlight),
+.tempus-dominus-widget .time-container-clock div:not(.no-highlight),
+.tempus-dominus-widget .time-container-hour div:not(.no-highlight),
+.tempus-dominus-widget .time-container-minute div:not(.no-highlight),
+.tempus-dominus-widget .time-container-second div:not(.no-highlight) {
+	width: 100%;
+	height: 100%;
 	border-radius: 0;
+	background: #292f34;
+	position: relative;
 }
 
-.bootstrap-datetimepicker-widget table td span:hover {
-	background: inherit;
-	color: #44883c;
+.tempus-dominus-widget .date-container-days div:not(.no-highlight):not(.disabled):not(.active):hover::before,
+.tempus-dominus-widget .date-container-decades div:not(.no-highlight):not(.disabled):not(.active):hover::before,
+.tempus-dominus-widget .date-container-months div:not(.no-highlight):not(.disabled):not(.active):hover::before,
+.tempus-dominus-widget .date-container-years div:not(.no-highlight):not(.disabled):not(.active):hover::before,
+.tempus-dominus-widget .time-container-clock div:not(.no-highlight):not(.disabled):not(.active):hover::before,
+.tempus-dominus-widget .time-container-hour div:not(.no-highlight):not(.disabled):not(.active):hover::before,
+.tempus-dominus-widget .time-container-minute div:not(.no-highlight):not(.disabled):not(.active):hover::before,
+.tempus-dominus-widget .time-container-second div:not(.no-highlight):not(.disabled):not(.active):hover::before {
+	transform: scaleX(1);
+	transition: transform .2s ease-out;
+}
+
+.tempus-dominus-widget .date-container-days div:not(.no-highlight):not(.disabled)::before,
+.tempus-dominus-widget .date-container-decades div:not(.no-highlight):not(.disabled)::before,
+.tempus-dominus-widget .date-container-months div:not(.no-highlight):not(.disabled)::before,
+.tempus-dominus-widget .date-container-years div:not(.no-highlight):not(.disabled)::before,
+.tempus-dominus-widget .time-container-clock div:not(.no-highlight):not(.disabled)::before,
+.tempus-dominus-widget .time-container-hour div:not(.no-highlight):not(.disabled)::before,
+.tempus-dominus-widget .time-container-minute div:not(.no-highlight):not(.disabled)::before,
+.tempus-dominus-widget .time-container-second div:not(.no-highlight):not(.disabled)::before {
+	content: '';
+	display: block;
+	height: 3px;
+	background: linear-gradient(to right, #006838, #4caa13);
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	transform: scaleX(0);
+	transform-origin: center;
+	transition: transform .2s ease-out;
+}
+
+.tempus-dominus-widget .date-container-days div:not(.no-highlight).disabled,
+.tempus-dominus-widget .date-container-days div:not(.no-highlight).disabled:hover,
+.tempus-dominus-widget .date-container-decades div:not(.no-highlight).disabled,
+.tempus-dominus-widget .date-container-decades div:not(.no-highlight).disabled:hover,
+.tempus-dominus-widget .date-container-months div:not(.no-highlight).disabled,
+.tempus-dominus-widget .date-container-months div:not(.no-highlight).disabled:hover,
+.tempus-dominus-widget .date-container-years div:not(.no-highlight).disabled,
+.tempus-dominus-widget .date-container-years div:not(.no-highlight).disabled:hover,
+.tempus-dominus-widget .time-container-clock div:not(.no-highlight).disabled,
+.tempus-dominus-widget .time-container-clock div:not(.no-highlight).disabled:hover,
+.tempus-dominus-widget .time-container-hour div:not(.no-highlight).disabled,
+.tempus-dominus-widget .time-container-hour div:not(.no-highlight).disabled:hover,
+.tempus-dominus-widget .time-container-minute div:not(.no-highlight).disabled,
+.tempus-dominus-widget .time-container-minute div:not(.no-highlight).disabled:hover,
+.tempus-dominus-widget .time-container-second div:not(.no-highlight).disabled,
+.tempus-dominus-widget .time-container-second div:not(.no-highlight).disabled:hover {
+	background: none !important;
+	color: #54595d;
+	cursor: default;
+}
+
+.tempus-dominus-widget .date-container-days div:not(.no-highlight).new,
+.tempus-dominus-widget .date-container-days div:not(.no-highlight).old,
+.tempus-dominus-widget .date-container-decades div:not(.no-highlight).new,
+.tempus-dominus-widget .date-container-decades div:not(.no-highlight).old,
+.tempus-dominus-widget .date-container-months div:not(.no-highlight).new,
+.tempus-dominus-widget .date-container-months div:not(.no-highlight).old,
+.tempus-dominus-widget .date-container-years div:not(.no-highlight).new,
+.tempus-dominus-widget .date-container-years div:not(.no-highlight).old,
+.tempus-dominus-widget .time-container-clock div:not(.no-highlight).new,
+.tempus-dominus-widget .time-container-clock div:not(.no-highlight).old,
+.tempus-dominus-widget .time-container-hour div:not(.no-highlight).new,
+.tempus-dominus-widget .time-container-hour div:not(.no-highlight).old,
+.tempus-dominus-widget .time-container-minute div:not(.no-highlight).new,
+.tempus-dominus-widget .time-container-minute div:not(.no-highlight).old,
+.tempus-dominus-widget .time-container-second div:not(.no-highlight).new,
+.tempus-dominus-widget .time-container-second div:not(.no-highlight).old {
+	background: #292f34;
+	color: #54595d;
+}
+
+.tempus-dominus-widget .date-container-days div:not(.no-highlight):not(.active):hover,
+.tempus-dominus-widget .date-container-decades div:not(.no-highlight):not(.active):hover,
+.tempus-dominus-widget .date-container-months div:not(.no-highlight):not(.active):hover,
+.tempus-dominus-widget .date-container-years div:not(.no-highlight):not(.active):hover,
+.tempus-dominus-widget .time-container-clock div:not(.no-highlight):not(.active):hover,
+.tempus-dominus-widget .time-container-hour div:not(.no-highlight):not(.active):hover,
+.tempus-dominus-widget .time-container-minute div:not(.no-highlight):not(.active):hover,
+.tempus-dominus-widget .time-container-second div:not(.no-highlight):not(.active):hover {
+	background: #292f34;
 }
