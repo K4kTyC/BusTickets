@@ -1,0 +1,28 @@
+version: "3.3"
+
+services:
+
+  app:
+    image: k4ktyc/bustickets:latest
+    restart: unless-stopped
+    container_name: bustickets
+    ports:
+      - "80:8080"
+    depends_on:
+      - db
+    environment:
+      - BUSTICKETS_DATASOURCE_URL=${BUSTICKETS_DATASOURCE_URL}
+      - BUSTICKETS_DATASOURCE_USERNAME=${BUSTICKETS_DATASOURCE_USERNAME}
+      - BUSTICKETS_DATASOURCE_PASSWORD=${BUSTICKETS_DATASOURCE_PASSWORD}
+
+  db:
+    image: mariadb:10.6
+    restart: unless-stopped
+    container_name: db
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${BUSTICKETS_DATASOURCE_PASSWORD}
+      MYSQL_DATABASE: db
+    volumes:
+      - ${BUSTICKETS_DATASOURCE_VOLUME}:/var/lib/mysql
