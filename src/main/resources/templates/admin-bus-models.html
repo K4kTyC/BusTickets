@@ -6,7 +6,7 @@
 	<link rel="stylesheet" th:href="@{/css/bus-models.css}">
 
 	<title>
-		Управление моделями автобусов - Bus Ticket
+		Модели автобусов - Bus Ticket
 	</title>
 
 </head>
@@ -45,25 +45,17 @@
 			</div>
 		</div>
 
-		<div class="model-list-elements"></div>
+		<div class="model-list-elements" id="model-list-elements"></div>
 
 		<nav class="pagination-wrap" aria-label="Page navigation" id="pagination">
-			<ul class="pagination-list justify-content-center my-3">
-				<li id="page-prev-li">
-					<a class="pagination-link" id="page-prev" aria-label="Previous">
-						<span><i class="fas fa-chevron-left"></i></span>
-					</a>
-				</li>
-				<li id="page-next-li">
-					<a class="pagination-link" id="page-next" aria-label="Next">
-						<span><i class="fas fa-chevron-right"></i></span>
-					</a>
-				</li>
-			</ul>
+			<ul class="pagination-list" id="pagination-list"></ul>
 		</nav>
+
 	</div>
 
 	<div th:replace="blocks/footer :: footer"></div>
+
+	<div class="notification-wrapper" id="notification-wrapper"></div>
 
 </div>
 
@@ -74,6 +66,8 @@
 		crossorigin="anonymous"></script>
 <script type="text/javascript" th:src="@{/js/Main.js}"></script>
 <script type="text/javascript" th:src="@{/js/interface_elements/CustomSelect.js}"></script>
+<script type="text/javascript" th:src="@{/js/interface_elements/Pagination.js}"></script>
+<script type="text/javascript" th:src="@{/js/interface_elements/NotificationPopup.js}"></script>
 <script type="text/javascript" th:src="@{/js/AdminBusModels.js}"></script>
 </body>
 </html>
