@@ -1,6 +1,6 @@
 .find-trip-form {
 	background: #292f34;
-	box-shadow: 0 0 10px rgba(0, 0, 0, .7);
+	box-shadow: 0 0 15px rgba(0, 0, 0, .5);
 	padding: 2rem;
 	display: flex;
 	flex-wrap: wrap;

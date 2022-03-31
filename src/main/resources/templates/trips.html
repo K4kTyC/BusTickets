@@ -27,21 +27,21 @@
 			<div th:replace="blocks/findTripForm :: form"></div>
 		</div>
 
-		<div class="trip-list-title">Список рейсов</div>
+		<div class="list-of-content">
+			<div class="header">
+				<div class="route">Маршрут</div>
+				<div class="from">Отправление</div>
+				<div class="to">Прибытие</div>
+				<div class="bus">Автобус</div>
+				<div class="price">Цена</div>
+			</div>
 
-		<div class="trip-list-header">
-			<div class="col-header-route">Маршрут</div>
-			<div class="col-header-from">Отправление</div>
-			<div class="col-header-to">Прибытие</div>
-			<div class="col-header-bus">Автобус</div>
-			<div class="col-header-price">Цена</div>
+			<div class="list" id="trip-list-elements"></div>
+
+			<nav class="pagination-wrap" aria-label="Page navigation" id="pagination">
+				<ul class="pagination-list" id="pagination-list"></ul>
+			</nav>
 		</div>
-
-		<div class="trip-list-elements" id="trip-list-elements"></div>
-
-		<nav class="pagination-wrap" aria-label="Page navigation" id="pagination">
-			<ul class="pagination-list" id="pagination-list"></ul>
-		</nav>
 
 	</div>
 
