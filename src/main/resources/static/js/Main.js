@@ -29,7 +29,7 @@ $(() => {
 	});
 });
 
-let prevScrollPos = window.scrollY;
+/*let prevScrollPos = window.scrollY;
 window.onscroll = function () {
 	const currentScrollPos = window.scrollY;
 	if (prevScrollPos > currentScrollPos) {
@@ -51,7 +51,7 @@ function hideNavbar() {
 		$('.navbar .dropdown-toggle').blur();
 		$('#navbar-main')[0].style.top = 'calc(-48px - 4px - 2em - 5px)'; // content + border + padding + shadow
 	}
-}
+}*/
 
 function highlightElement(element) {
 	const $el = $(element);
