@@ -211,6 +211,7 @@
 
 
 .sidebar .account {
+	position: relative;
 	display: flex;
 	align-items: center;
 	align-self: flex-end;
@@ -259,56 +260,29 @@
 
 .sidebar .icons .tooltip {
 	position: absolute;
-	inset: 20% auto 20% 100%;
+	inset: 20% auto 20% 95%;
 	display: flex;
 	align-items: center;
 	opacity: 0;
 	pointer-events: none;
-	transition: opacity .2s;
+	transition: opacity .2s, left .2s;
 }
 .sidebar .icons .tooltip .text {
 	flex-shrink: 0;
 	padding: 1rem;
 	background: #18191d;
-	box-shadow: 5px 0 10px rgba(0,0,0,0.5);
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
 	font-size: .85em;
 	z-index: 1;
 }
-.sidebar .icons .row.with-submenu .tooltip {
-	flex-direction: column;
-}
-.sidebar .icons .row.with-submenu .tooltip .list {
-	padding: 0;
-	width: 100%;
-	background: #131417;
-	box-shadow: 5px 0 10px rgba(0,0,0,0.5);
-}
-.sidebar .icons .row.with-submenu .tooltip .list .link {
-	width: 100%;
-	padding: 0;
-	height: fit-content;
-	background: transparent;
-	opacity: 0;
-	pointer-events: none;
-}
-.sidebar .icons .row.with-submenu .tooltip .list .text {
-	background: transparent;
-	box-shadow: none;
-	font-size: .75em;
-}
-.sidebar .icons .row:hover .tooltip {
+.sidebar .icons .row:hover .tooltip,
+.sidebar .icons .account:hover .tooltip {
 	opacity: 1;
-	transition: opacity .2s;
-}
-.sidebar .icons .row.with-submenu:hover .tooltip {
-	pointer-events: initial;
-}
-.sidebar .icons .row.with-submenu:hover .tooltip .list .link {
-	opacity: 1;
-	pointer-events: initial;
+	left: 105%;
+	transition: opacity .2s, left .2s;
 }
 
  /*
  TODO разобраться с высотой и растягиванием сайдбара, чтобы нижняя часть сайдбара была всегда снизу экрана (сейчас не так при малом размере экрана)
-
+		выезжающие сабменю в компактном режиме
   */
