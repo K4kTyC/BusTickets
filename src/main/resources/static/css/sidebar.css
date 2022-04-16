@@ -6,7 +6,7 @@
 	display: flex;
 	color: #d1d2d3;
 	height: 100%;
-	font-size: 1.3rem;
+	font-size: 1.15rem;
 	user-select: none;
 }
 .sidebar .icons {
@@ -38,7 +38,7 @@
 .sidebar .content .link {
 	width: 100%;
 	height: calc(2rem + var(--icon-size)); /* padding + icon */
-	padding: 1rem;
+	padding: 1rem 2rem 1rem 1rem;
 	display: flex;
 	align-items: center;
 	gap: 1rem;
@@ -75,6 +75,7 @@
 
 .sidebar .link .text {
 	font-size: .9em;
+	white-space: nowrap;
 }
 
 
@@ -106,7 +107,7 @@
 	transition: transform .2s .6s, opacity .2s .2s;
 }
 .sidebar:hover .content .sidebar-toggle {
-	opacity: .5;
+	opacity: 1;
 }
 
 
