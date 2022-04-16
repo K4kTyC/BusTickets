@@ -50,8 +50,7 @@
 	transition: opacity .15s .15s;
 }
 
-.sidebar .link .nav-icon,
-.sidebar .account .logout i {
+.sidebar .link .nav-icon {
 	transition: color .15s ease-in-out, transform .15s ease-in-out;
 	cursor: pointer;
 }
@@ -88,7 +87,7 @@
 }
 .sidebar .icons .header .link,
 .sidebar .icons .links-list .link,
-.sidebar .icons .account .link {
+.sidebar .icons .account .user .link {
 	background: #292f34;
 }
 .sidebar .content .header .text {
@@ -116,7 +115,7 @@
 	height: 100%;
 	width: 100%;
 	margin: 0;
-	padding: 1rem 0 0 0;
+	padding: 1rem 0;
 	display: flex;
 	flex-direction: column;
 	overflow: auto;
@@ -275,14 +274,33 @@
 	font-size: .85em;
 	z-index: 1;
 }
-.sidebar .icons .row:hover .tooltip,
-.sidebar .icons .account:hover .tooltip {
+.sidebar.closed .icons .row:hover .tooltip,
+.sidebar.closed .icons .account .user:hover .tooltip,
+.sidebar.closed .icons .account .logout:hover .tooltip {
 	opacity: 1;
 	left: 105%;
 	transition: opacity .2s, left .2s;
 }
 
+.sidebar .icons .account .user {
+	z-index: 1;
+}
+.sidebar .icons .account .logout {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	align-self: flex-end;
+	width: 100%;
+	transition: transform .2s;
+}
+.sidebar .icons .account:hover .logout,
+.sidebar .icons .account .logout:hover {
+	transform: translateY(-100%);
+	transition: transform .2s;
+}
+
+
+
  /*
  TODO разобраться с высотой и растягиванием сайдбара, чтобы нижняя часть сайдбара была всегда снизу экрана (сейчас не так при малом размере экрана)
-		выезжающие сабменю в компактном режиме
   */
