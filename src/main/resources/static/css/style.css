@@ -1,6 +1,5 @@
 :root {
 	--icon-size: 48px;
-	--navbar-height: calc(40px + 4px + 1em);
 	--input-height: 54px;
 }
 
@@ -376,7 +375,7 @@ body {
 
 .find-trip-block {
 	background: #212529;
-	min-height: calc(100vh - var(--navbar-height));
+	min-height: 100vh;
 	margin: 0;
 	display: flex;
 	align-items: center;
@@ -676,7 +675,7 @@ body {
 		margin: 0;
 		bottom: unset;
 		right: 30px;
-		top: calc(var(--navbar-height) + 3rem);
+		top: 3rem;
 	}
 
 	.notification-progress-bar.opening {

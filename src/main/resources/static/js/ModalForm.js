@@ -1,3 +1,4 @@
+/* Modal animations */
 document.querySelectorAll("[data-toggle='modal-login']")
 	.forEach(e => e.addEventListener('click', showModal));
 
@@ -57,6 +58,8 @@ registrationTabToggle.addEventListener('click', async () => {
 });
 
 
+
+/* Process forms */
 document.getElementById('login-submit').addEventListener('click', () => {
 	document.getElementById('login-form').submit();
 });

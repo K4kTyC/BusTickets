@@ -2,10 +2,8 @@
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="blocks/default-header :: header(~{::title}, ~{::link})">
 
-	<link rel="stylesheet"
-		  href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.0.0-beta4/dist/css/tempus-dominus.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.0.0-beta4/dist/css/tempus-dominus.min.css">
 
-	<link rel="stylesheet" th:href="@{/css/style.css}">
 	<link rel="stylesheet" th:href="@{/css/route-details.css}">
 	<link rel="stylesheet" th:href="@{/css/datetimepicker.css}">
 
@@ -16,77 +14,71 @@
 </head>
 <body>
 
-<div class="d-flex flex-column wrapper">
+<div class="wrapper">
 
-	<div th:replace="blocks/navigation :: navigation"></div>
+	<th:block th:replace="blocks/sidebar :: sidebar" />
 
-	<div class="container" id="route-details-container">
+	<div class="main">
+		<div class="container" id="route-details-container">
 
-		<div class="route-title" id="route-name"></div>
+			<div class="route-title" id="route-name"></div>
 
-		<div class="route-details-content">
-			<div class="route-stations"></div>
-			<div class="route-summary"></div>
-		</div>
-
-		<div class="route-title">Создание рейса</div>
-
-		<div class="trip-create">
-			<div class="col-select form-select" id="select-bus">
-				<input class="chosen-value" type="text" value="" placeholder="Выберите автобус">
-				<div class="select-arrow">
-					<i class="fas fa-chevron-left"></i>
-				</div>
-				<ul class="value-list"></ul>
+			<div class="route-details-content">
+				<div class="route-stations"></div>
+				<div class="route-summary"></div>
 			</div>
 
-			<div class="col-datetime">
-				<div class="input-group date input-wrap date-picker" id="datetimepicker-trip"
-					 data-td-target-input="nearest"
-					 data-td-target-toggle="nearest">
-					<input type="text" class="datetimepicker-input input-field date-picker"
-						   data-td-target="#datetimepicker-trip" placeholder="Дата отправления"/>
-					<div class="input-date-btn" data-td-target="#datetimepicker-trip" data-td-toggle="datetimepicker">
-						<i class="fas fa-calendar"></i>
+			<div class="route-title">Создание рейса</div>
+
+			<div class="trip-create">
+				<div class="col-select form-select" id="select-bus">
+					<input class="chosen-value" type="text" value="" placeholder="Выберите автобус">
+					<div class="select-arrow">
+						<i class="fas fa-chevron-left"></i>
+					</div>
+					<ul class="value-list"></ul>
+				</div>
+
+				<div class="col-datetime">
+					<div class="input-group date input-wrap date-picker" id="datetimepicker-trip"
+						 data-td-target-input="nearest"
+						 data-td-target-toggle="nearest">
+						<input type="text" class="datetimepicker-input input-field date-picker"
+							   data-td-target="#datetimepicker-trip" placeholder="Дата отправления"/>
+						<div class="input-date-btn" data-td-target="#datetimepicker-trip" data-td-toggle="datetimepicker">
+							<i class="fas fa-calendar"></i>
+						</div>
 					</div>
 				</div>
+
+				<div class="col-submit">
+					<a class="form-button" id="trip-submit"><span>Добавить</span></a>
+				</div>
 			</div>
 
-			<div class="col-submit">
-				<a class="form-button" id="trip-submit"><span>Добавить</span></a>
+			<div class="route-title">Список рейсов</div>
+
+			<div class="trip-list-header">
+				<div class="header-id">ID рейса</div>
+				<div class="header-bus-number">Номер автобуса</div>
+				<div class="header-time">Отправление</div>
+				<div class="header-time">Прибытие</div>
 			</div>
+
+			<div class="trip-list"></div>
+
 		</div>
-
-		<div class="route-title">Список рейсов</div>
-
-		<div class="trip-list-header">
-			<div class="header-id">ID рейса</div>
-			<div class="header-bus-number">Номер автобуса</div>
-			<div class="header-time">Отправление</div>
-			<div class="header-time">Прибытие</div>
-		</div>
-
-		<div class="trip-list"></div>
-
 	</div>
-
-	<div th:replace="blocks/footer :: footer"></div>
 
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-		crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-		crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
-		integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp"
-		crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/combine/npm/dayjs@1.10.7,npm/dayjs@1.10.7/locale/ru.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.0.0-beta4/dist/js/tempus-dominus.min.js"></script>
 
 <script type="text/javascript" th:src="@{/js/Main.js}"></script>
+<script type="text/javascript" th:src="@{/js/interface_elements/Sidebar.js}"></script>
 <script type="text/javascript" th:src="@{/js/interface_elements/DateTimePicker.js}"></script>
 <script type="text/javascript" th:src="@{/js/interface_elements/CustomSelect.js}"></script>
 <script type="text/javascript" th:src="@{/js/AdminRouteDetails.js}"></script>
