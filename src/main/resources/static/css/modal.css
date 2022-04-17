@@ -1,0 +1,144 @@
+.modal {
+	display: flex;
+	opacity: 0;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	z-index: 1000;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.5);
+	transition: opacity .15s;
+}
+.modal.hide {
+	display: none;
+}
+.modal.show {
+	opacity: 1;
+}
+.modal .content {
+	opacity: 0;
+	background-color: #212529;
+	box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+	transform: translateY(-2em);
+	transition: opacity .15s ease-in-out, transform .15s ease-in-out;
+}
+.modal.show .content {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.modal .content .header {
+	display: flex;
+	padding: 2em 2em 0 2em;
+	box-shadow: inset 0 -10px 10px -10px rgba(0, 0, 0, .3);
+}
+
+.modal .content .header .tabs {
+	margin: 0;
+	padding: 0;
+	display: flex;
+	background-color: #25292e;
+	box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+}
+
+.modal .content .header .tabs .tab {
+	display: flex;
+}
+
+.modal .content .header .tabs .tab .tab-link {
+	display: flex;
+	align-items: center;
+	padding: .5em 1em;
+	border-top: 4px solid transparent;
+	color: #d1d2d3;
+	user-select: none;
+	cursor: pointer;
+}
+
+.modal .content .header .tabs .tab.active .tab-link {
+	background-color: #292f34;
+	background-image: linear-gradient(#292f34, #292f34),
+	linear-gradient(to right, #006838, #378e30);
+	background-origin: border-box;
+	background-clip: padding-box, border-box;
+	box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+}
+
+.modal .content .header .close {
+	margin-left: auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: var(--icon-size);
+	width: var(--icon-size);
+	cursor: pointer;
+}
+.modal .content .header .close i {
+	font-size: 1.3em;
+	color: #d1d2d3;
+	transition: color .15s ease-in-out, transform .15s ease-in-out;
+}
+.modal .content .header .close:hover i {
+	color: #4caa13;
+	transform: scale(1.2);
+}
+
+.modal .content .body {
+	background-color: #292f34;
+	position: relative;
+	z-index: 1;
+}
+
+.modal .content .body .tab-pane {
+	display: block;
+	opacity: 0;
+	transition: opacity .15s;
+}
+.modal .content .body .tab-pane.show {
+	opacity: 1;
+	transition: opacity .15s;
+}
+.modal .content .body .tab-pane.hide {
+	opacity: 0;
+	display: none;
+}
+
+
+
+
+/*===   Модалка для логина/регистрации   ===*/
+.modal.login .content {
+	width: 400px;
+}
+.modal.login .content .body .login-form,
+.modal.login .content .body .registration-form {
+	display: grid;
+	padding: 2em;
+	gap: 2em;
+}
+.modal.login .content .body .login-form {
+	grid-template-areas: "un un" "pw pw" "chb sbmt";
+}
+.modal.login .content .body .registration-form {
+	grid-template-areas: "un" "pw" "sbmt";
+}
+.modal.login .content .body .login-form .col-username,
+.modal.login .content .body .registration-form .col-username {
+	grid-area: un;
+}
+.modal.login .content .body .login-form .col-password,
+.modal.login .content .body .registration-form .col-password {
+	grid-area: pw;
+}
+.modal.login .content .body .login-form .col-remember {
+	grid-area: chb;
+}
+.modal.login .content .body .login-form .col-submit,
+.modal.login .content .body .registration-form .col-submit {
+	grid-area: sbmt;
+}
+

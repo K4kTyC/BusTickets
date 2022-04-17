@@ -10,19 +10,19 @@
 				<a class="link" id="link-trips" href="/trips">
 					<i class="nav-icon fa-solid fa-magnifying-glass"></i>
 				</a>
-				<div class="tooltip" id="tooltip-trips"><span class="text">Поиск билетов</span></div>
+				<div class="tooltip"><span class="text">Поиск билетов</span></div>
 			</li>
 			<li class="row" th:if="${user.role == 'ADMIN'}">
 				<a class="link" href="/admin">
 					<i class="nav-icon fa-solid fa-wrench"></i>
 				</a>
-				<div class="tooltip" id="tooltip-admin"><span class="text">Администрирование</span></div>
+				<div class="tooltip"><span class="text">Администрирование</span></div>
 			</li>
 			<li class="row" th:if="${user.role != 'ANONYMOUS'}">
 				<a class="link" href="/orders">
 					<i class="nav-icon fa-solid fa-ticket"></i>
 				</a>
-				<div class="tooltip" id="tooltip-orders"><span class="text">Заказы</span></div>
+				<div class="tooltip"><span class="text">Заказы</span></div>
 			</li>
 		</ul>
 		<div class="account">
@@ -30,14 +30,21 @@
 				<a class="link" href="/logout">
 					<i class="nav-icon fa-solid fa-arrow-right-from-bracket"></i>
 				</a>
-				<div class="tooltip" id="tooltip-logout"><span class="text">Выйти</span></div>
+				<div class="tooltip"><span class="text">Выйти</span></div>
 			</div>
 			<div class="user">
-				<a class="link" href=""><i class="nav-icon fa-solid fa-user"></i></a>
-				<div class="tooltip" id="tooltip-account">
-					<span class="text" th:if="${user.role == 'ANONYMOUS'}">Войти</span>
-					<span class="text" th:if="${user.role != 'ANONYMOUS'}" th:text="${user.username}"></span>
-				</div>
+				<th:block th:if="${user.role == 'ANONYMOUS'}">
+					<a class="link" data-toggle="modal-login"><i class="nav-icon fa-solid fa-user"></i></a>
+					<div class="tooltip">
+						<span class="text">Войти</span>
+					</div>
+				</th:block>
+				<th:block th:if="${user.role != 'ANONYMOUS'}">
+					<a class="link"><i class="nav-icon fa-solid fa-user"></i></a>
+					<div class="tooltip">
+						<span class="text" th:text="${user.username}"></span>
+					</div>
+				</th:block>
 			</div>
 		</div>
 	</div>
@@ -78,7 +85,7 @@
 			</li>
 		</ul>
 		<div class="account">
-			<a class="link" href="" th:if="${user.role == 'ANONYMOUS'}">
+			<a class="link" data-toggle="modal-login" th:if="${user.role == 'ANONYMOUS'}">
 				<i class="nav-icon fa-solid fa-user"></i>
 				<span class="text">Войти</span>
 			</a>
