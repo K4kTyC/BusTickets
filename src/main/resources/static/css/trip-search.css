@@ -8,6 +8,15 @@
 	font-size: 1.1rem;
 }
 
+.find-trip-form .title {
+	color: #d1d2d3;
+	font-size: 1.6rem;
+	flex: 0 0 100%;
+	max-width: 100%;
+	text-align: center;
+	padding-bottom: 1rem;
+}
+
 .find-trip-form .col-from,
 .find-trip-form .col-to,
 .find-trip-form .col-date {

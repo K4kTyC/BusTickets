@@ -4,6 +4,7 @@
 
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.0.0-beta4/dist/css/tempus-dominus.min.css">
 
+	<link rel="stylesheet" th:href="@{/css/home.css}">
 	<link rel="stylesheet" th:href="@{/css/modal.css}">
 	<link rel="stylesheet" th:href="@{/css/trip-search.css}">
 	<link rel="stylesheet" th:href="@{/css/datetimepicker.css}">
@@ -24,35 +25,25 @@
 			<div th:replace="blocks/findTripForm :: form"></div>
 		</div>
 
-		<div class="row news-block m-0 py-5">
-			<div class="container-fluid m-0 p-0">
+		<div class="news-block">
+			<div class="title">Новости и обновления</div>
 
-				<div class="row title justify-content-center m-0 pb-5" style="color: #d1d2d3">Новости и обновления</div>
-
-				<div class="row m-0 justify-content-around">
-					<div class="col-lg-3 mb-4">
-						<div class="news-inner p-4">
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque facilis hic in laborum magni
-							mollitia odit praesentium voluptatum? Eveniet illo ipsa qui reiciendis totam. Eum placeat
-							quisquam reiciendis similique ut!
-						</div>
-					</div>
-					<div class="col-lg-3 mb-4">
-						<div class="news-inner p-4">
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus enim magnam magni
-							obcaecati repudiandae sunt temporibus. Aliquam dolorum eaque ex harum iure nam nobis
-							obcaecati odio omnis, voluptatem! Ipsum, similique.
-						</div>
-					</div>
-					<div class="col-lg-3 mb-4">
-						<div class="news-inner p-4">
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad atque commodi consequatur error
-							eum in inventore, numquam odio perspiciatis, quae qui reprehenderit vero. Error est eum,
-							expedita iste quidem veniam.
-						</div>
-					</div>
+			<div class="news-list-elements">
+				<div class="news-list-content">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque facilis hic in laborum magni
+					mollitia odit praesentium voluptatum? Eveniet illo ipsa qui reiciendis totam. Eum placeat
+					quisquam reiciendis similique ut!
 				</div>
-
+				<div class="news-list-content">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus enim magnam magni
+					obcaecati repudiandae sunt temporibus. Aliquam dolorum eaque ex harum iure nam nobis
+					obcaecati odio omnis, voluptatem! Ipsum, similique.
+				</div>
+				<div class="news-list-content">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad atque commodi consequatur error
+					eum in inventore, numquam odio perspiciatis, quae qui reprehenderit vero. Error est eum,
+					expedita iste quidem veniam.
+				</div>
 			</div>
 		</div>
 	</div>
