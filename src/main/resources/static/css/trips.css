@@ -1,6 +1,5 @@
 .find-trip-block {
-	min-height: 100vh;
-	margin: 0;
+	padding: var(--main-padding);
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -179,10 +178,6 @@
 
 
 @media only screen and (min-width: 768px) {
-	.find-trip-block {
-		min-height: auto;
-		margin-top: 2rem;
-	}
 
 	.col-content-station {
 		border-bottom: none;
