@@ -2,10 +2,9 @@
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="blocks/default-header :: header(~{::title}, ~{::link})">
 
-	<link rel="stylesheet"
-		  href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.0.0-beta1/dist/css/tempus-dominus.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.0.0-beta4/dist/css/tempus-dominus.min.css">
 
-	<link rel="stylesheet" th:href="@{/css/style.css}">
+	<link rel="stylesheet" th:href="@{/css/modal.css}">
 	<link rel="stylesheet" th:href="@{/css/trip-search.css}">
 	<link rel="stylesheet" th:href="@{/css/datetimepicker.css}">
 	<link rel="stylesheet" th:href="@{/css/trips.css}">
@@ -17,58 +16,52 @@
 </head>
 <body>
 
-<div class="d-flex flex-column wrapper">
+<div class="wrapper">
 
-	<div th:replace="blocks/navigation :: navigation"></div>
+	<th:block th:replace="blocks/sidebar :: sidebar" />
 
-	<div class="container" id="trip-list-container">
+	<div class="main">
+		<div class="container" id="trip-list-container">
 
-		<div class="find-trip-block">
-			<div th:replace="blocks/findTripForm :: form"></div>
+			<div class="find-trip-block">
+				<div th:replace="blocks/findTripForm :: form"></div>
+			</div>
+
+			<div class="trip-list-title">Список рейсов</div>
+
+			<div class="trip-list-header">
+				<div class="col-header-route">Маршрут</div>
+				<div class="col-header-from">Отправление</div>
+				<div class="col-header-to">Прибытие</div>
+				<div class="col-header-bus">Автобус</div>
+				<div class="col-header-price">Цена</div>
+			</div>
+
+			<div class="trip-list-elements" id="trip-list-elements"></div>
+
+			<nav class="pagination-wrap" aria-label="Page navigation" id="pagination">
+				<ul class="pagination-list" id="pagination-list"></ul>
+			</nav>
+
 		</div>
-
-		<div class="trip-list-title">Список рейсов</div>
-
-		<div class="trip-list-header">
-			<div class="col-header-route">Маршрут</div>
-			<div class="col-header-from">Отправление</div>
-			<div class="col-header-to">Прибытие</div>
-			<div class="col-header-bus">Автобус</div>
-			<div class="col-header-price">Цена</div>
-		</div>
-
-		<div class="trip-list-elements" id="trip-list-elements"></div>
-
-		<nav class="pagination-wrap" aria-label="Page navigation" id="pagination">
-			<ul class="pagination-list" id="pagination-list"></ul>
-		</nav>
-
 	</div>
-
-	<div th:replace="blocks/footer :: footer"></div>
 
 </div>
 
 <div th:replace="blocks/modalAuth :: modal"></div>
 
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-		crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-		crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/combine/npm/dayjs@1.10.7,npm/dayjs@1.10.7/locale/ru.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
-		integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp"
-		crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.0.0-beta1/dist/js/tempus-dominus.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.0.0-beta4/dist/js/tempus-dominus.min.js"></script>
 
 <script type="text/javascript" th:src="@{/js/Main.js}"></script>
-<script type="text/javascript" th:src="@{/js/interface_elements/Pagination.js}"></script>
-<script type="text/javascript" th:src="@{/js/Trips.js}"></script>
 <script type="text/javascript" th:src="@{/js/ModalForm.js}"></script>
+<script type="text/javascript" th:src="@{/js/interface_elements/Sidebar.js}"></script>
+<script type="text/javascript" th:src="@{/js/interface_elements/Pagination.js}"></script>
 <script type="text/javascript" th:src="@{/js/interface_elements/DateTimePicker.js}"></script>
+<script type="text/javascript" th:src="@{/js/Trips.js}"></script>
 <script type="text/javascript" th:src="@{/js/TripSearch.js}"></script>
 
 </body>

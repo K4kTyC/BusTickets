@@ -13,45 +13,7 @@ $(() => {
 	$('input[type="text"]').blur(function () {
 		this.value = this.value.trim();
 	});
-
-	$('#nav-toggle').change(function () {
-		if (this.checked) {
-			$('body').css('overflow', 'hidden');
-		} else {
-			$('body').css('overflow', 'auto');
-		}
-	});
-
-	$('#navbar-main nav').on('click', function (e) {
-		if (e.target !== this.children[0]) {
-			$('#nav-toggle').prop('checked', false).change();
-		}
-	});
 });
-
-let prevScrollPos = window.scrollY;
-window.onscroll = function () {
-	const currentScrollPos = window.scrollY;
-	if (prevScrollPos > currentScrollPos) {
-		showNavbar();
-		prevScrollPos = currentScrollPos;
-	} else if (prevScrollPos < currentScrollPos - 80) {
-		hideNavbar();
-		prevScrollPos = currentScrollPos;
-	}
-};
-
-function showNavbar() {
-	$('#navbar-main')[0].style.top = "0";
-}
-
-function hideNavbar() {
-	if (!$('#nav-toggle').prop('checked')) {
-		$('.dropdown-toggle').dropdown('hide');
-		$('.navbar .dropdown-toggle').blur();
-		$('#navbar-main')[0].style.top = 'calc(-48px - 4px - 2em - 5px)'; // content + border + padding + shadow
-	}
-}
 
 function highlightElement(element) {
 	const $el = $(element);

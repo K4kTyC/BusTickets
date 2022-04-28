@@ -171,3 +171,57 @@
 .tempus-dominus-widget .time-container-second div:not(.no-highlight):not(.active):hover {
 	background: #292f34;
 }
+
+.tempus-dominus-widget .toolbar {
+	margin-top: 4px;
+}
+
+.tempus-dominus-widget .toolbar div {
+	background: #292f34;
+	border-radius: 0;
+	position: relative;
+}
+
+.tempus-dominus-widget .toolbar div:hover {
+	background: #292f34;
+}
+
+.tempus-dominus-widget .toolbar div:hover::before {
+	transform: scaleX(1);
+	transition: transform .2s ease-out;
+}
+
+.tempus-dominus-widget .toolbar div::before {
+	content: '';
+	display: block;
+	height: 3px;
+	background: linear-gradient(to right, #006838, #4caa13);
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	transform: scaleX(0);
+	transform-origin: center;
+	transition: transform .2s ease-out;
+}
+
+.tempus-dominus-widget .time-container {
+	margin-bottom: 0;
+}
+
+.tempus-dominus-widget .time-container-clock {
+	gap: 4px;
+	grid-auto-columns: 1fr;
+}
+
+.tempus-dominus-widget .time-container-clock .no-highlight {
+	width: 100%;
+}
+
+.tempus-dominus-widget .time-container-hour {
+	gap: 4px;
+}
+
+.tempus-dominus-widget .time-container-minute {
+	gap: 4px;
+}

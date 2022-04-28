@@ -1,0 +1,307 @@
+.sidebar {
+	position: relative;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	display: flex;
+	color: #d1d2d3;
+	height: 100%;
+	font-size: 1.15rem;
+	user-select: none;
+}
+.sidebar .icons {
+	display: flex;
+	flex-direction: column;
+	z-index: 1;
+	position: absolute;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+.sidebar .content {
+	display: flex;
+	flex-direction: column;
+	box-shadow: 0 0 10px rgba(0, 0, 0, .7);
+	max-width: 1000px;
+	transition: max-width .4s ease-in;
+}
+.sidebar .content .header,
+.sidebar .content .account {
+	box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+}
+.sidebar .content .header,
+.sidebar .content .links-list,
+.sidebar .content .account {
+	background: #292f34;
+}
+
+.sidebar .content .link {
+	width: 100%;
+	height: calc(2rem + var(--icon-size)); /* padding + icon */
+	padding: 1rem 2rem 1rem 1rem;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	cursor: pointer;
+	margin: 0;
+	transition: opacity .15s .15s;
+}
+.sidebar .content .account .logout {
+	transition: opacity .15s .15s;
+}
+
+.sidebar .link .nav-icon {
+	transition: color .15s ease-in-out, transform .15s ease-in-out;
+	cursor: pointer;
+}
+.sidebar .links-list .link:hover .nav-icon,
+.sidebar .account .link:hover .nav-icon {
+	color: #4caa13;
+	transform: scale(1.25);
+}
+
+.sidebar .link .nav-icon,
+.sidebar .sidebar-toggle i,
+.sidebar .row.with-submenu .switch,
+.sidebar .account .logout i {
+	height: var(--icon-size);
+	width: var(--icon-size);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.5rem;
+	color: #d1d2d3;
+}
+
+.sidebar .link .text {
+	font-size: .9em;
+	white-space: nowrap;
+}
+
+
+
+.sidebar .header {
+	width: 100%;
+	align-self: flex-start;
+	display: flex;
+	position: relative;
+}
+.sidebar .icons .header .link,
+.sidebar .icons .links-list .link,
+.sidebar .icons .account .user .link {
+	background: #292f34;
+}
+.sidebar .content .header .text {
+	display: flex;
+	align-items: center;
+	height: var(--icon-size);
+	font-weight: bold;
+}
+.sidebar .content .sidebar-toggle {
+	padding: 1rem 0;
+	margin-bottom: 0;
+	position: absolute;
+	right: calc((var(--icon-size) + 4px) * -1);
+	opacity: 0;
+	cursor: pointer;
+	transition: transform .2s .6s, opacity .2s .2s;
+}
+.sidebar:hover .content .sidebar-toggle {
+	opacity: 1;
+}
+
+
+
+.sidebar .links-list {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 1rem 0;
+	display: flex;
+	flex-direction: column;
+	overflow: auto;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+.sidebar .links-list::-webkit-scrollbar {
+	display: none;
+}
+.sidebar .icons .links-list {
+	overflow: visible;
+}
+
+.sidebar .row {
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+
+
+
+.sidebar .content .row.with-submenu {
+	display: flex;
+	flex-direction: column;
+}
+.sidebar .content .row.with-submenu .switch {
+	width: 24px;
+	font-size: 1rem;
+}
+
+.sidebar .content .row.with-submenu .submenu {
+	padding-left: calc(1rem + var(--icon-size) + 1rem + 1rem) /* lpadding + icon + gap + extra space */;
+	display: flex;
+	flex-direction: column;
+	background: #212529;
+	width: 100%;
+	max-height: 1000px;
+	transition: max-height .4s ease-in;
+	box-shadow: 8px 0 15px rgba(0, 0, 0, .5) inset;
+}
+.sidebar .content .row.with-submenu .submenu .row {
+	opacity: 1;
+	transition: opacity .3s .1s;
+}
+.sidebar .content .row.with-submenu .submenu .link {
+	padding: .5rem 0;
+	height: var(--icon-size);
+	position: relative;
+}
+.sidebar .content .row.with-submenu .submenu .link::before {
+	content: '';
+	width: 2px;
+	height: 55%;
+	background: linear-gradient(to right, #006838, #4caa13);
+	position: absolute;
+	left: -1rem;
+	transform: scaleY(0);
+	transition: transform .2s ease-out;
+}
+.sidebar .content .row.with-submenu .submenu .link:hover::before,
+.sidebar .content .row.with-submenu .submenu .link:active::before,
+.sidebar .content .row.with-submenu .submenu .link:focus::before {
+	transform: scaleY(1);
+	transition: transform .2s ease-out;
+}
+.sidebar .content .row.with-submenu .submenu .link .text {
+	font-size: .85em;
+}
+
+/* toggle:checked == .closed */
+.sidebar .content .row.with-submenu .submenu-toggle {
+	display: none;
+}
+.sidebar .content .row.with-submenu .switch::before {
+	transform: rotate(90deg) translateX(0%);
+	transition: transform ease-in-out 0.2s;
+}
+.sidebar .content .row.with-submenu .submenu-toggle:checked ~ .link .switch::before {
+	transform: translateX(-50%);
+	transition: transform ease-in-out 0.2s;
+}
+.sidebar .content .row.with-submenu .submenu-toggle:checked ~ .submenu {
+	max-height: 0;
+	pointer-events: none;
+	transition: max-height .4s ease-out;
+}
+.sidebar .content .row.with-submenu .submenu-toggle:checked ~ .submenu .row {
+	opacity: 0;
+	transition: opacity .3s;
+}
+
+
+
+.sidebar .account {
+	position: relative;
+	display: flex;
+	align-items: center;
+	align-self: flex-end;
+	width: 100%;
+	gap: 1rem;
+}
+.sidebar .content .account .text {
+	font-size: .85em;
+}
+.sidebar .content .account .logout {
+	margin-left: auto;
+	padding: 1rem;
+	height: 100%;
+	width: var(--icon-size);
+}
+
+
+
+.sidebar.closed .content {
+	max-width: calc(2rem + var(--icon-size));
+	transition: max-width .4s ease-out;
+}
+.sidebar.closed .content .link,
+.sidebar.closed .content .account .logout {
+	pointer-events: none;
+	opacity: 0;
+	transition: opacity .15s;
+}
+.sidebar .icons.hide {
+	display: none;
+}
+.sidebar .icons .link {
+	height: calc(2rem + var(--icon-size)); /* padding + icon */
+	padding: 1rem;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	margin: 0;
+}
+.sidebar.closed .content .sidebar-toggle {
+	transform: scaleX(-1);
+	transition: transform .2s .6s, opacity .2s .2s;
+}
+
+
+
+.sidebar .icons .tooltip {
+	position: absolute;
+	inset: 20% auto 20% 95%;
+	display: flex;
+	align-items: center;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity .2s, left .2s;
+}
+.sidebar .icons .tooltip .text {
+	flex-shrink: 0;
+	padding: 1rem;
+	background: #18191d;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	font-size: .85em;
+	z-index: 1;
+}
+.sidebar.closed .icons .row:hover .tooltip,
+.sidebar.closed .icons .account .user:hover .tooltip,
+.sidebar.closed .icons .account .logout:hover .tooltip {
+	opacity: 1;
+	left: 105%;
+	transition: opacity .2s, left .2s;
+}
+
+.sidebar .icons .account .user {
+	z-index: 1;
+}
+.sidebar .icons .account .logout {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	align-self: flex-end;
+	width: 100%;
+	transition: transform .2s;
+}
+.sidebar .icons .account:hover .logout,
+.sidebar .icons .account .logout:hover {
+	transform: translateY(-100%);
+	transition: transform .2s;
+}
+
+
+
+ /*
+ TODO разобраться с высотой и растягиванием сайдбара, чтобы нижняя часть сайдбара была всегда снизу экрана (сейчас не так при малом размере экрана)
+  */

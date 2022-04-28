@@ -2,7 +2,6 @@
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="blocks/default-header :: header(~{::title}, ~{::link})">
 
-	<link rel="stylesheet" th:href="@{/css/style.css}">
 	<link rel="stylesheet" th:href="@{/css/routes.css}">
 
 	<title>
@@ -12,43 +11,41 @@
 </head>
 <body>
 
-<div th:replace="blocks/navigation :: navigation"></div>
+<div class=" wrapper">
 
-<div class="d-flex flex-column wrapper">
+	<th:block th:replace="blocks/sidebar :: sidebar" />
 
-	<div class="container" id="route-container">
-		<div class="route-form">
-			<div class="col-name input-wrap">
-				<input class="input-field" id="route-name" type="text" placeholder="Название маршрута">
+	<div class="main">
+		<div class="container" id="route-container">
+			<div class="route-form">
+				<div class="col-name input-wrap">
+					<input class="input-field" id="route-name" type="text" placeholder="Название маршрута">
+				</div>
+
+				<div id="route-stations"></div>
+
+				<div class="col-submit">
+					<a class="form-button" id="route-submit"><span>Добавить</span></a>
+				</div>
 			</div>
 
-			<div id="route-stations"></div>
-
-			<div class="col-submit">
-				<a class="form-button" id="route-submit"><span>Добавить</span></a>
+			<div class="d-none d-lg-flex row route-list-header p-3">
+				<div class="col-lg-3">Маршрут</div>
+				<div class="col-lg-3">Станции</div>
+				<div class="col-lg-3">Время в пути</div>
+				<div class="col-lg-3">Цена</div>
 			</div>
-		</div>
 
-		<div class="d-none d-lg-flex row route-list-header p-3">
-			<div class="col-lg-3">Маршрут</div>
-			<div class="col-lg-3">Станции</div>
-			<div class="col-lg-3">Время в пути</div>
-			<div class="col-lg-3">Цена</div>
+			<div id="route-list"></div>
 		</div>
-
-		<div id="route-list"></div>
 	</div>
-
-	<div th:replace="blocks/footer :: footer"></div>
 
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-		crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
 <script type="text/javascript" th:src="@{/js/Main.js}"></script>
+<script type="text/javascript" th:src="@{/js/interface_elements/Sidebar.js}"></script>
 <script type="text/javascript" th:src="@{/js/interface_elements/CustomSelect.js}"></script>
 <script type="text/javascript" th:src="@{/js/AdminRoutes.js}"></script>
 </body>

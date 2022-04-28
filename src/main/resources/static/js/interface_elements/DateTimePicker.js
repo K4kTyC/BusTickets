@@ -44,3 +44,5 @@ tempusDominus.DefaultOptions.display.components = {
 	seconds: false,
 	useTwentyfourHour: true
 };
+
+tempusDominus.DefaultOptions.allowInputToggle = true;

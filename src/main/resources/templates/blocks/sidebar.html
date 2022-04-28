@@ -1,0 +1,99 @@
+<nav th:fragment="sidebar" class="sidebar closed" id="sidebar">
+	<div class="icons">
+		<div class="header">
+			<a class="link" href="/">
+				<img class="nav-icon logo" th:src="@{/img/icon.svg}">
+			</a>
+		</div>
+		<ul class="links-list">
+			<li class="row">
+				<a class="link" id="link-trips" href="/trips">
+					<i class="nav-icon fa-solid fa-magnifying-glass"></i>
+				</a>
+				<div class="tooltip"><span class="text">Поиск билетов</span></div>
+			</li>
+			<li class="row" th:if="${user.role == 'ADMIN'}">
+				<a class="link" href="/admin">
+					<i class="nav-icon fa-solid fa-wrench"></i>
+				</a>
+				<div class="tooltip"><span class="text">Администрирование</span></div>
+			</li>
+			<li class="row" th:if="${user.role != 'ANONYMOUS'}">
+				<a class="link" href="/orders">
+					<i class="nav-icon fa-solid fa-ticket"></i>
+				</a>
+				<div class="tooltip"><span class="text">Заказы</span></div>
+			</li>
+		</ul>
+		<div class="account">
+			<div class="logout" th:if="${user.role != 'ANONYMOUS'}">
+				<a class="link" href="/logout">
+					<i class="nav-icon fa-solid fa-arrow-right-from-bracket"></i>
+				</a>
+				<div class="tooltip"><span class="text">Выйти</span></div>
+			</div>
+			<div class="user">
+				<th:block th:if="${user.role == 'ANONYMOUS'}">
+					<a class="link" data-toggle="modal-login"><i class="nav-icon fa-solid fa-user"></i></a>
+					<div class="tooltip">
+						<span class="text">Войти</span>
+					</div>
+				</th:block>
+				<th:block th:if="${user.role != 'ANONYMOUS'}">
+					<a class="link"><i class="nav-icon fa-solid fa-user"></i></a>
+					<div class="tooltip">
+						<span class="text" th:text="${user.username}"></span>
+					</div>
+				</th:block>
+			</div>
+		</div>
+	</div>
+	<div class="content">
+		<div class="header">
+			<a class="link" href="/">
+				<img class="nav-icon logo" th:src="@{/img/icon.svg}">
+				<span class="text">BusTicket</span>
+			</a>
+			<a class="sidebar-toggle" id="sidebar-toggle"><i class="fa-solid fa-arrow-left"></i></a>
+		</div>
+		<ul class="links-list">
+			<li class="row">
+				<a class="link" href="/trips">
+					<i class="nav-icon fa-solid fa-magnifying-glass"></i>
+					<span class="text">Поиск билетов</span>
+				</a>
+			</li>
+			<li class="row with-submenu" th:if="${user.role == 'ADMIN'}">
+				<input class="submenu-toggle" id="admin-submenu-toggle" type="checkbox" checked>
+				<label class="link" for="admin-submenu-toggle">
+					<i class="nav-icon fa-solid fa-wrench"></i>
+					<span class="text">Администрирование</span>
+					<i class="switch fa-solid fa-chevron-right"></i>
+				</label>
+				<ul class="submenu">
+					<li class="row"><a class="link" href="/admin/stations"><span class="text">Станции</span></a></li>
+					<li class="row"><a class="link" href="/admin/routes"><span class="text">Маршруты</span></a></li>
+					<li class="row"><a class="link" href="/admin/buses/models"><span class="text">Модели автобусов</span></a></li>
+					<li class="row"><a class="link" href="/admin/buses"><span class="text">Автобусы</span></a></li>
+				</ul>
+			</li>
+			<li class="row" th:if="${user.role != 'ANONYMOUS'}">
+				<a class="link" href="/orders">
+					<i class="nav-icon fa-solid fa-ticket"></i>
+					<span class="text">Заказы</span>
+				</a>
+			</li>
+		</ul>
+		<div class="account">
+			<a class="link" data-toggle="modal-login" th:if="${user.role == 'ANONYMOUS'}">
+				<i class="nav-icon fa-solid fa-user"></i>
+				<span class="text">Войти</span>
+			</a>
+			<a class="link" href="" th:if="${user.role != 'ANONYMOUS'}">
+				<i class="nav-icon fa-solid fa-user"></i>
+				<span class="text" th:text="${user.username}"></span>
+				<a class="logout form-button" href="/logout"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+			</a>
+		</div>
+	</div>
+</nav>
