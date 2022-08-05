@@ -25,10 +25,13 @@ $(function () {
 				}
 			}
 
+			let timeGap = i === 0 ? 0 : $(`#route-station-info-${i} #route-station-time`).val();
+			let price = i === 0 ? 0 : (parseFloat($(`#route-station-info-${i} #route-station-price`).val()) * 100).toFixed();
+
 			let routeStation = {
 				stationId: id,
-				timeGap: $(`#route-station-time-${i}`).val(),
-				price: $(`#route-station-price-${i}`).val()
+				timeGap: timeGap,
+				price: price
 			}
 			routeDto.routeStations.push(routeStation)
 		}
@@ -94,11 +97,11 @@ function addStationInfoTemplate(num) {
             </div>
 
             <div class="col-price input-wrap">
-                <input class="input-field" id="route-station-price" type="text" placeholder="Цена">
+                <input class="input-field" id="route-station-price" type="text" placeholder="Цена (например, 4.20)" ${num === 0 ? 'value="—" disabled' : ''}>
             </div>
 
             <div class="col-time input-wrap">
-                <input class="input-field" id="route-station-time" type="text" placeholder="Время в пути, мин">
+                <input class="input-field" id="route-station-time" type="text" placeholder="Время в пути, мин" ${num === 0 ? 'value="—" disabled' : ''}>
             </div>
         </div>`
 
@@ -128,31 +131,57 @@ function addRoutes() {
 		let id = route.id
 		let name = route.name
 		let stations = route.routeStations
-		let price = route.price / 100
 
 		let templ = `
-            <div class="row route-list-content align-items-center" id="route-${id}">
+            <div class="route-list-content" id="route-${id}">
                 <div class="route-name">${name}</div>
                 <div class="route-stations"></div>
-                <div class="route-price">Итого: ${price} BYN</div>
+                <div class="functions">
+					<div class="details">Подробнее</div>
+					<div class="edit"></div>
+					<div class="remove"></div>
+				</div>
             </div>`
-		$('#route-list').append(templ)
+		$('#route-list-elements').append(templ)
 
-		$(`#route-${id}`).on('click', () => {
+		$(`#route-${id} .functions .details`).on('click', () => {
 			window.location.assign(`/admin/routes/${id}`)
 		})
 
+		let sumPrice = route.price / 100;
+		let sumTime = 0;
+
+		let isFirstStation = true
 		for (const station of stations) {
+			sumTime += station.timeGap;
+
 			let name = station.stationName
 			let time = minutesToHours(station.timeGap)
-			let price = station.price / 100
+			let price = (station.price / 100).toString(10) + ' BYN'
+
+			if (isFirstStation) {
+				time = '—';
+				price = '—';
+				isFirstStation = false;
+			}
 
 			let templ = `
-                <div class="station-name">${name}</div>
-                <div class="station-time">${time}</div>
-                <div class="station-price">${price}</div>
+				<div class="station">
+					<div class="station-name">${name}</div>
+                	<div class="station-time">${time}</div>
+                	<div class="station-price">${price}</div>
+				</div>
             `
 			$(`#route-${id} .route-stations`).append(templ)
 		}
+
+		let summaryTempl = `
+			<div class="summary">
+				<div class="station-name">Всего:</div>
+				<div class="station-time">${minutesToHours(sumTime)}</div>
+				<div class="station-price">${sumPrice} BYN</div>
+			</div>
+		`
+		$(`#route-${id} .route-stations`).append(summaryTempl)
 	}
 }

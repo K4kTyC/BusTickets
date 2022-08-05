@@ -100,13 +100,13 @@ public class TripService {
     }
 
     public Page<TripDto> searchTrips(TripSearchData searchData, int pageNumber) {
-        LocalDateTime dateTimeStart = searchData.getTripDate();
-        LocalDateTime dateTimeFinish = dateTimeStart.plusDays(1);
+        LocalDate dateTimeStart = searchData.getTripDate();
+        LocalDate dateTimeFinish = dateTimeStart.plusDays(1);
 
         PageRequest paging = PageRequest.of(pageNumber, 20);
         Page<Trip> pagedTrips = tripRepository.searchTrips(
-                dateTimeStart,
-                dateTimeFinish,
+                dateTimeStart.atStartOfDay(),
+                dateTimeFinish.atStartOfDay(),
                 searchData.getStationStart(),
                 searchData.getStationFinish(),
                 paging);

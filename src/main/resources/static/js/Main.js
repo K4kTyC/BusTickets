@@ -9,11 +9,17 @@ function processUrlParams() {
 	}
 }
 
-$(() => {
-	$('input[type="text"]').blur(function () {
-		this.value = this.value.trim();
-	});
-});
+window.onload = () => {
+	dayjs.extend(window.dayjs_plugin_utc)
+	dayjs.extend(window.dayjs_plugin_timezone)
+	dayjs.locale('ru');
+	dayjs.tz.setDefault('Europe/Minsk');
+
+	document.querySelectorAll('input[type="text"]')
+		.forEach(e => e.addEventListener('blur', function () {
+			this.value = this.value.trim();
+		}));
+}
 
 function highlightElement(element) {
 	const $el = $(element);
@@ -21,6 +27,37 @@ function highlightElement(element) {
 	$el.children().on('click mouseenter focus', () => {
 		$el.removeClass('highlight');
 	});
+}
+
+function loadFromLocalStorage(valueName) {
+	try {
+		const serializedValue = localStorage.getItem(`${valueName}`);
+		if (serializedValue === null || serializedValue === undefined || serializedValue === 'undefined') {
+			return undefined;
+		}
+
+		return JSON.parse(serializedValue);
+	} catch (err) {
+		console.error(err);
+		return undefined;
+	}
+}
+
+function removeFromLocalStorage(valueName) {
+	try {
+		localStorage.removeItem(`${valueName}`);
+	} catch (err) {
+		console.error(err);
+	}
+}
+
+function saveToLocalStorage(valueName, value) {
+	try {
+		const serializedState = JSON.stringify(value);
+		localStorage.setItem(`${valueName}`, serializedState);
+	} catch (err) {
+		console.error(err);
+	}
 }
 
 function capitalize(string) {

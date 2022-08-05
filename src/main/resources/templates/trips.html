@@ -22,26 +22,19 @@
 
 	<div class="main">
 		<div class="container" id="trip-list-container">
-
 			<div class="find-trip-block">
 				<div th:replace="blocks/findTripForm :: form"></div>
 			</div>
 
-		<div class="list-of-content">
-			<div class="header">
-				<div class="route">Маршрут</div>
-				<div class="from">Отправление</div>
-				<div class="to">Прибытие</div>
-				<div class="bus">Автобус</div>
-				<div class="price">Цена</div>
+			<div class="list-of-content">
+				<div class="title"></div>
+
+				<div class="list" id="trip-list-elements"></div>
+
+				<nav class="pagination-wrap" aria-label="Page navigation" id="pagination">
+					<ul class="pagination-list" id="pagination-list"></ul>
+				</nav>
 			</div>
-
-			<div class="list" id="trip-list-elements"></div>
-
-			<nav class="pagination-wrap" aria-label="Page navigation" id="pagination">
-				<ul class="pagination-list" id="pagination-list"></ul>
-			</nav>
-		</div>
 
 		</div>
 	</div>
@@ -52,11 +45,10 @@
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/combine/npm/dayjs@1.10.7,npm/dayjs@1.10.7/locale/ru.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/combine/npm/dayjs@1.11.1/dayjs.min.js,npm/dayjs@1.11.1/plugin/utc.min.js,npm/dayjs@1.11.1/plugin/timezone.min.js,npm/dayjs@1.11.1/locale/ru.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.0.0-beta4/dist/js/tempus-dominus.min.js"></script>
 
-<script type="text/javascript" th:src="@{/js/Main.js}"></script>
 <script type="text/javascript" th:src="@{/js/ModalForm.js}"></script>
 <script type="text/javascript" th:src="@{/js/interface_elements/Sidebar.js}"></script>
 <script type="text/javascript" th:src="@{/js/interface_elements/Pagination.js}"></script>

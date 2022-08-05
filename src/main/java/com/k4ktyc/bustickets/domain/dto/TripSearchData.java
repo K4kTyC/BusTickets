@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -11,7 +12,7 @@ import java.time.LocalDateTime;
 public class TripSearchData {
 
     @NotNull
-    private final LocalDateTime tripDate;
+    private final LocalDate tripDate;
 
     @NotNull
     private final String stationStart;

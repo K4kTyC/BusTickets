@@ -1,8 +1,25 @@
-let pageNum = 0
-let lastPage = 0
-let routeDetails
-let busList
-let tripList
+// TODO доделать рефактор
+
+const $tripList = $('#trip-list-elements');
+let pageNum = 0;
+let pagination = new Pagination(async () => {
+	await updateContent();
+
+	const offsetPosition = $tripList.offset().top;
+	window.scrollTo({
+		top: offsetPosition,
+		behavior: "smooth"
+	});
+});
+
+const UISelectContainer = new Map(); // key - description, value - CustomSelect instance
+const defaultTripsPlaceholderAmount = 8;
+
+let busList;
+let tripList;
+let tripPlaceholderAmount = 0;
+
+let routeDetails;
 
 const picker = new tempusDominus.TempusDominus(document.getElementById('datetimepicker-trip'), {
 	display: {
@@ -16,16 +33,23 @@ const picker = new tempusDominus.TempusDominus(document.getElementById('datetime
 $(() => {
 	let routeId = window.location.href.substring(window.location.href.lastIndexOf('/') + 1)
 	getRouteDetails(routeId).then(fillPageWithRouteDetails)
-	getBusList().then(fillSelectWithBuses)
+
+	getBusList().then(() => {
+		createUISelectObject();
+		fillUISelectWithBuses();
+	});
+
 	getTrips(routeId).then(fillPageWithTrips)
 
 	$('#trip-submit').on('click', () => {
 
 		// TODO: если автобус в выбранное время уже занят другим рейсом, показать ошибку
 
+		const $bus = UISelectContainer.get('bus').$input;
 		let busId
+
 		for (const bus of busList) {
-			if (bus.number === parseInt(selectParts[0].$input.val())) {
+			if (bus.number === parseInt($bus.val(), 10)) {
 				busId = bus.id
 				break
 			}
@@ -34,7 +58,7 @@ $(() => {
 		let tripDto = {
 			routeId: routeId,
 			busId: busId,
-			datetime: picker.dates.picked[0]
+			datetime: dayjs(picker.dates.picked[0]).utc().format()
 		}
 		sendTripDto('/api/admin/trips', tripDto)
 	})
@@ -70,7 +94,7 @@ async function sendTripDto(url, dto) {
 
 
 function fillPageWithRouteDetails() {
-	let titleTempl = `${routeDetails.name} #${routeDetails.id}`
+	let titleTempl = `${routeDetails.name}`
 	$('#route-name').append(titleTempl)
 
 	let stations = routeDetails.routeStations
@@ -83,13 +107,15 @@ function fillPageWithRouteDetails() {
 
 		let stationTempl = `
             <div class="route-station-info">
-                <div class="col-start">${station1.stationName}</div>
+                <div class="col-station">${station1.stationName}</div>
                 <div class="col-timegap">
                     <div class="timegap-line"></div>
-                    <div class="timegap-time">${timegap}</div>                    
+                    <div class="content">
+                    	<div class="timegap-time">${timegap}</div>
+                    	<div class="col-price">${price} BYN</div>         
+					</div>
                 </div>
-                <div class="col-finish">${station2.stationName}</div>
-                <div class="col-price">${price} BYN</div>
+                <div class="col-station">${station2.stationName}</div>
             </div>`
 		$('.route-stations').append(stationTempl)
 	}
@@ -100,8 +126,8 @@ function fillPageWithRouteDetails() {
 	}
 
 	let routeSummaryTempl = `
-        <div class="sum-time">${minutesToHours(sumTime)}</div>   
-        <div class="sum-price">${routeDetails.price / 100} BYN</div>   
+        <div class="time"><span>В пути:</span> ${minutesToHours(sumTime)}</div>   
+        <div class="price"><span>Цена:</span> ${routeDetails.price / 100} BYN</div>   
     `
 	$('.route-summary').append(routeSummaryTempl)
 }
@@ -119,9 +145,9 @@ function fillPageWithTrips() {
 		}
 
 		let stationStart = stations[0].stationName
-		let datetimeStart = dayjs(trip.datetime).locale('ru')
+		let datetimeStart = dayjs(trip.datetime + "Z").tz()
 		let stationFinish = stations[stations.length - 1].stationName
-		let datetimeFinish = dayjs(trip.datetime).add(sumTime, 'minutes').locale('ru')
+		let datetimeFinish = dayjs(trip.datetime + "Z").tz().add(sumTime, 'minutes')
 
 		let tripTempl = `
             <div class="trip-info">
@@ -171,21 +197,24 @@ function fillPageWithTrips() {
 	}
 }
 
-function fillSelectWithBuses() {
-	for (let i = 0; i < busList.length; i++) {
-		let bus = busList[i]
+function createUISelectObject() {
+	const $bus = $('#select-bus');
+	const placeholders = {
+		focused: 'Фильтр по номеру',
+		blurred: 'Номер автобуса'
+	};
+	const busSelect = new CustomSelect($bus, placeholders, busList);
+	UISelectContainer.set('bus', busSelect);
+}
 
-		let pageTemplate = `<li>${bus.number}</li>`
-		$('#select-bus ul').append(pageTemplate)
+function fillUISelectWithBuses() {
+	const $select = UISelectContainer.get('bus');
+	for (let i = 0; i < busList.length; i++) {
+		const bus = busList[i];
+		const templ = `<li>${bus.number}</li>`;
+		$select.$list.append(templ);
 	}
-	selectParts.push({
-		$input: $('#select-bus input'),
-		$arrow: $('#select-bus .select-arrow'),
-		$list: $('#select-bus ul'),
-		$options: $('#select-bus li'),
-		valueArray: busList
-	})
-	addHandlersForSelect(0, 'Фильтр по номеру', 'Выберите автобус')
+	$select.updateOptions();
 }
 
 

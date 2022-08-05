@@ -1,34 +1,43 @@
+.container {
+	padding: var(--main-padding);
+}
+
 .model-form {
 	background: #292f34;
 	box-shadow: 0 0 5px rgba(0, 0, 0, .7);
-	margin: .5rem;
 }
 
 .model-form-row {
 	display: flex;
 	flex-wrap: wrap;
 	padding: 1.5rem;
-	margin: 1.5rem .5rem;
 }
 
 .col-filter {
-	flex: 0 0 100%;
-	max-width: 100%;
-	margin: .5rem 0 1.5rem 0;
+	flex: 0 0 calc(30% - 1rem);
+	max-width: calc(30% - 1rem);
+	margin: .5rem;
 }
 
-.col-name, .col-select, .col-seats, .col-submit {
-	flex: 0 0 100%;
-	max-width: 100%;
-	margin: .5rem 0;
+.col-name, .col-seats {
+	flex: 0 0 30%;
+	max-width: 30%;
+	margin-left: auto;
+}
+
+.col-select, .col-submit {
+	flex: 0 0 30%;
+	max-width: 30%;
+	margin-left: .5rem;
 }
 
 .model-list-elements {
 	display: grid;
-	grid-template-columns: 1fr;
+	grid-template-columns: repeat(4, 1fr);
 	grid-auto-rows: 115px;
 	grid-gap: 1rem;
 	padding: 2rem 0;
+	min-height: calc(115px * 4 + 1rem * 3 + 2rem * 2); /* element height + gap + container padding */
 }
 
 .model-list-elements .placeholder {
@@ -135,59 +144,5 @@
 @media (hover: none) {
 	.model-func {
 		left: 85%;
-	}
-}
-
-@media only screen and (min-width: 576px) {
-	.container {
-		padding-top: 2rem;
-	}
-
-	.col-filter {
-		flex: 0 0 calc(50% - 1rem);
-		max-width: calc(50% - 1rem);
-		margin: .5rem;
-	}
-
-	.col-name {
-		flex: 0 0 calc(50% - 1rem);
-		max-width: calc(50% - 1rem);
-		margin-left: 1rem;
-	}
-
-	.col-select, .col-seats, .col-submit {
-		flex: 0 0 calc(50% - 1rem);
-		max-width: calc(50% - 1rem);
-		margin-left: calc(50% + 1rem);
-	}
-
-	.model-list-elements {
-		grid-template-columns: repeat(2, 1fr);
-	}
-}
-
-@media only screen and (min-width: 768px) {
-	.col-filter {
-		flex: 0 0 calc(30% - 1rem);
-		max-width: calc(30% - 1rem);
-	}
-
-	.col-name, .col-seats {
-		flex: 0 0 30%;
-		max-width: 30%;
-		margin-left: auto;
-	}
-
-	.col-select, .col-submit {
-		flex: 0 0 30%;
-		max-width: 30%;
-		margin-left: .5rem;
-	}
-}
-
-@media only screen and (min-width: 992px) {
-	.model-list-elements {
-		grid-template-columns: repeat(4, 1fr);
-		min-height: calc(115px * 4 + 1rem * 3 + 2rem * 2); /* element height + gap + container padding */
 	}
 }

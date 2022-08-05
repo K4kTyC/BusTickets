@@ -22,7 +22,10 @@ $(() => {
 		};
 		$('#trip-from').val(searchData.start);
 		$('#trip-to').val(searchData.finish);
-		$('#datetimepicker-from').datetimepicker({format: 'L', date: searchData.date});
+
+		// date as TempusDominus DateTime type
+		let date = tempusDominus.DateTime.convert(dayjs(searchData.date).toDate());
+		picker.dates.setValue(date);
 	}
 	pagination.elementsRefreshFunc();
 })
@@ -60,6 +63,35 @@ async function getSeatList(tripId) {
 
 function fillPageWithTrips() {
 	let trips = tripList
+
+	let title;
+	if (searchData === undefined) {
+		title = 'Ближайшие рейсы';
+	} else {
+		// TODO: fix дата иногда вставляется на англе, т.к. onload из мейна не успевает применить локаль для dayjs
+		title = `${searchData.start} — ${searchData.finish}, ${dayjs(searchData.date).format('D MMMM (dddd)')}`
+	}
+	$('.list-of-content .title').text(title);
+
+	$('.list-of-content .header').remove();
+
+	let contentTempl;
+	if (tripList.length === 0) {
+		contentTempl = `
+			<div class="no-content-text">К сожалению, рейсов ${searchData !== undefined ? 'по указанным критериям' : ''} пока нет.</div>
+		`
+	} else {
+		contentTempl = `
+			<div class="header">
+				<div class="route">Маршрут</div>
+				<div class="from">Отправление</div>
+				<div class="to">Прибытие</div>
+				<div class="bus">Автобус</div>
+				<div class="price">Цена</div>
+			</div>
+		`
+	}
+	$(contentTempl).insertBefore($('#trip-list-elements'));
 
 	for (let i = 0; i < trips.length; i++) {
 		let trip = trips[i]
@@ -103,7 +135,7 @@ function fillPageWithTrips() {
 		}
 		sumPrice /= 100
 
-		let startTimeDate = dayjs(trip.datetime).add(startTimeGap, 'minutes').locale('ru');
+		let startTimeDate = dayjs(trip.datetime + "Z").tz().add(startTimeGap, 'minutes');
 		let timeStart = startTimeDate.format('HH:mm')
 		let dateStart = startTimeDate.format('DD.MM.YYYY')
 
@@ -131,9 +163,9 @@ function fillPageWithTrips() {
                     <p class="station">${stationFinish}</p>
                 </div>
                 <div class="col-content-bus">
-                    <p class="number">№ ${busNumber}</p>
-                    <p class="model">${busModel}</p>
                     <p class="seats">Свободно мест: ${seatAmount}</p>
+                    <p class="model">${busModel}</p>
+                    <p class="number">№ ${busNumber}</p>
                 </div>
                 <div class="col-content-price">
                     <p class="price">${sumPrice} BYN</p>
@@ -152,15 +184,15 @@ function fillPageWithTrips() {
 		})
 	}
 
+	pagination.update();
+
 	if (searchData !== undefined) {
-		$('.trip-list-title')[0].scrollIntoView({
+		$('.list-of-content')[0].scrollIntoView({
 			behavior: 'smooth',
 			block: 'start',
 			inline: 'nearest'
 		});
 	}
-
-	pagination.update();
 }
 
 function countFreeSeats(tripId, totalSeats) {
