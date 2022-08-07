@@ -29,22 +29,28 @@
 				</div>
 			</div>
 
-			<div class="d-none d-lg-flex row route-list-header p-3">
-				<div class="col-lg-3">Маршрут</div>
-				<div class="col-lg-3">Станции</div>
-				<div class="col-lg-3">Время в пути</div>
-				<div class="col-lg-3">Цена</div>
-			</div>
+			<div class="list-of-content">
+				<div class="title">Список маршрутов</div>
 
-			<div id="route-list"></div>
+				<div class="header">
+					<div class="route">Маршрут</div>
+					<div class="stations">
+						<div class="name">Станции</div>
+						<div class="time">Время в пути</div>
+						<div class="price">Цена</div>
+					</div>
+				</div>
+
+				<div class="list" id="route-list-elements"></div>
+			</div>
 		</div>
 	</div>
 
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/combine/npm/dayjs@1.11.1/dayjs.min.js,npm/dayjs@1.11.1/plugin/utc.min.js,npm/dayjs@1.11.1/plugin/timezone.min.js,npm/dayjs@1.11.1/locale/ru.min.js"></script>
 
-<script type="text/javascript" th:src="@{/js/Main.js}"></script>
 <script type="text/javascript" th:src="@{/js/interface_elements/Sidebar.js}"></script>
 <script type="text/javascript" th:src="@{/js/interface_elements/CustomSelect.js}"></script>
 <script type="text/javascript" th:src="@{/js/AdminRoutes.js}"></script>

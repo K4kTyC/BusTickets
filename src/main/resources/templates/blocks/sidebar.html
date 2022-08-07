@@ -1,5 +1,5 @@
-<nav th:fragment="sidebar" class="sidebar closed" id="sidebar">
-	<div class="icons">
+<nav th:fragment="sidebar" class="sidebar" id="sidebar">
+	<div class="icons hide">
 		<div class="header">
 			<a class="link" href="/">
 				<img class="nav-icon logo" th:src="@{/img/icon.svg}">
@@ -64,18 +64,18 @@
 				</a>
 			</li>
 			<li class="row with-submenu" th:if="${user.role == 'ADMIN'}">
-				<input class="submenu-toggle" id="admin-submenu-toggle" type="checkbox" checked>
-				<label class="link" for="admin-submenu-toggle">
-					<i class="nav-icon fa-solid fa-wrench"></i>
-					<span class="text">Администрирование</span>
-					<i class="switch fa-solid fa-chevron-right"></i>
-				</label>
-				<ul class="submenu">
+				<!-- submenu and link in reverse order to be able to use ~ selector on '.link .switch' in css -->
+				<ul class="submenu closed" id="submenu-admin">
 					<li class="row"><a class="link" href="/admin/stations"><span class="text">Станции</span></a></li>
 					<li class="row"><a class="link" href="/admin/routes"><span class="text">Маршруты</span></a></li>
 					<li class="row"><a class="link" href="/admin/buses/models"><span class="text">Модели автобусов</span></a></li>
 					<li class="row"><a class="link" href="/admin/buses"><span class="text">Автобусы</span></a></li>
 				</ul>
+				<a class="link" data-toggle="submenu" data-target="submenu-admin">
+					<i class="nav-icon fa-solid fa-wrench"></i>
+					<span class="text">Администрирование</span>
+					<i class="switch fa-solid fa-chevron-right"></i>
+				</a>
 			</li>
 			<li class="row" th:if="${user.role != 'ANONYMOUS'}">
 				<a class="link" href="/orders">
@@ -96,4 +96,26 @@
 			</a>
 		</div>
 	</div>
+
+	<script>
+		if (loadFromLocalStorage('isSidebarClosed')) {
+			let sidebar = document.getElementById('sidebar');
+			let icons = sidebar.children[0];
+			sidebar.classList.add('closed');
+			icons.classList.remove('hide');
+		}
+
+		if (document.querySelectorAll("[data-toggle='submenu']").length === 0) {
+			saveToLocalStorage('openedSubmenus', []);
+		}
+		let openedSubmenus = loadFromLocalStorage('openedSubmenus');
+		if (openedSubmenus === undefined) {
+			saveToLocalStorage('openedSubmenus', []);
+		} else {
+			openedSubmenus.forEach(e => {
+				let submenu = document.getElementById(e);
+				submenu.classList.remove('closed');
+			});
+		}
+	</script>
 </nav>

@@ -14,7 +14,7 @@ public interface OrderRepository extends PagingAndSortingRepository<Order, Long>
     long countByPassenger(Passenger passenger);
 
     @Query(nativeQuery = true,
-    value = "SELECT seat FROM orders" +
+    value = "SELECT DISTINCT seat FROM orders" +
             "   WHERE trip_id = ?1 AND" +
             "       ((route_station_start_id < ?2 AND route_station_finish_id > ?2) OR" +
             "        (route_station_start_id > ?2 AND route_station_start_id < ?3) OR" +

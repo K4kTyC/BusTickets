@@ -1,3 +1,5 @@
+const UISelectContainer = new Map(); // key - description, value - CustomSelect instance
+
 let tripDetails
 let notFreeSeatList
 let freeSeatList = []
@@ -15,9 +17,16 @@ $(() => {
 	} else {
 		tripId = window.location.href.substring(window.location.href.lastIndexOf('/') + 1)
 	}
-	getTripDetails(tripId)
+	getTripDetails(tripId).then(() => {
+		getSeatList(tripId).then(() => {
+			createUISelectObject();
+			fillUISelectWithSeats();
+		});
+	})
 
 	$('#order-submit').on('click', () => {
+		let seatNum = parseInt(UISelectContainer.get('seat').$input.val(), 10);
+
 		let pName, pLastname
 		pName = $('#pass-name').val()
 		pLastname = $('#pass-lastname').val()
@@ -40,7 +49,7 @@ $(() => {
 				name: pName,
 				lastname: pLastname
 			},
-			seat: parseInt(selectParts[0].$input.val())
+			seat: seatNum
 		}
 		sendNewOrderDto('/api/orders', orderDto)
 	})
@@ -51,7 +60,6 @@ async function getTripDetails(tripId) {
 	tripDetails = await response.json()
 	await getSeatList(tripDetails.id)
 	fillPageWithTripDetails()
-	fillSelectWithSeats()
 }
 
 async function getSeatList(tripId) {
@@ -119,7 +127,7 @@ function fillPageWithTripDetails() {
 	}
 	sumPrice /= 100
 
-	let startTimeDate = dayjs(trip.datetime).add(startTimeGap, 'minutes').locale('ru');
+	let startTimeDate = dayjs(trip.datetime + "Z").tz().add(startTimeGap, 'minutes');
 	let timeStart = startTimeDate.format('HH:mm')
 	let dateStart = startTimeDate.format('DD.MM.YYYY')
 
@@ -149,29 +157,35 @@ function fillPageWithTripDetails() {
 	$('.trip-stations').append(tripTempl)
 
 	$('.trip-price').append(`Стоимость: ${sumPrice} BYN`)
+
+	$('.seats-number').append(`Свободных мест: ${countFreeSeats(tripDetails.busDto.model.numberOfSeats)}`)
 }
 
-// TODO: fix filter for seat number
-function fillSelectWithSeats() {
-	let totalSeatsAmount = tripDetails.busDto.model.numberOfSeats
+function createUISelectObject() {
+	const $seat = $('#select-seat');
+	const placeholders = {
+		focused: 'Фильтр по номеру',
+		blurred: 'Выберите место'
+	};
+	let totalSeatsAmount = tripDetails.busDto.model.numberOfSeats;
 	for (let i = 1; i <= totalSeatsAmount; i++) {
 		if (!notFreeSeatList.includes(i)) {
-			let seatTempl = `<li>${i}</li>`
-			$('#select-seat ul').append(seatTempl)
 			freeSeatList.push(i)
 		}
 	}
+	const seatSelect = new CustomSelect($seat, placeholders, freeSeatList);
+	UISelectContainer.set('seat', seatSelect);
+}
 
-	$('.seats-number').append(`Свободных мест: ${countFreeSeats(totalSeatsAmount)}`)
-
-	selectParts.push({
-		$input: $('#select-seat input'),
-		$arrow: $('#select-seat .select-arrow'),
-		$list: $('#select-seat ul'),
-		$options: $('#select-seat li'),
-		valueArray: freeSeatList
-	})
-	addHandlersForSelect(0, 'Выберите место', 'Выберите место')
+// TODO: fix filter for seat number
+function fillUISelectWithSeats() {
+	const $select = UISelectContainer.get('seat');
+	for (let i = 0; i < freeSeatList.length; i++) {
+		const seat = freeSeatList[i];
+		const templ = `<li>${seat}</li>`;
+		$select.$list.append(templ);
+	}
+	$select.updateOptions();
 }
 
 function countFreeSeats(totalSeats) {

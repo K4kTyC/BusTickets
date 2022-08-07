@@ -1,12 +1,12 @@
 const picker = new tempusDominus.TempusDominus(document.getElementById('datetimepicker-from'));
 
 $('#trip-search-submit').on('click', () => {
-	let date = picker.dates.picked[0];
+	let date = dayjs(picker.dates.picked[0]).format('YYYY-MM-DD');
 
 	let start = capitalize($('#trip-from').val().toLowerCase());
 	let finish = capitalize($('#trip-to').val().toLowerCase());
 
-	window.location.assign(`/trips?search&date=${date.toJSON()}&start=${start}&finish=${finish}`);
+	window.location.assign(`/trips?search&date=${date}&start=${start}&finish=${finish}`);
 });
 
 let swapStationsDeg = 0;

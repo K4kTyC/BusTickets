@@ -1,9 +1,13 @@
 .find-trip-block {
-	min-height: 100vh;
-	margin: 0;
+	margin: var(--main-padding);
+	margin-bottom: 0;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+.find-trip-form {
+	width: 100% !important;
 }
 
 
@@ -13,56 +17,77 @@
 	color: #d1d2d3;
 }
 
-.trip-list-title {
-	font-size: 1.4rem;
-	color: #d1d2d3;
-	padding: 2rem;
+.list-of-content {
+	padding: var(--main-padding);
 }
 
+.list-of-content .title {
+	color: #d1d2d3;
+	font-size: 1.5rem;
+	padding: 0 0 1em 1em;
+}
 
-.trip-list-header {
+.list-of-content .header {
 	display: none;
 	background: #292f34;
 	color: #d1d2d3;
 	font-size: 1.2rem;
 	text-align: center;
-	padding: 1rem;
-	margin-bottom: 1rem;
-	box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+	padding: 1rem 4rem;
+	box-shadow: 0 5px 20px 1px rgba(0, 0, 0, .5);
+	position: relative;
+	z-index: 1;
 }
 
-.col-header-route {
+.list-of-content .header .route {
 	flex: 0 0 15%;
 	max-width: 15%;
 }
 
-.col-header-bus {
+.list-of-content .header .bus {
 	flex: 0 0 25%;
 	max-width: 25%;
 }
 
-.col-header-from, .col-header-to {
+.list-of-content .header .from,
+.list-of-content .header .to {
 	flex: 0 0 22%;
 	max-width: 22%;
 }
 
-.col-header-price {
+.list-of-content .header .price {
 	flex: 0 0 16%;
 	max-width: 16%;
 }
 
+.list-of-content .list {
+	background: #292f34;
+	padding: 0 2rem;
+	box-shadow: 0 0 15px rgba(0, 0, 0, .5);
+}
+
+.list-of-content .no-content-text {
+	color: #d1d2d3;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 2rem;
+	padding: 4rem;
+}
+
 
 .trip-list-content {
-	background: #292f34;
 	color: #d1d2d3;
-	box-shadow: 0 0 5px rgba(0, 0, 0, .5);
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: center;
-	padding: 1rem;
-	margin: .7rem 0;
+	padding: 0 2rem;
 }
+.list-of-content .list .trip-list-content:not(:last-child) {
+	border-bottom: 1px solid #54595d;
+}
+
 
 .trip-list-content p {
 	margin: 0;
@@ -129,7 +154,6 @@
 
 .col-content-bus .number {
 	font-size: 1rem;
-	font-weight: bold;
 }
 
 .col-content-bus .model {
@@ -139,6 +163,8 @@
 
 .col-content-bus .seats {
 	font-size: 1rem;
+	margin-bottom: 1rem;
+	font-weight: bold;
 }
 
 
@@ -181,10 +207,6 @@
 
 
 @media only screen and (min-width: 768px) {
-	.find-trip-block {
-		min-height: auto;
-		margin-top: 2rem;
-	}
 
 	.col-content-station {
 		border-bottom: none;
@@ -202,7 +224,7 @@
 }
 
 @media only screen and (min-width: 992px) {
-	.trip-list-header {
+	.list-of-content .header {
 		display: flex;
 	}
 
@@ -236,7 +258,6 @@
 
 	.col-content-bus .number {
 		font-size: 1rem;
-		font-weight: bold;
 	}
 
 	.col-content-bus .model {
@@ -280,7 +301,7 @@
 	.col-content-price .price {
 		text-align: center;
 		font-size: 1.2rem;
-		margin-bottom: .5rem;
+		margin: 1rem 0;
 	}
 
 

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -45,7 +46,7 @@ public class TripController {
                                 @RequestParam String datetime,
                                 @RequestParam String start,
                                 @RequestParam String finish) {
-        TripSearchData searchData = new TripSearchData(LocalDateTime.parse(datetime, DateTimeFormatter.ISO_ZONED_DATE_TIME), start, finish);
+        TripSearchData searchData = new TripSearchData(LocalDate.parse(datetime), start, finish);
 
         return tripService.searchTrips(searchData, page);
     }

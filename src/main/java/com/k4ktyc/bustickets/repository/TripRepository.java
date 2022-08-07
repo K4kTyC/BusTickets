@@ -14,14 +14,15 @@ public interface TripRepository extends PagingAndSortingRepository<Trip, Long> {
     Page<Trip> findByRouteId(long id, Pageable pageable);
     Page<Trip> findByDatetimeAfter(LocalDateTime now, Pageable pageable);
 
-    @Query(value = "SELECT trip FROM Trip trip" +
-                   "    JOIN trip.route.stations rs1" +
-                   "    JOIN trip.route.stations rs2" +
-                   "    WHERE trip.datetime > :dateStart AND trip.datetime < :dateFinish" +
-                   "      AND rs1.station.name = :sStart AND rs2.station.name = :sFinish" +
-                   "      AND rs1.id < rs2.id" +
-                   "    ORDER BY trip.datetime"
-    )
+    @Query(value = """
+                    SELECT trip FROM Trip trip
+                        JOIN trip.route.stations rs1
+                        JOIN trip.route.stations rs2
+                        WHERE trip.datetime > :dateStart AND trip.datetime < :dateFinish
+                          AND rs1.station.name = :sStart AND rs2.station.name = :sFinish
+                          AND rs1.id < rs2.id
+                        ORDER BY trip.datetime
+                    """)
     Page<Trip> searchTrips(@Param("dateStart") LocalDateTime dateStart,
                            @Param("dateFinish") LocalDateTime dateFinish,
                            @Param("sStart") String stationStart,

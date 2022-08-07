@@ -17,13 +17,12 @@
 	<th:block th:replace="blocks/sidebar :: sidebar" />
 
 	<div class="main">
-		<div class="container" id="trip-details-container">
 
-			<div class="trip-details-title">Оформление заказа</div>
+		<div class="trip-details-content">
+			<div class="title">Оформление заказа</div>
 
-			<div class="trip-details-content">
+			<div class="details">
 				<div class="trip-stations"></div>
-
 				<div class="trip-select-seats">
 					<div class="seats-number"></div>
 					<div class="form-select" id="select-seat">
@@ -34,7 +33,6 @@
 						<ul class="value-list"></ul>
 					</div>
 				</div>
-
 				<div class="trip-passenger">
 					<div class="trip-passenger-title">Данные пассажира</div>
 					<div class="passenger-info">
@@ -46,7 +44,6 @@
 						</div>
 					</div>
 				</div>
-
 				<div class="trip-buy">
 					<div class="trip-price"></div>
 					<a class="form-button" id="order-submit"><span>оформить заказ</span></a>
@@ -54,6 +51,7 @@
 			</div>
 
 		</div>
+
 	</div>
 
 </div>
@@ -62,9 +60,8 @@
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/combine/npm/dayjs@1.10.7,npm/dayjs@1.10.7/locale/ru.min.js"></script>
+<script src="https://cdn.jsdelivr.net/combine/npm/dayjs@1.11.1/dayjs.min.js,npm/dayjs@1.11.1/plugin/utc.min.js,npm/dayjs@1.11.1/plugin/timezone.min.js,npm/dayjs@1.11.1/locale/ru.min.js"></script>
 
-<script type="text/javascript" th:src="@{/js/Main.js}"></script>
 <script type="text/javascript" th:src="@{/js/ModalForm.js}"></script>
 <script type="text/javascript" th:src="@{/js/interface_elements/Sidebar.js}"></script>
 <script type="text/javascript" th:src="@{/js/interface_elements/CustomSelect.js}"></script>

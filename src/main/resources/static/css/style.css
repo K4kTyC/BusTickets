@@ -1,6 +1,7 @@
 :root {
 	--icon-size: 48px;
 	--input-height: 54px;
+	--main-padding: 4rem;
 }
 
 *, *::before, *::after {
@@ -34,10 +35,7 @@ body {
 	height: 100%;
 	background: #212529;
 	overflow: auto;
-}
-
-.container {
-	padding: 0;
+	min-width: 768px;
 }
 
 
@@ -210,6 +208,8 @@ body {
 	outline: none;
 	border: 0;
 	border-radius: 0;
+	font-size: 1em;
+	font-family: 'Montserrat', sans-serif;
 }
 
 .form-select .select-arrow {
@@ -369,57 +369,6 @@ body {
 	opacity: 1;
 }
 
-
-
-/*=== Блок поиска маршрута ===*/
-
-.find-trip-block {
-	background: #212529;
-	min-height: 100vh;
-	margin: 0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-@media only screen and (min-width: 768px) {
-	.find-trip-block {
-		background: linear-gradient(rgba(41, 47, 52, .9), rgba(41, 47, 52, .9)), url("../img/homeBG.jpg") no-repeat center center;
-		background-size: cover;
-		min-height: 100vh;
-		margin: 0;
-	}
-}
-
-.find-trip-form .title {
-	color: #d1d2d3;
-	font-size: 1.6rem;
-	flex: 0 0 100%;
-	max-width: 100%;
-	text-align: center;
-	padding-bottom: 1rem;
-}
-
-
-/*=== Блок новостей ===*/
-
-.news-block {
-	background: url("../img/gradient.png");
-	background-size: auto 100%;
-}
-
-.news-inner {
-	min-height: 25rem;
-	font-size: 1.1rem;
-	color: #d1d2d3;
-	background-color: #212529;
-	box-shadow: 0 0 10px rgba(0, 0, 0, .5);
-	transition: all 0.4s ease 0s;
-}
-
-.news-inner:hover {
-	box-shadow: 0 0 5px 2px #44883c;
-}
 
 
 /*===   Footer   ===*/

@@ -1,15 +1,20 @@
+.container {
+	padding: var(--main-padding);
+}
+
 .route-title {
-	font-size: 1.4rem;
-	font-family: 'Roboto', sans-serif;
+	font-size: 1.5rem;
 	color: #d1d2d3;
-	padding: 2rem;
+	padding: 0 0 1em 1em;
 }
 
 .route-details-content {
 	background: #292f34;
 	color: #d1d2d3;
-	box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+	box-shadow: 0 0 15px rgba(0, 0, 0, .5);
 	padding: 2rem;
+	margin-bottom: 2rem;
+	font-size: 1.2rem;
 }
 
 .route-stations {
@@ -27,68 +32,69 @@
 	border-bottom-color: #54595d;
 }
 
-.col-start, .col-finish {
-	font-size: 1.2rem;
-	flex: 0 0 25%;
-	max-width: 25%;
+.col-station {
+	flex: 0 0 35%;
+	max-width: 35%;
 }
 
 .col-timegap {
-	font-size: 1.1rem;
-	flex: 0 0 35%;
-	max-width: 35%;
+	flex: 0 0 30%;
+	max-width: 30%;
 	position: relative;
-	margin-top: 1.5rem;
+	margin-top: 1em;
+	display: flex;
+	justify-content: center;
 }
 
-.timegap-line::before {
+.col-timegap .timegap-line::before {
 	content: '';
 	border-top: 3px dashed #54595d;
 	position: absolute;
-	width: 90%;
-	right: 5%;
+	width: calc(100% - 3px);
+	right: 3px;
+	top: calc(-1em + 8px);
 }
 
-.timegap-line::after {
+.col-timegap .timegap-line::after {
 	content: '';
 	background-image: url("data:image/svg+xml,%3Csvg width='24' height='48' viewBox='0 0 16 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6.414 6.685L1.68 11.413a.771.771 0 0 1-1.09-1.088L4.778 6.14.59 1.957A.77.77 0 1 1 1.68.868l4.734 4.729a.767.767 0 0 1 0 1.088z' fill='%2354595d'/%3E%3C/svg%3E");
 	position: absolute;
 	width: 10px;
 	height: 18px;
-	right: 5%;
-	top: -30%;
+	right: 0;
+	top: -1em;
 }
 
-.col-price {
-	font-size: 1.1rem;
-	flex: 0 0 15%;
-	max-width: 15%;
+.col-timegap .content {
+	display: flex;
+	width: 100%;
+	font-size: .85em;
+}
+
+.col-timegap .content .timegap-time,
+.col-timegap .content .col-price {
+	width: 50%;
+	padding: .5em;
 }
 
 .route-summary {
 	display: flex;
-	flex-wrap: wrap;
-	text-align: center;
-	font-size: 1.1rem;
-	margin-top: 2rem;
+	align-items: center;
+	justify-content: space-around;
+	padding-top: 2rem;
 }
-
-.sum-time {
-	flex: 0 0 85%;
-	max-width: 85%;
-}
-
-.sum-price {
-	flex: 0 0 15%;
-	max-width: 15%;
+.route-summary .time span,
+.route-summary .price span {
+	margin-right: 1em;
 }
 
 
 .trip-create {
 	background: #292f34;
 	color: #d1d2d3;
-	box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+	box-shadow: 0 0 15px rgba(0, 0, 0, .5);
 	padding: 2rem;
+	margin-bottom: 2rem;
 	display: flex;
 	flex-wrap: wrap;
 }
